@@ -1,0 +1,670 @@
+<title>15 Weeks to Hyrox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Public+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#EDEFF0; --surface:#FFFFFF; --surface-2:#E4E8EA; --sunken:#DDE2E4;
+  --ink:#14181B; --ink-2:#4A545B; --ink-3:#7B868D;
+  --line:#CBD3D7; --line-2:#B4BEC3;
+  --ember:#B23F26; --ember-soft:#F2DDD7;
+  --pool:#1F6B6B; --pool-soft:#D7E7E6;
+  --steel:#3E4C57; --steel-soft:#DCE2E7;
+  --run:#8A6A1F; --run-soft:#EFE6D0;
+  --shadow:rgba(20,24,27,.09);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1315; --surface:#171C1F; --surface-2:#1E2428; --sunken:#12171A;
+    --ink:#E9EDEF; --ink-2:#A2ADB3; --ink-3:#6C777E;
+    --line:#2B3338; --line-2:#3A444A;
+    --ember:#E4653F; --ember-soft:#3B1E15;
+    --pool:#54AEA8; --pool-soft:#122927;
+    --steel:#93A6B4; --steel-soft:#1B2229;
+    --run:#CBA451; --run-soft:#2A2213;
+    --shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1315; --surface:#171C1F; --surface-2:#1E2428; --sunken:#12171A;
+  --ink:#E9EDEF; --ink-2:#A2ADB3; --ink-3:#6C777E;
+  --line:#2B3338; --line-2:#3A444A;
+  --ember:#E4653F; --ember-soft:#3B1E15;
+  --pool:#54AEA8; --pool-soft:#122927;
+  --steel:#93A6B4; --steel-soft:#1B2229;
+  --run:#CBA451; --run-soft:#2A2213;
+  --shadow:rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px; margin:0 auto; padding:0 20px 80px}
+
+h1,h2,h3,h4,.disp{font-family:Oswald,"Arial Narrow",sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.01em; text-wrap:balance; margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); font-weight:500}
+
+/* ---------- masthead ---------- */
+header{border-bottom:2px solid var(--ink); padding:44px 0 22px; margin-bottom:40px}
+.rule-top{height:5px; background:var(--ember); margin:0 -20px 40px; }
+h1{font-size:clamp(40px,9vw,76px); line-height:.92; letter-spacing:-.005em}
+h1 .sub{display:block; color:var(--ember)}
+.deck{max-width:62ch; color:var(--ink-2); margin:18px 0 26px; font-size:17px}
+.facts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line)}
+.fact{flex:1 1 130px; padding:14px 16px 12px; border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact .v{font-family:Oswald,sans-serif; font-size:28px; font-weight:600; line-height:1.05; display:block}
+.fact .k{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.fact.hot .v{color:var(--ember)}
+
+/* ---------- generic section ---------- */
+section{margin:0 0 56px; scroll-margin-top:20px}
+.sechead{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--ink); padding-bottom:8px; margin-bottom:20px; flex-wrap:wrap}
+.sechead h2{font-size:clamp(21px,4vw,28px)}
+.sechead .n{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ember); font-weight:500}
+p{margin:0 0 14px; max-width:68ch}
+.note{font-size:14.5px; color:var(--ink-2)}
+a{color:var(--ember)}
+
+/* ---------- panels ---------- */
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:20px}
+.panel + .panel{margin-top:14px}
+.grid2{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+/* ---------- callout ---------- */
+.callout{border:1px solid var(--line); border-top:4px solid var(--ember); background:var(--surface); padding:18px 20px; border-radius:2px}
+.callout h3{font-size:17px; margin-bottom:8px}
+.callout.pool{border-top-color:var(--pool)}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto; border:1px solid var(--line); border-radius:2px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14px; min-width:100%}
+th,td{text-align:left; padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:500; background:var(--surface-2); white-space:nowrap;
+  position:sticky; top:0; z-index:2; border-bottom:1px solid var(--line-2)
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num,.tab{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+caption{caption-side:bottom; text-align:left; padding:10px 13px; font-size:13px; color:var(--ink-3); border-top:1px solid var(--line)}
+
+/* ---------- phase timeline ---------- */
+.phases{display:grid; gap:2px; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); margin-bottom:22px}
+.ph{background:var(--surface); border:1px solid var(--line); border-top:5px solid var(--steel); padding:13px 14px; border-radius:2px}
+.ph.p1{border-top-color:var(--pool)}
+.ph.p2{border-top-color:var(--run)}
+.ph.p3{border-top-color:var(--ember)}
+.ph.p4{border-top-color:var(--ink)}
+.ph .wk{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em; color:var(--ink-3); text-transform:uppercase}
+.ph .nm{font-family:Oswald,sans-serif; text-transform:uppercase; font-weight:600; font-size:17px; margin:2px 0 4px}
+.ph .ds{font-size:13px; color:var(--ink-2); line-height:1.45}
+
+/* ---------- week template ---------- */
+.days{display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:2px; overflow:hidden}
+.day{background:var(--surface); padding:14px 16px; display:grid; grid-template-columns:70px 1fr; gap:14px; align-items:start}
+.day .dn{font-family:Oswald,sans-serif; text-transform:uppercase; font-weight:600; font-size:15px; color:var(--ink-3); padding-top:1px}
+.day .body h4{font-size:15.5px; margin-bottom:3px}
+.day .body p{font-size:14px; color:var(--ink-2); margin:0; max-width:none}
+.tag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.09em; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-left:8px; vertical-align:2px; font-weight:500; white-space:nowrap}
+.t-str{background:var(--steel-soft); color:var(--steel)}
+.t-run{background:var(--run-soft); color:var(--run)}
+.t-hyr{background:var(--ember-soft); color:var(--ember)}
+.t-rec{background:var(--pool-soft); color:var(--pool)}
+
+/* ---------- calculator ---------- */
+.calcbar{display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px; padding:18px 20px; background:var(--sunken); border:1px solid var(--line); border-radius:2px; margin-bottom:14px}
+.field label{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
+.field input{
+  font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:20px; width:110px;
+  padding:8px 10px; background:var(--surface); color:var(--ink);
+  border:1px solid var(--line-2); border-radius:2px;
+}
+.field input:focus-visible{outline:2px solid var(--ember); outline-offset:1px; border-color:var(--ember)}
+.calcbar .hint{font-size:13px; color:var(--ink-2); max-width:34ch; flex:1 1 220px}
+
+/* ---------- progress / checkboxes ---------- */
+.prog{display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap}
+.bar{flex:1 1 200px; height:8px; background:var(--sunken); border:1px solid var(--line); border-radius:2px; overflow:hidden}
+.bar span{display:block; height:100%; width:0; background:var(--ember); transition:width .3s ease}
+.prog .lbl{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2); white-space:nowrap}
+td.chk{width:38px; padding-left:13px}
+td.chk input{width:17px; height:17px; accent-color:var(--ember); cursor:pointer; margin:2px 0 0}
+tr.done td:not(.chk){opacity:.42}
+tr.race td{background:var(--ember-soft)}
+tr.race .tab, tr.race td{font-weight:700}
+tr.deload td{background:var(--sunken)}
+
+/* ---------- session library ---------- */
+.sess{border:1px solid var(--line); border-radius:2px; background:var(--surface); padding:16px 18px}
+.sess .code{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; font-weight:500; color:var(--ember)}
+.sess.rec .code{color:var(--pool)}
+.sess.str .code{color:var(--steel)}
+.sess.run .code{color:var(--run)}
+.sess h4{font-size:16.5px; margin:3px 0 8px}
+.sess ul{margin:0; padding-left:18px; font-size:14px; color:var(--ink-2)}
+.sess li{margin-bottom:5px}
+.sess li strong{color:var(--ink); font-weight:600}
+
+ul.plain{padding-left:18px; max-width:66ch; font-size:15px; color:var(--ink-2)}
+ul.plain li{margin-bottom:7px}
+ul.plain strong{color:var(--ink)}
+
+hr.soft{border:0; border-top:1px solid var(--line); margin:26px 0}
+footer{border-top:2px solid var(--ink); padding-top:18px; font-size:13.5px; color:var(--ink-3)}
+
+@media (max-width:560px){
+  .day{grid-template-columns:1fr; gap:5px}
+  .day .dn{padding-top:0}
+  .fact{flex:1 1 50%; border-bottom:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+<div class="rule-top"></div>
+
+<header>
+  <div class="eyebrow">Hyrox · Saturday 12 December 2026 · Built 25 August 2026</div>
+  <h1>15 Weeks<span class="sub">to Hyrox</span></h1>
+  <p class="deck">A full periodised block from today's benchmark week to the start corral — built around what you actually have: complete Hyrox station kit, running, a pool, and a sauna. Every pace below is calibrated from one test you run this week, not from guesswork.</p>
+  <div class="facts">
+    <div class="fact hot"><span class="v mono" id="dcount">—</span><span class="k">Days to race</span></div>
+    <div class="fact"><span class="v mono">15</span><span class="k">Training weeks</span></div>
+    <div class="fact"><span class="v mono">5+2</span><span class="k">Sessions / week</span></div>
+    <div class="fact"><span class="v mono">8+8</span><span class="k">Runs + stations</span></div>
+  </div>
+</header>
+
+<!-- ============ 01 HEALTH DATA ============ -->
+<section id="data">
+  <div class="sechead"><span class="n">01</span><h2>The missing piece: your Health data</h2></div>
+  <p>I have no route into your iPhone's Health app, and there's no export sitting in your Drive or the repo — so nothing below is derived from your real numbers yet. Here's how to fix that, and what changes when you do.</p>
+
+  <div class="callout">
+    <h3>Send it in four taps</h3>
+    <ul class="plain">
+      <li>Open <strong>Health</strong> → tap your <strong>profile photo</strong> (top right) → <strong>Export All Health Data</strong>.</li>
+      <li>It builds an <strong>export.zip</strong> (can take a few minutes — it's often 100&nbsp;MB+).</li>
+      <li>Share it to <strong>Google Drive</strong>, or AirDrop to a computer and upload it there.</li>
+      <li>Tell me it's up. I'll parse it and re-cut this plan against your real numbers.</li>
+    </ul>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">What I'd pull from it</div>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li><strong>Resting HR &amp; HRV trend</strong> — sets real recovery gates, so deloads land when you need them instead of on a fixed calendar.</li>
+        <li><strong>VO₂max estimate</strong> — sanity-checks the finish-time target.</li>
+        <li><strong>Workout history</strong> — actual weekly running volume, so Week&nbsp;1 starts where you are, not where I guessed.</li>
+        <li><strong>Sleep</strong> — decides whether 5 hard days a week is realistic or whether we drop to 4.</li>
+        <li><strong>Max HR seen</strong> — replaces the age formula in §07.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">What I assumed instead</div>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li>You can already run <strong>8&nbsp;km continuously</strong>. If not, tell me — Phase 1 changes shape.</li>
+        <li>You're racing <strong>Open, singles</strong>. Pro loads are in §03 if that's wrong.</li>
+        <li>You have <strong>5 training days + 2 recovery days</strong> available.</li>
+        <li>No current injury or training restriction.</li>
+      </ul>
+      <p class="note" style="margin:10px 0 0"><strong>Any of these wrong? Say so and I'll re-cut the block.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 BENCHMARK ============ -->
+<section id="benchmark">
+  <div class="sechead"><span class="n">02</span><h2>Week 0 · Prime &amp; benchmark <span class="tag t-hyr" style="margin-left:0">Aug 25–30</span></h2></div>
+  <p>This week you don't train, you <strong>measure</strong>. Six days, nothing to failure. These numbers set every pace and load for the next 15 weeks, and you'll repeat the same tests in Week 8 and Week 13 to prove the block is working.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Day</th><th>Test</th><th>How to run it</th><th class="num">Your result</th></tr></thead>
+      <tbody>
+        <tr><td class="tab">Tue 25</td><td><strong>1&nbsp;km time trial</strong></td><td>15&nbsp;min easy warm-up + drills. Flat road or treadmill at 1%. All out. <em>This is the anchor number.</em></td><td class="num">___ : ___</td></tr>
+        <tr><td class="tab">Wed 26</td><td>Pool + sauna</td><td>25&nbsp;min easy swim, any strokes. 15&nbsp;min sauna. Note how the heat feels — baseline for §06.</td><td class="num">—</td></tr>
+        <tr><td class="tab">Thu 27</td><td><strong>Station benchmark</strong></td><td>Full rest between each: 1000&nbsp;m SkiErg · 1000&nbsp;m Row · 50&nbsp;m sled push at race load · max unbroken wall balls.</td><td class="num">___ / ___ / ___ / ___</td></tr>
+        <tr><td class="tab">Fri 28</td><td>Strength baseline</td><td>Work to a comfortable <strong>5-rep max</strong> on back squat and deadlift. Stop when speed drops — no grinders.</td><td class="num">___ / ___ kg</td></tr>
+        <tr><td class="tab">Sat 29</td><td><strong>Grind test</strong></td><td>40&nbsp;min easy run, then straight into 80&nbsp;m burpee broad jumps for time, then 200&nbsp;m farmers carry — drops allowed, count them.</td><td class="num">___ : ___ / ___ drops</td></tr>
+        <tr><td class="tab">Sun 30</td><td>Off</td><td>Mobility, 20&nbsp;min walk, sauna optional. Block starts tomorrow.</td><td class="num">—</td></tr>
+      </tbody>
+      <caption>Write the results straight into your notes app — you'll need the 1&nbsp;km TT for the calculator in §04 and the sled/wall-ball numbers to set loads.</caption>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 03 THE RACE ============ -->
+<section id="race">
+  <div class="sechead"><span class="n">03</span><h2>What you're training for</h2></div>
+  <p>Eight 1&nbsp;km runs alternating with eight stations, in fixed order. The clock never stops — including the <strong>Roxzone</strong>, the transition running between each station, which quietly eats 8–12 minutes of most people's race.</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th class="num">#</th><th>Station</th><th class="num">Men Open</th><th class="num">Men Pro</th><th class="num">Women Open</th><th class="num">Women Pro</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td>SkiErg 1000&nbsp;m</td><td class="num" colspan="4" style="color:var(--ink-3)">no external load</td></tr>
+        <tr><td class="num">2</td><td>Sled Push 50&nbsp;m</td><td class="num">152 kg</td><td class="num">202 kg</td><td class="num">102 kg</td><td class="num">152 kg</td></tr>
+        <tr><td class="num">3</td><td>Sled Pull 50&nbsp;m</td><td class="num">103 kg</td><td class="num">153 kg</td><td class="num">78 kg</td><td class="num">103 kg</td></tr>
+        <tr><td class="num">4</td><td>Burpee Broad Jumps 80&nbsp;m</td><td class="num" colspan="4" style="color:var(--ink-3)">bodyweight</td></tr>
+        <tr><td class="num">5</td><td>Row 1000&nbsp;m</td><td class="num" colspan="4" style="color:var(--ink-3)">no external load</td></tr>
+        <tr><td class="num">6</td><td>Farmers Carry 200&nbsp;m</td><td class="num">2×24 kg</td><td class="num">2×32 kg</td><td class="num">2×16 kg</td><td class="num">2×24 kg</td></tr>
+        <tr><td class="num">7</td><td>Sandbag Lunges 100&nbsp;m</td><td class="num">20 kg</td><td class="num">30 kg</td><td class="num">10 kg</td><td class="num">20 kg</td></tr>
+        <tr><td class="num">8</td><td>Wall Balls 100 reps</td><td class="num">6 kg → 3.0 m</td><td class="num">9 kg → 3.0 m</td><td class="num">4 kg → 2.7 m</td><td class="num">6 kg → 2.7 m</td></tr>
+      </tbody>
+      <caption>2025/26 season loads. Sled weights include the sled itself and vary a little with venue flooring — confirm on the official rules page before race week.</caption>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:18px">
+    <h3>Where the race is actually won</h3>
+    <ul class="plain" style="margin:0">
+      <li><strong>Wall balls</strong> — the last station, 100 reps, and the single biggest spread between athletes. A 6-minute wall ball set and a 12-minute one both happen at every race. This is why they appear in training from Week&nbsp;3 onward, always on tired legs.</li>
+      <li><strong>Sled push</strong> — the great equaliser. It's a leg-strength and body-angle problem, not a cardio one, and it wrecks your next 1&nbsp;km run if you go into it cold. Trained heavy every Monday.</li>
+      <li><strong>Roxzone</strong> — free time for anyone who practises it. Don't walk transitions in training; jog them, always.</li>
+      <li><strong>Compromised running</strong> — running fast is not the skill. Running fast <em>after</em> 100 wall balls is. That's the entire point of Thursdays and the Saturday simulations.</li>
+    </ul>
+  </div>
+
+  <h3 style="margin:30px 0 12px; font-size:19px">Split budgets</h3>
+  <p class="note">Two finish targets, broken down. Pick the one your Week&nbsp;0 benchmark supports, then check yourself against it at the Week&nbsp;13 simulation.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Segment</th><th class="num">Sub-1:45</th><th class="num">Sub-1:30</th></tr></thead>
+      <tbody>
+        <tr><td>8 × 1&nbsp;km runs</td><td class="num">6:15 each · 50:00</td><td class="num">5:20 each · 42:40</td></tr>
+        <tr><td>SkiErg</td><td class="num">5:00</td><td class="num">4:30</td></tr>
+        <tr><td>Sled Push</td><td class="num">4:00</td><td class="num">3:00</td></tr>
+        <tr><td>Sled Pull</td><td class="num">5:00</td><td class="num">4:00</td></tr>
+        <tr><td>Burpee Broad Jumps</td><td class="num">6:00</td><td class="num">4:45</td></tr>
+        <tr><td>Row</td><td class="num">5:00</td><td class="num">4:20</td></tr>
+        <tr><td>Farmers Carry</td><td class="num">2:30</td><td class="num">2:00</td></tr>
+        <tr><td>Sandbag Lunges</td><td class="num">6:00</td><td class="num">5:00</td></tr>
+        <tr><td>Wall Balls</td><td class="num">10:00</td><td class="num">8:00</td></tr>
+        <tr><td><strong>Roxzone</strong> (all transitions)</td><td class="num">11:30</td><td class="num">11:45</td></tr>
+        <tr style="border-top:2px solid var(--ink-2)"><td><strong>Total</strong></td><td class="num"><strong>1:45:00</strong></td><td class="num"><strong>1:30:00</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 04 PACES ============ -->
+<section id="paces">
+  <div class="sechead"><span class="n">04</span><h2>Your paces, from one number</h2></div>
+  <p>Put in your Week&nbsp;0 <strong>1&nbsp;km time trial</strong> and every training pace in this plan resolves. Re-test in Week&nbsp;8 and Week&nbsp;13 and update it — the paces should get faster.</p>
+
+  <div class="calcbar">
+    <div class="field">
+      <label for="tt">1 km TT — min</label>
+      <input id="tt" type="text" inputmode="numeric" value="4:00" aria-label="1 km time trial result, minutes and seconds">
+    </div>
+    <p class="hint">Type it as <span class="mono">m:ss</span>. Defaults to 4:00 so you can see the shape — replace it with your real result.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Zone</th><th>Used for</th><th class="num">Pace / km</th><th class="num">Per 400 m</th><th>Feel</th></tr></thead>
+      <tbody id="pacebody"></tbody>
+      <caption>Estimates from a 1&nbsp;km TT. Treat them as a starting point and trust perceived effort over the watch on any given day — especially in weeks 9–14 when fatigue is highest.</caption>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 05 WEEK SHAPE ============ -->
+<section id="week">
+  <div class="sechead"><span class="n">05</span><h2>The shape of every week</h2></div>
+  <p>This structure repeats for all 15 weeks. What changes week to week is volume, intensity and which specific session lands on Tuesday, Thursday and Saturday — that's the table in §07.</p>
+
+  <div class="days">
+    <div class="day"><div class="dn">Mon</div><div class="body">
+      <h4>Strength A — push &amp; sled<span class="tag t-str">Strength</span></h4>
+      <p>Squat pattern, vertical press, heavy sled push, wall ball volume, core. Finish with a 15-minute compromised run straight off the last set. Session <span class="mono">S-A</span>.</p></div></div>
+    <div class="day"><div class="dn">Tue</div><div class="body">
+      <h4>Run — intervals<span class="tag t-run">Run</span></h4>
+      <p>The week's pure running quality. 400s early in the block, 1&nbsp;km race-pace repeats from Week&nbsp;9. Sessions <span class="mono">R-2</span> / <span class="mono">R-3</span> / <span class="mono">R-4</span>.</p></div></div>
+    <div class="day"><div class="dn">Wed</div><div class="body">
+      <h4>Pool + sauna<span class="tag t-rec">Recovery</span></h4>
+      <p>Aerobic work with zero impact, then heat. This is not an optional day — it's how you carry 5 hard sessions a week without breaking. Sessions <span class="mono">P-1</span> / <span class="mono">P-2</span> + <span class="mono">SA</span>.</p></div></div>
+    <div class="day"><div class="dn">Thu</div><div class="body">
+      <h4>Hyrox stations<span class="tag t-hyr">Specific</span></h4>
+      <p>Station skill and compromised running. Full-kit day — this is the session that makes race day feel familiar. Sessions <span class="mono">H-1</span> → <span class="mono">H-4</span>.</p></div></div>
+    <div class="day"><div class="dn">Fri</div><div class="body">
+      <h4>Strength B — pull, posterior &amp; grip<span class="tag t-str">Strength</span></h4>
+      <p>Deadlift pattern, pull-ups, heavy sled pull, farmers carry, sandbag lunges, grip finisher. Session <span class="mono">S-B</span>.</p></div></div>
+    <div class="day"><div class="dn">Sat</div><div class="body">
+      <h4>Long session<span class="tag t-run">Key</span></h4>
+      <p>The cornerstone. Long Z2 running in Phase 1–2, then half and full race simulations from Week&nbsp;9. If you only protect one session a week, protect this one.</p></div></div>
+    <div class="day"><div class="dn">Sun</div><div class="body">
+      <h4>Off<span class="tag t-rec">Rest</span></h4>
+      <p>Walk, mobility, optional short sauna. No training. Adaptation happens here, not on Monday.</p></div></div>
+  </div>
+
+  <p class="note" style="margin-top:14px"><strong>If a week goes sideways</strong> and you can only train three days: keep Tuesday, Thursday and Saturday. Those three carry the block. Strength is the first thing to cut, the long session is the last.</p>
+</section>
+
+<!-- ============ 06 POOL & SAUNA ============ -->
+<section id="pool">
+  <div class="sechead"><span class="n">06</span><h2>Pool &amp; sauna — the recovery engine</h2></div>
+  <div class="grid2">
+    <div class="callout pool">
+      <h3>Pool <span class="mono" style="font-size:12px; color:var(--pool)">P-1 / P-2</span></h3>
+      <p class="note" style="margin-bottom:10px">Two uses, alternating through the block.</p>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li><strong>P-1 · Recovery swim</strong> (Phase 1, deloads, race week) — 25–30&nbsp;min easy, mix strokes, nothing above conversational. Flushes the legs after Monday and Tuesday.</li>
+        <li><strong>P-2 · Aerobic intervals</strong> (Phases 2–4) — 400&nbsp;m easy warm-up, then <span class="mono">10 × 50 m</span> moderate on 1:15, then 200&nbsp;m easy. Real aerobic stimulus with none of the pounding — this is how the running volume in weeks 9–11 stays survivable.</li>
+        <li><strong>Bonus:</strong> breath control in the water transfers directly to wall-ball pacing. Practise steady exhale on effort.</li>
+      </ul>
+    </div>
+    <div class="callout pool">
+      <h3>Sauna <span class="mono" style="font-size:12px; color:var(--pool)">SA</span></h3>
+      <p class="note" style="margin-bottom:10px">Heat adaptation expands plasma volume over ~3 consistent weeks — worth having, because indoor Hyrox venues run hot and humid even in December.</p>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li><strong>Dose:</strong> 15–20&nbsp;min, post-session, 3× per week. Never before a hard session.</li>
+        <li><strong>Priority window:</strong> weeks 9–13. That's when it pays off for race day.</li>
+        <li><strong>Rehydrate:</strong> 500&nbsp;ml + electrolytes after every sitting. Weigh in/out if you want to be exact.</li>
+        <li><strong>Race week:</strong> one short easy sitting Monday, then stop. Don't add heat stress to a taper.</li>
+        <li>Skip it entirely if you're ill, or if HRV has been trending down for several days.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 THE BLOCK ============ -->
+<section id="block">
+  <div class="sechead"><span class="n">07</span><h2>The 15-week block</h2></div>
+
+  <div class="phases">
+    <div class="ph p1"><div class="wk">W1–4 · Aug 31–Sep 27</div><div class="nm">Base</div><div class="ds">Aerobic volume and strength foundation. Learn the stations properly before loading them.</div></div>
+    <div class="ph p2"><div class="wk">W5–8 · Sep 28–Oct 25</div><div class="nm">Build</div><div class="ds">Volume peaks, sleds go to race load, compromised running becomes routine. W8 deload.</div></div>
+    <div class="ph p3"><div class="wk">W9–12 · Oct 26–Nov 22</div><div class="nm">Specific</div><div class="ds">Race-pace 1&nbsp;km repeats, half simulations, weak-station work. W12 deload.</div></div>
+    <div class="ph p4"><div class="wk">W13–14 · Nov 23–Dec 6</div><div class="nm">Peak</div><div class="ds">Full timed simulation, then sharpen. Highest quality, falling volume.</div></div>
+    <div class="ph"><div class="wk">W15 · Dec 7–13</div><div class="nm">Taper</div><div class="ds">Volume down 50%, intensity kept short and sharp. Race Saturday 12 December.</div></div>
+  </div>
+
+  <div class="prog">
+    <span class="lbl" id="proglbl">0 / 15 weeks done</span>
+    <div class="bar"><span id="progbar"></span></div>
+    <button id="reset" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:transparent; color:var(--ink-3); border:1px solid var(--line-2); border-radius:2px; padding:6px 10px; cursor:pointer">Reset</button>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th class="chk"></th><th>Wk</th><th>Dates</th><th class="num">Run km</th><th>Tue — intervals</th><th>Thu — Hyrox</th><th>Sat — long</th></tr>
+      </thead>
+      <tbody id="weeks"></tbody>
+      <caption>Tick a week when it's done — it saves in this browser. Run km is total for the week including warm-ups and compromised running.</caption>
+    </table>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">Strength progression</div>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li><strong>W1–4</strong> — 3 × 8 @ ~70% of your Week 0 5RM. Build tissue tolerance.</li>
+        <li><strong>W5–8</strong> — 4 × 5 @ ~80%. Sleds reach full race load.</li>
+        <li><strong>W9–12</strong> — 4 × 3 @ ~85%, plus explosive work. Volume drops, intent rises.</li>
+        <li><strong>W13–14</strong> — 3 × 3 @ ~80%. Maintenance only, never to failure.</li>
+        <li><strong>W15</strong> — bodyweight movement only. Nothing that makes you sore.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">Heart-rate zones (until your export lands)</div>
+      <p class="note" style="margin-bottom:8px">Estimate max HR as <span class="mono">208 − (0.7 × age)</span>, or use the highest figure Health has ever recorded for you.</p>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li><span class="mono">Z2</span> 60–70% — all easy running. Conversational. Most of your volume.</li>
+        <li><span class="mono">Z3</span> 70–80% — steady, race-effort running.</li>
+        <li><span class="mono">Z4</span> 80–90% — threshold and 1&nbsp;km repeats.</li>
+        <li><span class="mono">Z5</span> 90%+ — 400s and station finishes only.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 SESSIONS ============ -->
+<section id="sessions">
+  <div class="sechead"><span class="n">08</span><h2>Session library</h2></div>
+  <p>Every code in the table above, written out. Warm-up for all sessions: 10&nbsp;min easy movement, leg swings, 3 × 20&nbsp;m build-ups.</p>
+
+  <div class="grid2">
+    <div class="sess run"><div class="code">R-1</div><h4>Z2 base run</h4><ul>
+      <li>Continuous easy running at <strong>Z2 pace</strong> from §04.</li>
+      <li>Nose-breathing test: if you can't, you're going too fast.</li>
+      <li>Duration set by the week's volume target.</li></ul></div>
+
+    <div class="sess run"><div class="code">R-2</div><h4>400 m repeats</h4><ul>
+      <li><strong>8–16 × 400 m</strong> at 400 pace, jog recovery 90s falling to 60s across the block.</li>
+      <li>Even splits beat a fast first rep. Last one should be your quickest.</li></ul></div>
+
+    <div class="sess run"><div class="code">R-3</div><h4>1 km repeats @ threshold</h4><ul>
+      <li><strong>4–6 × 1 km</strong> at threshold pace, 90s standing or walking rest.</li>
+      <li>Controlled discomfort, not a race. You should finish able to do one more.</li></ul></div>
+
+    <div class="sess run"><div class="code">R-4</div><h4>Hyrox pace repeats</h4><ul>
+      <li><strong>6–8 × 1 km</strong> at <strong>race pace</strong>, 45–60s rest.</li>
+      <li>The single most specific running session in the plan. From Week 9, this <em>is</em> your Tuesday.</li>
+      <li>Variant: 20 wall balls in each rest period.</li></ul></div>
+
+    <div class="sess str"><div class="code">S-A</div><h4>Strength A — push &amp; sled</h4><ul>
+      <li><strong>Back squat</strong> or trap-bar deadlift — see progression in §07.</li>
+      <li><strong>DB shoulder press</strong> 3 × 10.</li>
+      <li><strong>Sled push</strong> 6 × 20&nbsp;m heavy (above race load), full recovery.</li>
+      <li><strong>Wall balls</strong> 5 × 20, 60s rest.</li>
+      <li>Core: 3 × 45s front plank + 3 × 12 hanging knee raise.</li>
+      <li><strong>Finish: 15 min compromised run</strong> straight off the last set.</li></ul></div>
+
+    <div class="sess str"><div class="code">S-B</div><h4>Strength B — pull, posterior &amp; grip</h4><ul>
+      <li><strong>Deadlift</strong> or RDL — see progression.</li>
+      <li><strong>Weighted pull-ups</strong> 4 × 5.</li>
+      <li><strong>Sled pull</strong> 6 × 25&nbsp;m at race load — practise the hand-over-hand rhythm.</li>
+      <li><strong>Farmers carry</strong> 4 × 50&nbsp;m heavy, no drops.</li>
+      <li><strong>Sandbag lunges</strong> 4 × 25&nbsp;m.</li>
+      <li>Grip finisher: 3 × max-hold bar hang.</li></ul></div>
+
+    <div class="sess"><div class="code">H-1</div><h4>Station circuit</h4><ul>
+      <li>All 8 stations in race order at <strong>50–70% of race volume</strong> (e.g. 500&nbsp;m ski, 25&nbsp;m sled, 40&nbsp;m BBJ, 50 wall balls).</li>
+      <li><strong>Jog every transition</strong> — never walk. That's Roxzone practice.</li>
+      <li>Technique day: fix your sled body angle, wall-ball catch depth, lunge step length.</li></ul></div>
+
+    <div class="sess"><div class="code">H-2</div><h4>Compromised doubles</h4><ul>
+      <li><strong>4–6 rounds:</strong> 1&nbsp;km run at race pace → one full station at race volume → jog transition.</li>
+      <li>Rotate which stations you use so all 8 get covered across the phase.</li>
+      <li>The whole point: teaching your legs to run after load.</li></ul></div>
+
+    <div class="sess"><div class="code">H-3</div><h4>Half simulation</h4><ul>
+      <li><strong>4 × 1 km + 4 stations</strong>, race order, race loads, clock running throughout.</li>
+      <li>Record every split. Compare against your split budget in §03.</li>
+      <li>Rehearse race nutrition and kit here, not on race day.</li></ul></div>
+
+    <div class="sess"><div class="code">H-4</div><h4>Full simulation</h4><ul>
+      <li><strong>The whole race</strong>, timed, full loads, jogged transitions. Week 13, Saturday.</li>
+      <li>Treat it as a dress rehearsal: same breakfast, same shoes, same fuelling as race day.</li>
+      <li>Expect to be flat for 3–4 days afterwards — Week 14 is built for that.</li></ul></div>
+
+    <div class="sess rec"><div class="code">P-1 / P-2 / SA</div><h4>Pool &amp; sauna</h4><ul>
+      <li>Full protocol in <strong>§06</strong>.</li>
+      <li>P-1 recovery swim · P-2 aerobic intervals · SA 15–20 min heat.</li></ul></div>
+  </div>
+</section>
+
+<!-- ============ 09 RACE DAY ============ -->
+<section id="raceday">
+  <div class="sechead"><span class="n">09</span><h2>Race day · Saturday 12 December</h2></div>
+  <div class="grid2">
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">The 24 hours before</div>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li>Nothing new. Not shoes, not food, not supplements.</li>
+        <li>Normal carbs, extra fluid, salt with dinner.</li>
+        <li>Lay kit out the night before. Bring your own chalk and a small towel.</li>
+        <li>Breakfast 2.5–3 h before your start — the same one you rehearsed in Week 13.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="eyebrow" style="margin-bottom:9px">Warm-up</div>
+      <ul class="plain" style="font-size:14px; margin:0">
+        <li>15 min easy jog, finishing ~25 min before your slot.</li>
+        <li>Leg swings, 3 × 20&nbsp;m build-ups, 10 air squats, 10 easy wall balls.</li>
+        <li>Stay warm. Venues are cold in the corral and hot on the floor.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:14px">
+    <h3>Pacing the thing</h3>
+    <ul class="plain" style="margin:0">
+      <li><strong>Run 1 will feel absurdly easy.</strong> That's correct. Everyone goes out 30–40s/km too hot and pays for it at the sandbag lunges. Hold your split-budget pace.</li>
+      <li><strong>Sled push:</strong> low body angle, short choppy steps, don't stop moving. Stopping costs more than slowing down.</li>
+      <li><strong>Burpee broad jumps:</strong> pick a rhythm you can hold for the full 80&nbsp;m and never break it. Slow and unbroken beats fast and stuttering.</li>
+      <li><strong>Wall balls:</strong> plan the breaks <em>before</em> you start — sets of 10 with 3 breaths, or 25/25/25/25. Deciding mid-set is how a 7-minute station becomes 12.</li>
+      <li><strong>Roxzone:</strong> jog every transition, even the last one. You practised it every Thursday.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p style="margin:0; max-width:70ch">Built 25 August 2026 for a 12 December race. Paces and loads are estimates until your Apple Health export and Week&nbsp;0 benchmark replace them — send the export and I'll re-cut the block against your real numbers. Not medical advice; if anything hurts beyond normal training soreness, get it looked at rather than training through it.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- countdown ---------- */
+  var race = new Date(2026, 11, 12);
+  var today = new Date(); today.setHours(0,0,0,0);
+  var days = Math.round((race - today) / 86400000);
+  document.getElementById("dcount").textContent = days > 0 ? days : (days === 0 ? "TODAY" : "—");
+
+  /* ---------- pace calculator ---------- */
+  var ZONES = [
+    ["Z2 easy",    "Base runs, Saturday long runs",         1.45, 1.60, "Conversational. Nose-breathing."],
+    ["Steady",     "Aerobic tempo, back half of long runs", 1.30, 1.30, "Comfortably hard, could talk in phrases."],
+    ["Race pace",  "Your 8 × 1 km on race day",             1.22, 1.28, "Hard but repeatable eight times."],
+    ["Threshold",  "R-3 · 1 km repeats",                    1.15, 1.15, "One-hour race effort. Controlled."],
+    ["5 km effort","R-3 variant",                           1.08, 1.08, "Uncomfortable by rep three."],
+    ["400 pace",   "R-2 · 400 m repeats",                   0.97, 0.97, "Fast, but never all-out."]
+  ];
+
+  function parse(s){
+    var m = String(s).trim().match(/^(\d{1,2})[:.\s](\d{1,2})$/);
+    if(m) return parseInt(m[1],10)*60 + parseInt(m[2],10);
+    var n = parseFloat(s);
+    return (!isNaN(n) && n > 60 && n < 900) ? n : null;
+  }
+  function fmt(sec){
+    sec = Math.round(sec);
+    var m = Math.floor(sec/60), s = sec % 60;
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+  function range(a, b){ return a === b ? fmt(a) : fmt(a) + "–" + fmt(b); }
+
+  function renderPaces(){
+    var t = parse(document.getElementById("tt").value);
+    var body = document.getElementById("pacebody");
+    body.innerHTML = "";
+    ZONES.forEach(function(z){
+      var tr = document.createElement("tr");
+      var km  = t ? range(t*z[2], t*z[3]) : "—";
+      var q   = t ? range(t*z[2]*0.4, t*z[3]*0.4) : "—";
+      [[z[0], "b"], [z[1], ""], [km, "num"], [q, "num"], [z[4], "note"]].forEach(function(cell, i){
+        var td = document.createElement("td");
+        if(cell[1] === "num") td.className = "num";
+        if(cell[1] === "b"){ td.innerHTML = "<strong>" + cell[0] + "</strong>"; }
+        else { td.textContent = cell[0]; }
+        if(i === 1 || i === 4) td.style.color = "var(--ink-2)";
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+  }
+  document.getElementById("tt").addEventListener("input", renderPaces);
+  renderPaces();
+
+  /* ---------- the block ---------- */
+  var WEEKS = [
+    [1,  "Aug 31 – Sep 6",  22, "R-2 · 8 × 400 m, 90s jog",        "H-1 · circuit @ 60%, technique",     "R-1 · 60 min Z2",                     ""],
+    [2,  "Sep 7 – 13",      25, "R-2 · 10 × 400 m, 90s",           "H-1 · circuit @ 65% + sled skill",   "R-1 · 70 min Z2",                     ""],
+    [3,  "Sep 14 – 20",     28, "R-3 · 5 × 1 km @ threshold",      "H-2 · 4 rounds",                     "R-1 · 75 min Z2 + 100 wall balls",    ""],
+    [4,  "Sep 21 – 27",     20, "R-2 · 6 × 400 m, easy week",      "H-1 · circuit @ 65%",                "R-1 · 55 min Z2",                     "deload"],
+    [5,  "Sep 28 – Oct 4",  30, "R-2 · 12 × 400 m, 75s",           "H-2 · 5 rounds, race loads",         "R-1 · 80 min Z2",                     ""],
+    [6,  "Oct 5 – 11",      33, "R-3 · 6 × 1 km @ threshold",      "Sled block · 6 × 50 m push + pull",  "R-1 · 90 min Z2 — longest pure run",  ""],
+    [7,  "Oct 12 – 18",     36, "R-2 · 4 × (4 × 400 m), 60s",      "H-2 · 6 rounds",                     "R-1 · 75 min Z2 + 8 × 50 m sled push",""],
+    [8,  "Oct 19 – 25",     24, "R-2 · 5 × 400 m + retest 1 km TT","H-1 · circuit @ 60%",                "R-1 · 50 min easy",                   "deload"],
+    [9,  "Oct 26 – Nov 1",  36, "R-4 · 8 × 1 km @ race pace, 60s", "Quarter sims · 2 × (2 runs + 2 st.)","H-3 · half simulation",               ""],
+    [10, "Nov 2 – 8",       39, "R-4 · 6 × 1 km + 20 wall balls",  "Wall ball &amp; BBJ specialty",      "R-1 · 85 min Z2 + carries &amp; lunges",""],
+    [11, "Nov 9 – 15",      42, "R-4 · 8 × 1 km @ race pace, 45s", "H-3 · half sim at race effort",      "H-3 · half sim #2, timed",            ""],
+    [12, "Nov 16 – 22",     26, "R-4 · 4 × 1 km @ race pace",      "H-1 · circuit @ 60%",                "R-1 · 60 min Z2",                     "deload"],
+    [13, "Nov 23 – 29",     38, "R-4 · 5 × 1 km @ race pace",      "H-1 · light primer only",            "H-4 · FULL SIMULATION, timed",        ""],
+    [14, "Nov 30 – Dec 6",  32, "R-4 · 6 × 1 km @ race pace, 60s", "Sled + wall ball sharpener",         "R-1 · 70 min Z2 + station touch-ups", ""],
+    [15, "Dec 7 – 13",      16, "R-4 · 3 × 1 km @ race pace",      "15 min primer, 10 easy wall balls",  "RACE · 12 December",                  "race"]
+  ];
+
+  var KEY = "hyrox-dec12-2026-weeks";
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ done = {}; }
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch(e){} }
+
+  function updateProgress(){
+    var n = 0, i;
+    for(i = 1; i <= 15; i++){ if(done[i]) n++; }
+    document.getElementById("progbar").style.width = (n / 15 * 100) + "%";
+    document.getElementById("proglbl").textContent = n + " / 15 weeks done";
+  }
+
+  var tbody = document.getElementById("weeks");
+  WEEKS.forEach(function(w){
+    var tr = document.createElement("tr");
+    if(w[6]) tr.className = w[6];
+    if(done[w[0]]) tr.className += " done";
+
+    var td0 = document.createElement("td");
+    td0.className = "chk";
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = !!done[w[0]];
+    cb.setAttribute("aria-label", "Mark week " + w[0] + " complete");
+    cb.addEventListener("change", function(){
+      if(cb.checked){ done[w[0]] = 1; tr.classList.add("done"); }
+      else { delete done[w[0]]; tr.classList.remove("done"); }
+      save(); updateProgress();
+    });
+    td0.appendChild(cb);
+    tr.appendChild(td0);
+
+    var cells = [
+      ["<strong>" + w[0] + "</strong>", "tab"],
+      [w[1], "tab"],
+      [w[2], "num"],
+      [w[3], ""], [w[4], ""], [w[5], ""]
+    ];
+    cells.forEach(function(c){
+      var td = document.createElement("td");
+      td.innerHTML = c[0];
+      if(c[1]) td.className = c[1];
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("reset").addEventListener("click", function(){
+    done = {}; save();
+    Array.prototype.forEach.call(tbody.querySelectorAll("input[type=checkbox]"), function(cb){ cb.checked = false; });
+    Array.prototype.forEach.call(tbody.querySelectorAll("tr"), function(tr){ tr.classList.remove("done"); });
+    updateProgress();
+  });
+
+  updateProgress();
+})();
+</script>
