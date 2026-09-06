@@ -1,0 +1,346 @@
+<title>TwinECM Google Profile Pack</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #0B0E11; --bg-2: #0F1318; --surface: #12161B; --line: #1F262E;
+    --ink: #E9EDF1; --ink-2: #9AA4AE; --ink-3: #5F6A75;
+    --accent: #4DE3FF; --accent-ink: #06141A; --accent-dim: rgba(77,227,255,.09); --accent-line: rgba(77,227,255,.30);
+    --warn: #FFB547; --warn-dim: rgba(255,181,71,.09); --warn-line: rgba(255,181,71,.38);
+    --stop: #F07A6E; --stop-dim: rgba(240,122,110,.09); --stop-line: rgba(240,122,110,.34);
+    --ok: #5BD99A;
+    --display: "Michroma", "Eurostile", "Arial Black", sans-serif;
+    --body: "Sora", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-weight: 300; font-size: 16px; line-height: 1.6; margin: 0; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .page { max-width: 900px; margin: 0 auto; padding: 52px 26px 96px; }
+
+  header.top { border-bottom: 1px solid var(--line); padding-bottom: 26px; margin-bottom: 8px; }
+  .kicker { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; display: flex; align-items: center; gap: 11px; }
+  .kicker svg { height: 15px; width: auto; }
+  h1 { font-family: var(--body); font-weight: 700; font-size: clamp(27px, 4vw, 38px); line-height: 1.12; letter-spacing: -.02em; margin: 0 0 14px; text-wrap: balance; }
+  header.top p { color: var(--ink-2); margin: 0; max-width: 62ch; }
+
+  section { padding: 40px 0; border-bottom: 1px solid var(--line); }
+  .num { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px; }
+  h2 { font-family: var(--body); font-weight: 600; font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -.015em; margin: 0 0 12px; text-wrap: balance; max-width: 30ch; }
+  h3 { font-family: var(--body); font-weight: 600; font-size: 16px; margin: 26px 0 8px; }
+  p { margin: 0 0 13px; color: var(--ink-2); max-width: 68ch; }
+  p strong, li strong { color: var(--ink); font-weight: 500; }
+  ul { margin: 0 0 13px; padding-left: 19px; color: var(--ink-2); max-width: 68ch; }
+  li { margin-bottom: 7px; }
+
+  /* callouts */
+  .flag { border-radius: 13px; padding: 24px 26px; margin: 0 0 20px; border: 1px solid; }
+  .flag h2, .flag h3 { margin-top: 0; }
+  .flag p:last-child, .flag ul:last-child { margin-bottom: 0; }
+  .flag.stop { background: var(--stop-dim); border-color: var(--stop-line); }
+  .flag.warn { background: var(--warn-dim); border-color: var(--warn-line); }
+  .flag.go { background: var(--accent-dim); border-color: var(--accent-line); }
+  .flag .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 10px; }
+  .flag.stop .tag { color: var(--stop); }
+  .flag.warn .tag { color: var(--warn); }
+  .flag.go .tag { color: var(--accent); }
+
+  /* copy-paste field */
+  .field { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); margin: 0 0 16px; overflow: hidden; }
+  .field .head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 12px 18px; border-bottom: 1px solid var(--line); background: var(--bg-2); }
+  .field .head b { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; }
+  .field .head .count { font-family: var(--mono); font-size: 11px; color: var(--ok); }
+  .field .head .count.tight { color: var(--warn); }
+  .field .body { padding: 18px; font-family: var(--mono); font-size: 13.5px; line-height: 1.75; color: var(--ink); white-space: pre-wrap; }
+  .field .body.big { font-size: 17px; letter-spacing: .04em; }
+
+  /* two-col lists */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .cell { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 20px 22px; }
+  .cell h3 { margin: 0 0 10px; font-size: 14px; }
+  .cell h3.yes { color: var(--accent); font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; }
+  .cell h3.no { color: var(--stop); font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; }
+  .cell ul { margin: 0; padding: 0; list-style: none; font-size: 14.5px; }
+  .cell li { padding: 9px 0; border-top: 1px solid var(--line); margin: 0; }
+  .cell li:first-child { border-top: 0; padding-top: 0; }
+
+  /* table */
+  .scroller { overflow-x: auto; margin: 0 0 16px; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14.5px; }
+  th { text-align: left; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; color: var(--ink-3); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--ink-3); }
+  td { padding: 13px 14px 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+  td.k { color: var(--ink); font-weight: 400; }
+  td.mono { font-family: var(--mono); font-size: 13px; }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+  .pill.p1 { color: var(--accent); border-color: var(--accent-line); }
+  .pill.p2 { color: var(--ink-2); border-color: var(--line); }
+
+  /* checklist */
+  .checks { list-style: none; padding: 0; margin: 0; max-width: none; }
+  .checks li { display: grid; grid-template-columns: 22px 1fr; gap: 13px; padding: 13px 0; border-top: 1px solid var(--line); margin: 0; align-items: start; }
+  .checks li:first-child { border-top: 0; }
+  .checks .box { width: 17px; height: 17px; border: 1.5px solid var(--ink-3); border-radius: 4px; margin-top: 3px; }
+  .checks b { color: var(--ink); font-weight: 500; display: block; }
+  .checks span { font-size: 14.5px; color: var(--ink-2); }
+  .ph { color: var(--accent); border-bottom: 1px dashed var(--accent); }
+
+  footer { padding-top: 32px; font-size: 13.5px; color: var(--ink-3); }
+  footer a { color: var(--ink-2); }
+
+  @media (max-width: 720px) {
+    .cols { grid-template-columns: 1fr; }
+    .page { padding: 36px 20px 72px; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="top">
+    <p class="kicker">
+      <svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="11" height="40" rx="5.5" fill="#E9EDF1"></rect><rect x="25" y="4" width="11" height="40" rx="5.5" fill="#4DE3FF"></rect></svg>
+      TwinECM &middot; Google Business Profile &middot; Setup pack
+    </p>
+    <h1>Everything to paste in, and the one thing that decides whether you can list at all</h1>
+    <p>Fields below are written to Google's current limits and ready to copy. Read section 01 first &mdash; a mail-in business is an edge case in Google's eligibility rules, and getting it wrong costs a 30-day suspension, not a warning.</p>
+  </header>
+
+  <section>
+    <p class="num">01 &middot; Eligibility</p>
+    <div class="flag stop">
+      <p class="tag">Stop &mdash; this decides the whole thing</p>
+      <h2>A mail-in-only business cannot have a Google profile.</h2>
+      <p>Google's eligibility rule is that a business must have a physical location, or meet customers face to face. Selling only through a website does not qualify. As TwinECM is written today &mdash; nationwide, ship it to us &mdash; <strong>it is not eligible.</strong></p>
+      <p><strong>What makes it eligible is the drop-off.</strong> The homepage already offers "mail it in or drop it off." If customers can physically hand you a module at a real address you control and staff, that is face-to-face contact and the listing is legitimate. That has to be true in practice, not just on the site.</p>
+    </div>
+    <div class="flag warn">
+      <p class="tag">The address rules that get people suspended</p>
+      <ul>
+        <li><strong>No PO box, no virtual office, no mailbox rental.</strong> A UPS Store box or a coworking address is the single most common cause of suspension in this category.</li>
+        <li><strong>A home address is allowed</strong>, and you can hide it. Google still needs it behind the scenes to verify you.</li>
+        <li><strong>Hide the address if there is no signage</strong> where you take walk-ins. Then it lists as a service-area business.</li>
+        <li><strong>Service area is capped at roughly two hours' drive</strong> from your base, up to 20 areas. You cannot set "nationwide."</li>
+      </ul>
+    </div>
+    <div class="flag go">
+      <p class="tag">So be honest about what this channel is</p>
+      <p>The profile will only ever bring you <strong>local</strong> work &mdash; drop-offs and shops inside metro Atlanta. Your nationwide mail-in volume comes from Google Ads and the symptom pages, not from here. That is still worth doing: the local pack is free, it ranks for "ECM replacement near me," and a profile with real reviews makes the ads more believable. Just do not expect it to carry the business.</p>
+      <p><strong>Atlanta is not an empty field, though.</strong> Auto Module Programming runs a mobile ECU, BCM and TCM service across Buckhead, Marietta, Alpharetta and Sandy Springs &mdash; the same metro, overlapping work. And UpFix, the one competitor advertising at scale nationally, is also a Georgia company. Neither is a reason not to list, but the local pack here has to be earned on reviews and photos, not won by showing up.</p>
+      <p>Your edge against a mobile operator is the opposite of theirs: they drive to the car, you work a bench. Say the bench part &mdash; verified before it ships, unlock included, no board damage &mdash; because that is what a mobile van cannot do in a driveway.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="num">02 &middot; Name</p>
+    <h2>Exactly this, and nothing after it</h2>
+    <div class="field">
+      <div class="head"><b>Business name</b><span class="count">8 characters</span></div>
+      <div class="body big">TwinECM</div>
+    </div>
+    <p>Your profile name has to be your real-world business name with no descriptors attached. <strong>TwinECM ECM Cloning</strong>, <strong>TwinECM &mdash; Engine Computer Cloning Tampa</strong>, or anything with a city, a service, a tagline, a phone number or a URL in it is keyword stuffing, and it is enforced. Google blocked roughly 70 million listing edits and removed 12 million fake profiles in 2024; appeals take 30 days or more, and the listing is invisible the whole time.</p>
+    <p>The keywords belong in the description, the services and the posts, where they are allowed and where they still do the ranking work. Not in the name.</p>
+  </section>
+
+  <section>
+    <p class="num">03 &middot; Categories</p>
+    <h2>One primary, a few supporting</h2>
+    <p>The primary category does most of the ranking work, so it should describe the core service, not the widest one. Google's category list changes and is only visible in the picker, so <strong>type these into the field and take the closest match that appears</strong> rather than assuming the exact wording below exists.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Category</th><th>Role</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Auto electrical service</td><td><span class="pill p1">Primary, first choice</span></td><td>Closest to what you actually do. Electronics on a vehicle, not mechanical repair.</td></tr>
+          <tr><td class="k">Auto repair shop</td><td><span class="pill p1">Primary, fallback</span></td><td>Confirmed to exist and it is what people searching "ECM replacement" land on. Broader, more competition.</td></tr>
+          <tr><td class="k">Car alarm supplier</td><td><span class="pill p2">Secondary</span></td><td>Catches the anti-theft and immobilizer side of the searches.</td></tr>
+          <tr><td class="k">Electric motor repair shop</td><td><span class="pill p2">Secondary</span></td><td>Exists in the list and reinforces the bench-repair signal.</td></tr>
+          <tr><td class="k">Auto parts store</td><td><span class="pill p2">Secondary, only for Path B</span></td><td>Justified only because you source and supply modules. Skip it if you drop Path B.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Do not add categories for work you do not do. An unrelated category is both a ranking dilution and a guideline problem.</p>
+  </section>
+
+  <section>
+    <p class="num">04 &middot; Description</p>
+    <h2>730 characters, inside the 750 limit</h2>
+    <div class="field">
+      <div class="head"><b>Business description</b><span class="count tight">730 / 750 characters</span></div>
+      <div class="body">TwinECM clones engine computers. If your ECM, PCM or ECU has failed, we copy the calibration, VIN, key and anti-theft data from your original onto a working, part-number-matched unit, so it plugs in and drives exactly like the one it replaced, with no dealer programming.
+
+Two ways to do it: send your original plus a matching donor for $149, everything included, or send only your original for $299 and we source the twin for you. No junkyard hunting.
+
+Chrysler, Dodge, Jeep and Ram GPEC2 modules, and GM 2014 and newer, leave the factory locked. We unlock them on the bench first, at no extra charge.
+
+Every unit is bench-tested before it ships and goes back one business day after it arrives. Drop it off locally or mail it in.</div>
+    </div>
+    <p>It opens with the plain-English service, carries both prices, names the locked-module families by brand because that is how people search, and closes on the two things that separate you: bench testing and the one-day turnaround. It is 20 characters from the limit, so if you add anything, cut something.</p>
+  </section>
+
+  <section>
+    <p class="num">05 &middot; Services</p>
+    <h2>Where the keywords legitimately go</h2>
+    <p>Each service takes a name and an optional description. This is the free, compliant place to cover the vocabulary customers actually type.</p>
+    <div class="field">
+      <div class="head"><b>Service list</b><span class="count">11 entries</span></div>
+      <div class="body">ECM cloning &mdash; $149
+PCM cloning &mdash; $149
+ECU cloning &mdash; $149
+Engine computer cloning &mdash; $149
+Module sourcing and cloning &mdash; $299, module included
+GPEC2 module unlocking &mdash; included
+GM locked module unlocking &mdash; included
+Bench testing and verification &mdash; included
+Mail-in module service
+Module drop-off service
+Trade and repair shop accounts</div>
+    </div>
+    <p>Give the first four a one-line description each, since they are the same job under four names and Google shows the text. Something like: <em>Copies the calibration, VIN, keys and anti-theft data from your failed engine computer onto a working matched unit. Plug and play, no dealer programming.</em></p>
+  </section>
+
+  <section>
+    <p class="num">06 &middot; Atlanta &mdash; hours, area, contact</p>
+    <h2>Based in Atlanta, so the area is the metro</h2>
+    <div class="cols">
+      <div class="cell">
+        <h3 class="yes">Fill in as</h3>
+        <ul>
+          <li><strong>City:</strong> Atlanta, GA</li>
+          <li><strong>Address:</strong> <span class="ph">the real drop-off address</span></li>
+          <li><strong>Hours:</strong> open every day, <span class="ph">set the times</span></li>
+          <li><strong>Website:</strong> twinecm.com, the homepage</li>
+          <li><strong>Phone:</strong> see the flag below</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <h3 class="no">Watch for</h3>
+        <ul>
+          <li>Hours must be when the phone is actually answered &mdash; "open" with no pickup is what earns one-star reviews</li>
+          <li>Do not set a tracking link as the website</li>
+          <li>Do not stretch the area past what you would really drive</li>
+          <li>Same address, phone and name everywhere online, character for character</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flag warn">
+      <p class="tag">The area code does not match the city</p>
+      <p><strong>(813) is Tampa. The business is in Atlanta.</strong> This will not get the listing suspended &mdash; Google stopped weighting area codes long ago &mdash; but it is friction on exactly the customer this profile exists to win. Someone searching "ECM replacement near me" in Marietta, seeing an Atlanta address and a Florida number, hesitates.</p>
+      <p><strong>Get a 404, 470, 678 or 770 number and forward it to the existing line.</strong> 404 reads as in-town Atlanta and is the strongest of the four. Keep the 813 as the number printed on mail-in paperwork if it is already in circulation, but the profile, the website and the ads should all show the Atlanta number, identically.</p>
+    </div>
+
+    <h3>Service area &mdash; counties, not cities</h3>
+    <p>Google caps the area at roughly two hours' drive and 20 entries. Counties cover more ground per entry than cities and are how Georgia is usually carved up. Nine counties covers the metro without overreaching:</p>
+    <div class="field">
+      <div class="head"><b>Service areas</b><span class="count">9 of 20 used</span></div>
+      <div class="body">Fulton County, GA
+DeKalb County, GA
+Cobb County, GA
+Gwinnett County, GA
+Clayton County, GA
+Cherokee County, GA
+Forsyth County, GA
+Henry County, GA
+Douglas County, GA</div>
+    </div>
+    <p>That reaches Buckhead, Sandy Springs, Marietta, Alpharetta, Roswell, Decatur, Duluth, Lawrenceville, Kennesaw and Johns Creek &mdash; including the four suburbs the local competitor names. Leave the other eleven slots empty for now. <strong>A tight area ranks better than a sprawling one</strong>, and you can add Paulding, Fayette, Coweta, Rockdale, Newton, Hall or Bartow later if drop-offs actually come from there.</p>
+    <p>Do not add Athens, Macon, Chattanooga or Columbus. They are inside two hours on paper and nobody is driving a module that far when they could mail it.</p>
+
+    <p>One more thing to expect: the site says <strong>open every day</strong> while the service promises <strong>one business day</strong> turnaround. Someone will ask. The Q&amp;A below answers it rather than leaving them to guess.</p>
+  </section>
+
+  <section>
+    <p class="num">07 &middot; Questions to seed</p>
+    <h2>Ask and answer them yourself, on day one</h2>
+    <p>The owner posting a question and answering it is allowed, and an empty Q&amp;A gets filled by strangers guessing. Post these before the profile gets traffic. Keep every answer under about 40 words so it does not truncate.</p>
+    <div class="field">
+      <div class="head"><b>Seed Q&amp;A</b><span class="count">7 pairs</span></div>
+      <div class="body">Q. Can I just buy a used computer and plug it in?
+A. No. The anti-theft data is locked to the car it came from, so it cranks, runs a couple of seconds and dies. Cloning your original onto that unit is the fix.
+
+Q. Will my keys still work?
+A. Yes. Your key and anti-theft data is part of what gets copied, so the keys you already have keep working. No dealer visit.
+
+Q. What if I don't have a second module to send?
+A. Send only your original and we source a matching one for you. $299 all in, module included.
+
+Q. What does it cost?
+A. $149 if you send your original plus a matching donor. $299 if we supply the module. Unlocking locked modules is included in both.
+
+Q. How long does it take?
+A. One business day from the day it reaches us. We text you at every step.
+
+Q. Can I drop it off instead of mailing it?
+A. Yes. Call first and we'll tell you what to bring.
+
+Q. Do you work with repair shops?
+A. Yes, same price. Send several modules in one box and pay one return charge.</div>
+    </div>
+  </section>
+
+  <section>
+    <p class="num">08 &middot; Photos</p>
+    <h2>Shoot these, in this order</h2>
+    <p>Real photos of the bench outperform anything staged, and this category has almost no good imagery on Google, so it is cheap to win. Match the brand rule already set: real modules, real boxes, hands doing the work, no stock photography.</p>
+    <ul>
+      <li><strong>Logo</strong> &mdash; twin bars on the dark ground, square crop.</li>
+      <li><strong>Cover</strong> &mdash; the bench with a module connected, cyan cast, wide.</li>
+      <li><strong>A module with its sticker readable</strong> &mdash; this is the photo that tells a mechanic you are real, and it teaches customers where to look for the part number.</li>
+      <li><strong>The bench mid-clone</strong> &mdash; harness, power supply, screen showing a read in progress.</li>
+      <li><strong>A packed return box</strong> &mdash; unit bagged, labelled, install sheet on top.</li>
+      <li><strong>The drop-off point</strong> &mdash; only if you have signage. Required if you list an address customers visit.</li>
+      <li><strong>You, at the bench</strong> &mdash; profiles with a face convert better than anonymous ones.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="num">09 &middot; First month of posts</p>
+    <h2>One a week, straight off the ad plan</h2>
+    <p>Posts keep the profile active, which helps the listing, and they reuse copy you already have. Every one ends with the call button.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Week</th><th>Post</th><th>Angle</th></tr></thead>
+        <tbody>
+          <tr><td class="k mono">01</td><td class="k">Why a junkyard computer won't start your car</td><td>The trap. Highest-intent thing you can say to someone mid-search.</td></tr>
+          <tr><td class="k mono">02</td><td class="k">No second computer? We find the twin</td><td>The thing no competitor offers. $299 all in.</td></tr>
+          <tr><td class="k mono">03</td><td class="k">Locked from the factory, unlocked on our bench</td><td>GPEC2 and GM 2014+. Names the brands people search.</td></tr>
+          <tr><td class="k mono">04</td><td class="k">Shops: we're your cloning department</td><td>A dead computer in a bay makes nothing. Targets the trade.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="num">10 &middot; Reviews</p>
+    <h2>Ask two days after it starts</h2>
+    <p>The follow-up text already in the order flow &mdash; <em>"Did it start?"</em> &mdash; is the review ask. A yes is the moment to send the link, and never before.</p>
+    <div class="field">
+      <div class="head"><b>Review request text</b><span class="count">Send after a "yes"</span></div>
+      <div class="body">Glad it's running. If you have a minute, a short review helps other people find us &mdash; especially if you mention your vehicle and that it was a cloning job.
+
+[review link]</div>
+    </div>
+    <p>Asking them to name <strong>the vehicle and the service</strong> is the whole trick: a review that says "2014 Ram 1500, cloned my PCM, started first try" ranks the profile for that exact search and answers the next customer's question at the same time. Three phrases to hope for, from what customers already say about competitors: <em>plugged it in and it started</em>, <em>communicated the whole time</em>, <em>turnaround as promised</em>.</p>
+    <div class="flag warn">
+      <p class="tag">Never</p>
+      <p>Buy reviews, offer a discount for one, or set up a kiosk that filters unhappy customers out. All three are against Google's policy, all three are detectable, and in a category this small a fake-review pattern is obvious.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="num">11 &middot; Before you click publish</p>
+    <h2>Seven things, and five of them are still open</h2>
+    <ul class="checks">
+      <li><span class="box"></span><span><b>A real, staffed Atlanta address you control</b>Not a mailbox, not a virtual office. This is the gate &mdash; nothing else matters until it exists.</span></li>
+      <li><span class="box"></span><span><b>Drop-off is genuinely offered</b>The face-to-face contact that makes the listing legitimate has to be real.</span></li>
+      <li><span class="box"></span><span><b>Opening hours decided</b>The site says open every day; the profile needs actual times.</span></li>
+      <li><span class="box"></span><span><b>twinecm.com registered and live</b>A profile pointing at a dead domain wastes the traffic it earns.</span></li>
+      <li><span class="box"></span><span><b>Name entered as TwinECM, nothing appended</b>The single easiest way to lose the listing for a month.</span></li>
+      <li><span class="box"></span><span><b>An Atlanta phone number</b>404, 470, 678 or 770, forwarded to the existing line, and used identically on the site, the profile and the ads.</span></li>
+      <li><span class="box"></span><span><b>Verification method chosen</b>Usually postcard or video. Video verification wants the address, the bench and you in one unbroken take &mdash; worth planning before you start it.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Rules summarised from Google Business Profile Help on <a href="https://support.google.com/business/answer/13763036?hl=en">business eligibility</a>, <a href="https://support.google.com/business/answer/3038177?hl=en">representing your business</a>, and <a href="https://support.google.com/business/answer/9157481?hl=en">service areas</a>. Guidelines change; check the picker and the current help pages before submitting. This is operational guidance, not legal advice.</p>
+  </footer>
+
+</div>
