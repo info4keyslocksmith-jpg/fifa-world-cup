@@ -324,6 +324,11 @@ videos land before June.
 - A Meta Business account and a Google Ads account in TwinECM's name.
 - Real budget numbers — the $20–30/day Meta and $15–20/day Google figures are placeholders.
 
+**Google Business Profile** — see [`GOOGLE-BUSINESS-PROFILE.md`](GOOGLE-BUSINESS-PROFILE.md)
+- **Blocked on a real, staffed drop-off address.** A mail-in-only business is not eligible for a profile at all; the drop-off option is what makes it legitimate. No PO box, virtual office or mailbox rental.
+- Service area caps at ~2 hours' drive, so the profile is a local channel only — nationwide volume has to come from ads and the symptom pages.
+- Opening hours still undecided.
+
 **Brand admin, not started**
 - Register twinecm.com.
 - Claim @twinecm on TikTok and YouTube; pick the Instagram/X fallback and file the inactive-username requests.
