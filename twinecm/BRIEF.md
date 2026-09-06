@@ -67,6 +67,12 @@ question in the forums is "where do I get a donor?" We are the answer.
 Contact used across all mockups: **+1 (813) 573-3394** · **twinecm@gmail.com** · twinecm.com
 Street address and opening hours are placeholders everywhere.
 
+**Based in Atlanta, GA** (confirmed 2026-09-06). Nationwide mail-in, plus local
+drop-off in metro Atlanta. Note the mismatch: the (813) number is a Tampa area code —
+a local Atlanta number forwarded to it is worth setting up before the profile and ads
+go live. Two competitors sit in Georgia: Auto Module Programming (mobile ECU/BCM/TCM,
+metro Atlanta) and UpFix, the category's biggest advertiser.
+
 ## 3. Customer
 
 The person searching at 11pm is not a technician. Car cranks but won't start, a code

@@ -24,10 +24,19 @@ Consequences:
 - **Service area caps at roughly two hours' drive** from base, up to 20 areas.
   "Nationwide" cannot be set.
 
-**So this channel is local only.** The profile brings drop-offs and trade work within
-about two hours. Nationwide mail-in volume has to come from Google Ads and the
-symptom pages. Still worth doing — the local pack is free, it ranks for "ECM
-replacement near me," and real reviews make the ads more believable.
+**So this channel is local only.** The profile brings drop-offs and trade work inside
+metro Atlanta. Nationwide mail-in volume has to come from Google Ads and the symptom
+pages. Still worth doing — the local pack is free, it ranks for "ECM replacement near
+me," and real reviews make the ads more believable.
+
+**Atlanta is not an empty field.** Auto Module Programming runs a mobile ECU/BCM/TCM
+service across Buckhead, Marietta, Alpharetta and Sandy Springs — same metro,
+overlapping work. UpFix, the one competitor advertising at scale nationally, is also a
+Georgia company. The local pack here has to be earned on reviews and photos.
+
+Against a mobile operator the edge is the inverse of theirs: they drive to the car, we
+work a bench. Lead with the bench — verified before it ships, unlock included, no board
+damage — because that is what a van in a driveway cannot do.
 
 ## 1. Name
 
@@ -88,15 +97,51 @@ accounts
 Give the first four a one-line description each, since they are one job under four
 names and Google renders the text.
 
-## 5. Hours, area, contact
+## 5. Atlanta — hours, area, contact
 
+- **City:** Atlanta, GA · **Address:** the real drop-off address, **TBD**
 - **Hours:** open every day, **times TBD**
-- **Phone:** (813) 573-3394 · **Website:** twinecm.com
-- **Address:** **the real drop-off address, TBD**
-- **Service area:** the metro, out to ~2 hours
+- **Website:** twinecm.com, the homepage — not a tracking link
+- **Phone:** see the area-code flag below
 
-Hours must be when the phone is actually answered. The 813 number reads as Tampa —
-confirm base and address are the same metro.
+Hours must be when the phone is actually answered.
+
+### The area code does not match the city
+
+**(813) is Tampa. The business is in Atlanta.** Not a suspension risk — Google stopped
+weighting area codes long ago — but it is friction on exactly the customer this profile
+exists to win. Someone in Marietta seeing an Atlanta address and a Florida number
+hesitates.
+
+**Get a 404, 470, 678 or 770 number and forward it to the existing line.** 404 reads as
+in-town Atlanta and is the strongest. Keep 813 on mail-in paperwork already in
+circulation, but profile, site and ads should all show the Atlanta number, identically.
+
+### Service area — counties, not cities
+
+Capped at ~2 hours' drive and 20 entries. Counties cover more ground per entry. Nine
+covers the metro without overreaching:
+
+```
+Fulton County, GA
+DeKalb County, GA
+Cobb County, GA
+Gwinnett County, GA
+Clayton County, GA
+Cherokee County, GA
+Forsyth County, GA
+Henry County, GA
+Douglas County, GA
+```
+
+Reaches Buckhead, Sandy Springs, Marietta, Alpharetta, Roswell, Decatur, Duluth,
+Lawrenceville, Kennesaw and Johns Creek — including the four suburbs the local
+competitor names. Leave the other eleven slots empty; a tight area ranks better than a
+sprawling one. Add Paulding, Fayette, Coweta, Rockdale, Newton, Hall or Bartow later
+only if drop-offs actually come from there.
+
+Do not add Athens, Macon, Chattanooga or Columbus. Inside two hours on paper, but
+nobody drives a module that far when they could mail it.
 
 ## 6. Seed Q&A
 
@@ -133,11 +178,13 @@ three are against policy, detectable, and obvious in a category this small.
 
 ## 10. Blockers before publishing
 
-- [ ] **A real, staffed address** — not a mailbox. This is the gate.
+- [ ] **A real, staffed Atlanta address** — not a mailbox. This is the gate.
 - [ ] **Drop-off genuinely offered** — the face-to-face contact must be real.
 - [ ] **Opening hours decided** — site says open every day; profile needs times.
 - [ ] **twinecm.com registered and live.**
 - [ ] Name entered as `TwinECM`, nothing appended.
+- [ ] **An Atlanta phone number** — 404/470/678/770, forwarded, used identically on
+      the site, the profile and the ads.
 - [ ] Verification method chosen — video verification wants address, bench and Juan in
       one unbroken take, worth planning first.
 
