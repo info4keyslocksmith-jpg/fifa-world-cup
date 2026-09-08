@@ -51,6 +51,47 @@ works with no internet.
 
 ---
 
+## The hands-off setup (Mac + Google Drive)
+
+If the Mac stays on and Google Drive Desktop is syncing, the whole thing runs
+without you touching a terminal again.
+
+```bash
+./vv install-agent "/Users/you/Google Drive/My Drive/4Keys Video"
+```
+
+That creates the folder layout and installs a background watcher that survives
+reboots. Inside the folder:
+
+```
+4Keys Video/
+  1_drop/      you drop raw clips here -- from your phone, from anywhere
+  2_review/    the transcript appears here a minute or two later
+  3_plans/     the edit plan lands here (yours, or Claude's)
+  4_ready/     finished vertical clip + its QC report
+```
+
+**Why this works:** the video file never leaves the Mac. Only the small text
+files sync through Drive, which means Claude can read a transcript and drop an
+edit plan straight back into `3_plans/` without a 200MB clip crossing the
+internet. The watcher sees the plan appear and renders locally.
+
+So the actual loop, from your phone:
+
+1. Drop a clip in `1_drop/`.
+2. Tell Claude the clip name. It reads the transcript out of Drive, picks the
+   hook, writes the plan into `3_plans/`.
+3. The finished video shows up in `4_ready/` a minute later, with its QC report.
+
+The watcher is careful about sync: it waits for a file to stop growing before
+touching it, so a clip still coming down from Drive is never transcribed
+half-written. Partial files (`.tmp`, `.download`) are ignored.
+
+Watch what it's doing: `tail -f logs/watch.log`.
+Stop it: `launchctl unload ~/Library/LaunchAgents/com.4keys.viral.watch.plist`.
+
+---
+
 ## The loop
 
 ### 1 — Drop the clip in and run it
@@ -103,6 +144,8 @@ them, drop them, tighten them. The first segment is your hook.
 | `./vv plan clip` | regenerate the starter plan |
 | `./vv render clip [--preview]` | render the plan |
 | `./vv check clip` | QC an existing render |
+| `./vv watch "<folder>"` | run continuously on a synced folder |
+| `./vv install-agent "<folder>"` | keep the watcher alive on this Mac |
 
 `VV_MODEL=medium ./vv analyze …` for better transcription on noisy audio
 (slower). `VV_LANG=es` to pin the language instead of autodetecting.

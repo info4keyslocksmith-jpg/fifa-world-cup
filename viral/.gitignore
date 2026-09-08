@@ -13,3 +13,4 @@ plans/*
 .venv/
 fonts/
 __pycache__/
+logs/

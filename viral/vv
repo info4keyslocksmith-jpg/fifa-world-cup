@@ -6,6 +6,8 @@
 #   ./vv render  clip [--preview] render the plan
 #   ./vv check   clip             QC the rendered file
 #   ./vv auto    in/clip.mp4      all four, in order
+#   ./vv watch   "<folder>"       run continuously on a synced folder
+#   ./vv install-agent "<folder>" keep the watcher running on this Mac
 #
 # 'clip' is the filename stem. Everything lands in work/, plans/ and out/.
 
@@ -56,6 +58,50 @@ cmd_check() {
   $PY lib/check.py "$vid" --json "work/${stem}.qc.json" "$@"
 }
 
+cmd_watch() {
+  $PY lib/watch.py "$@"
+}
+
+cmd_install_agent() {
+  local folder="$1"
+  [ -d "$folder" ] || { echo "No such folder: $folder" >&2; exit 1; }
+  [ "$(uname)" = "Darwin" ] || { echo "install-agent is macOS only." >&2; exit 1; }
+
+  local label="com.4keys.viral.watch"
+  local plist="$HOME/Library/LaunchAgents/$label.plist"
+  mkdir -p "$HOME/Library/LaunchAgents" "$HERE/logs"
+
+  cat > "$plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$label</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>$HERE/vv</string>
+    <string>watch</string>
+    <string>$folder</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>$HERE/logs/watch.log</string>
+  <key>StandardErrorPath</key><string>$HERE/logs/watch.err</string>
+</dict>
+</plist>
+PLIST
+
+  launchctl unload "$plist" 2>/dev/null || true
+  launchctl load "$plist"
+  echo "Watcher installed and running."
+  echo "  folder: $folder"
+  echo "  log:    $HERE/logs/watch.log"
+  echo
+  echo "It restarts itself on reboot. To stop it:"
+  echo "  launchctl unload \"$plist\""
+}
+
 cmd_auto() {
   local src="$1"; shift || true
   local stem; stem="$(stem_of "$src")"
@@ -81,5 +127,7 @@ case "$sub" in
   render)  [ $# -ge 1 ] || usage; cmd_render "$@" ;;
   check)   [ $# -ge 1 ] || usage; cmd_check "$@" ;;
   auto)    [ $# -ge 1 ] || usage; cmd_auto "$@" ;;
+  watch)   [ $# -ge 1 ] || usage; cmd_watch "$@" ;;
+  install-agent) [ $# -ge 1 ] || usage; cmd_install_agent "$@" ;;
   *)       usage ;;
 esac
