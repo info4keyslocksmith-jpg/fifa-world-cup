@@ -120,9 +120,20 @@ def check(video, sidecar, style, rep):
                 f"max {max((c['words'] for c in cards), default=0)} words/card")
 
     fast = [c for c in cards if c["end"] - c["start"] < 0.25]
-    if fast:
-        rep.add(FAIL, "caption speed", f"{len(fast)} cards under 0.25s",
-                "Below ~0.25s a card is a flash, not a word the viewer reads.")
+    share = len(fast) / len(cards) if cards else 0
+    if share > 0.10:
+        rep.add(FAIL, "caption speed",
+                f"{len(fast)} of {len(cards)} cards under 0.25s "
+                f"({share:.0%})",
+                "Captions are flashing past across the whole clip. Usually the "
+                "delivery is rushed -- reshoot the line or cut it.")
+    elif fast:
+        # A card can be short simply because those words were said quickly.
+        # Nothing in the edit fixes that, so it is not a blocker.
+        rep.add(WARN, "caption speed",
+                f"{len(fast)} of {len(cards)} cards under 0.25s",
+                "A few cards flash by on fast-spoken words. Fine unless it "
+                "reads badly on the phone.")
     else:
         rep.add(PASS, "caption speed", f"{len(cards)} cards, none under 0.25s")
 

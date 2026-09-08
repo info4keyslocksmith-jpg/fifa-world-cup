@@ -42,20 +42,51 @@ def collapse_marks(marks, min_gap):
     return kept
 
 
-def build_shots(plan):
-    """Segments split at punch-in boundaries -> a flat list of shots."""
+def resolve_sources(plan, rel):
+    """Normalise one-clip and many-clip plans into the same shape.
+
+    A single job is usually filmed in pieces, so a plan may draw from several
+    clips. Older single-source plans keep working: they become a one-entry list.
+    """
+    if plan.get("sources"):
+        out = []
+        for i, src in enumerate(plan["sources"]):
+            sid = str(src.get("id", i))
+            out.append({"id": sid,
+                        "path": rel(src["path"]),
+                        "analysis": rel(src["analysis"])})
+        return out
+    return [{"id": "main",
+             "path": rel(plan.get("source")),
+             "analysis": rel(plan["analysis"])}]
+
+
+def build_shots(plan, sources):
+    """Segments split at punch-in boundaries -> a flat list of shots.
+
+    Each shot remembers which clip it came from, so the renderer can pull it
+    from the right input.
+    """
     framing = plan.get("framing", {})
     base_x = framing.get("x_frac", 0.5)
     base_y = framing.get("y_frac", 0.5)
-    punches = sorted(framing.get("punch_ins", []), key=lambda p: p["at"])
+    all_punches = framing.get("punch_ins", [])
+    default_id = sources[0]["id"]
+    known = {s["id"] for s in sources}
 
     shots = []
     for seg in plan["segments"]:
+        sid = str(seg.get("source", default_id))
+        if sid not in known:
+            sys.exit(f"Segment names unknown source '{sid}': {seg}")
         s, e = float(seg["start"]), float(seg["end"])
         if e <= s:
             sys.exit(f"Segment end must be after start: {seg}")
 
-        # Boundaries inside this segment introduced by punch-ins.
+        punches = sorted(
+            (p for p in all_punches if str(p.get("source", default_id)) == sid),
+            key=lambda p: p["at"])
+
         marks = [s, e]
         for p in punches:
             a = float(p["at"])
@@ -63,21 +94,19 @@ def build_shots(plan):
             for m in (a, b):
                 if s < m < e:
                     marks.append(m)
-        marks = sorted(set(marks))
-        marks = collapse_marks(marks, MIN_SHOT)
+        marks = collapse_marks(sorted(set(marks)), MIN_SHOT)
 
         for i in range(len(marks) - 1):
             a, b = marks[i], marks[i + 1]
             mid = (a + b) / 2
-            zoom = 1.0
-            xf, yf = base_x, base_y
+            zoom, xf, yf = 1.0, base_x, base_y
             for p in punches:
                 if float(p["at"]) <= mid < float(p["at"]) + float(p.get("dur", 2.0)):
                     zoom = float(p.get("scale", 1.18))
                     xf = float(p.get("x_frac", base_x))
                     yf = float(p.get("y_frac", base_y))
                     break
-            shots.append({"src_start": a, "src_end": b,
+            shots.append({"source": sid, "src_start": a, "src_end": b,
                           "zoom": zoom, "x_frac": xf, "y_frac": yf})
     return shots
 
@@ -92,26 +121,30 @@ def timeline(shots):
     return shots, t
 
 
-def map_time(shots, t, clamp_into=None):
-    for sh in shots:
+def map_time(shots, t, source=None, clamp_into=None):
+    """Source-clip time -> finished-video time, for one clip's shots."""
+    pool = [sh for sh in shots if source is None or sh["source"] == source]
+    for sh in pool:
         if sh["src_start"] <= t < sh["src_end"]:
             return sh["out_start"] + (t - sh["src_start"])
     if clamp_into is not None:
-        for sh in shots:
+        for sh in pool:
             if sh["src_start"] <= clamp_into < sh["src_end"]:
                 return min(sh["out_start"] + (t - sh["src_start"]), sh["out_end"])
     return None
 
 
-def remap_words(words, shots, replacements):
+def remap_words(words, shots, replacements, source=None):
     out = []
     for w in words:
-        start = map_time(shots, w["start"])
+        start = map_time(shots, w["start"], source)
         if start is None:
             continue
-        end = map_time(shots, w["end"], clamp_into=w["start"])
+        end = map_time(shots, w["end"], source, clamp_into=w["start"])
         if end is None or end <= start:
             end = start + 0.12
+        if end - start < 0.06:
+            continue      # a word sliced in half by a cut is not a caption
         token = w["w"]
         for k, v in (replacements or {}).items():
             if token.strip(".,!?").lower() == k.lower():
@@ -121,15 +154,15 @@ def remap_words(words, shots, replacements):
     return out
 
 
-def remap_overlays(overlays, shots, total):
+def remap_overlays(overlays, shots, total, default_source):
     out = []
     for ov in overlays or []:
-        start = map_time(shots, float(ov["start"]))
-        if start is None:
-            start = 0.0 if float(ov["start"]) <= shots[0]["src_start"] else None
+        osrc = str(ov.get("source", default_source))
+        start = map_time(shots, float(ov["start"]), osrc)
         if start is None:
             continue
-        end = map_time(shots, float(ov["end"]), clamp_into=float(ov["start"]))
+        end = map_time(shots, float(ov["end"]), osrc,
+                       clamp_into=float(ov["start"]))
         if end is None or end <= start:
             end = min(start + 2.0, total)
         item = dict(ov)
@@ -143,21 +176,23 @@ def esc_filter_path(path):
     return path.replace("\\", "/").replace(":", r"\:").replace("'", r"\'")
 
 
-def audio_filtergraph(shots, plan, has_music, tail):
+def audio_filtergraph(shots, plan, has_music, tail, index_of):
     """Audio-only graph, used for the loudness measuring pass."""
     parts, labels = [], []
     for i, sh in enumerate(shots):
         d = sh["src_end"] - sh["src_start"]
         fade = max(d - 0.012, 0.0)
+        n = index_of[sh["source"]]
         parts.append(
-            f"[0:a]atrim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
+            f"[{n}:a]atrim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
             f"asetpts=PTS-STARTPTS,"
             f"afade=t=in:st=0:d=0.012,afade=t=out:st={fade:.3f}:d=0.012[a{i}]")
         labels.append(f"[a{i}]")
     parts.append("".join(labels) + f"concat=n={len(shots)}:v=0:a=1[ac]")
     if has_music:
         gain = plan.get("audio", {}).get("music_gain_db", -18)
-        parts.append(f"[1:a]volume={gain}dB,aloop=loop=-1:size=2e9[mus]")
+        mi = len(set(index_of.values()))
+        parts.append(f"[{mi}:a]volume={gain}dB,aloop=loop=-1:size=2e9[mus]")
         parts.append("[ac][mus]amix=inputs=2:duration=first:dropout_transition=0[pre]")
     else:
         parts.append("[ac]anull[pre]")
@@ -165,12 +200,14 @@ def audio_filtergraph(shots, plan, has_music, tail):
     return ";".join(parts)
 
 
-def measure_loudness(source, music, shots, plan, target, tp):
+def measure_loudness(inputs, music, shots, plan, target, tp, index_of):
     """First loudnorm pass. Single-pass normalisation lands 2-3 LU off target;
     feeding it real measurements is what actually hits the number."""
     tail = f"loudnorm=I={target}:TP={tp}:LRA=11:print_format=json"
-    fg = audio_filtergraph(shots, plan, bool(music), tail)
-    cmd = ["ffmpeg", "-v", "info", "-i", source]
+    fg = audio_filtergraph(shots, plan, bool(music), tail, index_of)
+    cmd = ["ffmpeg", "-v", "info"]
+    for path in inputs:
+        cmd += ["-i", path]
     if music:
         cmd += ["-i", music]
     cmd += ["-filter_complex", fg, "-map", "[aout]", "-f", "null", "-"]
@@ -185,8 +222,8 @@ def measure_loudness(source, music, shots, plan, target, tp):
         return None
 
 
-def build_filtergraph(shots, style, ass_path, plan, has_music, preview=False,
-                      measured=None):
+def build_filtergraph(shots, style, ass_path, plan, has_music, index_of,
+                      preview=False, measured=None):
     canvas = style["canvas"]
     W, H = canvas["width"], canvas["height"]
     fps = style["encode"]["fps"]
@@ -196,15 +233,16 @@ def build_filtergraph(shots, style, ass_path, plan, has_music, preview=False,
         d = sh["src_end"] - sh["src_start"]
         zw = int(round(W * sh["zoom"]))
         zh = int(round(H * sh["zoom"]))
+        n = index_of[sh["source"]]
         parts.append(
-            f"[0:v]trim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
+            f"[{n}:v]trim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
             f"setpts=PTS-STARTPTS,"
             f"scale={zw}:{zh}:force_original_aspect_ratio=increase,"
             f"crop={W}:{H}:(in_w-out_w)*{sh['x_frac']:.4f}:(in_h-out_h)*{sh['y_frac']:.4f},"
             f"setsar=1,fps={fps}[v{i}]")
         fade = max(d - 0.012, 0.0)
         parts.append(
-            f"[0:a]atrim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
+            f"[{n}:a]atrim=start={sh['src_start']:.3f}:end={sh['src_end']:.3f},"
             f"asetpts=PTS-STARTPTS,"
             f"afade=t=in:st=0:d=0.012,afade=t=out:st={fade:.3f}:d=0.012[a{i}]")
         vlabels.append(f"[v{i}]")
@@ -230,7 +268,8 @@ def build_filtergraph(shots, style, ass_path, plan, has_music, preview=False,
 
     if has_music:
         gain = au.get("music_gain_db", -18)
-        parts.append(f"[1:a]volume={gain}dB,aloop=loop=-1:size=2e9[mus]")
+        mi = len(set(index_of.values()))
+        parts.append(f"[{mi}:a]volume={gain}dB,aloop=loop=-1:size=2e9[mus]")
         parts.append("[ac][mus]amix=inputs=2:duration=first:dropout_transition=0[amix]")
         parts.append(f"[amix]{ln}[aout]")
     else:
@@ -242,7 +281,8 @@ def build_filtergraph(shots, style, ass_path, plan, has_music, preview=False,
 def main():
     ap = argparse.ArgumentParser(description="Pass 2: render the edit plan.")
     ap.add_argument("plan")
-    ap.add_argument("--analysis", default=None)
+    ap.add_argument("--analysis", default=None,
+                    help="override the analysis (single-source plans only)")
     ap.add_argument("--style", default=None)
     ap.add_argument("--output", default=None)
     ap.add_argument("--preview", action="store_true",
@@ -256,28 +296,37 @@ def main():
     def rel(p):
         return p if os.path.isabs(p) else os.path.normpath(os.path.join(root, p))
 
-    analysis_path = args.analysis or rel(plan["analysis"])
     style_path = args.style or rel(plan.get("style", "../style/default.json"))
-    analysis = load(analysis_path)
     style = load(style_path)
 
-    source = plan.get("source") or analysis["source"]
-    source = rel(source)
-    if not os.path.exists(source):
-        sys.exit(f"Source video not found: {source}")
+    sources = resolve_sources(plan, rel)
+    if args.analysis and len(sources) == 1:
+        sources[0]["analysis"] = args.analysis
+    for src in sources:
+        if not os.path.exists(src["path"]):
+            sys.exit(f"Clip not found: {src['path']}")
+        if not os.path.exists(src["analysis"]):
+            sys.exit(f"Analysis not found for {src['path']}: {src['analysis']}")
+        src["data"] = load(src["analysis"])
+
+    index_of = {src["id"]: i for i, src in enumerate(sources)}
+    inputs = [src["path"] for src in sources]
 
     output = args.output or rel(plan.get("output", "../out/final.mp4"))
     os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
 
-    shots, total = timeline(build_shots(plan))
+    shots, total = timeline(build_shots(plan, sources))
     if not shots:
         sys.exit("Plan produced no shots. Check 'segments'.")
 
     cap_cfg = plan.get("captions", {})
     words = []
     if cap_cfg.get("enabled", True):
-        words = remap_words(analysis["words"], shots, cap_cfg.get("replacements"))
-    overlays = remap_overlays(plan.get("overlays"), shots, total)
+        for src in sources:
+            words += remap_words(src["data"]["words"], shots,
+                                 cap_cfg.get("replacements"), src["id"])
+        words.sort(key=lambda w: w["start"])
+    overlays = remap_overlays(plan.get("overlays"), shots, total, sources[0]["id"])
 
     work = os.path.join(os.path.dirname(output) or ".", ".work")
     os.makedirs(work, exist_ok=True)
@@ -298,17 +347,19 @@ def main():
         au = plan.get("audio", {})
         print("measuring loudness (pass 1 of 2)", flush=True)
         measured = measure_loudness(
-            source, music, shots, plan,
+            inputs, music, shots, plan,
             au.get("target_lufs", style["audio"]["target_lufs"]),
-            au.get("true_peak", style["audio"]["true_peak"]))
+            au.get("true_peak", style["audio"]["true_peak"]), index_of)
         if measured is None:
             print("  measurement unavailable, falling back to single-pass")
 
-    fg = build_filtergraph(shots, style, ass_path, plan, bool(music),
+    fg = build_filtergraph(shots, style, ass_path, plan, bool(music), index_of,
                            args.preview, measured)
 
     enc = style["encode"]
-    cmd = ["ffmpeg", "-y", "-v", "warning", "-stats", "-i", source]
+    cmd = ["ffmpeg", "-y", "-v", "warning", "-stats"]
+    for path in inputs:
+        cmd += ["-i", path]
     if music:
         cmd += ["-i", music]
     cmd += ["-filter_complex", fg, "-map", "[vout]", "-map", "[aout]",
@@ -323,7 +374,7 @@ def main():
 
     sidecar = {
         "output": os.path.abspath(output),
-        "source": os.path.abspath(source),
+        "sources": [{"id": s["id"], "path": s["path"]} for s in sources],
         "plan": os.path.abspath(args.plan),
         "style": os.path.abspath(style_path),
         "duration": round(total, 3),
@@ -339,14 +390,13 @@ def main():
     with open(render_json, "w") as f:
         json.dump(sidecar, f, indent=2)
 
-    print(f"shots: {len(shots)}   duration: {total:.2f}s   "
-          f"caption cards: {len(cards)}")
+    print(f"clips: {len(sources)}   shots: {len(shots)}   "
+          f"duration: {total:.2f}s   caption cards: {len(cards)}")
     if args.dry_run:
         print("\n--- filter_complex ---\n" + fg.replace(";", ";\n"))
         return
 
-    r = subprocess.run(cmd)
-    if r.returncode != 0:
+    if subprocess.run(cmd).returncode != 0:
         sys.exit("ffmpeg failed.")
     print(f"\nwrote {output}\nsidecar {render_json}")
 
