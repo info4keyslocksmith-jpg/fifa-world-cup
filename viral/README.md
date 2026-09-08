@@ -34,7 +34,28 @@ just tidier.
 
 ---
 
-## Install (once per machine)
+## Install on a Mac — one paste, nothing else
+
+Open Terminal (Spotlight, type "Terminal"), paste this, press Enter:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/info4keyslocksmith-jpg/fifa-world-cup/claude/viral-video-editing-steps-w3vb16/viral/install-mac.sh)"
+```
+
+It finds your Google Drive folder by name, installs ffmpeg if it's missing,
+sets up the transcriber, and starts the watcher — which restarts itself after
+a reboot. No GitHub account, no cloning, no paths to type.
+
+If your folder is named something other than `Videos 4keys Claude`, or it can't
+find it, run the same line with the path spelled out:
+
+```bash
+VV_FOLDER="/path/to/your/folder" bash -c "$(curl -fsSL https://raw.githubusercontent.com/info4keyslocksmith-jpg/fifa-world-cup/claude/viral-video-editing-steps-w3vb16/viral/install-mac.sh)"
+```
+
+---
+
+## Install by hand (other systems)
 
 ```bash
 cd viral

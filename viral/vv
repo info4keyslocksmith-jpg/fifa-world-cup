@@ -84,6 +84,13 @@ cmd_install_agent() {
     <string>watch</string>
     <string>$folder</string>
   </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- launchd starts with a bare PATH that excludes Homebrew, so ffmpeg
+         would be invisible to the watcher without this. -->
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
   <key>RunAtLoad</key><true/>
   <key>KeepAlive</key><true/>
   <key>StandardOutPath</key><string>$HERE/logs/watch.log</string>
