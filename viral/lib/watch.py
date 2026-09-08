@@ -73,14 +73,38 @@ def settled(path, seen, need=2):
     return count >= need
 
 
-def stage(src, dest_dir, attempts=5, delay=15.0):
+def _copy_python(src, dest):
+    with open(src, "rb") as fin, open(dest, "wb") as fout:
+        shutil.copyfileobj(fin, fout, 1024 * 1024)
+
+
+def _copy_tool(tool):
+    def go(src, dest):
+        r = subprocess.run(tool + [src, dest], capture_output=True, text=True)
+        if r.returncode != 0:
+            raise OSError(r.stderr.strip() or f"{tool[0]} failed")
+    return go
+
+
+# Ordered by how well each one coaxes a file out of Google Drive's placeholder
+# layer. ditto and cp go through macOS copyfile(3), which the File Provider
+# understands; a raw read does not always trigger the download.
+COPY_STRATEGIES = [
+    ("ditto", _copy_tool(["ditto"])),
+    ("cp", _copy_tool(["cp"])),
+    ("read", _copy_python),
+]
+
+
+def stage(src, dest_dir, attempts=3, delay=10.0):
     """Copy a dropped clip out of Drive and onto real local disk.
 
     Google Drive Desktop in "stream" mode leaves a placeholder on disk rather
-    than the file. ffmpeg opening one fails with EDEADLK ("resource deadlock
-    avoided") because the download has to happen first. Copying it ourselves
-    forces that download through an ordinary sequential read, and it also keeps
-    ffmpeg off the network filesystem entirely, which is faster and safer.
+    than the file, and ffmpeg opening one fails with EDEADLK ("resource
+    deadlock avoided"). Copying it ourselves is meant to force the download --
+    but not every kind of read does, so we try the ones macOS provides before
+    giving up. It also keeps ffmpeg off the network filesystem entirely, which
+    is faster and safer regardless.
     """
     os.makedirs(dest_dir, exist_ok=True)
     dest = os.path.join(dest_dir, os.path.basename(src))
@@ -89,31 +113,34 @@ def stage(src, dest_dir, attempts=5, delay=15.0):
     if os.path.exists(dest) and os.path.getsize(dest) == want:
         return dest, None
 
-    last = None
+    errors = []
     for attempt in range(attempts):
-        try:
-            with open(src, "rb") as fin, open(dest, "wb") as fout:
-                shutil.copyfileobj(fin, fout, 1024 * 1024)
-            if os.path.getsize(dest) == want:
-                return dest, None
-            last = (f"copied {os.path.getsize(dest)} of {want} bytes -- "
-                    f"the file is probably still downloading from Drive")
-        except OSError as e:
-            last = f"{e.strerror or e} (errno {e.errno})"
-            if e.errno not in (errno.EDEADLK, errno.EAGAIN, errno.EBUSY,
-                               errno.EIO, errno.ENOENT):
-                break
+        for name, copy in COPY_STRATEGIES:
+            try:
+                copy(src, dest)
+                if os.path.getsize(dest) == want:
+                    if name != COPY_STRATEGIES[0][0]:
+                        log(f"  copied with {name}")
+                    return dest, None
+                errors.append(f"{name}: got {os.path.getsize(dest)} of {want} bytes")
+            except OSError as e:
+                errors.append(f"{name}: {getattr(e, 'strerror', None) or e}")
+            if os.path.exists(dest):
+                try:
+                    os.remove(dest)
+                except OSError:
+                    pass
         if attempt < attempts - 1:
-            log(f"  waiting for Drive to finish downloading "
+            log(f"  waiting for Drive to release "
                 f"{os.path.basename(src)} ({attempt + 1}/{attempts})")
             time.sleep(delay)
 
-    if os.path.exists(dest):
-        try:
-            os.remove(dest)
-        except OSError:
-            pass
-    return None, last
+    seen, unique = set(), []
+    for e in errors:
+        if e not in seen:
+            seen.add(e)
+            unique.append(e)
+    return None, "\n".join(unique)
 
 
 def run(cmd):
