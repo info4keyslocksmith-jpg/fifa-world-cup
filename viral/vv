@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+# vv -- the whole pipeline behind one command.
+#
+#   ./vv analyze in/clip.mp4      measure the clip, write the transcript
+#   ./vv plan    clip             starter edit plan from the analysis
+#   ./vv render  clip [--preview] render the plan
+#   ./vv check   clip             QC the rendered file
+#   ./vv auto    in/clip.mp4      all four, in order
+#
+# 'clip' is the filename stem. Everything lands in work/, plans/ and out/.
+
+set -euo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$HERE"
+
+PY="python3"
+[ -x "$HERE/.venv/bin/python" ] && PY="$HERE/.venv/bin/python"
+
+MODEL="${VV_MODEL:-small}"
+LANG_OPT=()
+[ -n "${VV_LANG:-}" ] && LANG_OPT=(--language "$VV_LANG")
+
+usage() { sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; exit 1; }
+
+stem_of() { basename "${1%.*}"; }
+
+cmd_analyze() {
+  local src="$1"; shift || true
+  [ -f "$src" ] || { echo "No such file: $src" >&2; exit 1; }
+  local lex=()
+  [ -f "$HERE/lexicon.json" ] && lex=(--lexicon "$HERE/lexicon.json")
+  $PY lib/analyze.py "$src" --outdir work --model "$MODEL" \
+      "${LANG_OPT[@]}" "${lex[@]}" "$@"
+}
+
+cmd_plan() {
+  local stem="$1"; shift || true
+  local an="work/${stem}.analysis.json"
+  [ -f "$an" ] || { echo "Run './vv analyze' first (missing $an)" >&2; exit 1; }
+  $PY lib/scaffold.py "$an" --out "plans/${stem}.edit.json" \
+      --video-out "../out/${stem}.mp4" "$@"
+}
+
+cmd_render() {
+  local stem="$1"; shift || true
+  local plan="plans/${stem}.edit.json"
+  [ -f "$plan" ] || { echo "No plan at $plan -- run './vv plan $stem'" >&2; exit 1; }
+  $PY lib/build.py "$plan" "$@"
+}
+
+cmd_check() {
+  local stem="$1"; shift || true
+  local vid="out/${stem}.mp4"
+  [ -f "$vid" ] || { echo "No render at $vid" >&2; exit 1; }
+  $PY lib/check.py "$vid" --json "work/${stem}.qc.json" "$@"
+}
+
+cmd_auto() {
+  local src="$1"; shift || true
+  local stem; stem="$(stem_of "$src")"
+  cmd_analyze "$src"
+  cmd_plan "$stem"
+  cmd_render "$stem"
+  echo
+  cmd_check "$stem" || true
+  cat <<EOF
+
+Next: this was the automatic first cut, not a finished post.
+  1. read  work/${stem}.transcript.md  and pick the real hook
+  2. edit  plans/${stem}.edit.json     (segments are in source time)
+  3. rerun ./vv render ${stem} && ./vv check ${stem}
+EOF
+}
+
+[ $# -ge 1 ] || usage
+sub="$1"; shift
+case "$sub" in
+  analyze) [ $# -ge 1 ] || usage; cmd_analyze "$@" ;;
+  plan)    [ $# -ge 1 ] || usage; cmd_plan "$@" ;;
+  render)  [ $# -ge 1 ] || usage; cmd_render "$@" ;;
+  check)   [ $# -ge 1 ] || usage; cmd_check "$@" ;;
+  auto)    [ $# -ge 1 ] || usage; cmd_auto "$@" ;;
+  *)       usage ;;
+esac

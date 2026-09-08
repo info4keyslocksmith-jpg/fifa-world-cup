@@ -1,0 +1,12 @@
+{
+  "_comment": "Words the transcriber reliably gets wrong, and what they should say. Case-insensitive, whole-word. Add yours as you catch them -- every fix here is a typo that never reaches a caption again.",
+
+  "lishy": "Lishi",
+  "leashy": "Lishi",
+  "transponder": "transponder",
+  "immobiliser": "immobilizer",
+  "obd star": "OBDSTAR",
+  "auto tell": "Autel",
+  "key fob": "key fob",
+  "f c c": "FCC"
+}

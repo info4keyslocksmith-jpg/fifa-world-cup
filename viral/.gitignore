@@ -1,0 +1,10 @@
+# Media in, media out, and everything derived from it.
+in/*
+!in/.gitkeep
+out/*
+!out/.gitkeep
+work/*
+!work/.gitkeep
+.venv/
+fonts/
+__pycache__/
