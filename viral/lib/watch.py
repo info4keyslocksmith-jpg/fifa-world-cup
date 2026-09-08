@@ -179,6 +179,15 @@ def handle_video(root, video, opts):
     src_md = os.path.join(work, f"{stem}.transcript.md")
     if os.path.exists(src_md):
         shutil.copy2(src_md, os.path.join(review, f"{stem}.transcript.md"))
+
+    # A failure note from an earlier attempt is now wrong, and two files
+    # disagreeing about the same clip is worse than no note at all.
+    stale = os.path.join(review, f"{stem}.FAILED.md")
+    if os.path.exists(stale):
+        try:
+            os.remove(stale)
+        except OSError:
+            pass
     log(f"  ready: 2_review/{stem}.transcript.md")
 
 
