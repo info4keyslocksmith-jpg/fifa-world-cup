@@ -19,6 +19,9 @@ cd "$HERE"
 PY="python3"
 [ -x "$HERE/.venv/bin/python" ] && PY="$HERE/.venv/bin/python"
 
+# A standalone ffmpeg lives here when Homebrew was not used.
+[ -d "$HERE/bin" ] && export PATH="$HERE/bin:$PATH"
+
 MODEL="${VV_MODEL:-small}"
 LANG_OPT=()
 [ -n "${VV_LANG:-}" ] && LANG_OPT=(--language "$VV_LANG")
@@ -89,7 +92,7 @@ cmd_install_agent() {
     <!-- launchd starts with a bare PATH that excludes Homebrew, so ffmpeg
          would be invisible to the watcher without this. -->
     <key>PATH</key>
-    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <string>$HERE/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
   </dict>
   <key>RunAtLoad</key><true/>
   <key>KeepAlive</key><true/>

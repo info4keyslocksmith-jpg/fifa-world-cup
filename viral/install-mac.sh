@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # One-paste installer for macOS.
 #
-#   curl -fsSL https://raw.githubusercontent.com/info4keyslocksmith-jpg/fifa-world-cup/claude/viral-video-editing-steps-w3vb16/viral/install-mac.sh | bash
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/info4keyslocksmith-jpg/fifa-world-cup/claude/viral-video-editing-steps-w3vb16/viral/install-mac.sh)"
 #
 # Finds the Google Drive folder, installs the tool next to it, and starts the
-# watcher. Nothing is installed system-wide except ffmpeg (and only if missing).
+# watcher. Homebrew is used if it is already there; if not, a standalone ffmpeg
+# is fetched instead, so nothing is installed system-wide and no password is
+# needed.
 
 set -uo pipefail
 
@@ -66,30 +68,12 @@ else
 fi
 ok "folder: $FOLDER"
 
-# ------------------------------------------------------------------ 3. ffmpeg
-if command -v ffmpeg >/dev/null 2>&1; then
-  ok "ffmpeg already installed"
-elif command -v brew >/dev/null 2>&1; then
-  echo "  ...    installing ffmpeg with Homebrew (a few minutes)"
-  brew install ffmpeg >/dev/null 2>&1 || die "Homebrew could not install ffmpeg.
-        Run 'brew install ffmpeg' on its own and read the error."
-  ok "ffmpeg installed"
-else
-  die "ffmpeg is missing and Homebrew is not installed.
-
-        Install Homebrew first -- paste this, let it finish, then paste the
-        original command again:
-
-          /bin/bash -c \"\$(curl -fsSL \\
-            https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-fi
-
-# ---------------------------------------------------------------- 4. the tool
+# ---------------------------------------------------------------- 3. the tool
 echo "  ...    downloading the editor"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
-URL="https://codeload.github.com/$REPO/tar.gz/refs/heads/$BRANCH"
-curl -fsSL "$URL" | tar xz -C "$TMP" 2>/dev/null \
+curl -fsSL "https://codeload.github.com/$REPO/tar.gz/refs/heads/$BRANCH" \
+  | tar xz -C "$TMP" 2>/dev/null \
   || die "Download failed. Check the internet connection and try again."
 
 SRC="$(find "$TMP" -maxdepth 2 -type d -name viral -print -quit)"
@@ -101,16 +85,63 @@ cp -R "$SRC/." "$DEST/"
 chmod +x "$DEST/vv" "$DEST/setup.sh" 2>/dev/null
 ok "editor installed at $DEST"
 
-# ------------------------------------------------- 5. python + speech model
-echo "  ...    setting up the transcriber (first run downloads ~500MB, once)"
+# ------------------------------------------------- 4. python + speech model
+echo "  ...    setting up the transcriber"
 python3 -m venv "$DEST/.venv" >/dev/null 2>&1
 PIP="$DEST/.venv/bin/pip"
+VENV_PY="$DEST/.venv/bin/python"
 [ -x "$PIP" ] || die "Could not create a Python environment at $DEST/.venv"
 "$PIP" install --quiet --upgrade pip >/dev/null 2>&1
 "$PIP" install --quiet faster-whisper >/dev/null 2>&1 \
   || die "Could not install faster-whisper. Run this to see why:
           $PIP install faster-whisper"
 ok "transcriber ready"
+
+# ------------------------------------------------------------------ 5. ffmpeg
+fetch_standalone_ffmpeg() {
+  "$PIP" install --quiet static-ffmpeg >/dev/null 2>&1 || return 1
+  mkdir -p "$DEST/bin"
+  "$VENV_PY" - "$DEST/bin" <<'PYEOF' >/dev/null 2>&1 || return 1
+import os, shutil, sys
+import static_ffmpeg.run as r
+dest = sys.argv[1]
+for src in r.get_or_fetch_platform_executables_else_raise():
+    tgt = os.path.join(dest, os.path.basename(src))
+    shutil.copy2(src, tgt)
+    os.chmod(tgt, 0o755)
+PYEOF
+  # Trust nothing: a copied binary is only useful if it actually runs.
+  "$DEST/bin/ffmpeg" -version >/dev/null 2>&1 || return 1
+  "$DEST/bin/ffprobe" -version >/dev/null 2>&1 || return 1
+  return 0
+}
+
+if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
+  ok "ffmpeg already installed"
+elif command -v brew >/dev/null 2>&1; then
+  echo "  ...    installing ffmpeg with Homebrew (a few minutes)"
+  if brew install ffmpeg >/dev/null 2>&1; then
+    ok "ffmpeg installed"
+  else
+    warn "Homebrew could not install ffmpeg -- trying the standalone build"
+    fetch_standalone_ffmpeg && ok "standalone ffmpeg ready" \
+      || die "Could not get a working ffmpeg. Run 'brew install ffmpeg' on its
+        own and read the error."
+  fi
+else
+  echo "  ...    fetching a standalone ffmpeg (~50MB, no password needed)"
+  if fetch_standalone_ffmpeg; then
+    ok "standalone ffmpeg ready -- Homebrew not needed"
+  else
+    die "Could not fetch a working standalone ffmpeg on this Mac.
+
+        Install Homebrew instead -- paste this, let it finish (it will ask for
+        your Mac password), then paste the original command again:
+
+          /bin/bash -c \"\$(curl -fsSL \\
+            https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+  fi
+fi
 
 # -------------------------------------------------------------- 6. the watcher
 "$DEST/vv" install-agent "$FOLDER" >/dev/null 2>&1 \
@@ -129,7 +160,7 @@ Inside your folder you now have:
   4_ready/    finished vertical video + QC report
 
 Try it: drag one clip into 1_drop, wait a couple of minutes, then tell Claude
-the clip name. The first clip is slower -- it downloads the speech model.
+the clip name. The first clip is slower -- it downloads the speech model once.
 
 Watch it work:  tail -f "$DEST/logs/watch.log"
 Stop it:        launchctl unload ~/Library/LaunchAgents/com.4keys.viral.watch.plist
