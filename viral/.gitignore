@@ -15,3 +15,4 @@ fonts/
 __pycache__/
 logs/
 staging/
+.previous/

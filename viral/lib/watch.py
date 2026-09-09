@@ -30,7 +30,8 @@ VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm"}
 FOLDERS = ["1_drop", "2_review", "3_plans", "4_ready", "_work"]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import analyze  # noqa: E402  (contact sheets need no speech model)
+import analyze     # noqa: E402  (contact sheets need no speech model)
+import selfupdate  # noqa: E402
 TOOL_ROOT = os.path.dirname(HERE)
 STAGING = os.path.join(TOOL_ROOT, "staging")
 
@@ -455,6 +456,11 @@ def main():
         return
 
     while True:
+        if selfupdate.requested(root):
+            log("update requested")
+            selfupdate.clear_request(root)   # first, so a failure cannot loop
+            if selfupdate.apply(TOOL_ROOT, log):
+                return       # launchd brings the new version straight back up
         sweep()
         time.sleep(args.interval)
 
