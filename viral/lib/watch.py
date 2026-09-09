@@ -48,6 +48,8 @@ def ensure_layout(root):
         with open(readme, "w") as fh:
             fh.write(
                 "Drop your clips in 1_drop.\n\n"
+                "One job per folder: drag the whole folder in and those clips\n"
+                "become one video. Loose clips are treated one at a time.\n\n"
                 "A transcript appears in 2_review for each one.\n"
                 "Send those to Claude. Claude puts an edit plan in 3_plans --\n"
                 "one plan can pull from several clips -- and the finished\n"
@@ -98,7 +100,7 @@ COPY_STRATEGIES = [
 ]
 
 
-def stage(src, dest_dir, attempts=3, delay=10.0):
+def stage(src, dest_dir, name=None, attempts=3, delay=10.0):
     """Copy a dropped clip out of Drive and onto real local disk.
 
     Google Drive Desktop in "stream" mode leaves a placeholder on disk rather
@@ -109,7 +111,7 @@ def stage(src, dest_dir, attempts=3, delay=10.0):
     is faster and safer regardless.
     """
     os.makedirs(dest_dir, exist_ok=True)
-    dest = os.path.join(dest_dir, os.path.basename(src))
+    dest = os.path.join(dest_dir, name or os.path.basename(src))
     want = os.path.getsize(src)
 
     if os.path.exists(dest) and os.path.getsize(dest) == want:
@@ -174,13 +176,13 @@ Then drop the clip in again.
 """
 
 
-def handle_video(root, video, opts):
-    stem = os.path.splitext(os.path.basename(video))[0]
+def handle_video(root, video, stem, job, opts):
     work = os.path.join(root, "_work")
     review = os.path.join(root, "2_review")
 
-    log(f"new clip: {os.path.basename(video)}")
-    local, err = stage(video, os.path.join(STAGING, "clips"))
+    log(f"new clip: {stem}" + (f"  (job: {job})" if job else ""))
+    ext = os.path.splitext(video)[1]
+    local, err = stage(video, os.path.join(STAGING, "clips"), f"{stem}{ext}")
     if local is None:
         log(f"  could not read {stem} off Drive")
         write_note(os.path.join(review, f"{stem}.FAILED.md"),
@@ -205,6 +207,16 @@ def handle_video(root, video, opts):
                    "```\n" + out[-2500:] + "\n```")
         return
 
+    analysis_path = os.path.join(work, f"{stem}.analysis.json")
+    if job and os.path.exists(analysis_path):
+        try:
+            data = json.load(open(analysis_path))
+            data["job"] = job
+            with open(analysis_path, "w") as f:
+                json.dump(data, f, indent=2)
+        except (OSError, ValueError):
+            pass
+
     src_md = os.path.join(work, f"{stem}.transcript.md")
     if os.path.exists(src_md):
         shutil.copy2(src_md, os.path.join(review, f"{stem}.transcript.md"))
@@ -223,6 +235,37 @@ def handle_video(root, video, opts):
         except OSError:
             pass
     log(f"  ready: 2_review/{stem}.transcript.md")
+
+
+def iter_drops(drop):
+    """Every clip waiting in 1_drop, as (path, stem, job).
+
+    A folder dropped in means "these clips are one video" -- which is how a job
+    actually arrives, filmed in pieces. Clips inside a folder are namespaced by
+    it, because phones hand out the same filenames over and over and two jobs
+    would otherwise collide.
+    """
+    for name in sorted(os.listdir(drop)):
+        if is_hidden_or_partial(name):
+            continue
+        path = os.path.join(drop, name)
+
+        if os.path.isfile(path):
+            if os.path.splitext(name)[1].lower() in VIDEO_EXT:
+                yield path, os.path.splitext(name)[0], None
+
+        elif os.path.isdir(path):
+            for inner in sorted(os.listdir(path)):
+                if is_hidden_or_partial(inner):
+                    continue
+                inner_path = os.path.join(path, inner)
+                if not os.path.isfile(inner_path):
+                    continue
+                if os.path.splitext(inner)[1].lower() not in VIDEO_EXT:
+                    continue
+                yield (inner_path,
+                       f"{name}__{os.path.splitext(inner)[0]}",
+                       name)
 
 
 def backfill_frames(root):
@@ -385,21 +428,13 @@ def main():
         backfill_frames(root)
 
         drop = os.path.join(root, "1_drop")
-        for name in sorted(os.listdir(drop)):
-            if is_hidden_or_partial(name):
-                continue
-            path = os.path.join(drop, name)
-            if not os.path.isfile(path):
-                continue
-            if os.path.splitext(name)[1].lower() not in VIDEO_EXT:
-                continue
-            stem = os.path.splitext(name)[0]
+        for path, stem, job in iter_drops(drop):
             if os.path.exists(os.path.join(root, "_work",
                                            f"{stem}.analysis.json")):
                 continue
             if not settled(path, seen):
                 continue
-            handle_video(root, path, args)
+            handle_video(root, path, stem, job, args)
 
         plans = os.path.join(root, "3_plans")
         for name in sorted(os.listdir(plans)):
