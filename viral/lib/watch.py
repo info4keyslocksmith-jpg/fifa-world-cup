@@ -29,6 +29,8 @@ from datetime import datetime
 VIDEO_EXT = {".mp4", ".mov", ".m4v", ".avi", ".mkv", ".webm"}
 FOLDERS = ["1_drop", "2_review", "3_plans", "4_ready", "_work"]
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import analyze  # noqa: E402  (contact sheets need no speech model)
 TOOL_ROOT = os.path.dirname(HERE)
 STAGING = os.path.join(TOOL_ROOT, "staging")
 
@@ -207,6 +209,11 @@ def handle_video(root, video, opts):
     if os.path.exists(src_md):
         shutil.copy2(src_md, os.path.join(review, f"{stem}.transcript.md"))
 
+    # The contact sheet travels too -- it is what makes the edit sightable.
+    sheet = os.path.join(work, f"{stem}.frames.jpg")
+    if os.path.exists(sheet):
+        shutil.copy2(sheet, os.path.join(review, f"{stem}.frames.jpg"))
+
     # A failure note from an earlier attempt is now wrong, and two files
     # disagreeing about the same clip is worse than no note at all.
     stale = os.path.join(review, f"{stem}.FAILED.md")
@@ -216,6 +223,50 @@ def handle_video(root, video, opts):
         except OSError:
             pass
     log(f"  ready: 2_review/{stem}.transcript.md")
+
+
+def backfill_frames(root):
+    """Give already-transcribed clips a contact sheet.
+
+    Clips analysed before contact sheets existed would otherwise stay unseeable
+    forever, since a clip with an analysis is never re-analysed. This only needs
+    ffmpeg, so it is cheap and skips the speech model entirely.
+    """
+    work = os.path.join(root, "_work")
+    review = os.path.join(root, "2_review")
+    if not os.path.isdir(work):
+        return
+
+    for name in sorted(os.listdir(work)):
+        if not name.endswith(".analysis.json"):
+            continue
+        stem = name[: -len(".analysis.json")]
+        sheet = os.path.join(work, f"{stem}.frames.jpg")
+        if os.path.exists(sheet):
+            continue
+
+        path = os.path.join(work, name)
+        try:
+            data = json.load(open(path))
+        except (OSError, ValueError):
+            continue
+        src = data.get("source")
+        if not src or not os.path.exists(src) or data.get("frames"):
+            continue
+
+        log(f"  building contact sheet for {stem}")
+        info = analyze.contact_sheet(src, sheet, data["media"]["duration"])
+        if not info:
+            continue
+
+        data["frames"] = info
+        with open(path, "w") as f:
+            json.dump(data, f, indent=2)
+        analyze.write_transcript_md(os.path.join(work, f"{stem}.transcript.md"),
+                                    data)
+        shutil.copy2(sheet, os.path.join(review, f"{stem}.frames.jpg"))
+        shutil.copy2(os.path.join(work, f"{stem}.transcript.md"),
+                     os.path.join(review, f"{stem}.transcript.md"))
 
 
 def resolve_plan(root, plan_path):
@@ -331,6 +382,8 @@ def main():
     seen = {}
 
     def sweep():
+        backfill_frames(root)
+
         drop = os.path.join(root, "1_drop")
         for name in sorted(os.listdir(drop)):
             if is_hidden_or_partial(name):

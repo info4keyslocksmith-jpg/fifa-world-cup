@@ -82,6 +82,25 @@ def measure_loudness(wav_path):
     }
 
 
+def contact_sheet(source, out_path, duration, columns=5, rows=4):
+    """A grid of frames across the clip, so the edit can be judged by eye.
+
+    Cutting from a transcript alone is guessing: it cannot tell whether a good
+    line lands on a good shot, where the face sits in frame, or which stretch is
+    worth cutting away to. One small JPEG answers all three.
+    """
+    count = columns * rows
+    rate = count / max(duration, 0.1)
+    r = run(["ffmpeg", "-y", "-v", "error", "-i", source,
+             "-vf", f"fps={rate:.6f},scale=216:-2,tile={columns}x{rows}",
+             "-frames:v", "1", "-q:v", "4", out_path])
+    if r.returncode != 0 or not os.path.exists(out_path):
+        return None
+    return {"path": out_path, "columns": columns, "rows": rows,
+            "count": count,
+            "seconds_per_frame": round(duration / count, 2)}
+
+
 def transcribe(wav_path, model_size, language):
     try:
         from faster_whisper import WhisperModel
@@ -180,6 +199,18 @@ def write_transcript_md(path, analysis):
     else:
         lines.append("_None over the threshold._")
 
+    sheet = analysis.get("frames")
+    if sheet:
+        lines += ["", "## Frames", "",
+                  f"`{os.path.basename(sheet['path'])}` is a "
+                  f"{sheet['columns']}x{sheet['rows']} grid of {sheet['count']} "
+                  f"frames, read left to right, top to bottom.",
+                  "",
+                  f"Each cell is about **{sheet['seconds_per_frame']}s** apart, "
+                  f"so cell *n* is roughly `(n - 1) x "
+                  f"{sheet['seconds_per_frame']}s` into the clip.",
+                  ""]
+
     lowconf = [w for w in words if w["conf"] < 0.55]
     lines += ["", "## Low-confidence words (check these before they become captions)", ""]
     lines.append(", ".join(f"`{w['w']}`@{ts(w['start'])}" for w in lowconf[:60])
@@ -208,7 +239,7 @@ def main():
     stem = os.path.splitext(os.path.basename(args.source))[0]
 
     meta = probe(args.source)
-    print(f"[1/4] {meta['width']}x{meta['height']} @ {meta['fps']}fps, "
+    print(f"[1/5] {meta['width']}x{meta['height']} @ {meta['fps']}fps, "
           f"{meta['duration']:.1f}s", flush=True)
 
     if not meta["has_audio"]:
@@ -218,13 +249,18 @@ def main():
         wav = os.path.join(tmp, "audio.wav")
         extract_audio(args.source, wav)
 
-        print("[2/4] measuring silence + loudness", flush=True)
+        print("[3/5] measuring silence + loudness", flush=True)
         silences = detect_silences(wav, args.silence_db, args.silence_min)
         loudness = measure_loudness(wav)
 
-        print(f"[3/4] transcribing with whisper '{args.model}' "
+        print(f"[4/5] transcribing with whisper '{args.model}' "
               f"(this is the slow part)", flush=True)
         words, segs, asr = transcribe(wav, args.model, args.language)
+
+    print("[5/5] building the contact sheet", flush=True)
+    sheet = contact_sheet(args.source,
+                          os.path.join(args.outdir, f"{stem}.frames.jpg"),
+                          meta["duration"])
 
     lexicon = {}
     if args.lexicon and os.path.exists(args.lexicon):
@@ -241,6 +277,7 @@ def main():
         "segments": segs,
         "silences": silences,
         "talk_density": talk_density(words, meta["duration"]),
+        "frames": sheet,
     }
 
     js = os.path.join(args.outdir, f"{stem}.analysis.json")
@@ -249,7 +286,7 @@ def main():
         json.dump(analysis, f, indent=2)
     write_transcript_md(md, analysis)
 
-    print(f"[4/4] wrote:\n  {js}\n  {md}")
+    print(f"done. wrote:\n  {js}\n  {md}")
     print(f"\n{len(words)} words, {len(silences)} silence gaps"
           + (f", {fixed} lexicon fixes" if fixed else ""))
 
