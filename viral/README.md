@@ -235,6 +235,23 @@ published, not taste:
 | Target length | 21–34s | under 30s clips hold 55–70% completion; past 45s it falls off |
 | Loudness | −14 LUFS, −1.5 dBTP | platform normalisation target |
 
+**Target length is the one number here that is a preference, not a finding.**
+The benchmark is real -- completion rate does fall as length rises -- but it is
+an average over all short-form content, and completion is a *ratio*, so short
+videos win it partly by being easy. A 60s cut that holds people delivers twice
+the watch time of a 30s cut that holds people, and the trades creators who built
+real audiences did it on long footage, not 30-second clips.
+
+So a plan can set its own band and the QC gate will judge it against that
+instead of the default:
+
+```json
+"target_length": [45, 60]
+```
+
+The only thing that settles the question is Juan's own numbers. `tahoe-30` and
+`tahoe-60` are the same job cut both ways, to get some.
+
 Sources: [hook rate and retention benchmarks](https://viralwatch.app/viralwatch-video-analysis-blog/what-is-a-good-hook-rate/),
 [retention by platform](https://retensis.com/blog/audience-retention-benchmarks-2026),
 [caption style consensus](https://blitzcutai.com/blog/best-caption-style-tiktok),

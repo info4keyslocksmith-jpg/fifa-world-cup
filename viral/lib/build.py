@@ -378,6 +378,7 @@ def main():
         "plan": os.path.abspath(args.plan),
         "style": os.path.abspath(style_path),
         "duration": round(total, 3),
+        "target_length": plan.get("target_length"),
         "shots": shots,
         "cards": [{"text": " ".join(w["w"] for w in c["words"]),
                    "words": len(c["words"]),

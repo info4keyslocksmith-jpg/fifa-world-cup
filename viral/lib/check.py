@@ -78,12 +78,19 @@ def check(video, sidecar, style, rep):
                 "Vertical feeds letterbox anything that is not 9:16.")
 
     # --- length -----------------------------------------------------------
-    if dur < 12:
-        rep.add(WARN, "duration", f"{dur:.1f}s",
-                "Under ~12s there is not enough room to land a story beat.")
-    elif dur > 45:
-        rep.add(WARN, "duration", f"{dur:.1f}s",
-                "Past 45s completion rate falls off; 21-34s is the sweet spot.")
+    # 12-45s is the default band, from the completion-rate research in the
+    # README. A plan may declare its own "target_length": [lo, hi] when the cut
+    # is deliberately longer or shorter -- a warning that always fires on an
+    # intentional choice teaches you to ignore warnings.
+    lo, hi, band = 12, 45, "12-45s is the default band; 21-34s is the sweet spot."
+    target = sidecar.get("target_length")
+    if target:
+        lo, hi = float(target[0]), float(target[1])
+        band = f"this plan asked for {lo:g}-{hi:g}s."
+    if dur < lo:
+        rep.add(WARN, "duration", f"{dur:.1f}s", f"Short -- {band}")
+    elif dur > hi:
+        rep.add(WARN, "duration", f"{dur:.1f}s", f"Long -- {band}")
     else:
         rep.add(PASS, "duration", f"{dur:.1f}s")
 
