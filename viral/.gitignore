@@ -1,0 +1,18 @@
+# Media in, media out, and everything derived from it.
+in/*
+!in/.gitkeep
+out/*
+!out/.gitkeep
+work/*
+!work/.gitkeep
+
+# Edit plans are per-clip and point at absolute media paths, so they only
+# make sense on the machine that generated them.
+plans/*
+!plans/.gitkeep
+.venv/
+fonts/
+__pycache__/
+logs/
+staging/
+.previous/

@@ -1,0 +1,56 @@
+{
+  "name": "default",
+  "_comment": "Specs derived from 2026 short-form caption research. See README 'Why these numbers'.",
+
+  "canvas": { "width": 1080, "height": 1920 },
+
+  "safe_zone": {
+    "_comment": "Intersection of TikTok / Reels / Shorts UI overlays. Nothing readable outside this box.",
+    "top": 230,
+    "bottom": 1400,
+    "left": 90,
+    "right": 990
+  },
+
+  "caption": {
+    "font_name": "DejaVu Sans",
+    "font_file": null,
+    "font_size": 78,
+    "bold": true,
+    "uppercase": true,
+    "max_words_per_card": 3,
+    "max_chars_per_card": 21,
+    "min_card_seconds": 0.30,
+    "max_gap_merge_seconds": 0.35,
+    "baseline_y": 1180,
+
+    "fill": "#FFFFFF",
+    "active_fill": "#FFE600",
+    "outline": "#000000",
+    "outline_width": 6,
+    "shadow_depth": 3,
+
+    "pop_scale": 112,
+    "pop_ms": 90
+  },
+
+  "overlay": {
+    "font_size": 64,
+    "fill": "#FFFFFF",
+    "outline": "#000000",
+    "outline_width": 6,
+    "top_y": 380
+  },
+
+  "audio": {
+    "target_lufs": -14.0,
+    "true_peak": -1.5
+  },
+
+  "encode": {
+    "crf": 18,
+    "preset": "medium",
+    "fps": 30,
+    "audio_bitrate": "192k"
+  }
+}
