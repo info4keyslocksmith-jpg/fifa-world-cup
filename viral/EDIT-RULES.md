@@ -16,6 +16,12 @@ plate, not the shape of it parked in the background.
 
 **Allowed:** the open trunk or cargo area, and the tools inside it.
 
+**What to actually look for:** the van is *branded*. The 4Keys graphics are what
+make it identifiable, so the test is whether the branding is visible or legible
+-- not whether some white or silver vehicle is parked in shot. Customers' cars,
+neighbours' cars and random vehicles in a parking lot are background and are
+fine. Confirmed by Juan: "is not my car, my car is branded."
+
 **How to apply it:** check the contact sheet of every clip before choosing a
 cut. If the van is visible anywhere in a cell, that cell's time range is out --
 including when the good line is spoken over it. Move the cut, or cover the
