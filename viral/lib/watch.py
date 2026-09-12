@@ -58,6 +58,18 @@ def ensure_layout(root):
                 "Leave this Mac on. Nothing else to do.\n")
 
 
+def deliver(src, dest):
+    """Put a finished file into the Drive folder without Drive seeing it grow.
+
+    Copied under a .part name, which the watcher already ignores, then renamed
+    into place -- os.replace is atomic within a directory, so the file appears
+    at its real name already complete.
+    """
+    tmp = os.path.join(os.path.dirname(dest), f".{os.path.basename(dest)}.part")
+    shutil.copy2(src, tmp)
+    os.replace(tmp, dest)
+
+
 def is_hidden_or_partial(name):
     """Drive and macOS both leave junk mid-sync. Skip it."""
     return (name.startswith(".") or name.startswith("~$")
@@ -448,16 +460,27 @@ def handle_plan(root, plan, opts):
 
     log(f"plan for {stem} -- rendering")
     output = os.path.join(ready, f"{stem}.mp4")
+
+    # Render outside the Drive folder. ffmpeg creates the output file empty and
+    # fills it over the next minute or two; Drive has been seen grabbing that
+    # empty file, calling it synced, and never uploading the real bytes -- which
+    # leaves a 0-byte video in 4_ready that looks finished and is not. Building
+    # somewhere Drive is not watching, then putting the finished file into place
+    # in one move, means Drive only ever sees a complete video.
+    renders = os.path.join(STAGING, "renders")
+    os.makedirs(renders, exist_ok=True)
+    staged_out = os.path.join(renders, f"{stem}.mp4")
     code, out = run([python_bin(), os.path.join(HERE, "build.py"), resolved,
-                     "--output", output])
+                     "--output", staged_out])
     if code != 0:
         log(f"  render failed for {stem}")
         write_note(os.path.join(ready, f"{stem}.FAILED.md"),
                    f"Could not render {stem}", "```\n" + out[-2500:] + "\n```")
         return
 
-    code, qc = run([python_bin(), os.path.join(HERE, "check.py"), output,
+    code, qc = run([python_bin(), os.path.join(HERE, "check.py"), staged_out,
                     "--json", os.path.join(work, f"{stem}.qc.json")])
+    deliver(staged_out, output)
     verdict = "BLOCKED" if code != 0 else "OK"
     write_note(os.path.join(ready, f"{stem}.QC.txt"), f"{stem} -- {verdict}", qc)
     log(f"  done: 4_ready/{stem}.mp4  [{verdict}]")
