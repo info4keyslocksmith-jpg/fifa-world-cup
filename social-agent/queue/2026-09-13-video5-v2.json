@@ -1,0 +1,21 @@
+{
+  "id": "2026-09-13-video5-v2",
+  "source": "Videito · Drive: Videos 4keys Claude/4_ready/video5-v2.mp4 (QC: 11 pass, 2 warn, both the deliberate silent tail)",
+  "video": "drive:4_ready/video5-v2.mp4",
+  "date": "2026-09-13T17:00:00-04:00",
+  "pillar": "boss",
+  "framework": "job-story",
+  "language": "en",
+  "caption": "I told him 10 minutes.\n\nThen I found out the door and the ignition don't take the same key. That means you can't make a key the normal way. The whole ignition switch had to come out and get replaced.\n\nThat's not a $150 job anymore.\n\nSo I told him before he paid. Not after.\n\nTotal came to $250. He had $200 on him.\n\nHe paid $200.\n\nWould you rather a guy tell you in the middle of the job, or hand you a surprise at the end?",
+  "hashtags": ["#autolocksmith", "#carkeys", "#smallbusiness", "#tradeslife", "#4keyslocksmith"],
+  "platforms": {
+    "instagram": { "enabled": true },
+    "tiktok": { "enabled": true, "title": "I told him 10 minutes. Then the ignition had to come out." },
+    "youtube": {
+      "enabled": true,
+      "title": "Quoted $150 for a car key, then the ignition had to come out. What I told him before he paid",
+      "type": "public",
+      "tags": ["auto locksmith", "ignition replacement", "car key made", "locksmith pricing", "4keys locksmith"]
+    }
+  }
+}

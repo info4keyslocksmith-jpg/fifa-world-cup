@@ -139,3 +139,22 @@ try {
 } finally {
   rmSync(dir, { recursive: true, force: true });
 }
+
+// 5. drive: paths resolve inside the synced Google Drive folder
+{
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const { resolveDrivePath, findDriveFolder } = await import('../lib/drive.mjs');
+  const home = mkdtempSync(join(tmpdir(), 'home-'));
+  try {
+    assert.equal(findDriveFolder(undefined, home), null);
+    const folder = join(home, 'Library', 'CloudStorage', 'GoogleDrive-juan@example.com', 'My Drive', 'Videos 4keys Claude');
+    mkdirSync(join(folder, '4_ready'), { recursive: true });
+    writeFileSync(join(folder, '4_ready', 'clip.mp4'), 'x');
+    assert.equal(resolveDrivePath('drive:4_ready/clip.mp4', home), join(folder, '4_ready', 'clip.mp4'));
+    console.log('✔ drive: path resolution');
+  } finally {
+    rmSync(home, { recursive: true, force: true });
+  }
+}

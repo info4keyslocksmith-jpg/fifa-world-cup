@@ -1,0 +1,21 @@
+{
+  "id": "2026-09-15-tahoe-ecm",
+  "source": "Videito · Drive: Videos 4keys Claude/4_ready/tahoe-ecm.mp4 (QC: 13 pass, 0 warn, clear to post)",
+  "video": "drive:4_ready/tahoe-ecm.mp4",
+  "date": "2026-09-15T17:00:00-04:00",
+  "pillar": "teacher",
+  "framework": "job-story",
+  "language": "en",
+  "caption": "She'd already swapped the engine computer before I got there.\n\nSo the first thing I ask is which one is in it now. A replacement.\n\nFrom there my job is the programming. ECM, DCM, BCM — calibrated, up to date, talking to each other.\n\nThat's what I guarantee. The modules I actually touched.\n\nAnything electrical past that isn't mine, and I say it before you pay, not after.\n\nYou want the guy who tells you where his work ends?",
+  "hashtags": ["#autolocksmith", "#cardiagnostics", "#smallbusiness", "#tradeslife", "#4keyslocksmith"],
+  "platforms": {
+    "instagram": { "enabled": true },
+    "tiktok": { "enabled": true, "title": "She'd already swapped the engine computer before I got there." },
+    "youtube": {
+      "enabled": true,
+      "title": "She swapped the Tahoe engine computer herself. What I actually guarantee after programming",
+      "type": "public",
+      "tags": ["auto locksmith", "ecm programming", "chevy tahoe", "module programming", "4keys locksmith"]
+    }
+  }
+}

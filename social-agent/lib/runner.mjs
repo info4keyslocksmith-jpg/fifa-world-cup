@@ -5,6 +5,7 @@ import { validateSpec } from './brand.mjs';
 import { buildJobs, enabledPlatforms, readyNow } from './jobs.mjs';
 import { SITES } from './sites/index.mjs';
 import { withBrowser, saveErrorShot } from './browser.mjs';
+import { isDrivePath, resolveDrivePath, DRIVE_HELP } from './drive.mjs';
 
 export const QUEUE_DIR = join(AGENT_ROOT, 'queue');
 export const DONE_DIR = join(QUEUE_DIR, 'done');
@@ -33,6 +34,7 @@ export function queueSpecs() {
 /** Resolve a media path: absolute, relative to the spec file, relative to social-agent/, or to cwd. */
 export function resolveMedia(spec, p) {
   if (!p) return null;
+  if (isDrivePath(p)) return resolveDrivePath(p) || p; // unresolved drive: path stays as-is and fails the exists check
   if (isAbsolute(p)) return p;
   const candidates = [join(dirname(spec.__file || QUEUE_DIR), p), join(AGENT_ROOT, p), join(process.cwd(), p)];
   return candidates.find((c) => existsSync(c)) || candidates[0];
@@ -74,7 +76,9 @@ export async function processSpec(spec, { only, now = false, dryRun = false, for
   const media = { video: resolveMedia(spec, spec.video), thumbnail: resolveMedia(spec, spec.thumbnail) };
   for (const [label, file] of Object.entries(media)) {
     if (!file || existsSync(file)) continue;
-    const msg = `${spec.id}: ${label} not found at ${file}`;
+    const msg = isDrivePath(file)
+      ? `${spec.id}: ${label} "${file}": ${DRIVE_HELP}`
+      : `${spec.id}: ${label} not found at ${file}`;
     if (!dryRun) throw new Error(msg);
     log(`  ⚠ ${msg}`);
   }

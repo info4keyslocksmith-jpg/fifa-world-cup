@@ -78,6 +78,7 @@ When every channel is done the spec moves to `queue/done/` with a `status` block
 - `hashtags` are appended on their own line. `#fyp` is only kept on TikTok.
 - `platforms.youtube.title` is required. `type` can be `public`, `unlisted` or `private` (only used when publishing immediately; scheduled videos go public at the date). `tags` default to the hashtags without `#`.
 - Media paths resolve relative to the spec file, then to `social-agent/`, then to the current directory.
+- `"video": "drive:4_ready/clip.mp4"` reads the file straight from the synced Google Drive folder `Videos 4keys Claude` (found automatically under Google Drive for desktop on Mac or Windows; override with `DRIVE_FOLDER` in `.env`). That is where Videito leaves finished videos, so nothing needs copying.
 
 ## What `check` enforces
 
