@@ -1,0 +1,31 @@
+<!doctype html><title>YT Studio fixture</title>
+<script>window.__c = { next: 0, radios: [] };</script>
+<button id="create-icon" onclick="document.getElementById('menu').hidden=false">Create</button>
+<div id="menu" hidden><tp-yt-paper-item id="text-item-0" onclick="document.getElementById('picker').hidden=false">Upload videos</tp-yt-paper-item></div>
+<div id="picker" hidden>
+  <input type="file" id="yt-file" hidden onchange="window.__c.video=this.files[0].name;document.getElementById('details').hidden=false">
+  <button id="select-files-button" onclick="document.getElementById('yt-file').click()">Select files</button>
+</div>
+<div id="details" hidden>
+  <div id="title-textarea"><div id="textbox" contenteditable="true"></div></div>
+  <div id="description-textarea"><div id="textbox" contenteditable="true"></div></div>
+  <ytcp-thumbnail-uploader><input type="file" onchange="window.__c.thumb=this.files[0].name"></ytcp-thumbnail-uploader>
+  <tp-yt-paper-radio-button name="VIDEO_MADE_FOR_KIDS_NOT_MFK" onclick="window.__c.radios.push(this.getAttribute('name'))">Not made for kids</tp-yt-paper-radio-button>
+  <button id="toggle-button" onclick="document.getElementById('tags-container').hidden=false">Show more</button>
+  <div id="tags-container" hidden><input oninput="window.__c.tags=this.value"></div>
+  <button id="next-button" onclick="window.__c.next++; if(window.__c.next===3) document.getElementById('vis').hidden=false">Next</button>
+</div>
+<div id="vis" hidden>
+  <tp-yt-paper-radio-button name="PUBLIC" onclick="window.__c.radios.push('PUBLIC')">Public</tp-yt-paper-radio-button>
+  <tp-yt-paper-radio-button id="schedule-radio-button" onclick="window.__c.radios.push('SCHEDULE');document.getElementById('sched').hidden=false">Schedule</tp-yt-paper-radio-button>
+  <div id="sched" hidden>
+    <button id="datepicker-trigger" onclick="document.getElementById('dp').hidden=false">date</button>
+    <ytcp-date-picker id="dp" hidden><tp-yt-paper-input><input onchange="window.__c.day=this.value"></tp-yt-paper-input></ytcp-date-picker>
+    <button id="time-of-day-trigger" onclick="document.getElementById('times').hidden=false">time</button>
+    <div id="times" hidden><tp-yt-paper-item onclick="window.__c.time=this.textContent">4:45 PM</tp-yt-paper-item><tp-yt-paper-item onclick="window.__c.time=this.textContent">5:00 PM</tp-yt-paper-item><tp-yt-paper-item onclick="window.__c.time=this.textContent">5:15 PM</tp-yt-paper-item></div>
+  </div>
+  <button id="done-button" disabled>Done</button>
+  <script>setTimeout(()=>{document.getElementById('done-button').disabled=false},1500);</script>
+  <script>document.getElementById('done-button').onclick=()=>{window.__c.done=true;window.__c.title=document.querySelector('#title-textarea #textbox').textContent;window.__c.desc=document.querySelector('#description-textarea #textbox').textContent;document.getElementById('close-button').hidden=false};</script>
+  <button id="close-button" hidden onclick="window.__c.closed=true">Close</button>
+</div>

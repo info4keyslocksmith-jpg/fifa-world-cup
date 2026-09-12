@@ -1,4 +1,7 @@
 .env
+.chrome-profile/
+logs/
 media/*
 !media/.gitkeep
 node_modules/
+package-lock.json

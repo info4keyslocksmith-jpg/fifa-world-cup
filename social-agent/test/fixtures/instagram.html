@@ -1,0 +1,18 @@
+<!doctype html><title>Instagram fixture</title>
+<script>window.__c = { next: 0 };</script>
+<button onclick="this.remove()">Not Now</button>
+<nav><a href="#" onclick="document.getElementById('dlg').hidden=false;return false"><svg aria-label="New post" width="10" height="10"></svg></a></nav>
+<div id="dlg" role="dialog" hidden>
+  <input type="file" onchange="window.__c.video=this.files[0].name;document.getElementById('notice').hidden=false">
+  <div id="notice" hidden><p>Video posts are now shared as reels</p><button onclick="window.__c.ok=true;this.parentElement.hidden=true;document.getElementById('crop').hidden=false">OK</button></div>
+  <div id="crop" hidden>
+    <button onclick="document.getElementById('ratios').hidden=false"><svg aria-label="Select crop" width="10" height="10"></svg></button>
+    <div id="ratios" hidden><span onclick="window.__c.crop='Original'">Original</span><span>1:1</span></div>
+    <button onclick="window.__c.next++; if(window.__c.next===2) document.getElementById('cap').hidden=false">Next</button>
+  </div>
+  <div id="cap" hidden>
+    <div aria-label="Write a caption..." contenteditable="true"></div>
+    <button onclick="window.__c.caption=document.querySelector('[aria-label^=Write]').textContent;window.__c.shared=true;document.getElementById('res').hidden=false">Share</button>
+  </div>
+  <div id="res" hidden>Your reel has been shared.</div>
+</div>

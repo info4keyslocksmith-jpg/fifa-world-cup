@@ -1,0 +1,10 @@
+<!doctype html><title>TikTok fixture</title>
+<script>window.__c = {};</script>
+<input type="file" onchange="window.__c.video=this.files[0].name;document.getElementById('ed').hidden=false;setTimeout(()=>{document.getElementById('st').textContent='Uploaded';document.getElementById('post').disabled=false},800)">
+<div id="ed" hidden>
+  <div id="st">Uploading...</div>
+  <div class="public-DraftEditor-content" contenteditable="true">clip.mp4</div>
+  <button id="post" disabled onclick="window.__c.caption=document.querySelector('.public-DraftEditor-content').textContent;document.getElementById('modal').hidden=false">Post</button>
+  <div id="modal" hidden><button onclick="window.__c.posted=true;document.getElementById('ok').hidden=false">Post now</button></div>
+  <div id="ok" hidden>Manage your posts</div>
+</div>
