@@ -10,6 +10,15 @@ when the result is weak are not.
 
 ---
 
+## Before any edit: EDIT-RULES.md
+
+`EDIT-RULES.md` holds the standing rules about what may and may not appear on
+screen -- the 4Keys van above all. The QC gate cannot see pictures, so nothing
+enforces these except reading them and checking the contact sheets. Read them
+before writing a plan, every time.
+
+---
+
 ## The honest version of "you upload, I do the rest"
 
 The machine can do most of it. It cannot do the one thing that decides whether a
