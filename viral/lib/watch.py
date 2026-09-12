@@ -313,6 +313,71 @@ def backfill_frames(root):
                      os.path.join(review, f"{stem}.transcript.md"))
 
 
+def handle_frames_request(root, request_path):
+    """A close-up contact sheet of one stretch of a clip.
+
+    Twenty frames across a whole clip is enough to judge a story, not enough to
+    answer "is the van visible at 31.7 seconds". A request file asks for a
+    denser grid of a narrow range, so a question about one moment can be settled
+    by looking instead of guessing.
+
+    Request: {"clip": "IMG_0095", "start": 28, "end": 35}
+    """
+    name = os.path.basename(request_path)
+    label = name[: -len(".frames.json")]
+    work = os.path.join(root, "_work")
+    review = os.path.join(root, "2_review")
+
+    try:
+        req = json.load(open(request_path))
+    except (OSError, ValueError) as e:
+        write_note(os.path.join(review, f"{label}.FAILED.md"),
+                   "Could not read the frames request", f"```\n{e}\n```")
+        return
+
+    stem = os.path.splitext(str(req.get("clip", "")))[0]
+    analysis = os.path.join(work, f"{stem}.analysis.json")
+    if not stem or not os.path.exists(analysis):
+        write_note(os.path.join(review, f"{label}.FAILED.md"),
+                   f"No transcript for clip '{stem}'",
+                   "Drop it in 1_drop first.")
+        return
+
+    data = json.load(open(analysis))
+    source = data.get("source")
+    if not source or not os.path.exists(source):
+        write_note(os.path.join(review, f"{label}.FAILED.md"),
+                   f"The staged copy of {stem} is gone",
+                   "Drop the clip in again.")
+        return
+
+    start = float(req.get("start", 0))
+    end = float(req.get("end", data["media"]["duration"]))
+    columns = int(req.get("columns", 5))
+    rows = int(req.get("rows", 4))
+
+    out = os.path.join(review, f"{label}.jpg")
+    log(f"close-up frames: {stem} {start:.1f}-{end:.1f}s")
+    info = analyze.contact_sheet(source, out, data["media"]["duration"],
+                                 columns=columns, rows=rows,
+                                 start=start, end=end)
+    if not info:
+        write_note(os.path.join(review, f"{label}.FAILED.md"),
+                   f"Could not build frames for {stem}", "ffmpeg failed.")
+        return
+
+    write_note(os.path.join(review, f"{label}.md"),
+               f"{stem}  {info['start']}s to {info['end']}s",
+               f"`{os.path.basename(out)}` is {info['columns']}x{info['rows']} "
+               f"= {info['count']} frames, {info['seconds_per_frame']}s apart, "
+               f"read left to right, top to bottom.")
+    log(f"  done: 2_review/{label}.jpg")
+
+    done = os.path.join(work, "plans_done")
+    os.makedirs(done, exist_ok=True)
+    shutil.copy2(request_path, os.path.join(done, name))
+
+
 def resolve_plan(root, plan_path):
     """Fill in local paths for clips a plan names by name.
 
@@ -446,7 +511,10 @@ def main():
                 continue
             if not settled(path, seen, need=1):
                 continue
-            handle_plan(root, path, args)
+            if name.endswith(".frames.json"):
+                handle_frames_request(root, path)
+            else:
+                handle_plan(root, path, args)
 
     if args.once:
         for i in range(3):

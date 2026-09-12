@@ -82,23 +82,30 @@ def measure_loudness(wav_path):
     }
 
 
-def contact_sheet(source, out_path, duration, columns=5, rows=4):
+def contact_sheet(source, out_path, duration, columns=5, rows=4,
+                  start=0.0, end=None):
     """A grid of frames across the clip, so the edit can be judged by eye.
 
     Cutting from a transcript alone is guessing: it cannot tell whether a good
     line lands on a good shot, where the face sits in frame, or which stretch is
     worth cutting away to. One small JPEG answers all three.
     """
+    end = duration if end is None else min(end, duration)
+    start = max(0.0, min(start, max(end - 0.1, 0.0)))
+    span = max(end - start, 0.1)
+
     count = columns * rows
-    rate = count / max(duration, 0.1)
-    r = run(["ffmpeg", "-y", "-v", "error", "-i", source,
-             "-vf", f"fps={rate:.6f},scale=216:-2,tile={columns}x{rows}",
-             "-frames:v", "1", "-q:v", "4", out_path])
+    rate = count / span
+    cmd = ["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", source,
+           "-t", f"{span:.3f}",
+           "-vf", f"fps={rate:.6f},scale=216:-2,tile={columns}x{rows}",
+           "-frames:v", "1", "-q:v", "4", out_path]
+    r = run(cmd)
     if r.returncode != 0 or not os.path.exists(out_path):
         return None
     return {"path": out_path, "columns": columns, "rows": rows,
-            "count": count,
-            "seconds_per_frame": round(duration / count, 2)}
+            "count": count, "start": round(start, 2), "end": round(end, 2),
+            "seconds_per_frame": round(span / count, 2)}
 
 
 def transcribe(wav_path, model_size, language):
