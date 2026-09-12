@@ -461,12 +461,12 @@ def handle_plan(root, plan, opts):
     log(f"plan for {stem} -- rendering")
     output = os.path.join(ready, f"{stem}.mp4")
 
-    # Render outside the Drive folder. ffmpeg creates the output file empty and
-    # fills it over the next minute or two; Drive has been seen grabbing that
-    # empty file, calling it synced, and never uploading the real bytes -- which
-    # leaves a 0-byte video in 4_ready that looks finished and is not. Building
-    # somewhere Drive is not watching, then putting the finished file into place
-    # in one move, means Drive only ever sees a complete video.
+    # Render outside the Drive folder, then put the finished file into place in
+    # one move. ffmpeg creates its output empty and fills it over the following
+    # minute, so building straight into 4_ready means Drive spends that minute
+    # syncing a half-written video and reporting it at whatever size it had when
+    # it looked. That is confusing rather than broken -- Drive does catch up --
+    # but there is no reason to publish a file that is still being written.
     renders = os.path.join(STAGING, "renders")
     os.makedirs(renders, exist_ok=True)
     staged_out = os.path.join(renders, f"{stem}.mp4")
@@ -481,6 +481,8 @@ def handle_plan(root, plan, opts):
     code, qc = run([python_bin(), os.path.join(HERE, "check.py"), staged_out,
                     "--json", os.path.join(work, f"{stem}.qc.json")])
     deliver(staged_out, output)
+    os.remove(staged_out)      # it lives in 4_ready now; two copies of every
+                               # video would fill the disk soon enough
     verdict = "BLOCKED" if code != 0 else "OK"
     write_note(os.path.join(ready, f"{stem}.QC.txt"), f"{stem} -- {verdict}", qc)
     log(f"  done: 4_ready/{stem}.mp4  [{verdict}]")
