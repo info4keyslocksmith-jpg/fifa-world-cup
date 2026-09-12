@@ -1,0 +1,19 @@
+{
+  "name": "4keys-social-agent",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Schedules @4keyslocksmith videos to Instagram, TikTok and YouTube through Postiz",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "setup": "node cli.mjs setup",
+    "check": "node cli.mjs check",
+    "publish-post": "node cli.mjs publish",
+    "queue": "node cli.mjs queue",
+    "list": "node cli.mjs list",
+    "test": "node test/run.mjs"
+  },
+  "optionalDependencies": {
+    "postiz": "^2.0.16"
+  }
+}

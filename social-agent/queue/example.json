@@ -1,0 +1,21 @@
+{
+  "id": "example-2am-bmw",
+  "video": "media/2am-bmw.mp4",
+  "thumbnail": "media/2am-bmw-thumb.jpg",
+  "date": "2026-09-21T17:00:00-04:00",
+  "pillar": "craft",
+  "framework": "job-story",
+  "language": "en",
+  "caption": "Got a call at 2am. Guy in Brickell, 2019 BMW 330i, no key, dealer told him to tow it.\n\nMost locksmiths would've said the same thing. CAS module, BMW, 2am... not worth the headache.\n\nI drove out anyway. 40 minutes later he had a working key and I had a story.\n\nLesson: the jobs everybody else turns down are the ones that build your name.\n\nWhat's the wildest late-night call you've ever taken?",
+  "hashtags": ["#autolocksmith", "#bmw", "#smallbusiness", "#hustleculture", "#4keyslocksmith"],
+  "platforms": {
+    "instagram": { "enabled": true, "post_type": "post" },
+    "tiktok": { "enabled": true, "title": "The 2am BMW call the dealer said was impossible" },
+    "youtube": {
+      "enabled": true,
+      "title": "The 2am BMW key the dealer said needed a tow (2019 330i, no key)",
+      "type": "public",
+      "tags": ["auto locksmith", "bmw key programming", "2019 bmw 330i", "car key replacement", "locksmith business"]
+    }
+  }
+}
