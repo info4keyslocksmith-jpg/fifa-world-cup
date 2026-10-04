@@ -37,6 +37,22 @@ test('heartbeat frame bytes computed by hand', () => {
   assert.equal(f.checksumOk, true);
 });
 
+test('real MV55G-AU frame from the Traccar forum (0x0102 authentication) decodes', () => {
+  // posted by an MV55G-AU owner: 7e01020007019172682984015e470000000000003b7e
+  const raw = Buffer.from('7e01020007019172682984015e470000000000003b7e', 'hex');
+  const f = parseFrame(raw);
+  assert.equal(f.checksumOk, true);
+  assert.equal(f.msgId, 0x0102);
+  assert.equal(f.terminalId, ID);
+  assert.equal(f.serial, 0x015e);
+  assert.equal(f.bodyLength, 7);
+  const d = decodeFrame(f);
+  assert.equal(d.kind, 'auth');
+  assert.equal(d.codeHex, '47 00 00 00 00 00 00');
+  // the platform general response our server sends back
+  assert.equal(hex(E.buildGeneralResponse(ID, 1, 0x015e, 0x0102, 0)), '7E 80 01 00 05 01 91 72 68 29 84 00 01 01 5E 01 02 00 FE 7E');
+});
+
 test('bad checksum is flagged, not thrown', () => {
   const buf = E.buildHeartbeat(ID, 3);
   buf[buf.length - 2] ^= 0x55;

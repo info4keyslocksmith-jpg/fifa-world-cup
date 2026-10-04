@@ -65,6 +65,9 @@ Older MiCODUS firmware (and the MV720 manual) also documents the Concox word+pas
 - MV55G / JT808: the text above goes inside an `0x8300` message (flag byte 1 by default; try
   `!text,4,STATUS#` from the Commands tab if the device answers *not supported*). Binary
   alternatives: `!query` (0x8201 position), `!params` (0x8104 parameter dump), `!reset` (0x8105).
+- flespi documents exactly one MV55G command in its catalogue: a JT808 **terminal control**
+  message `0x8105` with body `0x11` to ARM the device — i.e. MiCODUS also uses binary JT808
+  control messages, not only text. Send it from the Commands tab as a raw frame if needed.
 - MV7xx / GT06: the text goes inside an `0x80` message and the reply comes back as `0x15`/`0x21`.
 - Whether the MV55G requires the password inside data-channel commands is unknown — Stage 6 of
   the test plan checks it.

@@ -11,7 +11,7 @@ unit.
 | `docs/PROTOCOL.md` | The wire protocol as implemented here (JT/T 808 for the MV55G, GT06 for the MV7xx family), byte by byte |
 | `docs/SMS-COMMANDS.md` | SMS / online command cheat sheet for the MV55G |
 | `docs/TEST-PLAN.md` | Step-by-step bench and in-car test plan for the real device |
-| `server/` | The test platform (Node.js, zero dependencies): TCP server, decoders, REST API, live dashboard, simulator, 66 tests |
+| `server/` | The test platform (Node.js, zero dependencies): TCP server, decoders, REST API, live dashboard, simulator, 67 tests |
 
 ## The one thing to know first
 

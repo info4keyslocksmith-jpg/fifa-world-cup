@@ -463,8 +463,11 @@ export function decodeFrame(frame, { tzHours = 0 } = {}) {
         return { ...base, kind: 'logout' };
       case 0x0100:
         return { ...base, ...decodeRegister(r, frame.version) };
-      case 0x0102:
-        return { ...base, kind: 'auth', code: ascii(r.rest()) };
+      case 0x0102: {
+        // Real MV55G-AU frames carry a 7-byte code such as 47 00 00 00 00 00 00 ("G" + zero padding)
+        const code = r.rest();
+        return { ...base, kind: 'auth', code: ascii(code), codeHex: hex(code) };
+      }
       case 0x0104:
         return { ...base, ...decodeParams(r) };
       case 0x0107: {
