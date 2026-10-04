@@ -120,7 +120,3 @@ export function decodeBuffer(buf, opts = {}) {
   }
   return { bytes: buf.length, garbage, frames };
 }
-
-export function parseHex(text) {
-  return GF.fromHex(text);
-}

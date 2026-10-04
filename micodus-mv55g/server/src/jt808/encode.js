@@ -9,10 +9,8 @@
  */
 import { FLAG, digitsToBcd, escapeBytes, xorChecksum } from './frame.js';
 
-let gbkEncoder = null;
+/** Text field encoder. Node has no GBK encoder; ASCII is identical in GBK, which covers command strings. */
 function gbk(text) {
-  // Node has no GBK *encoder*; ASCII is identical in GBK, which covers command strings.
-  if (gbkEncoder === null) gbkEncoder = false;
   return Buffer.from(String(text), 'latin1');
 }
 
