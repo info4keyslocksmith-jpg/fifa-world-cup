@@ -1,0 +1,17 @@
+{
+  "name": "mv55g-test-platform",
+  "version": "0.1.0",
+  "description": "Test platform for the MiCODUS MV55G(-AU) OBD GPS tracker: GT06/Concox-family TCP server, packet decoder, device simulator and live dashboard. Zero runtime dependencies.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "simulate": "node simulator/simulate.js",
+    "decode": "node src/cli-decode.js",
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
