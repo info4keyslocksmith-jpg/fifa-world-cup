@@ -38,7 +38,9 @@
   .tab.active { background: var(--bg); color: var(--text); border-color: var(--border); }
   .tab .count { color: var(--accent); margin-left: 6px; font-family: var(--mono); font-size: 11px; }
   .panes { min-height: 0; overflow: hidden; }
-  .pane { display: none; height: 100%; overflow: auto; padding: 8px 10px; }
+  .pane { display: none; height: 100%; overflow: auto; padding: 0 10px 8px; }
+  .pane .toolbar { padding-top: 8px; }
+  .pane.help, #pane-decoder { padding-top: 8px; }
   .pane.active { display: block; }
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }

@@ -37,6 +37,11 @@ Open <http://localhost:8080>: devices on the left (protocol badge, OBD block, al
 in the middle, and at the bottom the raw frame log (hex + decoded JSON), events, positions, a
 command console and an offline hex decoder for pasted captures.
 
+![dashboard with a simulated MV55G](docs/images/dashboard.png)
+
+(The map tiles were blocked in the environment where this screenshot was taken; on a normal
+internet connection OpenStreetMap tiles load.)
+
 Environment variables: `TCP_PORT` (7700), `HTTP_PORT` (8080), `DATA_DIR` (`server/data`, set `""`
 to disable JSONL persistence), `JT808_TZ_HOURS` (offset the device applies to its timestamps,
 default 0), `JT808_TEXT_FLAG` (flag byte of 0x8300 commands, default 1), `FORCE_PROTOCOL`
