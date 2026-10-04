@@ -5,33 +5,32 @@
  *   GET  /api/health
  *   GET  /api/state                         devices + counters
  *   GET  /api/devices                       all devices
- *   GET  /api/devices/:imei
- *   GET  /api/devices/:imei/positions?limit=500
- *   POST /api/devices/:imei/commands        {"command":"STATUS#"}  -> queued/sent 0x80 frame
- *   POST /api/devices/:imei/raw             {"hex":"78 78 ..."}    -> send raw frame to device
+ *   GET  /api/devices/:id
+ *   GET  /api/devices/:id/positions?limit=500
+ *   POST /api/devices/:id/commands          {"command":"STATUS#"}  -> queued/sent (0x8300 JT808 or 0x80 GT06)
+ *   POST /api/devices/:id/raw               {"hex":"7E ..."}       -> send a raw frame to the device
  *   GET  /api/raw?limit=200&imei=&since=    raw frames in/out (with decoded payload)
  *   GET  /api/events?limit=200&imei=&since=
  *   GET  /api/positions?limit=200&imei=&since=
  *   GET  /api/commands?imei=
- *   POST /api/decode                        {"hex":"78 78 ..."}    -> decoded frames (offline tool)
- *   POST /api/encode                        {"command":"STATUS#","serial":1} -> 0x80 frame hex
+ *   POST /api/decode                        {"hex":"7E 02 00 ..."} -> decoded frames, protocol auto-detected
+ *   POST /api/encode                        {"protocol":"jt808","id":"019172682984","command":"STATUS#"} -> frame hex
  *   GET  /api/stream                        Server-Sent Events: raw, position, event, device, command
+ *
+ * `:id` is the device identifier: the 12-digit JT808 terminal id for the MV55G, the IMEI for GT06 devices.
  */
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { fromHex, hex, splitFrames } from './gt06/frame.js';
-import { decodeFrame } from './gt06/decode.js';
-import { buildCommand } from './gt06/encode.js';
+import { fromHex, hex } from './gt06/frame.js';
+import { PROTOCOLS, decodeBuffer } from './protocols.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WEB_DIR = path.join(__dirname, '..', 'web');
 
-export function decodeHex(text) {
-  const buf = fromHex(text);
-  const { frames, garbage, leftover } = splitFrames(buf);
-  return { bytes: buf.length, garbage, leftover, frames: frames.map(decodeFrame) };
+export function decodeHex(text, opts = {}) {
+  return decodeBuffer(fromHex(text), opts);
 }
 
 function readJson(req) {
@@ -54,7 +53,7 @@ function readJson(req) {
 
 function slice(arr, url) {
   const limit = Math.min(5000, +(url.searchParams.get('limit') || 200));
-  const imei = url.searchParams.get('imei');
+  const imei = url.searchParams.get('imei') || url.searchParams.get('id');
   const since = +(url.searchParams.get('since') || 0);
   let items = arr;
   if (imei) items = items.filter((x) => x.imei === imei);
@@ -82,7 +81,7 @@ function sse(req, res, store) {
   });
 }
 
-export function createHttpServer({ store, tracker, log = console, tcpPort = null }) {
+export function createHttpServer({ store, tracker, log = console, tcpPort = null, tzHours = 0 }) {
   return http.createServer(async (req, res) => {
     const url = new URL(req.url, 'http://localhost');
     const send = (status, body, type = 'application/json') => {
@@ -101,7 +100,7 @@ export function createHttpServer({ store, tracker, log = console, tcpPort = null
       const p = url.pathname;
       let m;
       if (p === '/' || p === '/index.html') return send(200, fs.readFileSync(path.join(WEB_DIR, 'index.html')), 'text/html; charset=utf-8');
-      if (p === '/api/health') return send(200, { ok: true, tcpPort, uptimeS: Math.round(process.uptime()), startedAt: store.startedAt });
+      if (p === '/api/health') return send(200, { ok: true, tcpPort, uptimeS: Math.round(process.uptime()), startedAt: store.startedAt, protocols: Object.keys(PROTOCOLS) });
       if (p === '/api/state') return send(200, { ...store.snapshot(), tcpPort });
       if (p === '/api/devices') return send(200, [...store.devices.values()]);
       if ((m = p.match(/^\/api\/devices\/(\d+)$/))) {
@@ -129,13 +128,16 @@ export function createHttpServer({ store, tracker, log = console, tcpPort = null
       if (p === '/api/commands') return send(200, slice(store.commands, url));
       if (p === '/api/decode' && req.method === 'POST') {
         const body = await readJson(req);
-        return send(200, decodeHex(body.hex || ''));
+        return send(200, decodeHex(body.hex || '', { tzHours: body.tzHours ?? tzHours }));
       }
       if (p === '/api/encode' && req.method === 'POST') {
         const body = await readJson(req);
         if (!body.command) return send(400, { error: '"command" is required' });
-        const frame = buildCommand(String(body.command), +(body.serial ?? 1), body.options || {});
-        return send(200, { hex: hex(frame), decoded: decodeHex(hex(frame)).frames[0] });
+        const proto = PROTOCOLS[body.protocol || 'jt808'];
+        if (!proto) return send(400, { error: `unknown protocol; use ${Object.keys(PROTOCOLS).join(' or ')}` });
+        const fakeSession = { deviceId: body.id || '000000000000', txSerial: +(body.serial ?? 1), version: body.version ?? null, options: { commandOptions: {}, jt808TextFlag: body.flag ?? 0x01 } };
+        const built = proto.command(fakeSession, String(body.command), body.options || {});
+        return send(200, { protocol: proto.name, hex: hex(built.buf), meta: built.meta, decoded: decodeBuffer(built.buf).frames[0] });
       }
       if (p === '/api/stream') return sse(req, res, store);
       return send(404, { error: 'not found' });

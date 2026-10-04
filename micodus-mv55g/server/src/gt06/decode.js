@@ -189,7 +189,7 @@ function tail(r) {
 function decodeLogin(r) {
   const idHex = r.bytes(8).toString('hex');
   const out = { kind: 'login', imei: idHex.length === 16 && idHex[0] === '0' ? idHex.slice(1) : idHex };
-  if (r.remaining() >= 2) out.typeCode = hex2(r.u16()).replace('0x', '0x').padEnd(6, '0');
+  if (r.remaining() >= 2) out.typeCode = '0x' + r.u16().toString(16).padStart(4, '0').toUpperCase();
   if (r.remaining() >= 2) {
     const tz = r.u16();
     const v = tz >> 4;

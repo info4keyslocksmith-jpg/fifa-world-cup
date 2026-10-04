@@ -26,8 +26,11 @@ test('buildAck reproduces the official login ACK bytes', () => {
 test('login with type code and negative timezone', () => {
   const d = dec(E.buildLogin('353419989226948', 2, { typeCode: 0x5500, timezoneHours: -4 }));
   assert.equal(d.imei, '353419989226948');
+  assert.equal(d.typeCode, '0x5500');
   assert.equal(d.timezoneHours, -4);
   assert.equal(d.language, 'english');
+  assert.equal(dec(E.buildLogin('353419989226948', 3, { typeCode: 0x0012 })).typeCode, '0x0012');
+  assert.equal(dec(E.buildLogin('353419989226948', 4, { typeCode: 0x0012, timezoneHours: 5.5 })).timezoneHours, 5.5);
 });
 
 test('location 0x22 round trip (north-west hemisphere)', () => {

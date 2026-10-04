@@ -134,10 +134,11 @@ export class Store extends EventEmitter {
     return c;
   }
 
+  /** Most recent command that is still waiting for a text reply ("sent", or "accepted" by a JT808 0x0001). */
   lastSentCommand(imei) {
     for (let i = this.commands.length - 1; i >= 0; i--) {
       const c = this.commands[i];
-      if (c.imei === imei && c.status === 'sent') return c;
+      if (c.imei === imei && (c.status === 'sent' || c.status === 'accepted')) return c;
     }
     return null;
   }

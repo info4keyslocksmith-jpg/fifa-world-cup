@@ -163,9 +163,10 @@ test('HTTP API: state, positions, decode, encode, command', async () => {
   ).json();
   assert.equal(decoded.frames[0].imei, '123456789012345');
 
-  const encoded = await (await fetch(`${httpBase}/api/encode`, { method: 'POST', body: JSON.stringify({ command: 'VERSION#', serial: 3 }) })).json();
+  const encoded = await (await fetch(`${httpBase}/api/encode`, { method: 'POST', body: JSON.stringify({ protocol: 'gt06', command: 'VERSION#', serial: 3 }) })).json();
   assert.equal(encoded.hex, hex(E.buildCommand('VERSION#', 3)));
   assert.equal(encoded.decoded.text, 'VERSION#');
+  assert.equal(encoded.protocol, 'gt06');
 
   const res = await fetch(`${httpBase}/api/devices/${IMEI}/commands`, { method: 'POST', body: JSON.stringify({ command: 'WHERE#' }) });
   assert.equal(res.status, 202);
@@ -192,7 +193,7 @@ test('garbage and CRC errors are recorded without crashing the session', async (
   d.socket.write(bad);
   await sleep(50);
   assert.ok(store.events.some((e) => e.kind === 'crc_error'));
-  assert.ok(store.raw.some((r) => r.note && r.note.includes('skipped')));
+  assert.ok(store.raw.some((r) => r.note && (r.note.includes('skipped') || r.note.includes('unrecognised'))));
   // still works afterwards
   d.socket.write(E.buildLogin(IMEI, 2));
   await d.waitFor((r) => r.kind === 'ack' && r.serial === 2);

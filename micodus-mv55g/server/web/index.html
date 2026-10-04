@@ -13,20 +13,22 @@
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body { background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; display: grid; grid-template-rows: auto 1fr auto; height: 100vh; }
-  header { display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  header { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
   header h1 { font-size: 16px; margin: 0; letter-spacing: .3px; }
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: var(--panel-2); border: 1px solid var(--border); font-size: 12px; color: var(--muted); }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bad); display: inline-block; }
   .dot.ok { background: var(--ok); }
-  main { display: grid; grid-template-columns: 300px 1fr; min-height: 0; }
+  main { display: grid; grid-template-columns: 320px 1fr; min-height: 0; }
   aside { background: var(--panel); border-right: 1px solid var(--border); overflow: auto; padding: 10px; }
-  aside h2, section h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 6px 4px 8px; }
+  aside h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 6px 4px 8px; }
   .device { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 8px; cursor: pointer; }
   .device.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
-  .device .imei { font-family: var(--mono); font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+  .device .head { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .device .imei { font-family: var(--mono); font-size: 13px; }
   .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 12px; margin-top: 6px; }
   .kv span:nth-child(odd) { color: var(--muted); }
   .kv span:nth-child(even) { font-family: var(--mono); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .kv .wrap { white-space: normal; word-break: break-word; }
   #map { width: 100%; height: 100%; min-height: 240px; background: #0b0f14; }
   .map-note { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); pointer-events: none; }
   .map-wrap { position: relative; min-height: 0; }
@@ -42,7 +44,7 @@
   th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--panel); }
   td.mono, .mono { font-family: var(--mono); }
-  td.hex { font-family: var(--mono); word-break: break-all; max-width: 560px; color: #cbd5e1; }
+  td.hex { font-family: var(--mono); word-break: break-all; max-width: 520px; color: #cbd5e1; }
   .dir-in { color: var(--in); } .dir-out { color: var(--out); }
   tr.row { cursor: pointer; } tr.row:hover { background: var(--panel-2); }
   tr.detail td { background: #0b0f14; }
@@ -51,6 +53,7 @@
   .badge.alarm { border-color: var(--bad); color: var(--bad); }
   .badge.ok { border-color: var(--ok); color: var(--ok); }
   .badge.warn { border-color: var(--warn); color: var(--warn); }
+  .badge.proto { border-color: var(--accent); color: var(--accent); }
   .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
   input, select, textarea, button { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; font: inherit; }
   input.mono, textarea { font-family: var(--mono); font-size: 12px; }
@@ -64,9 +67,8 @@
   .help li { margin: 3px 0; }
   @media (max-width: 900px) {
     main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-    aside { max-height: 32vh; border-right: none; border-bottom: 1px solid var(--border); }
+    aside { max-height: 34vh; border-right: none; border-bottom: 1px solid var(--border); }
     .grid2 { grid-template-columns: 1fr; }
-    header { padding: 10px 16px; }
   }
 </style>
 </head>
@@ -107,33 +109,38 @@
         <button class="quick" onclick="clearPane('raw')">clear view</button>
         <span class="muted">Click a row to expand the decoded packet. Blue = device → server, purple = server → device.</span>
       </div>
-      <table><thead><tr><th>time</th><th>dir</th><th>imei</th><th>type</th><th>summary</th><th>hex</th></tr></thead><tbody id="raw-body"></tbody></table>
+      <table><thead><tr><th>time</th><th>dir</th><th>device</th><th>msg</th><th>summary</th><th>hex</th></tr></thead><tbody id="raw-body"></tbody></table>
     </div>
     <div class="pane" id="pane-events">
-      <table><thead><tr><th>time</th><th>kind</th><th>imei</th><th>detail</th></tr></thead><tbody id="events-body"></tbody></table>
+      <table><thead><tr><th>time</th><th>kind</th><th>device</th><th>detail</th></tr></thead><tbody id="events-body"></tbody></table>
     </div>
     <div class="pane" id="pane-positions">
-      <table><thead><tr><th>time (device)</th><th>imei</th><th>lat, lon</th><th>speed</th><th>course</th><th>sats</th><th>fix</th><th>ACC</th><th>mileage</th><th>mode</th><th>cell</th><th>src</th></tr></thead><tbody id="positions-body"></tbody></table>
+      <table><thead><tr><th>time (device)</th><th>device</th><th>lat, lon</th><th>alt</th><th>speed</th><th>course</th><th>sats</th><th>fix</th><th>ACC</th><th>mileage</th><th>alarms / mode</th><th>OBD</th><th>src</th></tr></thead><tbody id="positions-body"></tbody></table>
     </div>
     <div class="pane" id="pane-commands">
       <div class="toolbar">
         <select id="cmd-imei"><option value="">— device —</option></select>
         <input class="mono" id="cmd-text" placeholder="STATUS#" style="min-width:260px" />
-        <button class="primary" onclick="sendCommand()">Send 0x80</button>
-        <span class="muted">Queued until the device is online; the reply (0x15 / 0x21) is matched to the last sent command.</span>
+        <button class="primary" onclick="sendCommand()">Send</button>
+        <span class="muted">Text goes out as JT808 0x8300 (or GT06 0x80). Queued until the device is online; <code>!query</code> <code>!params</code> <code>!reset</code> are binary JT808 messages.</span>
       </div>
       <div class="toolbar" id="cmd-quick"></div>
-      <table><thead><tr><th>time</th><th>imei</th><th>command</th><th>status</th><th>response</th><th>frame</th></tr></thead><tbody id="commands-body"></tbody></table>
+      <table><thead><tr><th>time</th><th>device</th><th>command</th><th>status</th><th>response</th><th>frame</th></tr></thead><tbody id="commands-body"></tbody></table>
     </div>
     <div class="pane" id="pane-decoder">
       <div class="grid2">
         <div>
-          <textarea id="dec-in" placeholder="Paste one or more GT06 frames as hex, e.g. 78 78 0D 01 01 23 45 67 89 01 23 45 00 01 8C DD 0D 0A"></textarea>
+          <textarea id="dec-in" placeholder="Paste one or more frames as hex (JT808 7E … 7E or GT06 78 78 … 0D 0A), e.g. 7E 00 02 00 00 01 91 72 68 29 84 00 03 26 7E"></textarea>
           <div class="toolbar" style="margin-top:8px">
             <button class="primary" onclick="decodeHex()">Decode</button>
-            <button onclick="document.getElementById('dec-in').value='78 78 0D 01 01 23 45 67 89 01 23 45 00 01 8C DD 0D 0A';decodeHex()">example login</button>
+            <button onclick="document.getElementById('dec-in').value='7E 00 02 00 00 01 91 72 68 29 84 00 03 26 7E';decodeHex()">JT808 heartbeat example</button>
+            <button onclick="document.getElementById('dec-in').value='78 78 0D 01 01 23 45 67 89 01 23 45 00 01 8C DD 0D 0A';decodeHex()">GT06 login example</button>
+          </div>
+          <div class="toolbar">
+            <select id="enc-proto"><option value="jt808">jt808</option><option value="gt06">gt06</option></select>
+            <input class="mono" id="enc-id" placeholder="device id (019172682984)" />
             <input class="mono" id="enc-cmd" placeholder="STATUS#" />
-            <button onclick="encodeCmd()">Build 0x80 frame</button>
+            <button onclick="encodeCmd()">Build command frame</button>
           </div>
         </div>
         <pre id="dec-out" class="muted">Decoded JSON appears here.</pre>
@@ -142,41 +149,41 @@
     <div class="pane help" id="pane-help">
       <div class="grid2">
         <div>
-          <h3>Repoint the tracker to this server (SMS)</h3>
+          <h3>Repoint the MV55G to this server (SMS)</h3>
           <ul>
-            <li><code>APN,your.apn.here#</code> &nbsp;(SIM operator APN; add <code>,user,pass</code> if needed)</li>
-            <li><code>SERVER,1,&lt;public-ip-or-dns&gt;,&lt;tcp-port&gt;,0#</code> &nbsp;(mode 1 = IP, 0 = domain; last 0 = TCP)</li>
-            <li><code>RESET#</code> &nbsp;to reconnect</li>
-            <li>Check <code>PARAM#</code> / <code>STATUS#</code> / <code>VERSION#</code> by SMS to confirm</li>
+            <li><code>APN,your.apn#</code> or <code>APN,your.apn,user,password#</code></li>
+            <li><code>SERVER,0,&lt;public-ip&gt;,&lt;port&gt;#</code> &nbsp;(mode 0 = IP) &nbsp;·&nbsp; <code>SERVER,1,&lt;dns-name&gt;,&lt;port&gt;#</code> &nbsp;(mode 1 = domain)</li>
+            <li><code>TIMER,30#</code> report interval (s) · <code>SPEED,120#</code> overspeed · <code>GMT,E,0#</code> time zone</li>
+            <li><code>ACCALM,1#</code> <code>PWRALM,1#</code> <code>SENALM,1#</code> ignition / unplug / vibration alerts</li>
+            <li><code>VERSION#</code> returns firmware + the device ID the server will see · <code>STATUS#</code> · <code>PARAM#</code> · <code>RESET#</code></li>
           </ul>
-          <p class="muted">The exact MiCODUS command spelling is in <code>docs/SMS-COMMANDS.md</code>. Change the default password (123456) before anything else.</p>
-          <h3>What a healthy session looks like</h3>
+          <p class="muted">MiCODUS replies "SET APN OK" even for a wrong APN, so a positive SMS reply does not prove the device is online. Full list with sources: <code>docs/SMS-COMMANDS.md</code>. Change the default password (123456) first.</p>
+          <h3>What a healthy MV55G session looks like (JT808)</h3>
           <ol>
-            <li>0x01 login with the IMEI → server ACK</li>
-            <li>0x8A time request → server sends UTC time (optional)</li>
-            <li>0x13 / 0x23 heartbeat every few minutes → ACK</li>
-            <li>0x22 / 0x12 / 0xA0 location on each interval → ACK</li>
-            <li>0x16 / 0x26 alarms (power cut, vibration, ...) → ACK</li>
-            <li>0x94 info (external voltage, ICCID) and OBD-related frames</li>
+            <li>0x0100 register (manufacturer/model) → server 0x8100 success + auth code</li>
+            <li>0x0102 auth → server 0x8001</li>
+            <li>0x0002 heartbeat every few minutes → 0x8001</li>
+            <li>0x0200 location on each interval, OBD items inside (RPM 0x81, voltage 0x82, …) → 0x8001</li>
+            <li>alarm bits in the location report (bit 8 unplug, bit 1 overspeed, bit 28 moved) and 0x57 harsh driving</li>
+            <li>0x0704 batch after a dead zone</li>
           </ol>
+          <p class="muted">The device identifies itself by the 11/12-digit MiCODUS ID (0 + sticker ID), not by IMEI. GT06 devices (MV7xx) identify by IMEI and are decoded too.</p>
         </div>
         <div>
-          <h3>Online commands to try from the Commands tab</h3>
-          <p class="muted">Command strings sent inside a 0x80 frame. Family-standard; MiCODUS firmware may accept a subset.</p>
+          <h3>Online commands (Commands tab)</h3>
           <ul>
-            <li><code>STATUS#</code> battery / GSM / GPS state</li>
-            <li><code>PARAM#</code> current parameters</li>
-            <li><code>VERSION#</code> firmware version</li>
-            <li><code>WHERE#</code> text position</li>
-            <li><code>GPSON#</code> / <code>GPSOFF#</code></li>
-            <li><code>TIMER,10,300#</code> report interval (moving, stopped)</li>
-            <li><code>RESET#</code> reboot</li>
+            <li><code>STATUS#</code> · <code>PARAM#</code> · <code>VERSION#</code> · <code>WHERE#</code> · <code>MILEAGE#</code> — sent as 0x8300 text</li>
+            <li><code>TIMER,30#</code> · <code>SPEED,120#</code> · <code>ACCALM,1#</code> — settings</li>
+            <li><code>!query</code> 0x8201 position request → 0x0201 reply</li>
+            <li><code>!params</code> 0x8104 parameter dump → 0x0104 reply</li>
+            <li><code>!reset</code> 0x8105 reboot · <code>!text,4,hello</code> 0x8300 with another flag byte</li>
           </ul>
+          <p class="muted">The device answers each of our messages with 0x0001 (accepted / unsupported) and then, for text commands, a text reply. Never use relay / engine-cut commands.</p>
           <h3>Files</h3>
           <ul>
             <li><code>data/raw.jsonl</code> every frame in/out with decoded JSON</li>
             <li><code>data/positions.jsonl</code>, <code>data/events.jsonl</code>, <code>data/commands.jsonl</code></li>
-            <li><code>node src/cli-decode.js "&lt;hex&gt;"</code> offline decoder</li>
+            <li><code>node src/cli-decode.js "&lt;hex&gt;"</code> offline decoder · <code>node simulator/simulate.js --replay file.hex</code> replay a capture</li>
           </ul>
         </div>
       </div>
@@ -185,11 +192,12 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-const state = { devices: new Map(), raw: [], events: [], positions: [], commands: [], selected: null, lastRawId: 0 };
+const state = { devices: new Map(), raw: [], events: [], positions: [], commands: [], selected: null };
 const $ = (id) => document.getElementById(id);
 const fmtT = (iso) => iso ? new Date(iso).toLocaleTimeString([], { hour12: false }) + '.' + String(new Date(iso).getMilliseconds()).padStart(3, '0') : '';
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const QUICK = ['STATUS#', 'PARAM#', 'VERSION#', 'WHERE#', 'GPSON#', 'TIMER,10,300#', 'RESET#'];
+const QUICK = ['STATUS#', 'PARAM#', 'VERSION#', 'WHERE#', 'MILEAGE#', 'TIMER,30#', 'SPEED,120#', '!query', '!params', 'RESET#'];
+const obdLine = (o) => o ? [o.rpm != null && `${o.rpm} rpm`, o.obdSpeedKmh != null && `${o.obdSpeedKmh} km/h`, o.externalVoltage != null && `${o.externalVoltage} V`, o.coolantC != null && `${o.coolantC} °C`, o.fuelLevelPct != null && `fuel ${o.fuelLevelPct}%`, o.engineLoadPct != null && `load ${o.engineLoadPct}%`, o.throttlePct != null && `thr ${o.throttlePct}%`, o.canOdometerKm != null && `${o.canOdometerKm} km`, o.dtcs && o.dtcs.length && `DTC ${o.dtcs.join(' ')}`, o.vin && `VIN ${o.vin}`].filter(Boolean).join(' · ') : '';
 
 // ---------- map ----------
 let map = null; const markers = new Map(); let trail = null;
@@ -206,10 +214,10 @@ function updateMarker(d) {
   if (!map || !d.lastPosition || !d.lastPosition.valid) return;
   const p = d.lastPosition; const ll = [p.lat, p.lon];
   let m = markers.get(d.imei);
-  const html = `<b class="mono">${d.imei}</b><br>${p.lat}, ${p.lon}<br>${p.speedKmh} km/h · ${p.course}° · ${p.satellites} sats<br><span class="muted">${p.time || ''}</span>`;
+  const html = `<b class="mono">${d.imei}</b> <span class="badge proto">${esc(d.protocol || '')}</span><br>${p.lat}, ${p.lon}${p.altitude != null ? ' · ' + p.altitude + ' m' : ''}<br>${p.speedKmh} km/h · ${p.course}°${p.satellites != null ? ' · ' + p.satellites + ' sats' : ''}<br>${obdLine(p.obd)}<br><span class="muted">${p.time || ''}</span>`;
   if (!m) { m = L.marker(ll).addTo(map).bindPopup(html); m.on('click', () => selectDevice(d.imei)); markers.set(d.imei, m); if (markers.size === 1) map.setView(ll, 14); }
   else { m.setLatLng(ll); m.setPopupContent(html); }
-  if (state.selected === d.imei) { map.panTo(ll); }
+  if (state.selected === d.imei) map.panTo(ll);
 }
 function redrawTrail() {
   if (!trail) return;
@@ -224,23 +232,27 @@ function renderDevices() {
   if (!state.devices.size) return;
   el.innerHTML = '';
   for (const d of [...state.devices.values()].sort((a, b) => (b.lastSeen || '').localeCompare(a.lastSeen || ''))) {
-    const p = d.lastPosition, s = d.lastStatus;
+    const p = d.lastPosition, s = d.lastStatus, o = d.obd;
     const div = document.createElement('div');
     div.className = 'device' + (state.selected === d.imei ? ' selected' : '');
     div.onclick = () => selectDevice(d.imei);
     const volt = d.externalVoltage != null ? d.externalVoltage + ' V' : s?.voltage != null ? s.voltage + ' V' : s?.voltageLevelName ? `${s.voltageLevel}/6 ${s.voltageLevelName}` : '—';
+    const gsm = d.rssi != null ? `rssi ${d.rssi}` : s?.gsm != null ? `${s.gsm}/4 ${s.gsmName || ''}` : '—';
+    const acc = p?.acc != null ? (p.acc ? 'on' : 'off') : s?.terminal ? (s.terminal.acc ? 'on' : 'off') : s?.acc != null ? (s.acc ? 'on' : 'off') : '—';
+    const model = d.registration?.model || d.attributes?.model || '';
     div.innerHTML = `
-      <div class="imei"><span>${d.imei}</span><span class="dot ${d.connected ? 'ok' : ''}" title="${d.connected ? 'connected' : 'offline'}"></span></div>
+      <div class="head"><span class="imei">${d.imei}</span><span><span class="badge proto">${esc(d.protocol || '?')}</span> <span class="dot ${d.connected ? 'ok' : ''}" title="${d.connected ? 'connected' : 'offline'}"></span></span></div>
       <div class="kv">
+        ${model ? `<span>model</span><span>${esc(model)}${d.registration?.imei ? ' · IMEI ' + d.registration.imei : ''}</span>` : ''}
         <span>last seen</span><span>${d.lastSeen ? new Date(d.lastSeen).toLocaleString([], { hour12: false }) : '—'}</span>
         <span>position</span><span>${p && p.valid ? `${p.lat}, ${p.lon}` : p ? 'no fix' : '—'}</span>
-        <span>speed / course</span><span>${p ? `${p.speedKmh} km/h · ${p.course}°` : '—'}</span>
-        <span>ACC</span><span>${p?.acc != null ? (p.acc ? 'on' : 'off') : s?.terminal ? (s.terminal.acc ? 'on' : 'off') : '—'}</span>
-        <span>voltage</span><span>${volt}</span>
-        <span>GSM</span><span>${s?.gsm != null ? `${s.gsm}/4 ${s.gsmName || ''}` : '—'}</span>
+        <span>speed / course</span><span>${p ? `${p.speedKmh} km/h · ${p.course}°${p.altitude != null ? ' · ' + p.altitude + ' m' : ''}` : '—'}</span>
+        <span>ACC</span><span>${acc}</span>
+        <span>voltage</span><span>${volt}${d.backupBatteryPct != null ? ' · batt ' + d.backupBatteryPct + '%' : ''}</span>
+        <span>signal</span><span>${gsm}${p?.satellites != null ? ' · ' + p.satellites + ' sats' : ''}</span>
         <span>alarm</span><span>${d.lastAlarm ? `<span class="badge alarm">${esc(d.lastAlarm.alarm)}</span>` : '—'}</span>
         <span>mileage</span><span>${p?.mileageM != null ? (p.mileageM / 1000).toFixed(1) + ' km' : '—'}</span>
-        <span>OBD</span><span>${d.obd ? esc(Object.entries(d.obd).filter(([k]) => !['pairs', 'ts', 'time'].includes(k)).map(([k, v]) => `${k}=${v}`).join(' ') || 'raw only') : '—'}</span>
+        <span>OBD</span><span class="wrap">${o ? esc(obdLine(o)) || 'raw only' : '—'}</span>
         <span>frames</span><span>${d.counters.frames} · pos ${d.counters.positions} · hb ${d.counters.heartbeats} · alm ${d.counters.alarms}</span>
       </div>`;
     el.appendChild(div);
@@ -252,7 +264,7 @@ function selectDevice(imei) {
   state.selected = imei;
   $('filter-pill').style.display = imei ? '' : 'none'; $('filter-imei').textContent = imei || '';
   renderDevices(); renderRaw(true); renderEvents(); renderPositions(); renderCommands(); redrawTrail();
-  if (imei) $('cmd-imei').value = imei;
+  if (imei) { $('cmd-imei').value = imei; $('enc-id').value = imei; }
 }
 
 // ---------- tables ----------
@@ -260,16 +272,28 @@ function summary(d) {
   if (!d) return '';
   switch (d.kind) {
     case 'login': return `IMEI ${d.imei}${d.timezoneHours != null ? ` tz ${d.timezoneHours}` : ''}`;
-    case 'location': return `${d.gps.valid ? '' : '(no fix) '}${d.gps.lat}, ${d.gps.lon} · ${d.gps.speedKmh} km/h · ${d.gps.course}° · ${d.gps.satellites} sats${d.acc != null ? ` · ACC ${d.acc ? 'on' : 'off'}` : ''}${d.mileageM != null ? ` · ${(d.mileageM / 1000).toFixed(1)} km` : ''}`;
-    case 'heartbeat': return `ACC ${d.status.terminal.acc ? 'on' : 'off'} · ${d.status.voltage != null ? d.status.voltage + ' V' : 'batt ' + d.status.voltageLevel + '/6'} · GSM ${d.status.gsm}/4 · ${d.status.alarm}`;
+    case 'register': return `${esc(d.manufacturer || '')} ${esc(d.model || '')} id-text ${esc(d.terminalIdText || '')}${d.imei ? ' IMEI ' + d.imei : ''}${d.plate ? ' plate ' + esc(d.plate) : ''}`;
+    case 'register_response': return `${d.resultName} · auth code ${esc(d.authCode)}`;
+    case 'auth': return `auth code ${esc(d.code)}`;
+    case 'location': return `${d.gps.valid ? '' : '(no fix) '}${d.gps.lat}, ${d.gps.lon} · ${d.gps.speedKmh} km/h · ${d.gps.course}°${d.gps.satellites != null ? ` · ${d.gps.satellites} sats` : ''}${d.acc != null ? ` · ACC ${d.acc ? 'on' : 'off'}` : d.status?.acc != null ? ` · ACC ${d.status.acc ? 'on' : 'off'}` : ''}${d.alarms?.length ? ' ' + d.alarms.map(a => `<span class="badge alarm">${esc(a)}</span>`).join(' ') : ''}${d.obd ? ' · ' + esc(obdLine(d.obd)) : ''}${d.mileageM != null ? ` · ${(d.mileageM / 1000).toFixed(1)} km` : ''}`;
+    case 'batch': return `${d.positions.length} buffered positions (${esc(d.batchType)})`;
+    case 'heartbeat': return d.status ? `ACC ${d.status.terminal.acc ? 'on' : 'off'} · ${d.status.voltage != null ? d.status.voltage + ' V' : 'batt ' + d.status.voltageLevel + '/6'} · GSM ${d.status.gsm}/4 · ${d.status.alarm}` : (d.batteryPct != null ? `batt ${d.batteryPct}% · rssi ${d.rssi}` : 'heartbeat');
     case 'alarm': return `<span class="badge alarm">${esc(d.alarm)}</span> ${d.gps ? `${d.gps.lat}, ${d.gps.lon}` : ''}`;
-    case 'ack': return '<span class="muted">ack</span>';
-    case 'time_request': return 'device asks for time';
-    case 'time_response': return `UTC ${d.time}`;
+    case 'ack': return `<span class="muted">ack${d.replyName ? ' → ' + esc(d.replyName) + ' #' + d.replySerial : ''}</span>`;
+    case 'terminal_response': return `device says <b>${esc(d.resultName)}</b> to our ${esc(d.replyName)} #${d.replySerial}`;
+    case 'time_request': case 'time_sync_request': return 'device asks for time';
+    case 'time_response': case 'time_sync_response': return `UTC ${d.time}`;
     case 'info': return `${d.subtypeName}${d.externalVoltage != null ? ` ${d.externalVoltage} V` : ''}${d.text ? ' ' + esc(d.text) : ''}${d.iccid ? ' ICCID ' + d.iccid : ''}`;
     case 'obd': return esc(d.text);
     case 'command_response': return `reply: ${esc(d.text)}`;
-    case 'server_command': return `cmd: ${esc(d.text)}`;
+    case 'server_command': return `cmd: ${esc(d.text)}${d.flag ? ' (flag ' + d.flag + ')' : ''}`;
+    case 'location_query': return 'position request';
+    case 'query_parameters': return 'parameter request';
+    case 'params': return `${d.count} parameters: ${esc(d.params.map(p => `${p.name}=${p.value}`).join(', ')).slice(0, 200)}`;
+    case 'attributes': return `${esc(d.manufacturer)} ${esc(d.model)} ICCID ${esc(d.iccid)} fw ${esc(d.firmwareVersion || '')}`;
+    case 'terminal_control': return `terminal control: ${esc(d.commandName)}`;
+    case 'set_parameters': return `set ${d.params.length} parameter(s)`;
+    case 'transparent': return `transparent ${d.dataType}: ${esc(d.text)}`;
     case 'decode_error': return `<span class="badge warn">decode error</span> ${esc(d.error)}`;
     default: return `<span class="badge warn">${esc(d.kind || 'unknown')}</span>`;
   }
@@ -278,7 +302,7 @@ function rowRaw(r) {
   const d = r.decoded;
   const tr = document.createElement('tr'); tr.className = 'row';
   const crc = d && !d.crcOk ? ' <span class="badge alarm">CRC</span>' : '';
-  tr.innerHTML = `<td class="mono">${fmtT(r.ts)}</td><td class="mono dir-${r.dir}">${r.dir === 'in' ? '◀ dev' : '▶ srv'}</td><td class="mono">${r.imei || '<span class="muted">' + esc(r.peer || '') + '</span>'}</td><td class="mono">${r.type || ''} ${esc(r.name || r.note || '')}${crc}</td><td>${r.dir === 'out' && !d ? esc(r.text || '') : summary(d)}</td><td class="hex">${esc(r.hex)}</td>`;
+  tr.innerHTML = `<td class="mono">${fmtT(r.ts)}</td><td class="mono dir-${r.dir}">${r.dir === 'in' ? '◀ dev' : '▶ srv'}</td><td class="mono">${r.imei || '<span class="muted">' + esc(r.peer || '') + '</span>'}</td><td class="mono">${r.type || ''} ${esc(r.name || r.note || '')}${crc}</td><td>${r.dir === 'out' && !d ? esc(r.text || r.authCode || '') : summary(d)}</td><td class="hex">${esc(r.hex)}</td>`;
   tr.onclick = () => {
     if (tr.nextSibling && tr.nextSibling.classList.contains('detail')) { tr.nextSibling.remove(); return; }
     const det = document.createElement('tr'); det.className = 'detail';
@@ -289,7 +313,8 @@ function rowRaw(r) {
 }
 function renderRaw(full) {
   const body = $('raw-body'); const hideAck = $('raw-hide-ack').checked;
-  const items = state.raw.filter(r => (!state.selected || r.imei === state.selected) && !(hideAck && r.decoded && r.decoded.kind === 'ack'));
+  const isAck = (r) => (r.decoded && r.decoded.kind === 'ack') || (r.dir === 'out' && r.name === 'ack');
+  const items = state.raw.filter(r => (!state.selected || r.imei === state.selected) && !(hideAck && isAck(r)));
   if (full) { body.innerHTML = ''; for (const r of items.slice(-400)) body.appendChild(rowRaw(r)); }
   else { const r = items[items.length - 1]; if (r) body.appendChild(rowRaw(r)); while (body.children.length > 800) body.firstChild.remove(); }
   $('n-raw').textContent = items.length;
@@ -299,21 +324,22 @@ function renderEvents() {
   const items = state.events.filter(e => !state.selected || e.imei === state.selected).slice(-300);
   $('events-body').innerHTML = items.map(e => {
     const { id, ts, kind, imei, ...rest } = e;
-    const badge = kind === 'alarm' ? 'alarm' : ['login', 'connect'].includes(kind) ? 'ok' : ['crc_error', 'decode_error', 'unknown', 'socket_error'].includes(kind) ? 'warn' : '';
-    return `<tr><td class="mono">${fmtT(ts)}</td><td><span class="badge ${badge}">${esc(kind)}</span></td><td class="mono">${imei || ''}</td><td class="mono" style="white-space:pre-wrap;word-break:break-word">${esc(kind === 'alarm' ? `${rest.alarm} (${rest.code || ''})${rest.viaHeartbeat ? ' via heartbeat' : ''}` : JSON.stringify(rest).slice(0, 400))}</td></tr>`;
+    const badge = kind === 'alarm' ? 'alarm' : ['login', 'register', 'auth', 'connect', 'protocol_detected'].includes(kind) ? 'ok' : ['crc_error', 'decode_error', 'unknown', 'socket_error'].includes(kind) ? 'warn' : '';
+    const detail = kind === 'alarm' ? `${rest.alarm} (${rest.code || ''})${rest.viaHeartbeat ? ' via heartbeat' : ''}${rest.archive ? ' [buffered]' : ''}` : JSON.stringify(rest).slice(0, 400);
+    return `<tr><td class="mono">${fmtT(ts)}</td><td><span class="badge ${badge}">${esc(kind)}</span></td><td class="mono">${imei || ''}</td><td class="mono" style="white-space:pre-wrap;word-break:break-word">${esc(detail)}</td></tr>`;
   }).join('');
   $('n-events').textContent = items.length;
   $('pane-events').scrollTop = $('pane-events').scrollHeight;
 }
 function renderPositions() {
   const items = state.positions.filter(p => !state.selected || p.imei === state.selected).slice(-300);
-  $('positions-body').innerHTML = items.map(p => `<tr><td class="mono">${esc(p.time || '')}</td><td class="mono">${p.imei}</td><td class="mono">${p.lat}, ${p.lon}</td><td>${p.speedKmh} km/h</td><td>${p.course}°</td><td>${p.satellites}</td><td>${p.valid ? '<span class="badge ok">fix</span>' : '<span class="badge warn">no fix</span>'}</td><td>${p.acc == null ? '' : p.acc ? 'on' : 'off'}</td><td>${p.mileageM == null ? '' : (p.mileageM / 1000).toFixed(1) + ' km'}</td><td>${esc(p.uploadMode || p.alarm || '')}</td><td class="mono">${p.lbs ? `${p.lbs.mcc}-${p.lbs.mnc} ${p.lbs.lac}/${p.lbs.cid}` : ''}</td><td class="mono">${p.source || ''}</td></tr>`).join('');
+  $('positions-body').innerHTML = items.map(p => `<tr><td class="mono">${esc(p.time || '')}${p.archive ? ' <span class="badge">buffered</span>' : ''}</td><td class="mono">${p.imei}</td><td class="mono">${p.lat}, ${p.lon}</td><td>${p.altitude ?? ''}</td><td>${p.speedKmh} km/h</td><td>${p.course}°</td><td>${p.satellites ?? ''}</td><td>${p.valid ? '<span class="badge ok">fix</span>' : '<span class="badge warn">no fix</span>'}</td><td>${p.acc == null ? '' : p.acc ? 'on' : 'off'}</td><td>${p.mileageM == null ? '' : (p.mileageM / 1000).toFixed(1) + ' km'}</td><td>${p.alarms ? p.alarms.map(a => `<span class="badge alarm">${esc(a)}</span>`).join(' ') : esc(p.uploadMode || '')}</td><td class="mono">${esc(obdLine(p.obd))}</td><td class="mono">${p.source || ''}</td></tr>`).join('');
   $('n-positions').textContent = items.length;
   $('pane-positions').scrollTop = $('pane-positions').scrollHeight;
 }
 function renderCommands() {
   const items = state.commands.filter(c => !state.selected || c.imei === state.selected).slice(-200);
-  $('commands-body').innerHTML = items.map(c => `<tr><td class="mono">${fmtT(c.ts)}</td><td class="mono">${c.imei}</td><td class="mono">${esc(c.command)}</td><td><span class="badge ${c.status === 'answered' ? 'ok' : c.status === 'sent' ? '' : 'warn'}">${c.status}</span></td><td class="mono">${esc(c.response || '')}</td><td class="hex">${esc(c.hex || '')}</td></tr>`).join('');
+  $('commands-body').innerHTML = items.map(c => `<tr><td class="mono">${fmtT(c.ts)}</td><td class="mono">${c.imei}</td><td class="mono">${esc(c.command)}</td><td><span class="badge ${c.status === 'answered' ? 'ok' : c.status === 'sent' || c.status === 'accepted' ? '' : 'warn'}">${c.status}</span>${c.result && c.status === 'rejected' ? ' ' + esc(c.result) : ''}</td><td class="mono">${esc(c.response || '')}</td><td class="hex">${c.frameType ? c.frameType + ' ' : ''}${esc(c.hex || '')}</td></tr>`).join('');
   $('n-commands').textContent = items.length;
   $('cmd-quick').innerHTML = QUICK.map(q => `<button class="quick" onclick="$('cmd-text').value='${q}'">${q}</button>`).join('');
 }
@@ -332,8 +358,8 @@ async function decodeHex() {
   $('dec-out').textContent = JSON.stringify(await res.json(), null, 2); $('dec-out').classList.remove('muted');
 }
 async function encodeCmd() {
-  const command = $('enc-cmd').value.trim() || 'STATUS#';
-  const res = await fetch('/api/encode', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ command }) });
+  const body = { protocol: $('enc-proto').value, id: $('enc-id').value.trim() || '019172682984', command: $('enc-cmd').value.trim() || 'STATUS#' };
+  const res = await fetch('/api/encode', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
   $('dec-out').textContent = JSON.stringify(await res.json(), null, 2); $('dec-out').classList.remove('muted');
 }
 for (const t of document.querySelectorAll('.tab')) t.onclick = () => {
