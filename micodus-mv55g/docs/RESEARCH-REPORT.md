@@ -19,7 +19,8 @@ from a sibling model.*
    itself with **`0` + its 11-digit MiCODUS ID**, not its IMEI. OBD values travel inside each
    location report as vendor "additional information" items. **high** (an MV55G-AU owner's raw
    frame, flespi's protocol map and a capture-based community decoder all agree; the frame
-   decodes with the decoder built in this repository).
+   decodes with the decoder built in this repository; the "MV55G uses JT808" claim survived
+   3 of 3 adversarial verification votes).
 3. **How to connect it to our own server.** Two SMS commands from the official manual:
    `APN,<apn>#` (or `APN,<apn>,<user>,<password>#`) and `SERVER,0,<ip>,<port>#` /
    `SERVER,1,<domain>,<port>#`. The factory endpoint is `d.micodus.net:7700`
@@ -295,8 +296,13 @@ Secondary / community:
   amazon, micodus.shop and traccar.org, so those sources were read through search-engine
   snippets and the fetch agents' indexed extracts rather than opened directly. GitHub, CISA,
   NVD and Google Play were opened directly.
-- Verification votes completed before this report was written: the `SERVER` and `APN`
-  command claims survived 3/3 votes each; the session's search budget was exhausted before
-  the remaining votes finished, so confidence levels above are the author's assessment from
-  source quality and corroboration, not from the vote tally.
+- Final verification tally (workflow run of 102 agents, 1,038 tool calls): 24 claims entered
+  the three-vote adversarial check. Four survived **3-0** with no refutation: the `SERVER`
+  command syntax and default endpoint, the `APN` command syntax, "the MV55G communicates
+  using JT/T 808, not GT06" (capture-based decoder source), and Traccar's explicit MV710G/
+  MV810G handling in its JT808 decoder. The other 20 claims were **unverified, not
+  refuted**: all 60 of their voter agents failed on the session's usage limit, as did the
+  final synthesis step. No claim was refuted. Confidence levels above are therefore the
+  author's assessment from source quality and corroboration, with the four 3-0 results noted
+  where they apply.
 - Nothing here replaces a capture from our own unit; `TEST-PLAN.md` is the path to that.
