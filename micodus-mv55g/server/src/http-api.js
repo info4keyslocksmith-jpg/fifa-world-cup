@@ -25,6 +25,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { fromHex, hex } from './gt06/frame.js';
 import { PROTOCOLS, decodeBuffer } from './protocols.js';
+import { describeDtc } from './fleet/dtc-codes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WEB_DIR = path.join(__dirname, '..', 'web');
@@ -70,7 +71,7 @@ function sse(req, res, store) {
   });
   res.write(`event: hello\ndata: ${JSON.stringify(store.snapshot())}\n\n`);
   const handlers = {};
-  for (const ev of ['raw', 'position', 'event', 'device', 'command']) {
+  for (const ev of ['raw', 'position', 'event', 'device', 'command', 'alert']) {
     handlers[ev] = (payload) => res.write(`event: ${ev}\ndata: ${JSON.stringify(payload)}\n\n`);
     store.on(ev, handlers[ev]);
   }
@@ -81,7 +82,7 @@ function sse(req, res, store) {
   });
 }
 
-export function createHttpServer({ store, tracker, log = console, tcpPort = null, tzHours = 0 }) {
+export function createHttpServer({ store, tracker, fleet = null, log = console, tcpPort = null, tzHours = 0 }) {
   return http.createServer(async (req, res) => {
     const url = new URL(req.url, 'http://localhost');
     const send = (status, body, type = 'application/json') => {
@@ -140,6 +141,59 @@ export function createHttpServer({ store, tracker, log = console, tcpPort = null
         return send(200, { protocol: proto.name, hex: hex(built.buf), meta: built.meta, decoded: decodeBuffer(built.buf).frames[0] });
       }
       if (p === '/api/stream') return sse(req, res, store);
+
+      // ---- fleet: customer vehicles, maintenance, alerts ----
+      if (p.startsWith('/api/vehicles') || p.startsWith('/api/alerts') || p.startsWith('/api/dtc/') || p === '/api/schedule') {
+        if (!fleet) return send(503, { error: 'fleet service not enabled' });
+        if (p === '/api/schedule') return send(200, fleet.schedule());
+        if ((m = p.match(/^\/api\/dtc\/([A-Za-z0-9]+)$/))) return send(200, describeDtc(m[1]));
+        if (p === '/api/vehicles' && req.method === 'GET') return send(200, fleet.listVehicles());
+        if (p === '/api/vehicles' && req.method === 'POST') {
+          const body = await readJson(req);
+          try {
+            return send(201, fleet.summary(fleet.addVehicle(body)));
+          } catch (e) {
+            return send(400, { error: e.message });
+          }
+        }
+        if ((m = p.match(/^\/api\/vehicles\/([\w-]+)$/))) {
+          if (req.method === 'GET') {
+            const s = fleet.summary(m[1]);
+            return s ? send(200, s) : send(404, { error: 'unknown vehicle' });
+          }
+          if (req.method === 'POST' || req.method === 'PATCH') {
+            const body = await readJson(req);
+            try {
+              const v = fleet.updateVehicle(m[1], body);
+              return v ? send(200, fleet.summary(v)) : send(404, { error: 'unknown vehicle' });
+            } catch (e) {
+              return send(400, { error: e.message });
+            }
+          }
+          if (req.method === 'DELETE') return send(fleet.removeVehicle(m[1]) ? 200 : 404, { ok: true });
+        }
+        if ((m = p.match(/^\/api\/vehicles\/([\w-]+)\/service$/)) && req.method === 'POST') {
+          const body = await readJson(req);
+          try {
+            const entry = fleet.logService(m[1], body);
+            return send(201, { entry, vehicle: fleet.summary(m[1]) });
+          } catch (e) {
+            return send(400, { error: e.message });
+          }
+        }
+        if (p === '/api/alerts' && req.method === 'GET') {
+          const vehicle = url.searchParams.get('vehicle');
+          const open = url.searchParams.get('open') === '1';
+          let items = store.alerts;
+          if (vehicle) items = items.filter((a) => a.vehicleId === vehicle);
+          if (open) items = items.filter((a) => !a.acknowledged);
+          return send(200, items.slice(-Math.min(2000, +(url.searchParams.get('limit') || 200))));
+        }
+        if ((m = p.match(/^\/api\/alerts\/(\d+)\/ack$/)) && req.method === 'POST') {
+          const a = store.ackAlert(+m[1]);
+          return a ? send(200, a) : send(404, { error: 'unknown alert' });
+        }
+      }
       return send(404, { error: 'not found' });
     } catch (e) {
       log.error('[http]', e);

@@ -76,6 +76,11 @@ const O = {
   type: parseInt(opt('type', '0x22'), 16),
   replay: opt('replay', null),
   quiet: !!opt('quiet', false),
+  // scenario switches for the maintenance / health rules
+  dtc: !!opt('dtc', false), // always report fault codes P0301,P0420
+  weakBattery: !!opt('weak-battery', false), // engine off, 11.9 V resting voltage
+  engineOff: !!opt('engine-off', false), // ACC off, RPM 0, parked
+  hot: !!opt('hot', false), // coolant 112 °C
 };
 if (O.id.length === 11) O.id = '0' + O.id;
 const log = (...a) => !O.quiet && console.log(new Date().toISOString().slice(11, 23), ...a);
@@ -234,34 +239,36 @@ const jt808 = {
     }
   },
   location(m, extra = {}) {
+    const parked = O.engineOff || O.weakBattery;
+    const v = O.weakBattery ? 11.9 : parked ? 12.5 : voltage + 1.6; // ~14.1 V with the alternator running
     const items = JE.micodusObdItems({
       mileageKm: vehicle.mileageM / 1000,
       rssi: 20 + (sent % 8),
       satellites: 8 + (sent % 5),
-      voltage,
+      voltage: v,
       ...(O.obd
         ? {
-            speedKmh: m.speed,
-            rpm: vehicle.rpm,
-            engineLoad: 30 + (sent % 20),
-            coolantC: 86 + (sent % 4),
-            fuelRateLph: 2 + (m.speed / 30),
+            speedKmh: parked ? 0 : m.speed,
+            rpm: parked ? 0 : vehicle.rpm,
+            engineLoad: parked ? 0 : 30 + (sent % 20),
+            coolantC: O.hot ? 112 : parked ? 40 : 86 + (sent % 4),
+            fuelRateLph: parked ? 0 : 2 + m.speed / 30,
             intakeTempC: 31,
             mafGps: 12.3,
             mapKpa: 101,
-            throttle: 15 + (sent % 10),
+            throttle: parked ? 0 : 15 + (sent % 10),
             odometerKm: vehicle.mileageM / 1000 + 50000,
             fuelLevel: fuel,
             batteryPct: 90,
             ...(sent % 10 === 0 ? { vin: VIN } : {}),
-            ...(sent % 20 === 5 ? { dtcs: ['P0301', 'P0420'] } : {}),
+            ...(O.dtc || sent % 20 === 5 ? { dtcs: ['P0301', 'P0420'] } : {}),
           }
         : {}),
     });
-    return { time: new Date(), tzHours: O.tz, lat: m.lat, lon: m.lon, altitude: 300, speedKmh: m.speed, course: m.course, acc: true, valid: !O.noFix, items, ...extra };
+    return { time: new Date(), tzHours: O.tz, lat: m.lat, lon: m.lon, altitude: 300, speedKmh: parked ? 0 : m.speed, course: m.course, acc: !parked, valid: !O.noFix, items, ...extra };
   },
   tick() {
-    const m = vehicle.step(O.interval);
+    const m = O.engineOff || O.weakBattery ? vehicle.step(0) : vehicle.step(O.interval);
     voltage = 12.3 + Math.random() * 0.6;
     if (O.obd && sent % 6 === 0) fuel = Math.max(5, fuel - 1);
     let alarmBits = [];

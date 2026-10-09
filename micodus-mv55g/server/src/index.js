@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { Store } from './store.js';
 import { createTrackerServer } from './tcp-server.js';
 import { createHttpServer } from './http-api.js';
+import { FleetService } from './fleet/fleet.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TCP_PORT = +(process.env.TCP_PORT || 7700);
@@ -27,7 +28,8 @@ const ACK_EXTENDED = process.env.ACK_EXTENDED === '1';
 
 const store = new Store({ dataDir: DATA_DIR });
 const tracker = createTrackerServer({ store, ackExtended: ACK_EXTENDED, tzHours: TZ_HOURS, jt808TextFlag: TEXT_FLAG, forceProtocol: FORCE_PROTOCOL });
-const httpServer = createHttpServer({ store, tracker, tcpPort: TCP_PORT, tzHours: TZ_HOURS });
+const fleet = new FleetService({ store, dataDir: DATA_DIR, autoCreate: process.env.FLEET_AUTOCREATE !== '0' }).start();
+const httpServer = createHttpServer({ store, tracker, fleet, tcpPort: TCP_PORT, tzHours: TZ_HOURS });
 
 function lanAddresses() {
   const out = [];
@@ -71,6 +73,7 @@ for (const sig of ['SIGINT', 'SIGTERM']) {
     tracker.close();
     httpServer.close();
     tracker.destroyAll();
+    fleet.stop();
     setTimeout(() => process.exit(0), 200).unref();
   });
 }

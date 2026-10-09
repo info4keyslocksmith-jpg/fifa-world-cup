@@ -56,6 +56,15 @@
   .badge.ok { border-color: var(--ok); color: var(--ok); }
   .badge.warn { border-color: var(--warn); color: var(--warn); }
   .badge.proto { border-color: var(--accent); color: var(--accent); }
+  .badge.sev-critical { border-color: var(--bad); color: var(--bad); }
+  .badge.sev-warning { border-color: var(--warn); color: var(--warn); }
+  .badge.sev-info { color: var(--muted); }
+  .vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 10px; padding-bottom: 8px; }
+  .vcard { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+  .vcard .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .score { font-size: 22px; font-weight: 700; line-height: 1; }
+  .score.good { color: var(--ok); } .score.attention { color: var(--warn); } .score.urgent { color: var(--bad); }
+  table.mt { font-size: 11px; } table.mt th { position: static; background: transparent; }
   .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
   input, select, textarea, button { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; font: inherit; }
   input.mono, textarea { font-family: var(--mono); font-size: 12px; }
@@ -100,6 +109,8 @@
     <button class="tab" data-pane="events">Events<span class="count" id="n-events"></span></button>
     <button class="tab" data-pane="positions">Positions<span class="count" id="n-positions"></span></button>
     <button class="tab" data-pane="commands">Commands<span class="count" id="n-commands"></span></button>
+    <button class="tab" data-pane="vehicles">Vehicles<span class="count" id="n-vehicles"></span></button>
+    <button class="tab" data-pane="alerts">Alerts<span class="count" id="n-alerts"></span></button>
     <button class="tab" data-pane="decoder">Hex decoder</button>
     <button class="tab" data-pane="help">Quick reference</button>
   </div>
@@ -128,6 +139,31 @@
       </div>
       <div class="toolbar" id="cmd-quick"></div>
       <table><thead><tr><th>time</th><th>device</th><th>command</th><th>status</th><th>response</th><th>frame</th></tr></thead><tbody id="commands-body"></tbody></table>
+    </div>
+    <div class="pane" id="pane-vehicles">
+      <div class="toolbar">
+        <button class="primary" onclick="toggleVehicleForm()">+ Add / edit vehicle</button>
+        <span class="muted">One customer car = one tracker. A tracker that reports creates an unassigned vehicle automatically; attach the customer here. Odometer in the car's units.</span>
+      </div>
+      <form id="veh-form" class="toolbar" style="display:none" onsubmit="return saveVehicle(event)">
+        <input type="hidden" id="vf-id" />
+        <select id="vf-device"><option value="">— tracker —</option></select>
+        <input id="vf-customer" placeholder="customer name" />
+        <input id="vf-phone" placeholder="phone" style="width:130px" />
+        <input id="vf-plate" placeholder="plate" style="width:100px" />
+        <input id="vf-make" placeholder="make" style="width:110px" />
+        <input id="vf-model" placeholder="model" style="width:120px" />
+        <input id="vf-year" placeholder="year" style="width:70px" />
+        <select id="vf-units"><option value="mi">mi</option><option value="km">km</option></select>
+        <input id="vf-odometer" placeholder="odometer now" style="width:130px" />
+        <button class="primary" type="submit">Save</button>
+        <button type="button" onclick="toggleVehicleForm(false)">Cancel</button>
+      </form>
+      <div id="vehicles" class="vgrid"></div>
+    </div>
+    <div class="pane" id="pane-alerts">
+      <div class="toolbar"><label><input type="checkbox" id="alerts-open-only" checked /> open only</label><span class="muted">Battery, fault codes, overheating, service due, unplugged, towed, speeding, geofences, offline. Acknowledge once handled.</span></div>
+      <table><thead><tr><th>time</th><th>severity</th><th>vehicle</th><th>alert</th><th>detail</th><th></th></tr></thead><tbody id="alerts-body"></tbody></table>
     </div>
     <div class="pane" id="pane-decoder">
       <div class="grid2">
@@ -348,6 +384,93 @@ function renderCommands() {
 function clearPane(name) { if (name === 'raw') { state.raw = []; renderRaw(true); } }
 function counters() { $('c-raw').textContent = state.raw.length; $('c-pos').textContent = state.positions.length; $('c-ev').textContent = state.events.length; }
 
+// ---------- fleet: vehicles, maintenance, alerts ----------
+state.vehicles = []; state.alerts = [];
+const toU = (km, u) => km == null ? null : Math.round(u === 'mi' ? km / 1.609344 : km);
+const sevBadge = (s) => `<span class="badge sev-${s}">${esc(s)}</span>`;
+let fleetTimer = null;
+function scheduleFleetRefresh() { if (fleetTimer) return; fleetTimer = setTimeout(() => { fleetTimer = null; loadFleet().catch(() => {}); }, 1500); }
+async function loadFleet() {
+  const [v, a] = await Promise.all([fetch('/api/vehicles').then(r => r.json()), fetch('/api/alerts?limit=300').then(r => r.json())]);
+  if (Array.isArray(v)) state.vehicles = v;
+  if (Array.isArray(a)) state.alerts = a;
+  renderVehicles(); renderAlerts();
+}
+function fillDeviceSelect() {
+  const sel = $('vf-device'); const cur = sel.value;
+  sel.innerHTML = '<option value="">— tracker —</option>' + [...state.devices.keys()].map(i => `<option ${i === cur ? 'selected' : ''}>${i}</option>`).join('');
+}
+function renderVehicles() {
+  const el = $('vehicles');
+  const items = state.vehicles.filter(v => !state.selected || v.deviceId === state.selected);
+  $('n-vehicles').textContent = state.vehicles.length;
+  if (!items.length) { el.innerHTML = '<div class="muted" style="padding:8px">No vehicles yet.</div>'; return; }
+  el.innerHTML = items.map(v => {
+    const m = v.maintenance || { items: [] };
+    const car = [v.year, v.make, v.model].filter(Boolean).join(' ') || '—';
+    const dtcs = (v.dtcs || []).map(d => `<div>${sevBadge(d.severity)} <b class="mono">${esc(d.code)}</b> ${esc(d.description)} <span class="muted">→ ${esc(d.lead)}</span></div>`).join('') || '<span class="muted">none reported</span>';
+    const mt = m.items.slice(0, 8).map(i => `<tr><td>${esc(i.label)}</td><td><span class="badge ${i.status === 'overdue' ? 'alarm' : i.status === 'due_soon' ? 'warn' : i.status === 'ok' ? 'ok' : ''}">${esc(i.status.replace('_', ' '))}</span></td><td class="mono">${i.remainingKm != null ? toU(i.remainingKm, v.units) + ' ' + v.units : ''}${i.remainingDays != null ? (i.remainingKm != null ? ' · ' : '') + i.remainingDays + ' d' : ''}</td><td class="mono">${i.percent}%</td></tr>`).join('');
+    const opts = m.items.map(i => `<option value="${i.item}">${esc(i.label)}</option>`).join('');
+    const batt = v.battery?.voltage != null ? `${v.battery.voltage} V <span class="badge ${v.battery.status === 'ok' ? 'ok' : 'alarm'}">${esc(v.battery.status)}</span>` : '—';
+    return `<div class="vcard">
+      <div class="head"><div><b>${esc(v.customer?.name || 'Unassigned')}</b> <span class="mono muted">${esc(v.plate || '')}</span><br><span class="muted">${esc(car)}${v.vin ? ' · VIN ' + esc(v.vin) : ''}</span></div>
+        <div style="text-align:right"><div class="score ${v.health.label}">${v.health.score}</div><div class="muted" style="font-size:11px">${esc(v.health.label)}</div></div></div>
+      <div class="kv">
+        <span>tracker</span><span>${esc(v.deviceId || '—')} <span class="dot ${v.connected ? 'ok' : ''}"></span></span>
+        <span>odometer</span><span>${v.odometer != null ? v.odometer.toLocaleString() + ' ' + v.units : '—'} <span class="muted">${esc(v.odometerSource || '')}</span>${v.odometerMismatch ? ` <span class="badge warn" title="manual entry disagrees with the car's own odometer">manual ${v.odometerMismatch.manual.toLocaleString()} ≠ car ${v.odometerMismatch.vehicle.toLocaleString()}</span>` : ''}</span>
+        <span>battery</span><span>${batt}</span>
+        <span>coolant</span><span>${v.coolant?.c != null ? v.coolant.c + ' °C' : '—'}${v.coolant?.status && v.coolant.status !== 'ok' ? ' <span class="badge alarm">' + esc(v.coolant.status) + '</span>' : ''}</span>
+        <span>fuel</span><span>${v.fuelLevelPct != null ? v.fuelLevelPct + '%' : '—'}</span>
+        <span>last seen</span><span>${v.last?.lastSeen ? new Date(v.last.lastSeen).toLocaleString([], { hour12: false }) : '—'}${v.offline ? ' <span class="badge warn">offline</span>' : ''}</span>
+        <span>open alerts</span><span>${v.openAlertCount}</span>
+      </div>
+      <div style="margin-top:8px;font-size:12px"><b>Fault codes</b><div>${dtcs}</div></div>
+      <table class="mt" style="margin-top:8px"><thead><tr><th>service</th><th>status</th><th>remaining</th><th>used</th></tr></thead><tbody>${mt}</tbody></table>
+      <div class="toolbar" style="margin-top:8px;margin-bottom:0">
+        <select id="svc-${v.id}">${opts}</select>
+        <input class="mono" id="svc-odo-${v.id}" placeholder="odometer (${v.units})" style="width:130px" />
+        <button class="quick primary" onclick="logService('${v.id}')">Log service done</button>
+        <button class="quick" onclick="editVehicle('${v.id}')">Edit</button>
+      </div></div>`;
+  }).join('');
+}
+function renderAlerts() {
+  const openOnly = $('alerts-open-only').checked;
+  const items = state.alerts.filter(a => (!state.selected || a.deviceId === state.selected) && (!openOnly || !a.acknowledged)).slice(-300).reverse();
+  $('n-alerts').textContent = state.alerts.filter(a => !a.acknowledged).length;
+  const who = (a) => { const v = state.vehicles.find(x => x.id === a.vehicleId); return v ? `${v.customer?.name || 'Unassigned'} ${v.plate || ''}` : `${a.customer || ''} ${a.plate || ''}`; };
+  $('alerts-body').innerHTML = items.map(a => `<tr><td class="mono">${fmtT(a.ts)}</td><td>${sevBadge(a.severity)}</td><td class="mono">${esc(who(a))}<br><span class="muted">${esc(a.deviceId || '')}</span></td><td><b>${esc(a.title)}</b></td><td>${esc(a.detail || '')}</td><td>${a.acknowledged ? '<span class="muted">ack</span>' : `<button class="quick" onclick="ackAlert(${a.id})">ack</button>`}</td></tr>`).join('');
+}
+async function ackAlert(id) { await fetch(`/api/alerts/${id}/ack`, { method: 'POST' }); }
+function toggleVehicleForm(show) {
+  const f = $('veh-form'); const vis = show === undefined ? f.style.display === 'none' : show;
+  f.style.display = vis ? '' : 'none';
+  if (vis) fillDeviceSelect(); else { $('vf-id').value = ''; f.reset(); }
+}
+function editVehicle(id) {
+  const v = state.vehicles.find(x => x.id === id); if (!v) return;
+  toggleVehicleForm(true);
+  $('vf-id').value = v.id; $('vf-device').value = v.deviceId || ''; $('vf-customer').value = v.customer?.name || ''; $('vf-phone').value = v.customer?.phone || '';
+  $('vf-plate').value = v.plate || ''; $('vf-make').value = v.make || ''; $('vf-model').value = v.model || ''; $('vf-year').value = v.year || ''; $('vf-units').value = v.units || 'mi'; $('vf-odometer').value = '';
+}
+async function saveVehicle(e) {
+  e.preventDefault();
+  const id = $('vf-id').value;
+  const body = { deviceId: $('vf-device').value || null, customer: { name: $('vf-customer').value, phone: $('vf-phone').value }, plate: $('vf-plate').value, make: $('vf-make').value, model: $('vf-model').value, year: $('vf-year').value, units: $('vf-units').value };
+  if ($('vf-odometer').value) body.odometer = Number($('vf-odometer').value);
+  const res = await fetch(id ? `/api/vehicles/${id}` : '/api/vehicles', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  if (!res.ok) { alert('error: ' + (await res.text())); return false; }
+  toggleVehicleForm(false); await loadFleet();
+  return false;
+}
+async function logService(id) {
+  const item = $('svc-' + id).value; const odo = $('svc-odo-' + id).value;
+  const res = await fetch(`/api/vehicles/${id}/service`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ item, odometer: odo ? Number(odo) : undefined }) });
+  if (!res.ok) return alert('error: ' + (await res.text()));
+  await loadFleet();
+}
+$('alerts-open-only').onchange = renderAlerts;
+
 // ---------- actions ----------
 async function sendCommand() {
   const imei = $('cmd-imei').value, command = $('cmd-text').value.trim();
@@ -382,6 +505,7 @@ async function load() {
   state.raw = raw; state.events = events; state.positions = positions; state.commands = commands;
   for (const d of st.devices) { state.devices.set(d.imei, d); updateMarker(d); }
   renderDevices(); renderRaw(true); renderEvents(); renderPositions(); renderCommands(); redrawTrail(); counters();
+  await loadFleet().catch(() => {});
 }
 function connectSse() {
   const es = new EventSource('/api/stream');
@@ -390,7 +514,8 @@ function connectSse() {
   es.addEventListener('raw', (e) => { const r = JSON.parse(e.data); state.raw.push(r); if (state.raw.length > 3000) state.raw.shift(); renderRaw(false); counters(); });
   es.addEventListener('position', (e) => { const p = JSON.parse(e.data); state.positions.push(p); if (state.positions.length > 20000) state.positions.shift(); renderPositions(); redrawTrail(); counters(); });
   es.addEventListener('event', (e) => { state.events.push(JSON.parse(e.data)); if (state.events.length > 3000) state.events.shift(); renderEvents(); counters(); });
-  es.addEventListener('device', (e) => applyDevice(JSON.parse(e.data)));
+  es.addEventListener('device', (e) => { applyDevice(JSON.parse(e.data)); scheduleFleetRefresh(); });
+  es.addEventListener('alert', (e) => { const a = JSON.parse(e.data); const i = state.alerts.findIndex(x => x.id === a.id); if (i >= 0) state.alerts[i] = a; else state.alerts.push(a); renderAlerts(); scheduleFleetRefresh(); });
   es.addEventListener('command', (e) => { const c = JSON.parse(e.data); const i = state.commands.findIndex(x => x.id === c.id); if (i >= 0) state.commands[i] = c; else state.commands.push(c); renderCommands(); });
 }
 load().then(connectSse).catch(err => { $('sse-text').textContent = 'failed to load: ' + err.message; });

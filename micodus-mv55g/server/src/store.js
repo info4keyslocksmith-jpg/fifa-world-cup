@@ -12,15 +12,16 @@ import path from 'node:path';
 const now = () => new Date().toISOString();
 
 export class Store extends EventEmitter {
-  constructor({ dataDir = null, maxRaw = 3000, maxPositions = 20000, maxEvents = 3000, maxCommands = 500 } = {}) {
+  constructor({ dataDir = null, maxRaw = 3000, maxPositions = 20000, maxEvents = 3000, maxCommands = 500, maxAlerts = 2000 } = {}) {
     super();
     this.setMaxListeners(200);
-    Object.assign(this, { dataDir, maxRaw, maxPositions, maxEvents, maxCommands });
+    Object.assign(this, { dataDir, maxRaw, maxPositions, maxEvents, maxCommands, maxAlerts });
     this.devices = new Map();
     this.positions = [];
     this.events = [];
     this.raw = [];
     this.commands = [];
+    this.alerts = [];
     this._nextId = 1;
     this.startedAt = now();
     if (dataDir) fs.mkdirSync(dataDir, { recursive: true });
@@ -143,6 +144,25 @@ export class Store extends EventEmitter {
     return null;
   }
 
+  /** Customer-facing alert produced by the fleet rules (dtc, battery, service due, unplugged, ...). */
+  addAlert(alert) {
+    const a = this._push(this.alerts, { id: this._id(), ts: now(), acknowledged: false, ...alert }, this.maxAlerts);
+    this._persist('alerts.jsonl', a);
+    this.emit('alert', a);
+    return a;
+  }
+
+  ackAlert(id, by = 'dashboard') {
+    const a = this.alerts.find((x) => x.id === id);
+    if (!a) return null;
+    a.acknowledged = true;
+    a.acknowledgedAt = now();
+    a.acknowledgedBy = by;
+    this._persist('alerts.jsonl', a);
+    this.emit('alert', a);
+    return a;
+  }
+
   positionsFor(imei, limit = 500) {
     const out = [];
     for (let i = this.positions.length - 1; i >= 0 && out.length < limit; i--) {
@@ -160,6 +180,8 @@ export class Store extends EventEmitter {
         events: this.events.length,
         raw: this.raw.length,
         commands: this.commands.length,
+        alerts: this.alerts.length,
+        openAlerts: this.alerts.filter((a) => !a.acknowledged).length,
       },
     };
   }

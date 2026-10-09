@@ -11,7 +11,8 @@ unit.
 | `docs/PROTOCOL.md` | The wire protocol as implemented here (JT/T 808 for the MV55G, GT06 for the MV7xx family), byte by byte |
 | `docs/SMS-COMMANDS.md` | SMS / online command cheat sheet for the MV55G |
 | `docs/TEST-PLAN.md` | Step-by-step bench and in-car test plan for the real device |
-| `server/` | The test platform (Node.js, zero dependencies): TCP server, decoders, REST API, live dashboard, simulator, 67 tests |
+| `docs/PRODUCT.md` | The customer product: what the device can feed each feature (tracking, maintenance, OBD health, alerts), the recurring-revenue loop, onboarding, consent rules |
+| `server/` | The platform (Node.js, zero dependencies): TCP server, decoders, vehicle/maintenance/health engine, REST API, live dashboard, simulator, tests |
 
 ## The one thing to know first
 
@@ -46,6 +47,25 @@ Environment variables: `TCP_PORT` (7700), `HTTP_PORT` (8080), `DATA_DIR` (`serve
 to disable JSONL persistence), `JT808_TZ_HOURS` (offset the device applies to its timestamps,
 default 0), `JT808_TEXT_FLAG` (flag byte of 0x8300 commands, default 1), `FORCE_PROTOCOL`
 (`jt808` or `gt06` to skip auto-detection), `ACK_EXTENDED=1` (also ACK GT06 `79 79` frames).
+
+## Customer vehicles, maintenance and health alerts
+
+On top of the raw tracker data the server keeps a **vehicle record per customer car**
+(`src/fleet/`): customer contact, plate, VIN, odometer in miles or km, service log, geofences.
+Every position runs through the rules engine and the maintenance schedule:
+
+- alerts for weak / critical battery (resting voltage), alternator problems, overheating,
+  new fault codes (with plain-language descriptions and the service lead they point to),
+  low fuel, speeding, harsh driving, long idling, geofence enter/exit, unplugged, towed,
+  tracker offline;
+- maintenance items (oil, tires, brakes, filters, coolant, plugs, battery age, key fob
+  battery, inspection) tracked by distance and calendar, "due soon" at 90 %, "overdue" at 100 %;
+- a health score per vehicle and an alerts feed with acknowledgement.
+
+Dashboard tabs **Vehicles** and **Alerts**; API `/api/vehicles`, `/api/alerts`, `/api/dtc/:code`,
+`/api/schedule`. Demo scenarios: `node simulator/simulate.js --obd --dtc`, `--obd --weak-battery`,
+`--obd --hot`. The product view (features, feasibility, revenue loop, onboarding, consent) is in
+`docs/PRODUCT.md`.
 
 ## Connecting the real MV55G
 
