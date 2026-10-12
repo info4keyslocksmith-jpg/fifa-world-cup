@@ -1,0 +1,822 @@
+{
+ "title": "Golden Gate Bridge",
+ "wish": "san francisco bridge",
+ "level": 4,
+ "age": "10-12",
+ "builder": "Lucas",
+ "notes": "Diorama of the Golden Gate Bridge over the bay: two red towers with stepped portals, main cables that sag between the towers, vertical hangers down to the deck, approach piers, the Marin Headlands with pines on the left, the San Francisco side with houses and Fort Point on the right, cars on the road boats on the water, and Alcatraz Island with its lighthouse.",
+ "shapes": [
+  {
+   "type": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "size": [
+    100,
+    24,
+    1
+   ],
+   "color": "blue"
+  },
+  {
+   "type": "line",
+   "from": [
+    20,
+    3,
+    0
+   ],
+   "to": [
+    26,
+    3,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    36,
+    5,
+    0
+   ],
+   "to": [
+    41,
+    5,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    50,
+    20,
+    0
+   ],
+   "to": [
+    57,
+    20,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    62,
+    4,
+    0
+   ],
+   "to": [
+    67,
+    4,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    76,
+    19,
+    0
+   ],
+   "to": [
+    82,
+    19,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    44,
+    13,
+    0
+   ],
+   "to": [
+    48,
+    13,
+    0
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "terrain",
+   "at": [
+    0,
+    0
+   ],
+   "size": [
+    14,
+    24
+   ],
+   "base": 1,
+   "top_color": "green",
+   "colors": [
+    {
+     "below": 3,
+     "color": "tan"
+    },
+    {
+     "color": "green"
+    }
+   ],
+   "peaks": [
+    {
+     "at": [
+      3,
+      5
+     ],
+     "height": 16,
+     "radius": 13
+    },
+    {
+     "at": [
+      6,
+      20
+     ],
+     "height": 8,
+     "radius": 7
+    }
+   ]
+  },
+  {
+   "type": "terrain",
+   "at": [
+    88,
+    0
+   ],
+   "size": [
+    12,
+    24
+   ],
+   "base": 1,
+   "top_color": "green",
+   "colors": [
+    {
+     "below": 3,
+     "color": "tan"
+    },
+    {
+     "color": "green"
+    }
+   ],
+   "peaks": [
+    {
+     "at": [
+      98,
+      4
+     ],
+     "height": 10,
+     "radius": 11
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    29,
+    6,
+    0
+   ],
+   "size": [
+    5,
+    12,
+    2
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    69,
+    6,
+    0
+   ],
+   "size": [
+    5,
+    12,
+    2
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "box",
+    "at": [
+     14,
+     9,
+     1
+    ],
+    "size": [
+     2,
+     6,
+     8
+    ],
+    "color": "gray"
+   },
+   "offsets": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     0
+    ],
+    [
+     64,
+     0
+    ],
+    [
+     72,
+     0
+    ]
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    0,
+    8,
+    9
+   ],
+   "size": [
+    100,
+    8,
+    2
+   ],
+   "color": "red"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     10,
+     10
+    ],
+    "size": [
+     100,
+     4,
+     1
+    ]
+   },
+   "color": "dark_gray",
+   "surface_only": false
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "box",
+    "at": [
+     30,
+     7,
+     2
+    ],
+    "size": [
+     3,
+     2,
+     26
+    ],
+    "color": "red"
+   },
+   "offsets": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     8
+    ],
+    [
+     40,
+     0
+    ],
+    [
+     40,
+     8
+    ]
+   ]
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "box",
+    "at": [
+     30,
+     7,
+     8
+    ],
+    "size": [
+     3,
+     10,
+     1
+    ],
+    "color": "red"
+   },
+   "offsets": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     6
+    ],
+    [
+     0,
+     0,
+     11
+    ],
+    [
+     0,
+     0,
+     15
+    ],
+    [
+     40,
+     0,
+     0
+    ],
+    [
+     40,
+     0,
+     6
+    ],
+    [
+     40,
+     0,
+     11
+    ],
+    [
+     40,
+     0,
+     15
+    ]
+   ]
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "box",
+    "at": [
+     30,
+     7,
+     27
+    ],
+    "size": [
+     3,
+     10,
+     2
+    ],
+    "color": "red"
+   },
+   "offsets": [
+    [
+     0,
+     0
+    ],
+    [
+     40,
+     0
+    ]
+   ]
+  },
+  {
+   "type": "cable",
+   "from": [
+    31,
+    8,
+    28
+   ],
+   "to": [
+    71,
+    8,
+    28
+   ],
+   "sag": 17,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.04
+   }
+  },
+  {
+   "type": "cable",
+   "from": [
+    31,
+    15,
+    28
+   ],
+   "to": [
+    71,
+    15,
+    28
+   ],
+   "sag": 17,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.04
+   }
+  },
+  {
+   "type": "cable",
+   "from": [
+    31,
+    8,
+    28
+   ],
+   "to": [
+    12,
+    8,
+    11
+   ],
+   "sag": 2,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.12
+   }
+  },
+  {
+   "type": "cable",
+   "from": [
+    31,
+    15,
+    28
+   ],
+   "to": [
+    12,
+    15,
+    11
+   ],
+   "sag": 2,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.12
+   }
+  },
+  {
+   "type": "cable",
+   "from": [
+    71,
+    8,
+    28
+   ],
+   "to": [
+    90,
+    8,
+    11
+   ],
+   "sag": 2,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.12
+   }
+  },
+  {
+   "type": "cable",
+   "from": [
+    71,
+    15,
+    28
+   ],
+   "to": [
+    90,
+    15,
+    11
+   ],
+   "sag": 2,
+   "radius": 0.5,
+   "color": "red",
+   "hangers": {
+    "every": 3,
+    "down_to": 11,
+    "margin": 0.12
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "car",
+   "at": [
+    [
+     18,
+     10
+    ],
+    [
+     64,
+     10
+    ],
+    [
+     40,
+     10
+    ]
+   ],
+   "colors": {
+    "body": "yellow"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "car",
+   "at": [
+    [
+     47,
+     12
+    ],
+    [
+     82,
+     12
+    ],
+    [
+     24,
+     12
+    ]
+   ],
+   "colors": {
+    "body": "white"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "bus",
+   "at": [
+    56,
+    12
+   ],
+   "colors": {
+    "body": "blue"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "pine",
+   "at": [
+    [
+     0,
+     0
+    ],
+    [
+     5,
+     0
+    ],
+    [
+     1,
+     16
+    ],
+    [
+     8,
+     19
+    ],
+    [
+     9,
+     2
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "house",
+   "at": [
+    [
+     89,
+     1
+    ],
+    [
+     94,
+     0
+    ]
+   ],
+   "colors": {
+    "walls": "white",
+    "roof": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "house",
+   "at": [
+    [
+     90,
+     17
+    ]
+   ],
+   "colors": {
+    "walls": "tan",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "tree",
+   "at": [
+    [
+     96,
+     15
+    ],
+    [
+     95,
+     20
+    ]
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    84,
+    18,
+    1
+   ],
+   "size": [
+    5,
+    4,
+    3
+   ],
+   "color": "brown",
+   "on_surface": true
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     84,
+     18,
+     2
+    ],
+    "size": [
+     5,
+     4,
+     1
+    ]
+   },
+   "pattern": "columns",
+   "every": 2,
+   "offset": 0,
+   "color": "dark_gray"
+  },
+  {
+   "type": "prefab",
+   "name": "boat",
+   "at": [
+    [
+     44,
+     19
+    ],
+    [
+     56,
+     2
+    ],
+    [
+     22,
+     18
+    ]
+   ],
+   "colors": {
+    "hull": "white",
+    "cabin": "blue"
+   }
+  },
+  {
+   "type": "terrain",
+   "at": [
+    58,
+    17
+   ],
+   "size": [
+    11,
+    7
+   ],
+   "base": 1,
+   "colors": [
+    {
+     "color": "tan"
+    }
+   ],
+   "top_color": "green",
+   "peaks": [
+    {
+     "at": [
+      63,
+      20.5
+     ],
+     "height": 3,
+     "radius": 5
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    60,
+    19,
+    0
+   ],
+   "size": [
+    6,
+    3,
+    2
+   ],
+   "color": "white",
+   "on_surface": true
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     60,
+     19,
+     0
+    ],
+    "size": [
+     6,
+     3,
+     12
+    ]
+   },
+   "pattern": "rows",
+   "every": 2,
+   "offset": 1,
+   "color": "dark_gray"
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "element",
+    "kind": "round1x1",
+    "at": [
+     66,
+     18,
+     0
+    ],
+    "color": "white"
+   },
+   "offsets": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     2
+    ]
+   ],
+   "on_surface": true
+  },
+  {
+   "type": "prefab",
+   "name": "boat",
+   "at": [
+    [
+     70,
+     21
+    ],
+    [
+     18,
+     21
+    ]
+   ],
+   "colors": {
+    "hull": "white",
+    "cabin": "red"
+   }
+  }
+ ]
+}

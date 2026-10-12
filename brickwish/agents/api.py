@@ -1,7 +1,7 @@
 """BrickWish web API: the website talks to this; the worker does the heavy lifting.
 
-    POST /api/wish             {wish, extras, colors, surprise, age, size, lang} -> {code}
-    GET  /api/wish/<code>      -> {state, title, preview: [urls], video, poster, parent_note}
+    POST /api/wish             {wish, extras, colors, surprise, age, level} -> {code}
+    GET  /api/wish/<code>      -> {state, title, level, pieces, steps, preview: [urls], video, poster, parent_note}
     GET  /files/<code>/<name>  preview pages, poster and video for anyone with the code;
                                manual.pdf only with ?t=<download token> (sent to the parent after payment)
     POST /api/stripe           Stripe webhook: checkout.session.completed -> state "paid"
@@ -25,7 +25,11 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 from agents.worker import ORDERS, now, save_status
-from engine.palette import AGE_RULES, COLORS, TIERS
+
+LEVELS = {1, 2, 3, 4, 5, 6}
+AGES = {"4-6", "7-9", "10-12", "13+"}
+COLORS = {"red", "orange", "yellow", "lime", "green", "azure", "blue", "purple", "pink", "brown", "tan", "gray",
+          "dark_gray", "white", "black"}
 
 SITE_ORIGIN = os.environ.get("SITE_ORIGIN", "*")
 DESIGNS_PER_HOUR = int(os.environ.get("DESIGNS_PER_HOUR", "60"))  # caps AI spend if the site is spammed
@@ -57,13 +61,16 @@ def validate_wish(body):
     wish = scrub(str(body.get("wish", "")))[:140]
     if len(wish) < 2:
         raise ValueError("wish is too short")
-    if body.get("size") not in TIERS or body.get("age") not in AGE_RULES:
-        raise ValueError("unknown size or age")
+    try:
+        level = int(body.get("level"))
+    except (TypeError, ValueError):
+        level = 0
+    if level not in LEVELS or body.get("age") not in AGES:
+        raise ValueError("unknown level or age")
     colors = [c for c in body.get("colors", []) if c in COLORS][:4]
     extras = [e for e in body.get("extras", []) if e in EXTRAS]
-    return {"wish": wish, "size": body["size"], "age": body["age"], "lang": "es" if body.get("lang") == "es" else "en",
-            "colors": colors, "extras": extras, "surprise": bool(body.get("surprise")) and not colors,
-            "created": now().isoformat()}
+    return {"wish": wish, "level": level, "age": body["age"], "colors": colors, "extras": extras,
+            "surprise": bool(body.get("surprise")) and not colors, "created": now().isoformat()}
 
 
 def verify_stripe(payload, header, secret, tolerance=300):
@@ -89,9 +96,8 @@ def apply_payment(session):
     for field in session.get("custom_fields") or []:
         if field.get("key") == "builder_name":
             builder = ((field.get("text") or {}).get("value") or "")[:12]
-    order = json.loads((ORDERS / code / "order.json").read_text())
     save_status(code, state="paid", email=(session.get("customer_details") or {}).get("email", ""), builder=builder,
-                lang=order.get("lang", "en"), amount_total=session.get("amount_total"),
+                amount_total=session.get("amount_total"),
                 ship_to={"name": details.get("name", ""), "address1": addr.get("line1", ""), "address2": addr.get("line2") or "",
                          "city": addr.get("city", ""), "state": addr.get("state", ""), "zip": addr.get("postal_code", ""),
                          "country": addr.get("country", "US")})
@@ -137,7 +143,7 @@ class Handler(BaseHTTPRequestHandler):
             code = new_code()
             (ORDERS / code).mkdir(parents=True)
             (ORDERS / code / "order.json").write_text(json.dumps(order))
-            save_status(code, state="received", lang=order["lang"])
+            save_status(code, state="received")
             _recent.append(time.time())
             return self._json(201, {"code": code})
         if path == "/api/stripe":
@@ -160,7 +166,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(404, {"error": "not found"})
             base = f"/files/{parts[2]}/"
             public = {"state": st.get("state"), "title": st.get("title"), "parent_note": st.get("parent_note", ""),
-                      "pieces": st.get("pieces"), "steps": st.get("steps")}
+                      "level": st.get("level"), "pieces": st.get("pieces"), "steps": st.get("steps"), "pages": st.get("pages")}
             if st.get("state") not in ("received", "designing", "needs_help"):
                 public.update(preview=[base + p for p in st.get("preview", [])], video=base + "build.mp4", poster=base + "poster.png")
             return self._json(200, public)

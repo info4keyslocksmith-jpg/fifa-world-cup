@@ -3,13 +3,20 @@
 **You wish it, we design it, you build it.**
 A child asks for anything (*"I want the Empire State Building"*). Our AI agents design a one-of-a-kind brick model in minutes. Before paying, the family watches a video of the model building itself and flips through the first 5 pages of the manual. After a grown-up pays, the full manual arrives as a PDF and our brick vendor ships the parts straight to the door. **Everything after the wish is automatic, 24/7.**
 
-Version 2, 12 October 2026: the automatic, vendor-shipped model. Details:
+Version 3, 12 October 2026: six levels up to 8,000 pieces, and **every wish gets built**. Details:
 - [AUTOMATION.md](AUTOMATION.md): how the 24/7 system works
 - [VENDORS.md](VENDORS.md): who ships the parts
 - [COMPLIANCE.md](COMPLIANCE.md): what the law requires
 - [AI_PIPELINE.md](AI_PIPELINE.md): how the agents design
 
-Working example: [examples/out/empire-state-building/](examples/out/empire-state-building/).
+Working examples, each with its video, manual PDF, preview pages and vendor files in [examples/out/](examples/out/):
+
+| Wish | Level | Pieces |
+|---|---|---:|
+| "I want the Empire State Building" | 1 Starter | 231 |
+| "Puppy park in the BeltLine" | 3 Builder | 767 |
+| "San Francisco bridge" | 4 Master | 1,359 |
+| "Medellín mountain" | 6 Epic | 5,111 |
 
 ---
 
@@ -17,8 +24,7 @@ Working example: [examples/out/empire-state-building/](examples/out/empire-state
 
 - **Building sets are the fastest-growing toy category.** US toys were $30.3B in 2025 (+6%); building sets grew +15% in the US and have grown six years in a row globally. *(Circana via the Toy Association, 2026.)*
 - **Gifting drives the category.** About a third of toy revenue comes in Q4, and most of the rest is birthdays.
-- **Nobody serves a kid's imagination.** Custom brick shops make photo replicas (pets, couples, houses) for adults, at $40–$500+, with 3–14 week waits and mostly no printed instructions. **No one turns a child's own idea into a kit under $100, and no one shows a preview before purchase.**
-- **About 1 in 4 US children is Hispanic.** No competitor offers Spanish manuals; we do it automatically.
+- **Nobody serves a kid's imagination.** Custom brick shops make photo replicas (pets, couples, houses) for adults, at $40–$500+, with 3–14 week waits and mostly no printed instructions. **No one turns a child's own idea into a kit, at any size from $39 to a 5,000+ piece display model, and no one shows a preview before purchase.**
 
 ## 2. What the customer gets
 
@@ -28,26 +34,32 @@ Working example: [examples/out/empire-state-building/](examples/out/empire-state
 | The first 5 pages of the manual (cover, tips, first steps) | All the bricks in numbered bags + spares, shipped to the door |
 | Piece count, steps and size | The video to keep and share |
 
-| Size | Pieces | Building time | Best for ages | Price (US shipping incl.) |
-|---|---|---|---|---|
-| **Mini** | 80–150 | about 30 min | 4–6, 7–9 | **$39** |
-| **Medium** | 200–350 | about 1 hour | 4–6, 7–9 | **$69** |
-| **Big** | 400–650 | 2–3 hours | 7–9, 10–12, 13+ | **$99** |
-| **Mega** | 800–1,200 | a weekend | 10–12, 13+ | **$179** |
+**The rule: every wish gets built.** A bridge, a mountain, a park, a city, a planet, "my dream": nothing is refused. Huge things become dioramas, abstract wishes become scenes, brands become generic versions and scary things become friendly ones (with a note to the parent). See [engine/DESIGN_GUIDE.md](engine/DESIGN_GUIDE.md).
 
-Age changes the manual, not the price: 4–6 builders get 3 new pieces per step and one step per page; 13+ get 12 per step and four steps per page.
+**Levels.** The family picks a level. Each level has more pieces *and* more detail:
+
+| Level | Pieces | What the model includes | Building time | Price (US shipping incl.) |
+|---|---|---|---|---|
+| **1 Starter** | 100–250 | The shape and 2–4 signature colors | about 30 min | **$39** |
+| **2 Explorer** | 300–600 | + main details: eyes, windows, stripes, doors | about 1 hour | **$79** |
+| **3 Builder** | 700–1,200 | + textures, accessories and a small scene (ground + props) | an afternoon | **$139** |
+| **4 Master** | 1,300–2,400 | + a full diorama: ground, water or street, people, animals, patterns | a weekend | **$229** |
+| **5 Legend** | 2,500–4,500 | + several sub-builds (buildings, vehicles), fine textures, 8+ colors | several weekends | **$399** |
+| **6 Epic** | 5,000–8,000 | Display piece: detail everywhere plus surroundings | a big project | **$699** |
+
+Age changes the manual, not the price: 4–6 builders get 3 new pieces per step and one step per page; 13+ get 12 per step and four steps per page. The site marks the levels that are "Great for this age" (1–2 for ages 4–6, up to 4–6 for 13+), and every level stays open to everyone.
 
 **Next products:**
 - **Wish Certificate** gift card (the birthday kid designs it later). This is the holiday launch product (§7).
 - **Printed manual** add-on (+$9).
 - **Manual only** ($19 PDF for families who already have bricks; about 95% margin).
-- **Party pack** (6–10 Minis of the same design).
+- **Party pack** (6–10 Level 1 kits of the same design).
 
 ## 3. How it works (all automatic)
 
-1. **Wish:** the kid uses the phone-first site in English or Spanish. Contact details are stripped from the text, and nothing personal is collected from the child.
-2. **Design Agent (Claude):** writes the model in the engine's shape language, compiles it, *looks at the renders*, fixes problems, and submits once the design is connected, inside the piece range and recognizable. Brands become generic versions with a note to the parent.
-3. **Brick engine:** turns the design into real bricks, checks every connection, orders the steps by age, splits the parts into numbered bags, and draws the manual (PDF), the 5 preview pages and the 9:16 build video.
+1. **Wish:** the kid types (or says) anything on the phone-first site and picks a level and an age. Contact details are stripped from the text, and nothing personal is collected from the child.
+2. **Design Agent (Claude):** follows the design guide (rule 1: every wish gets built; rule 2: the level sets size and detail). It writes the model in the engine's shape language (terrain, water, buildings, bridges with cables, trees, people, dogs, cars, boats and more), compiles it, *looks at the renders*, fixes problems, and submits once the design is connected, inside the level's piece range and recognizable.
+3. **Brick engine** (one JavaScript engine, used by both the website and the server): turns the design into real bricks, checks and repairs every connection, orders the steps by age, splits the parts into numbered bags, and makes the manual (PDF), the 5 preview pages and **the video of the kid's own model** building itself.
 4. **Preview → payment:** a grown-up passes the gate, agrees to the privacy terms, and pays on Stripe (email, address and builder's name are collected there).
 5. **Fulfillment:** the worker puts the builder's name on the cover, emails the vendor the parts list by bag with label and DDP instructions, and emails the parent a private link to the PDF.
 6. **Vendor** picks, bags, labels and ships DDP to the customer in about 1–2 weeks.
@@ -58,23 +70,26 @@ People are needed only when an order lands in **needs_help** (the founders get a
 
 Model: [`tools/unit_economics.py`](tools/unit_economics.py). All inputs are assumptions until vendor quotes and real AI usage come in.
 
-**Launch** (vendor packs each order; design AI cost spread over a 25% wish-to-purchase rate):
+**Launch** ($0.045 per piece picked and bagged, DDP air parcels; design AI cost grows with the level and is spread over a 25% wish-to-purchase rate):
 
-| Tier | Price | Parts | Shipping DDP | AI design per sale | All costs | **Profit per kit** |
-|---|---:|---:|---:|---:|---:|---:|
-| Mini | $39 | $5.43 | $8.00 | $3.20 | $23.63 | **$15.37 (39%)** |
-| Medium | $69 | $12.99 | $11.00 | $3.20 | $37.10 | **$31.90 (46%)** |
-| Big | $99 | $24.81 | $15.00 | $3.20 | $56.45 | **$42.55 (43%)** |
-| Mega | $179 | $47.25 | $22.00 | $3.20 | $93.98 | **$85.02 (47%)** |
+| Level | Price | Pieces (mid) | Parts | Shipping DDP | AI design per sale | All costs | **Profit per kit** |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 1 Starter | $39 | 175 | $8.27 | $9.33 | $3.20 | $28.23 | **$10.77 (28%)** |
+| 2 Explorer | $79 | 450 | $21.26 | $12.45 | $3.20 | $48.65 | **$30.35 (38%)** |
+| 3 Builder | $139 | 950 | $44.89 | $18.12 | $4.80 | $86.63 | **$52.37 (38%)** |
+| 4 Master | $229 | 1,850 | $87.41 | $28.33 | $6.40 | $152.65 | **$76.35 (33%)** |
+| 5 Legend | $399 | 3,500 | $165.38 | $47.04 | $9.60 | $274.25 | **$124.75 (31%)** |
+| 6 Epic | $699 | 6,500 | $307.12 | $81.06 | $12.80 | $492.18 | **$206.82 (30%)** |
 
-**Scale** (negotiated parts, consolidated shipping, tuned prompts, 35% conversion): **60–63% profit per kit.**
+**Scale** (negotiated parts at $0.03, consolidated shipping, tuned prompts, 35% conversion): **50–57% profit per kit.**
 
 "All costs" also includes a duty buffer, packaging, card fees, a 3% support/replacement reserve and a few minutes of founder spot-checks.
 
 **What this means:**
 1. **Profitable from order #1.** There's no designer, printer or packer cost per order.
 2. **The biggest costs are parts and international shipping,** so the two most important vendor quotes are **price per piece** and **DDP shipping per parcel**.
-3. **Every free preview costs about $0.50–0.80 in AI usage.** The API caps designs per hour, and the conversion rate from preview to purchase is the KPI that matters most.
+3. **Every free preview costs AI usage** (about $0.80 at Level 1, more for big levels). The API caps designs per hour, and the conversion rate from preview to purchase is the KPI that matters most.
+4. **Levels 5–6 are heavy parcels** (4–8 kg). Get a sea-freight or US-warehouse quote for them before promoting them widely.
 
 ## 5. Legal and safety: launch blockers
 
@@ -97,7 +112,7 @@ Full checklist: [COMPLIANCE.md](COMPLIANCE.md).
 
 - **Name: BrickWish.** No toy business found using it; still needs a USPTO Class 28 search and filing. Avoid Imagibrick and Brixie (both taken).
 - **Look:** chunky rounded type, a sky-blue baseplate background, bright brick colors, and pink outlines on new pieces in the manual.
-- **Voice:** "tú" for kids, "usted" for parents in Spanish.
+- **Voice:** short, warm sentences for kids; clear and direct for parents. Everything in English.
 
 ## 7. Go-to-market
 
@@ -108,7 +123,7 @@ The holidays are close. The automatic model helps: the preview is instant, but t
 | **Now to 22 Nov** | Connect the accounts (AUTOMATION.md §7), sign a vendor, test samples, lab testing, site live with **Wish Certificates** and free previews. |
 | **27 Nov – 15 Dec** | Sell Wish Certificates **and** kits ordered by about 5 Dec (check the vendor's DDP times). Every customer sees a free preview first, which drives conversion. |
 | **25 Dec – Feb** | Certificate redemption wave; the first few hundred orders. |
-| **Spring 2027** | Birthday season, party packs, Spanish-language launch in Atlanta and Florida. |
+| **Spring 2027** | Birthday season, party packs, levels 5–6 as display pieces for teens and adults. |
 
 **Your marketing distribution plan plugs in here.** The engine already produces the content: a 9:16 build video for every design, plus a "wish of the day" the agents design themselves (AUTOMATION.md §6).
 
@@ -118,7 +133,7 @@ The holidays are close. The automatic model helps: the preview is instant, but t
 |---|---|---|
 | 1 | 12–18 Oct | Name search, LLC, domain. **Anthropic API key + first 20 real wishes through the Design Agent** (score them: would a kid recognize it?). Vendor outreach (VENDORS.md). |
 | 2 | 19–25 Oct | Stripe Payment Links + webhook, email sending, server live with api.py + worker.py. Sample orders from 2 vendors with 2 engine-made parts lists. |
-| 3 | 26 Oct–1 Nov | Engine upgrade 1: **plates and slopes** (more detail per piece). Privacy notice + terms. Lab quotes. |
+| 3 | 26 Oct–1 Nov | Engine upgrade: **plates and slopes** (finer detail per piece). Score Design Agent results at every level. Privacy notice + terms. Lab quotes. |
 | 4 | 2–8 Nov | Samples arrive: score clutch, colors, bags, labels, transit time. Pick the vendor. Palette to the lab. |
 | 5 | 9–15 Nov | Wish Certificate checkout. Tracking-email agent. Self-hosted fonts. |
 | 6 | 16–22 Nov | 10 friends-and-family orders end to end with real kids. Fix what they find. Launch. |
@@ -152,7 +167,8 @@ That's lower than v1: no printer, no packaging run, no inventory.
 
 | Risk | Mitigation |
 |---|---|
-| Automatic designs aren't recognizable enough | Score the first 100 designs; add plates/slopes to the engine; keep a template library of proven shapes the agent can reuse; regenerate free on request |
+| Automatic designs aren't recognizable enough | Score the first 100 designs; add plates/slopes to the engine; keep a library of proven designs (like the four examples) the agent can reuse; regenerate free on request |
+| Big levels (5,000+ pieces) are slow to design and heavy to ship | The engine handles 5,000+ pieces in minutes; quote sea freight or a US warehouse for levels 5–6 |
 | AI costs from previews nobody buys | Per-hour cap, effort tuning, prompt caching; conversion is the KPI |
 | Vendor quality or speed | Samples from 2–3 vendors; spares in every kit; a second vendor ready |
 | Shipping time (1–2 weeks from China) | Free instant preview + Wish Certificates; later, a US warehouse for the most-used parts |
@@ -163,7 +179,7 @@ That's lower than v1: no printer, no packaging run, no inventory.
 ## 12. Decisions needed from the founders
 
 1. **Name:** BrickWish? (then the USPTO search)
-2. **Prices:** $39 / $69 / $99 / $179?
+2. **Prices:** $39 / $79 / $139 / $229 / $399 / $699 for levels 1–6?
 3. **Vendor:** start with Wobrick or Letbricks (private-label dropship), with Brickwith as backup?
 4. **Accounts:** who creates the Anthropic, Stripe and email accounts, and which state for the LLC (GA or FL)?
 5. **Marketing:** share your distribution plan so we wire it into the agents.

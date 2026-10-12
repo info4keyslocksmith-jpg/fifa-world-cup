@@ -21,16 +21,15 @@ import os
 import secrets
 import shutil
 import smtplib
+import subprocess
 import time
 import traceback
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
 
-from engine import pipeline
-from engine.manual import manual_html
-
 ROOT = Path(__file__).resolve().parent.parent
+CLI = ROOT / "engine" / "cli.js"
 DATA = Path(os.environ.get("DATA_DIR", ROOT / "data"))
 ORDERS = DATA / "orders"
 OUTBOX = DATA / "outbox"
@@ -90,18 +89,25 @@ def alert_founders(code, problem):
 
 # ---------------------------------------------------------------- stages
 
+def engine(*args):
+    """Run the brick engine (engine/cli.js) and return its JSON summary."""
+    run = subprocess.run(["node", str(CLI), *map(str, args)], capture_output=True, text=True, timeout=3600)
+    if run.returncode != 0:
+        raise RuntimeError(f"engine failed: {run.stdout[-300:]} {run.stderr[-800:]}")
+    return json.loads(run.stdout.strip().splitlines()[-1])
+
+
 def stage_design(code, design_fn):
-    """received -> preview_ready: the Design Agent designs it, the engine builds manual, preview and video."""
+    """received -> preview_ready: the Design Agent designs the wish; the engine makes the manual, the preview and the video."""
     order = load(code, "order.json")
     save_status(code, state="designing")
     try:
         spec = design_fn(order)
         out = ORDERS / code
         (out / "spec.json").write_text(json.dumps(spec, indent=1))
-        model = pipeline.run(spec, out, code=code, builder="", video=True, log=lambda m: None)
-        title = model["title_es"] if order.get("lang") == "es" else model["title"]
-        save_status(code, state="preview_ready", title=title, parent_note=spec.get("parent_note", ""),
-                    pieces=model["stats"]["pieces"], steps=model["steps"],
+        summary = engine("build", out / "spec.json", out, "--code", code)
+        save_status(code, state="preview_ready", title=spec.get("title", "My build"), parent_note=spec.get("parent_note", ""),
+                    level=summary["level"], pieces=summary["pieces"], steps=summary["steps"], pages=summary["pages"],
                     preview=[f"preview-{i}.png" for i in range(1, 6)], video="build.mp4", poster="poster.png")
     except Exception as e:  # keep the queue moving; a person looks at this one
         save_status(code, state="needs_help", error=f"{type(e).__name__}: {e}")
@@ -113,31 +119,41 @@ def stage_paid(code):
     st = load(code)
     out = ORDERS / code
     try:
-        model = json.loads((out / "model.json").read_text())
-        builder = st.get("builder", "")
-        (out / "manual.html").write_text(manual_html(model, code, builder))
-        pipeline.browser("pdf", out / "manual.html", out / "manual.pdf")
+        engine("manual", out, "--builder", st.get("builder", ""), "--code", code)
         order = json.loads((out / "vendor_order.json").read_text())
         order["ship_to"] = st["ship_to"]
         (out / "vendor_order.json").write_text(json.dumps(order, indent=1))
-        from engine.vendor import vendor_email
-        email_text = vendor_email(order)
-        subject, body = email_text.split("\n", 1)
-        send_email(os.environ.get("VENDOR_EMAIL", "vendor@example.com"), subject.removeprefix("Subject: "), body,
-                   [out / "parts.csv", out / "bricklink.xml"])
+        subject, body = vendor_email(order)
+        send_email(os.environ.get("VENDOR_EMAIL", "vendor@example.com"), subject, body, [out / "parts.csv", out / "bricklink.xml"])
         token = st.get("download_token") or secrets.token_urlsafe(24)
         link = f"{PUBLIC_URL}/files/{code}/manual.pdf?t={token}"
-        es = st.get("lang") == "es"
-        send_email(st["email"],
-                   f"Tu manual de BrickWish: {st.get('title', '')}" if es else f"Your BrickWish manual: {st.get('title', '')}",
-                   (f"¡Gracias! El manual completo está aquí:\n{link}\n\nLas piezas van en camino; te enviaremos el número de rastreo.\n\n"
-                    f"Pedido {code}") if es else
-                   (f"Thank you! The full building manual is ready:\n{link}\n\nThe bricks are on their way; we'll email the tracking number.\n\n"
-                    f"Order {code}"))
+        send_email(st["email"], f"Your BrickWish manual: {st.get('title', '')}",
+                   f"Thank you! The full building manual is ready:\n{link}\n\n"
+                   f"The bricks are on their way; we'll email the tracking number.\n\nOrder {code}")
         save_status(code, state="sent_to_vendor", download_token=token, sent_to_vendor_at=now().isoformat())
     except Exception as e:
         save_status(code, state="needs_help", error=f"{type(e).__name__}: {e}")
         alert_founders(code, f"after payment: {e}\n\n{traceback.format_exc()}")
+
+
+def vendor_email(order):
+    st = order["ship_to"]
+    lines = [
+        "Hello,", "",
+        f"Please pick, pack and dropship BrickWish order {order['order_code']}.",
+        f"- Parts: see the attached parts.csv (bag by bag) or bricklink.xml ({order['pieces_with_spares']} pieces including spares).",
+        "- Pack each bag number separately and label it 'Bag N'. Put the spares bag in last.",
+        f"- Packaging: {order['packing']['packaging']}",
+        "- Labels on the outside of the package:",
+        *[f"    * {label}" for label in order["packing"]["labels"]],
+        "- No vendor branding, invoices or prices inside the parcel.",
+        f"- Shipping: {order['packing']['shipping']}", "",
+        "Ship to:", f"    {st.get('name', '')}", f"    {st.get('address1', '')} {st.get('address2', '')}".rstrip(),
+        f"    {st.get('city', '')}, {st.get('state', '')} {st.get('zip', '')}", f"    {st.get('country', 'US')}", "",
+        "Please reply with the tracking number and any part substitutions before shipping.", "", "Thank you,", "BrickWish Orders",
+    ]
+    subject = f"BrickWish order {order['order_code']} - {order['model']} ({order['pieces_with_spares']} pcs)"
+    return subject, "\n".join(lines)
 
 
 def cleanup():
@@ -219,7 +235,7 @@ def main():
         fixed = json.loads(Path(a.offline_spec).read_text())
 
         def design_fn(order):
-            return dict(fixed, tier=order["size"], age=order["age"], lang=order.get("lang", "en"), wish=order["wish"])
+            return dict(fixed, level=int(order["level"]), age=order["age"], wish=order["wish"])
     else:
         from agents.design_agent import design as design_fn
     if a.once:

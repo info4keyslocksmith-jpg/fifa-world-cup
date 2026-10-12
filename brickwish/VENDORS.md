@@ -4,7 +4,7 @@ Research as of 12 October 2026, from search extracts of each vendor's own pages;
 
 ## 0. What we need from a vendor (automatic dropship model)
 
-Our worker emails the vendor one order at a time: `parts.csv` (parts by numbered bag) and `bricklink.xml`, plus the customer's address and label text. A kit is 80–1,200 pieces of a palette of 11 brick sizes, round bricks and cones in 15 colors. The vendor must:
+Our worker emails the vendor one order at a time: `parts.csv` (parts by numbered bag) and `bricklink.xml`, plus the customer's address and label text. A kit is 100–8,000 pieces (levels 1–6) from a palette of 11 brick sizes, round bricks and cones in 15 colors. The vendor must:
 
 1. **Pick one parts list per order** and pack **one sealed bag per bag number** ("Bag 1", "Bag 2"…), plus a spares bag.
 2. Ship in **our branded mailer or bag**, with **no vendor branding, invoice or prices** inside.
@@ -32,7 +32,7 @@ Our worker emails the vendor one order at a time: `parts.csv` (parts by numbered
 | **Manual printing** | **In-house** color laser | Lulu (print API), Mixam | Cheapest and same-day for the first 100 orders |
 | **Kitting / 3PL (later)** | **FSI** (Atlanta) | ShipMonk (Fort Lauderdale), All Points (Atlanta) | Kitting services in GA/FL |
 
-**Sample plan:** send the **same two engine-made orders** (e.g. the Empire State Building from `examples/out/` and a Mini dog) to Wobrick, Letbricks and Brickwith, shipped to Atlanta exactly as a customer would receive them. Score them on: clutch vs. LEGO® bricks, color match, bag sorting, missing parts, packaging, days to Atlanta, and total landed cost.
+**Sample plan:** send the **same two engine-made orders** (e.g. the Level 1 Empire State Building and the Level 3 Puppy Park from `examples/out/`) to Wobrick, Letbricks and Brickwith, shipped to Atlanta exactly as a customer would receive them. Score them on: clutch vs. LEGO® bricks, color match, bag sorting, missing parts, packaging, days to Atlanta, and total landed cost.
 
 ## 1. Compatible-brick part suppliers (per part / per parts list)
 
@@ -85,11 +85,11 @@ Useful: the open-source **GoBricksPart-API** maps LEGO part numbers to Gobricks 
 
 | Option | Notes | Price |
 |---|---|---|
-| **In-house** color laser + long-reach stapler (+ coil binder for Mega) | Same-day, one-off printing. Best for the first 100+ orders | About $0.06–0.12/page |
+| **In-house** color laser + long-reach stapler (+ coil binder for levels 4–6) | Same-day, one-off printing. Best for the first 100+ orders | About $0.06–0.12/page |
 | **Lulu** (print-on-demand + Print API) | Saddle stitch 4–48 pages; single personalized copies through the API | From about $4.30/booklet |
 | **Mixam** | Saddle stitch under 48 pages; instant quotes | Quote tool |
 
-Mega manuals will run past 48 pages, so use coil binding or split them into numbered books (Book 1, Book 2), the way big retail sets do.
+Manuals for levels 3–6 run past 48 pages (100+ for 5,000-piece kits), so use coil binding or split them into numbered books (Book 1, Book 2), the way big retail sets do.
 
 ## 6. 3PL / kitting (Georgia and Florida, for later)
 
@@ -121,7 +121,7 @@ A one-off kit has 40–150 different part/color lots. Having a 3PL pick loose pa
 >
 > Hello [Name],
 >
-> We are BrickWish, a US startup (Georgia/Florida) selling personalized building-brick kits for kids under our own brand. Each order is a unique custom model of 80–1,200 pieces. Our system sends one order at a time by email: a parts list split into numbered bags (CSV and BrickLink XML), the customer's US address, and the text for three package labels. The instruction manual is digital, so there is nothing to print.
+> We are BrickWish, a US startup (Georgia/Florida) selling personalized building-brick kits for kids under our own brand. Each order is a unique custom model of 100 to 8,000 pieces (six size levels). Our system sends one order at a time by email: a parts list split into numbered bags (CSV and BrickLink XML), the customer's US address, and the text for three package labels. The instruction manual is digital, so there is nothing to print.
 >
 > Could you tell us whether you can:
 > 1. Pick **one parts list per order** and pack **one sealed bag per bag number** (Bag 1, Bag 2, … plus a spares bag);
@@ -129,22 +129,9 @@ A one-off kit has 40–150 different part/color lots. Having a 3PL pick loose pa
 > 3. Ship **DDP** to US customers, with CPSC certificate eFiling at US entry, and reply with a tracking number within 48 hours;
 > 4. Later, receive orders through an API or upload portal instead of email.
 >
-> Please share your MOQs and per-piece price tiers, lead times, US shipping options (DDP or DAP) and transit times, your color and part catalog, your current ASTM F963-23 / CPSIA / EN71 test reports (lab name, report number, date), and sample costs. We would like to order samples of 2 test parts lists.
+> Please share your MOQs and per-piece price tiers, lead times, US shipping options (DDP or DAP) and transit times, your color and part catalog, your current ASTM F963-23 / CPSIA / EN71 test reports (lab name, report number, date), and sample costs. We would like to order samples of 2 test parts lists (about 230 and 770 pieces). Our largest kits are 5,000+ pieces (4–8 kg), so please also quote sea or consolidated freight for heavy parcels.
 >
 > We expect about 100 orders in our first months, growing toward 1,000+ per month.
 >
 > Thank you,
 > [Name], BrickWish | [email] | [phone] | [website]
-
-### Spanish version (for Spanish-speaking sales reps)
-
-> **Asunto:** Consulta de empaque con marca propia: kits de bloques personalizados (empresa de EE. UU.)
->
-> Hola [Nombre]:
->
-> Somos BrickWish, una empresa nueva de EE. UU. (Georgia/Florida) que vende kits de bloques personalizados para niños con nuestra propia marca. Cada pedido es un modelo único de 80 a 1,200 piezas, y enviamos la lista de piezas en formato BrickLink Studio, BrickLink XML o Rebrickable CSV.
->
-> ¿Pueden empacar una lista de piezas por pedido en bolsas separadas (neutras o con nuestro logo), incluir nuestro manual impreso y nuestra caja, y enviar directo a clientes en EE. UU. sin marcas ni precios de terceros? Por favor compártannos: pedidos mínimos, precios por pieza, tiempos de producción y envío (DDP o DAP), catálogo de colores y piezas, reportes de pruebas ASTM F963-23 / CPSIA / EN71 (laboratorio, número y fecha) y el costo de muestras.
->
-> Gracias,
-> [Nombre], BrickWish

@@ -1,0 +1,2771 @@
+{
+ "title": "Medellín Mountains",
+ "wish": "medellin mountain",
+ "level": 6,
+ "age": "13+",
+ "builder": "Valentina",
+ "notes": "The Aburrá Valley: green mountains covered with colorful comuna houses, the Metrocable climbing past Biblioteca España to the pine forest of Parque Arví, the Medellín River, the elevated Metro with a train, the Coltejer building with its needle top, towers and a flower park for the Feria de las Flores.",
+ "hollow": {
+  "wall": 2,
+  "keep_under_roof": 1
+ },
+ "shapes": [
+  {
+   "type": "terrain",
+   "at": [
+    0,
+    0
+   ],
+   "size": [
+    96,
+    64
+   ],
+   "base": 2,
+   "noise": 1.2,
+   "seed": 11,
+   "colors": [
+    {
+     "below": 3,
+     "color": "tan"
+    },
+    {
+     "below": 29,
+     "color": "green"
+    },
+    {
+     "color": "gray"
+    }
+   ],
+   "peaks": [
+    {
+     "at": [
+      52,
+      4
+     ],
+     "height": 32,
+     "radius": 34
+    },
+    {
+     "at": [
+      12,
+      10
+     ],
+     "height": 22,
+     "radius": 20
+    },
+    {
+     "at": [
+      88,
+      8
+     ],
+     "height": 24,
+     "radius": 20
+    },
+    {
+     "at": [
+      30,
+      18
+     ],
+     "height": 6,
+     "radius": 10
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    0,
+    44,
+    0
+   ],
+   "size": [
+    96,
+    20,
+    2
+   ],
+   "color": "tan"
+  },
+  {
+   "type": "carve",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     44,
+     2
+    ],
+    "size": [
+     96,
+     20,
+     10
+    ]
+   }
+  },
+  {
+   "type": "box",
+   "at": [
+    0,
+    46,
+    0
+   ],
+   "size": [
+    96,
+    3,
+    2
+   ],
+   "color": "blue"
+  },
+  {
+   "type": "line",
+   "from": [
+    6,
+    47,
+    1
+   ],
+   "to": [
+    10,
+    47,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    22,
+    46,
+    1
+   ],
+   "to": [
+    26,
+    46,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    41,
+    48,
+    1
+   ],
+   "to": [
+    45,
+    48,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    58,
+    47,
+    1
+   ],
+   "to": [
+    62,
+    47,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    77,
+    46,
+    1
+   ],
+   "to": [
+    81,
+    46,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "line",
+   "from": [
+    88,
+    48,
+    1
+   ],
+   "to": [
+    92,
+    48,
+    1
+   ],
+   "radius": 0.5,
+   "color": "azure"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     44,
+     0
+    ],
+    "size": [
+     96,
+     2,
+     2
+    ]
+   },
+   "color": "dark_gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     49,
+     0
+    ],
+    "size": [
+     96,
+     2,
+     2
+    ]
+   },
+   "color": "dark_gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     51,
+     0
+    ],
+    "size": [
+     96,
+     13,
+     2
+    ]
+   },
+   "color": "gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     16,
+     51,
+     0
+    ],
+    "size": [
+     14,
+     6,
+     2
+    ]
+   },
+   "color": "green"
+  },
+  {
+   "type": "box",
+   "at": [
+    36,
+    40,
+    2
+   ],
+   "size": [
+    6,
+    4,
+    5
+   ],
+   "color": "white"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     36,
+     40,
+     4
+    ],
+    "size": [
+     6,
+     4,
+     1
+    ]
+   },
+   "color": "azure"
+  },
+  {
+   "type": "box",
+   "at": [
+    36,
+    40,
+    7
+   ],
+   "size": [
+    6,
+    4,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    42,
+    8
+   ],
+   "size": [
+    1,
+    1,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    32,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    9
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    32,
+    11
+   ],
+   "size": [
+    2,
+    2,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    24,
+    10
+   ],
+   "size": [
+    2,
+    2,
+    9
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    24,
+    19
+   ],
+   "size": [
+    2,
+    2,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    16,
+    18
+   ],
+   "size": [
+    2,
+    2,
+    9
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    16,
+    27
+   ],
+   "size": [
+    2,
+    2,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    36,
+    8,
+    26
+   ],
+   "size": [
+    6,
+    4,
+    5
+   ],
+   "color": "white"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     36,
+     8,
+     28
+    ],
+    "size": [
+     6,
+     4,
+     1
+    ]
+   },
+   "color": "azure"
+  },
+  {
+   "type": "box",
+   "at": [
+    36,
+    8,
+    31
+   ],
+   "size": [
+    6,
+    4,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    39,
+    10,
+    32
+   ],
+   "size": [
+    1,
+    1,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "cable",
+   "from": [
+    39,
+    42,
+    8
+   ],
+   "to": [
+    39,
+    32,
+    12
+   ],
+   "sag": 1,
+   "radius": 0.5,
+   "color": "black"
+  },
+  {
+   "type": "cable",
+   "from": [
+    39,
+    32,
+    12
+   ],
+   "to": [
+    39,
+    24,
+    20
+   ],
+   "sag": 1,
+   "radius": 0.5,
+   "color": "black"
+  },
+  {
+   "type": "cable",
+   "from": [
+    39,
+    24,
+    20
+   ],
+   "to": [
+    39,
+    16,
+    28
+   ],
+   "sag": 1,
+   "radius": 0.5,
+   "color": "black"
+  },
+  {
+   "type": "cable",
+   "from": [
+    39,
+    16,
+    28
+   ],
+   "to": [
+    39,
+    10,
+    32
+   ],
+   "sag": 1,
+   "radius": 0.5,
+   "color": "black"
+  },
+  {
+   "type": "prefab",
+   "name": "gondola",
+   "at": [
+    39,
+    37,
+    7
+   ],
+   "on_surface": false,
+   "colors": {
+    "body": "yellow"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "gondola",
+   "at": [
+    39,
+    28,
+    13
+   ],
+   "on_surface": false,
+   "colors": {
+    "body": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "gondola",
+   "at": [
+    39,
+    20,
+    21
+   ],
+   "on_surface": false,
+   "colors": {
+    "body": "yellow"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "gondola",
+   "at": [
+    39,
+    13,
+    27
+   ],
+   "on_surface": false,
+   "colors": {
+    "body": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    2,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    4,
+    12
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    22,
+    12
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    26,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    28,
+    12
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    32,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    68,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    70,
+    12
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    74,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    76,
+    12
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    80,
+    13
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    1,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    5,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    7,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    11,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    19,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    23,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    25,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    29,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    31,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    65,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    67,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    71,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    73,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    77,
+    16
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    79,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    85,
+    15
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    2,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    4,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    8,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    10,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    20,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    22,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    26,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    28,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    32,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    34,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    56,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    62,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    64,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    68,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    70,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    74,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    76,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    80,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    82,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    86,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    88,
+    18
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    92,
+    19
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    1,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    5,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    7,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    11,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    13,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    17,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    19,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    23,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    25,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    29,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    31,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    47,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    49,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    53,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    55,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    59,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    61,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    65,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    67,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    71,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    73,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    77,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    79,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    83,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    85,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    89,
+    22
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    91,
+    21
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    4,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    8,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    10,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    14,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    16,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    28,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    32,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    34,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    46,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    50,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    52,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    56,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    58,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    62,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    64,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    68,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    70,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    74,
+    25
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    82,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    88,
+    24
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    13,
+    27
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    47,
+    28
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    49,
+    27
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    53,
+    28
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    55,
+    27
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    59,
+    28
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    61,
+    27
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "red",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    65,
+    28
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "pink",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    67,
+    27
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "yellow",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    46,
+    30
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "white",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    50,
+    31
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "azure",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    52,
+    30
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    56,
+    31
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    58,
+    30
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "lime",
+    "roof": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    62,
+    31
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "orange",
+    "roof": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "hillside_house",
+   "at": [
+    64,
+    30
+   ],
+   "facing": "+y",
+   "colors": {
+    "walls": "brown",
+    "roof": "gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "pine",
+   "at": [
+    [
+     41,
+     0
+    ],
+    [
+     46,
+     0
+    ],
+    [
+     48,
+     0
+    ],
+    [
+     53,
+     0
+    ],
+    [
+     58,
+     0
+    ],
+    [
+     60,
+     0
+    ],
+    [
+     6,
+     5
+    ],
+    [
+     8,
+     5
+    ],
+    [
+     13,
+     5
+    ],
+    [
+     42,
+     5
+    ],
+    [
+     44,
+     5
+    ],
+    [
+     49,
+     5
+    ],
+    [
+     54,
+     5
+    ],
+    [
+     56,
+     5
+    ],
+    [
+     61,
+     5
+    ],
+    [
+     66,
+     5
+    ],
+    [
+     78,
+     5
+    ],
+    [
+     80,
+     5
+    ],
+    [
+     85,
+     5
+    ],
+    [
+     90,
+     5
+    ],
+    [
+     9,
+     10
+    ],
+    [
+     14,
+     10
+    ],
+    [
+     16,
+     10
+    ],
+    [
+     50,
+     10
+    ],
+    [
+     52,
+     10
+    ],
+    [
+     57,
+     10
+    ],
+    [
+     86,
+     10
+    ],
+    [
+     88,
+     10
+    ],
+    [
+     10,
+     12
+    ],
+    [
+     12,
+     12
+    ],
+    [
+     53,
+     12
+    ],
+    [
+     58,
+     12
+    ],
+    [
+     89,
+     12
+    ],
+    [
+     49,
+     17
+    ]
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    44,
+    10,
+    31
+   ],
+   "size": [
+    5,
+    4,
+    5
+   ],
+   "color": "black"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     44,
+     10,
+     32
+    ],
+    "size": [
+     5,
+     4,
+     3
+    ]
+   },
+   "pattern": "rows",
+   "every": 3,
+   "offset": 2,
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    50,
+    9,
+    33
+   ],
+   "size": [
+    4,
+    5,
+    6
+   ],
+   "color": "black"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     50,
+     9,
+     34
+    ],
+    "size": [
+     4,
+     5,
+     4
+    ]
+   },
+   "pattern": "rows",
+   "every": 3,
+   "offset": 1,
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    46,
+    15,
+    25
+   ],
+   "size": [
+    4,
+    3,
+    4
+   ],
+   "color": "black"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     46,
+     15,
+     26
+    ],
+    "size": [
+     4,
+     3,
+     2
+    ]
+   },
+   "pattern": "rows",
+   "every": 3,
+   "offset": 2,
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    2,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    11,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    20,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    29,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    38,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    47,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    56,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    65,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    74,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    83,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    92,
+    50,
+    2
+   ],
+   "size": [
+    2,
+    2,
+    5
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    0,
+    50,
+    7
+   ],
+   "size": [
+    96,
+    2,
+    2
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "prefab",
+   "name": "bus",
+   "at": [
+    [
+     30,
+     50
+    ],
+    [
+     36,
+     50
+    ],
+    [
+     42,
+     50
+    ]
+   ],
+   "colors": {
+    "body": "white",
+    "windows": "azure"
+   }
+  },
+  {
+   "type": "box",
+   "at": [
+    60,
+    55,
+    2
+   ],
+   "size": [
+    6,
+    6,
+    26
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     60,
+     55,
+     3
+    ],
+    "size": [
+     6,
+     6,
+     24
+    ]
+   },
+   "pattern": "rows",
+   "every": 2,
+   "offset": 1,
+   "color": "azure"
+  },
+  {
+   "type": "taper",
+   "at": [
+    60,
+    55,
+    28
+   ],
+   "size": [
+    6,
+    6,
+    3
+   ],
+   "inset_per_layer": 1,
+   "color": "gray"
+  },
+  {
+   "type": "line",
+   "from": [
+    62,
+    57,
+    31
+   ],
+   "to": [
+    62,
+    57,
+    38
+   ],
+   "radius": 0.5,
+   "color": "white"
+  },
+  {
+   "type": "prefab",
+   "name": "tower",
+   "scale": 2,
+   "at": [
+    [
+     34,
+     56
+    ],
+    [
+     44,
+     57
+    ],
+    [
+     72,
+     56
+    ],
+    [
+     84,
+     55
+    ],
+    [
+     4,
+     56
+    ]
+   ],
+   "colors": {
+    "walls": "white",
+    "windows": "azure"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "tower",
+   "scale": 2,
+   "at": [
+    [
+     52,
+     56
+    ],
+    [
+     90,
+     57
+    ]
+   ],
+   "colors": {
+    "walls": "tan",
+    "windows": "blue"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "house",
+   "at": [
+    [
+     11,
+     58
+    ],
+    [
+     26,
+     59
+    ],
+    [
+     78,
+     60
+    ],
+    [
+     68,
+     60
+    ]
+   ],
+   "colors": {
+    "walls": "white",
+    "roof": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     17,
+     52
+    ],
+    [
+     23,
+     52
+    ]
+   ],
+   "colors": {
+    "petals": "pink"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     17,
+     54
+    ],
+    [
+     23,
+     54
+    ]
+   ],
+   "colors": {
+    "petals": "yellow"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     19,
+     52
+    ],
+    [
+     25,
+     52
+    ]
+   ],
+   "colors": {
+    "petals": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     19,
+     54
+    ],
+    [
+     25,
+     54
+    ]
+   ],
+   "colors": {
+    "petals": "purple"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     21,
+     52
+    ],
+    [
+     27,
+     52
+    ]
+   ],
+   "colors": {
+    "petals": "orange"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     21,
+     54
+    ],
+    [
+     27,
+     54
+    ]
+   ],
+   "colors": {
+    "petals": "white"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "tree",
+   "at": [
+    [
+     16,
+     51
+    ],
+    [
+     27,
+     54
+    ],
+    [
+     1,
+     51
+    ],
+    [
+     92,
+     51
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    [
+     20,
+     56
+    ],
+    [
+     23,
+     55
+    ],
+    [
+     29,
+     52
+    ]
+   ],
+   "colors": {
+    "shirt": "yellow",
+    "pants": "blue"
+   }
+  }
+ ]
+}

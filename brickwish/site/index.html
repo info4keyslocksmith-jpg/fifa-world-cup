@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BrickWish</title>
-<meta name="description" content="Tell us what you imagine. We design it, make a building manual just for you, and mail you the bricks.">
+<meta name="description" content="Tell us anything you imagine. Our AI builders design it, you watch it build itself, and we mail you the bricks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: phone-first single column (max 30rem) on a studded baseplate. Sticky top bar with brick progress,
-   fixed bottom bar with big Back / Next. One question per screen, numbered like a building-manual step. */
+   fixed bottom bar with big Back / Next. One question per screen, numbered like a building-manual step.
+   The preview shows the kid's own design: a live 3D build (or the server's video) and the first manual pages. */
 :root{
   --plate:#D9E9F7;        /* baseplate */
   --stud:#CFE1F3;
@@ -272,15 +273,46 @@ details p{padding-bottom:12px}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ---------- levels ---------- */
+.level-name{display:block;font:800 1.35rem/1 var(--font-display)}
+.level-name small{font:600 .8rem/1 var(--font-body);color:var(--ink-soft);margin-left:6px;letter-spacing:.04em;text-transform:uppercase}
+
+/* ---------- live design ---------- */
+.attempt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px;border-radius:14px;background:var(--callout);min-height:180px;justify-content:center}
+.attempt svg{width:100%;max-height:260px}
+.attempt-cap{margin:0;font-size:.85rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.stopbtn{align-self:center}
+
+/* ---------- 3D preview card ---------- */
+.viewer-card{position:relative;width:100%;aspect-ratio:9/16;max-height:72vh;border-radius:18px;overflow:hidden;border:3px solid var(--ink);
+  background:radial-gradient(circle,#CFE1F3 0 5px,transparent 5.5px) 0 0/20px 20px,linear-gradient(#EAF3FC,#D9E9F7 70%,#C9DDF2);color:#14203B}
+.viewer-card canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.vc-top{position:absolute;left:0;right:0;top:4%;text-align:center;padding:0 8%;pointer-events:none}
+.vc-kicker{font:600 .72rem/1.2 var(--font-body);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.vc-title{font:800 1.7rem/1 var(--font-display);margin-top:4px;text-wrap:balance}
+.vc-bottom{position:absolute;left:0;right:0;bottom:4%;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.vc-count{font:800 1.05rem/1 var(--font-display);background:#fff;border:3px solid #14203B;border-radius:999px;padding:6px 14px;font-variant-numeric:tabular-nums}
+.vc-count.ready{background:#FFC629;box-shadow:0 4px 0 #14203B}
+.vc-replay{position:absolute;right:10px;bottom:10px;min-height:44px;padding:8px 14px;border-radius:12px;border:0;background:#fff;color:#14203B;
+  font:800 .95rem/1 var(--font-display);box-shadow:0 3px 0 #14203B;cursor:pointer}
+
+/* ---------- manual pages ---------- */
+.pagethumb{flex:none;width:78%;max-width:320px;aspect-ratio:816/1056;scroll-snap-align:center;border-radius:8px;border:2px solid var(--line);
+  background:#fff;overflow:hidden;position:relative}
+.pagethumb > .bw-manual{position:absolute;left:0;top:0;width:816px;height:1056px;transform-origin:0 0}
+.manual-list{display:flex;flex-direction:column;gap:14px;align-items:center}
+.manual-list .pagethumb{width:100%;max-width:600px}
+.manual-actions{display:flex;gap:10px;flex-wrap:wrap}
+.pageimg{flex:none;width:78%;max-width:320px;height:auto;scroll-snap-align:center;border-radius:8px;border:2px solid var(--line)}
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="topbar-in">
-    <button class="logo" id="logoBtn" type="button"><span class="b" aria-hidden="true"></span><span>BrickWish</span></button>
-    <ol class="progress" id="progress"></ol>
-    <button class="lang" id="langBtn" type="button">ES</button>
+    <button class="logo" id="logoBtn" type="button" aria-label="BrickWish home"><span class="b" aria-hidden="true"></span><span>BrickWish</span></button>
+    <ol class="progress" id="progress" aria-label="Your wish progress"></ol>
   </div>
 </header>
 
@@ -288,457 +320,340 @@ details p{padding-bottom:12px}
 
   <!-- Welcome -->
   <section class="screen" id="s-welcome">
-    <p class="kicker" data-t="welcomeKicker"></p>
-    <h1 class="hero q" tabindex="-1" data-t="welcomeTitle"></h1>
-    <p class="lead" data-t="welcomeLead"></p>
+    <p class="kicker">Custom brick kits for kids</p>
+    <h1 class="hero q" tabindex="-1">Build anything you can imagine.</h1>
+    <p class="lead">Tell us your idea. Our AI builders design it, you watch it build itself, and we mail you the bricks.</p>
     <div class="showcase">
-      <div class="mosaic" id="mosaic" role="img" data-t-aria="mosaicAlt"></div>
+      <div class="mosaic" id="mosaic" role="img" aria-label="A Dalmatian puppy made of bricks"></div>
       <figure class="example">
-        <figcaption data-t="exampleLabel"></figcaption>
-        <p class="example-wish" data-t="exampleWish"></p>
-        <p class="example-meta" data-t="exampleMeta"></p>
+        <figcaption>Kids have wished for</figcaption>
+        <p class="example-wish">The Golden Gate Bridge, the mountains of Medellín, a puppy park on the BeltLine</p>
+        <p class="example-meta">Levels from 100 to 5,000+ pieces</p>
       </figure>
     </div>
     <div class="welcome-actions">
-      <button class="btn btn-primary btn-xl" id="startBtn" type="button" data-t="start"></button>
-      <button class="link" id="restartBtn" type="button" data-t="startOver" hidden></button>
+      <button class="btn btn-primary btn-xl" id="startBtn" type="button">Start my wish</button>
+      <button class="link" id="restartBtn" type="button" hidden>Start a new wish</button>
     </div>
     <ol class="how">
-      <li><span class="how-n">1</span><span data-t="how1"></span></li>
-      <li><span class="how-n">2</span><span data-t="how2"></span></li>
-      <li><span class="how-n">3</span><span data-t="how3"></span></li>
+      <li><span class="how-n">1</span><span>You imagine it</span></li>
+      <li><span class="how-n">2</span><span>AI designs it</span></li>
+      <li><span class="how-n">3</span><span>You build it</span></li>
     </ol>
-    <button class="link" id="infoBtn" type="button" data-t="forGrownups"></button>
+    <button class="link" id="infoBtn" type="button">For grown-ups: prices, safety, privacy</button>
   </section>
 
   <!-- 1. What -->
   <section class="screen" id="s-what" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">1</span><h2 class="q" tabindex="-1" data-t="q_what"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_what"></p>
-    <label class="sr-only" for="wishInput" data-t="wishLabel"></label>
-    <textarea class="wish-input" id="wishInput" rows="2" maxlength="140" autocomplete="off" data-t-ph="wishPh"></textarea>
-    <p class="note" data-t="wishNote"></p>
-    <div class="row"><button class="dice" id="diceBtn" type="button"><span aria-hidden="true">🎲</span><span data-t="dice"></span></button></div>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">1</span><h2 class="q" tabindex="-1">What do you want to build?</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">Anything at all. Type it, or tap a picture.</p>
+    <label class="sr-only" for="wishInput">My idea</label>
+    <textarea class="wish-input" id="wishInput" rows="2" maxlength="140" autocomplete="off" placeholder="the Golden Gate Bridge"></textarea>
+    <p class="note">Just your idea. No names or addresses, please.</p>
+    <div class="row"><button class="dice" id="diceBtn" type="button"><span aria-hidden="true">🎲</span><span>Give me an idea</span></button></div>
     <div class="grid3" id="subjects"></div>
   </section>
 
   <!-- 2. Extras -->
   <section class="screen" id="s-extras" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">2</span><h2 class="q" tabindex="-1" data-t="q_extras"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_extras"></p>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">2</span><h2 class="q" tabindex="-1">Make it extra special</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">Pick as many as you like, or skip.</p>
     <div class="grid2" id="extras"></div>
   </section>
 
   <!-- 3. Colors -->
   <section class="screen" id="s-colors" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">3</span><h2 class="q" tabindex="-1" data-t="q_colors"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_colors"></p>
-    <p class="suggested" id="suggested" data-t="suggested" hidden></p>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">3</span><h2 class="q" tabindex="-1">Pick your colors</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">Choose up to 4.</p>
+    <p class="suggested" id="suggested" hidden>We picked colors for your idea. Tap to change them.</p>
     <div class="grid4" id="colors"></div>
-    <button class="chip wide" id="surpriseBtn" type="button" aria-pressed="false"><span class="emo" aria-hidden="true">🎁</span><span data-t="surpriseChip"></span></button>
+    <button class="chip wide" id="surpriseBtn" type="button" aria-pressed="false"><span class="emo" aria-hidden="true">🎁</span><span>Surprise me with colors</span></button>
   </section>
 
   <!-- 4. Age -->
   <section class="screen" id="s-age" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">4</span><h2 class="q" tabindex="-1" data-t="q_age" id="ageQ"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_age"></p>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">4</span><h2 class="q" tabindex="-1" id="ageQ">Who is the builder?</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">This sets how easy the steps are.</p>
     <div class="grid2" id="ages" role="radiogroup" aria-labelledby="ageQ"></div>
   </section>
 
-  <!-- 5. Size -->
-  <section class="screen" id="s-size" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">5</span><h2 class="q" tabindex="-1" data-t="q_size" id="sizeQ"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_size"></p>
-    <div class="tiers" id="tiers" role="radiogroup" aria-labelledby="sizeQ"></div>
+  <!-- 5. Level -->
+  <section class="screen" id="s-level" hidden>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">5</span><h2 class="q" tabindex="-1" id="levelQ">Pick your level</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">Every level up means more pieces, a bigger model and more details.</p>
+    <div class="tiers" id="levels" role="radiogroup" aria-labelledby="levelQ"></div>
   </section>
 
   <!-- 6. Wish card -->
   <section class="screen" id="s-review" hidden>
-    <div class="qhead"><span class="stepnum" aria-hidden="true">6</span><h2 class="q" tabindex="-1" data-t="q_review"></h2><button class="speak" type="button" data-t-aria="readAloud"></button></div>
-    <p class="hint" data-t="h_review"></p>
+    <div class="qhead"><span class="stepnum" aria-hidden="true">6</span><h2 class="q" tabindex="-1">Your wish card</h2><button class="speak" type="button" aria-label="Read it to me"></button></div>
+    <p class="hint">Looks amazing! Tap the button and our AI builders will design it.</p>
     <article class="wishcard">
       <div class="stage" id="stage" aria-hidden="true"></div>
-      <p class="wc-label" data-t="wishLabel"></p>
+      <p class="wc-label">My idea</p>
       <p class="wc-wish" id="wcWish"></p>
       <dl class="parts">
-        <div><dt data-t="lbl_extras"></dt><dd id="wcExtras"></dd></div>
-        <div><dt data-t="lbl_colors"></dt><dd id="wcColors"></dd></div>
-        <div><dt data-t="lbl_builder"></dt><dd id="wcAge"></dd></div>
-        <div><dt data-t="lbl_size"></dt><dd id="wcSize"></dd></div>
+        <div><dt>Extras</dt><dd id="wcExtras"></dd></div>
+        <div><dt>Colors</dt><dd id="wcColors"></dd></div>
+        <div><dt>Builder</dt><dd id="wcAge"></dd></div>
+        <div><dt>Level</dt><dd id="wcLevel"></dd></div>
       </dl>
     </article>
-    <button class="link" id="editBtn" type="button" data-t="edit"></button>
+    <button class="link" id="editBtn" type="button">Change something</button>
   </section>
 
-  <!-- 7. Designing (the AI agents work) -->
+  <!-- 7. Designing -->
   <section class="screen" id="s-designing" hidden>
     <h2 class="q" tabindex="-1" id="designTitle"></h2>
-    <div class="stage loop" id="designStage" aria-hidden="true"></div>
+    <div class="attempt" id="designStage" aria-live="polite"><div class="stage loop" id="designBricks" aria-hidden="true"></div></div>
     <ol class="checklist" id="designSteps">
-      <li data-t="ds1"></li><li data-t="ds2"></li><li data-t="ds3"></li><li data-t="ds4"></li>
+      <li>Reading your wish</li><li>Building it brick by brick</li><li>Checking that every brick clicks in</li><li>Writing your manual</li>
     </ol>
-    <p class="hint" id="designNote" data-t="designingNote"></p>
+    <p class="hint" id="designNote">Our AI builders take a few minutes. Keep this page open.</p>
     <p class="err" id="designErr" role="alert"></p>
+    <div class="row" id="designRetry" hidden><button class="btn btn-primary" id="retryBtn" type="button">Try again</button></div>
+    <button class="link stopbtn" id="stopBtn" type="button">Stop and change my wish</button>
   </section>
 
-  <!-- 8. Preview: video + first 5 pages, before anyone pays -->
+  <!-- 8. Preview: their own build + the first 5 pages, before anyone pays -->
   <section class="screen" id="s-preview" hidden>
-    <h2 class="q" tabindex="-1" data-t="previewTitle"></h2>
-    <p class="hint" data-t="previewLead"></p>
-    <p class="demo" id="demoPreview" data-t="demoPreview"></p>
-    <video class="buildvideo" id="buildVideo" muted playsinline loop autoplay controls preload="metadata"></video>
-    <div class="statrow"><span><b id="pvPieces"></b> <span data-t="pieces"></span></span><span><b id="pvSteps"></b> <span data-t="stepsWord"></span></span></div>
+    <h2 class="q" tabindex="-1">Your design is ready!</h2>
+    <p class="hint">Watch your model build itself, then flip through the first pages of your manual.</p>
+    <p class="demo" id="pvSource" hidden></p>
+    <div class="viewer-card" id="viewerCard" hidden>
+      <canvas id="viewerCanvas" aria-label="Your model building itself in 3D. Drag to turn it."></canvas>
+      <div class="vc-top"><div class="vc-kicker">Your wish</div><div class="vc-title" id="vcTitle"></div></div>
+      <div class="vc-bottom"><div class="vc-count" id="vcCount"></div></div>
+      <button class="vc-replay" id="replayBtn" type="button">Replay</button>
+    </div>
+    <video class="buildvideo" id="buildVideo" muted playsinline loop autoplay controls preload="metadata" hidden></video>
+    <div class="statrow"><span><b id="pvPieces"></b> pieces</span><span><b id="pvSteps"></b> steps</span><span><b id="pvPageCount"></b> pages</span></div>
     <p class="suggested" id="pvNote" hidden></p>
-    <h3 class="subhead" data-t="pagesTitle"></h3>
-    <div class="pages" id="pvPages" tabindex="0" data-t-aria="pagesTitle"></div>
-    <button class="link" id="changeBtn" type="button" data-t="changeWish"></button>
+    <h3 class="subhead">First 5 pages of your manual</h3>
+    <div class="pages" id="pvPages" tabindex="0" aria-label="First 5 pages of your manual"></div>
+    <button class="link" id="changeBtn" type="button">Change my wish</button>
   </section>
 
   <!-- Parent gate -->
   <section class="screen" id="s-gate" hidden>
-    <h2 class="q" tabindex="-1" data-t="gateTitle"></h2>
-    <p class="hint" data-t="gateLead"></p>
+    <h2 class="q" tabindex="-1">Grown-ups only</h2>
+    <p class="hint">Please answer this to continue.</p>
     <form class="panel" id="gateForm" novalidate>
       <p class="gate-q" id="gateQ"></p>
-      <label class="sr-only" for="gateInput" data-t="gateAnswer"></label>
+      <label class="sr-only" for="gateInput">Answer</label>
       <input class="input big" id="gateInput" type="text" inputmode="numeric" autocomplete="off" maxlength="3">
       <p class="err" id="gateErr" role="alert"></p>
-      <button class="btn btn-primary" type="submit" data-t="gateBtn"></button>
+      <button class="btn btn-primary" type="submit">Continue</button>
     </form>
   </section>
 
   <!-- Checkout (grown-up) -->
   <section class="screen" id="s-checkout" hidden>
-    <h2 class="q" tabindex="-1" data-t="coTitle"></h2>
-    <p class="hint" data-t="coLead"></p>
+    <h2 class="q" tabindex="-1">Finish the order</h2>
+    <p class="hint">Check the design, then pay securely with Stripe.</p>
     <div class="panel">
       <p class="wc-wish" id="coWish"></p>
       <div class="summary" id="coSummary"></div>
-      <div class="sum-total"><span data-t="total"></span><span id="coTotal"></span></div>
-      <p class="muted" data-t="shipIncl"></p>
+      <div class="sum-total"><span>Total</span><span id="coTotal"></span></div>
+      <p class="muted">US shipping included.</p>
     </div>
     <form class="panel" id="coForm" novalidate>
-      <label class="check"><input id="adultInput" type="checkbox"><span data-t="adultLabel"></span></label>
+      <label class="check"><input id="adultInput" type="checkbox"><span>I'm the parent or guardian (18+), and I agree that BrickWish may use my child's idea to design this kit.</span></label>
       <p class="err" id="adultErr" role="alert"></p>
-      <p class="muted" data-t="privacyNote"></p>
+      <p class="muted">Next is Stripe's secure payment page, where you add your email, the shipping address and the builder's first name for the manual cover. We use them only for this kit, and delete the wish and first name 90 days after delivery.</p>
       <p class="warn">
         <svg viewBox="0 0 30 27" aria-hidden="true"><path d="M15 1.5 28.5 25.5H1.5Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 9.5v8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="15" cy="21.3" r="1.8" fill="currentColor"/></svg>
-        <span><strong data-t="warnWord"></strong> <span data-t="warnText"></span></span>
+        <span><strong>WARNING:</strong> CHOKING HAZARD – Small parts. Not for children under 3 yrs.</span>
       </p>
-      <p class="demo" id="demoNote" data-t="demoNote"></p>
-      <button class="btn btn-primary" type="submit" data-t="pay"></button>
+      <p class="demo" id="demoNote">Prototype: no payment is taken and no order is placed.</p>
+      <button class="btn btn-primary" type="submit">Continue to secure payment</button>
     </form>
   </section>
 
   <!-- Done -->
   <section class="screen" id="s-done" hidden>
-    <h2 class="q hero" tabindex="-1" data-t="doneTitle"></h2>
-    <p class="hint" data-t="doneLead"></p>
+    <h2 class="q hero" tabindex="-1">Wish sent!</h2>
+    <p class="hint">Your order code:</p>
     <span class="code" id="doneCode"></span>
     <ol class="timeline">
-      <li><span data-t="d1"></span></li>
-      <li><span data-t="d2"></span></li>
-      <li><span data-t="d3"></span></li>
-      <li><span data-t="d4"></span></li>
+      <li><span>The full manual (PDF) arrives in your email right away.</span></li>
+      <li><span>Our brick partner packs your pieces in numbered bags.</span></li>
+      <li><span>They ship to your door in about 1–2 weeks.</span></li>
+      <li><span>Open bag 1 and start building!</span></li>
     </ol>
-    <button class="btn btn-primary btn-xl" id="againBtn" type="button" data-t="again"></button>
+    <button class="btn btn-primary btn-xl" id="openManualBtn" type="button" hidden>Open my full manual</button>
+    <button class="btn btn-ghost" id="againBtn" type="button">Make another wish</button>
+  </section>
+
+  <!-- The full manual -->
+  <section class="screen" id="s-manual" hidden>
+    <h2 class="q" tabindex="-1" id="manualTitle">Your manual</h2>
+    <p class="hint" id="manualLead"></p>
+    <div class="manual-actions"><button class="btn btn-ghost" id="saveManualBtn" type="button" hidden>Save the manual</button></div>
+    <p class="err" id="saveErr" role="status"></p>
+    <div class="manual-list" id="manualList"></div>
   </section>
 
   <!-- For grown-ups -->
   <section class="screen info" id="s-info" hidden>
-    <h2 class="q" tabindex="-1" data-t="infoTitle"></h2>
-    <p class="hint" data-t="infoLead"></p>
+    <h2 class="q" tabindex="-1">For grown-ups</h2>
+    <p class="hint">What parents usually ask before they order.</p>
     <section>
-      <h3 data-t="infoHow"></h3>
-      <ol><li data-t="ih1"></li><li data-t="ih2"></li><li data-t="ih3"></li><li data-t="ih4"></li></ol>
+      <h3>How it works</h3>
+      <ol>
+        <li>Your child describes any idea, then picks extras, colors, age and a level.</li>
+        <li>Our AI builders design the model in a few minutes and check that every brick connects.</li>
+        <li>Before you pay, you watch your child's model build itself and read the first 5 pages of its manual.</li>
+        <li>When you buy, the full step-by-step manual (PDF) arrives by email, and our brick partner ships the pieces in numbered bags.</li>
+      </ol>
     </section>
     <section>
-      <h3 data-t="infoPrices"></h3>
+      <h3>Levels and prices</h3>
       <div class="table-wrap">
         <table class="prices">
-          <thead><tr><th data-t="col_size"></th><th data-t="col_pieces"></th><th data-t="col_price"></th></tr></thead>
+          <thead><tr><th>Level</th><th>Pieces</th><th>Price</th></tr></thead>
           <tbody id="priceRows"></tbody>
         </table>
       </div>
-      <p class="muted" data-t="priceNote"></p>
+      <p class="muted">US shipping included. Every kit includes the PDF manual and the build video.</p>
     </section>
     <section>
-      <h3 data-t="infoBox"></h3>
-      <ul><li data-t="ib1"></li><li data-t="ib2"></li><li data-t="ib3"></li><li data-t="ib4"></li></ul>
+      <h3>What's in the box</h3>
+      <ul>
+        <li>Every brick for the model in numbered bags, plus spare small pieces</li>
+        <li>The full step-by-step manual (PDF) with the builder's name on the cover</li>
+        <li>A video of the model building itself</li>
+        <li>Free replacement of any missing piece</li>
+      </ul>
     </section>
     <section>
-      <h3 data-t="infoSafety"></h3>
+      <h3>Safety</h3>
       <p class="warn">
         <svg viewBox="0 0 30 27" aria-hidden="true"><path d="M15 1.5 28.5 25.5H1.5Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M15 9.5v8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="15" cy="21.3" r="1.8" fill="currentColor"/></svg>
-        <span><strong data-t="warnWord"></strong> <span data-t="warnText"></span></span>
+        <span><strong>WARNING:</strong> CHOKING HAZARD – Small parts. Not for children under 3 yrs.</span>
       </p>
-      <ul><li data-t="is2"></li><li data-t="is3"></li></ul>
+      <ul>
+        <li>Every kit has a Children's Product Certificate, based on testing at a CPSC-accepted lab (ASTM F963-23 and CPSIA).</li>
+        <li>Steps match the builder's age: younger builders get fewer pieces per step.</li>
+      </ul>
     </section>
     <section>
-      <h3 data-t="infoPrivacy"></h3>
-      <ul><li data-t="ip1"></li><li data-t="ip2"></li><li data-t="ip3"></li></ul>
+      <h3>Privacy</h3>
+      <ul>
+        <li>Kids never type a full name, address or email. Only a grown-up checks out.</li>
+        <li>No ads, no tracking cookies, no accounts and no chat.</li>
+        <li>We use your email only for this order.</li>
+      </ul>
     </section>
     <section>
-      <h3 data-t="infoFaq"></h3>
-      <details><summary data-t="fq1"></summary><p data-t="fa1"></p></details>
-      <details><summary data-t="fq2"></summary><p data-t="fa2"></p></details>
-      <details><summary data-t="fq3"></summary><p data-t="fa3"></p></details>
-      <details><summary data-t="fq4"></summary><p data-t="fa4"></p></details>
+      <h3>Questions</h3>
+      <details><summary>Can my child really ask for anything?</summary><p>Yes. Buildings, bridges, mountains, parks, animals, vehicles, dreams. Brand characters become a look-alike of our own, and anything scary becomes a friendly version. We tell you when we change something.</p></details>
+      <details><summary>Can we see it before we pay?</summary><p>Yes. You see your child's model building itself and the first 5 pages of its manual before you pay.</p></details>
+      <details><summary>How long does it take?</summary><p>The design and preview are ready in a few minutes. The bricks arrive in about 1–2 weeks.</p></details>
+      <details><summary>What if a piece is missing?</summary><p>Every kit has spare small pieces. If something is still missing, we mail it free.</p></details>
+      <details><summary>Do the bricks work with other brands?</summary><p>Yes. Our bricks are compatible with LEGO® bricks and most other major building-brick brands.</p></details>
     </section>
-    <p class="fineprint" data-t="fineprint"></p>
+    <p class="fineprint">BrickWish is an independent company. LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize or endorse this site. Each design is created by our AI builders and checked automatically for buildability. Bricks made in China, designed in the USA.</p>
   </section>
 </main>
 
 <nav class="bottombar" id="bottombar" hidden>
   <div class="bottombar-in">
-    <button class="btn btn-ghost" id="backBtn" type="button"></button>
-    <button class="btn btn-primary" id="nextBtn" type="button"></button>
+    <button class="btn btn-ghost" id="backBtn" type="button">Back</button>
+    <button class="btn btn-primary" id="nextBtn" type="button">Next</button>
   </div>
 </nav>
 <p class="toast" id="toast" role="status" hidden></p>
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
 <script>
 (() => {
 "use strict";
 
 /* ===== Settings: edit these when going live ===== */
 const CONFIG = {
-  apiBase: "",          // where agents/api.py runs, e.g. "https://api.brickwish.com". Empty = demo with the example design
-  checkoutLinks: { mini: "", medium: "", big: "", mega: "" }, // one Stripe Payment Link per size (it collects email, address, builder name)
+  apiBase: "",           // where agents/api.py runs, e.g. "https://api.brickwish.com". Empty = design here in the page
+  checkoutLinks: { 1: "", 2: "", 3: "", 4: "", 5: "", 6: "" },  // one Stripe Payment Link per level
+  enginePath: "../engine/",          // the brick engine: the same code the server runs
+  examplesPath: "../examples/out/",  // finished example designs (one model.json per folder)
 };
-const DEMO = { title: "Empire State Building", pieces: 213, steps: 63, video: "demo/build.mp4", poster: "demo/poster.png",
-               preview: [1, 2, 3, 4, 5].map((i) => `demo/preview-${i}.png`) };
-const TIERS = [
-  { id: "mini",   pcs: "80–150",    price: 39,  bricks: 1 },
-  { id: "medium", pcs: "200–350",   price: 69,  bricks: 2 },
-  { id: "big",    pcs: "400–650",   price: 99,  bricks: 3 },
-  { id: "mega",   pcs: "800–1,200", price: 179, bricks: 4 },
+const LEVELS = [
+  { id: 1, name: "Starter",  pcs: "100–250",     price: 39,  time: "About 30 minutes of building" },
+  { id: 2, name: "Explorer", pcs: "300–600",     price: 79,  time: "About an hour of building" },
+  { id: 3, name: "Builder",  pcs: "700–1,200",   price: 139, time: "An afternoon of building" },
+  { id: 4, name: "Master",   pcs: "1,300–2,400", price: 229, time: "A weekend project" },
+  { id: 5, name: "Legend",   pcs: "2,500–4,500", price: 399, time: "A few weekends of building" },
+  { id: 6, name: "Epic",     pcs: "5,000+",      price: 699, time: "A big display piece" },
 ];
 const AGES = [
-  { id: "4-6",   label: "4–6",   level: 1, best: ["mini", "medium"] },
-  { id: "7-9",   label: "7–9",   level: 2, best: ["medium", "big"] },
-  { id: "10-12", label: "10–12", level: 3, best: ["big", "mega"] },
-  { id: "13+",   label: "13+",   level: 4, best: ["big", "mega"] },
+  { id: "4-6",   label: "4–6",   stars: 1, desc: "Big, easy steps", best: [1, 2] },
+  { id: "7-9",   label: "7–9",   stars: 2, desc: "A fun challenge", best: [2, 3] },
+  { id: "10-12", label: "10–12", stars: 3, desc: "Real builder",    best: [3, 4] },
+  { id: "13+",   label: "13+",   stars: 4, desc: "Master builder",  best: [4, 5, 6] },
 ];
 const COLORS = [
-  ["red", "#C91A09"], ["orange", "#FE8A18"], ["yellow", "#F2CD37"], ["green", "#237841"],
-  ["blue", "#0055BF"], ["purple", "#7A3FB8"], ["pink", "#F48FB1"], ["brown", "#6B4226"],
-  ["tan", "#E4CD9E"], ["gray", "#A0A5A9"], ["white", "#FFFFFF"], ["black", "#1E1E24"],
+  ["red", "#C91A09", "Red"], ["orange", "#FE8A18", "Orange"], ["yellow", "#F2CD37", "Yellow"], ["green", "#237841", "Green"],
+  ["blue", "#0055BF", "Blue"], ["purple", "#7A3FB8", "Purple"], ["pink", "#F48FB1", "Pink"], ["brown", "#6B4226", "Brown"],
+  ["tan", "#E4CD9E", "Tan"], ["gray", "#A0A5A9", "Gray"], ["white", "#F4F4F4", "White"], ["black", "#1E1E24", "Black"],
 ];
-const HEX = Object.fromEntries(COLORS);
-const SUBJECTS = [["dog","🐶"],["cat","🐱"],["dino","🦖"],["unicorn","🦄"],["dragon","🐉"],["shark","🦈"],
-                  ["rocket","🚀"],["racecar","🏎️"],["train","🚂"],["castle","🏰"],["robot","🤖"],["house","🏠"]];
-const EXTRAS = [["crown","👑"],["sunglasses","😎"],["wings","🦋"],["rainbow","🌈"],
-                ["fire","🔥"],["treasure","💎"],["flowers","🌸"],["friend","🐭"]];
-
-/* Colors we pre-pick from the wish text (English and Spanish, accents removed). */
-const COLOR_WORDS = [
-  [/\b(red|roj[oa]s?)\b/, "red"], [/\b(orange|naranja)/, "orange"], [/\b(yellow|amarill)/, "yellow"],
-  [/\b(green|verde)/, "green"], [/\b(blue|azul)/, "blue"], [/\b(purple|morad|violet)/, "purple"],
-  [/\b(pink|rosad?[oa]?s?)\b/, "pink"], [/\b(brown|cafe|marron)\b/, "brown"], [/\b(tan|beige)\b/, "tan"],
-  [/\b(gr[ae]y|gris|silver|platead)/, "gray"], [/\b(white|blanc)/, "white"], [/\b(black|negr)/, "black"],
+const HEX = Object.fromEntries(COLORS.map(([id, hex]) => [id, hex]));
+const COLOR_NAME = Object.fromEntries(COLORS.map(([id, , n]) => [id, n]));
+const SUBJECTS = [["dog", "🐶", "Dog"], ["unicorn", "🦄", "Unicorn"], ["dino", "🦖", "Dinosaur"], ["dragon", "🐉", "Dragon"],
+  ["rocket", "🚀", "Rocket"], ["racecar", "🏎️", "Race car"], ["castle", "🏰", "Castle"], ["robot", "🤖", "Robot"],
+  ["bridge", "🌉", "Bridge"], ["mountain", "⛰️", "Mountain"], ["park", "🏞️", "Park"], ["city", "🏙️", "City"]];
+const EXTRAS = [["crown", "👑", "Crown"], ["sunglasses", "😎", "Sunglasses"], ["wings", "🦋", "Wings"], ["rainbow", "🌈", "Rainbow"],
+  ["fire", "🔥", "Flames"], ["treasure", "💎", "Treasure"], ["flowers", "🌸", "Flowers"], ["friend", "🐭", "Tiny friend"]];
+const IDEAS = ["the Golden Gate Bridge", "the mountains of Medellín", "a puppy park on the BeltLine", "the Empire State Building",
+  "a turtle astronaut", "a dragon that delivers pizza", "a robot dog with a jetpack", "a castle on a cloud",
+  "a treehouse with a slide", "a volcano island with a pirate ship"];
+// finished designs the page can show when it can't design live
+const EXAMPLES = [
+  { file: "empire-state-building", level: 1, match: /empire/i },
+  { file: "golden-gate-bridge", level: 4, match: /golden gate|san francisco|bridge/i },
+  { file: "medellin-mountain", level: 6, match: /medell[ií]n|mountain|antioquia/i },
+  { file: "puppy-park-beltline", level: 3, match: /beltline|puppy park|dog park|\bpark\b/i },
 ];
+const COLOR_WORDS = [[/\bred\b/, "red"], [/orange/, "orange"], [/yellow|gold/, "yellow"], [/green/, "green"], [/blue/, "blue"],
+  [/purple|violet/, "purple"], [/pink/, "pink"], [/brown/, "brown"], [/\btan\b|beige/, "tan"], [/gr[ae]y|silver/, "gray"],
+  [/white|snow/, "white"], [/black/, "black"]];
 const SUBJECT_COLORS = [
-  [/dalmat/, ["white", "black"]], [/penguin|pingu/, ["black", "white", "orange"]],
-  [/\b(dog|pupp|perr|cachorr)/, ["brown", "tan", "black"]], [/\b(cat|kitt|gat)/, ["orange", "white"]],
-  [/dino|t-?rex/, ["green", "yellow"]], [/unicorn/, ["white", "pink", "purple"]], [/dragon/, ["red", "orange", "black"]],
-  [/shark|tiburon/, ["gray", "white", "blue"]], [/rocket|cohete|spaceship|nave/, ["white", "red", "gray"]],
-  [/fire ?truck|bomber/, ["red", "white", "gray"]], [/police|polic/, ["blue", "white", "black"]],
-  [/\b(race ?car|car|carro|coche|auto)\b/, ["red", "black", "gray"]], [/train|tren/, ["red", "black", "yellow"]],
-  [/castle|castill|princes/, ["gray", "tan", "blue"]], [/robot/, ["gray", "blue", "yellow"]],
-  [/turtle|tortug/, ["green", "brown"]], [/house|casa|home|hogar/, ["red", "white", "tan"]],
-  [/flower|flor/, ["pink", "green", "yellow"]], [/tree|arbol/, ["green", "brown"]],
+  [/dalmatian/, ["white", "black"]], [/penguin/, ["black", "white", "orange"]], [/golden gate|bridge/, ["red", "gray", "blue"]],
+  [/medell[ií]n|mountain|hill/, ["green", "orange", "brown"]], [/park|garden/, ["green", "brown", "gray"]],
+  [/\b(dog|pupp)/, ["brown", "tan", "black"]], [/\b(cat|kitt)/, ["orange", "white"]], [/dino|t-?rex/, ["green", "yellow"]],
+  [/unicorn/, ["white", "pink", "purple"]], [/dragon/, ["red", "orange", "black"]], [/shark/, ["gray", "white", "blue"]],
+  [/rocket|spaceship/, ["white", "red", "gray"]], [/fire ?truck/, ["red", "white", "gray"]], [/police/, ["blue", "white", "black"]],
+  [/race ?car|\bcar\b/, ["red", "black", "gray"]], [/train/, ["red", "black", "yellow"]], [/castle|princess/, ["gray", "tan", "blue"]],
+  [/robot/, ["gray", "blue", "yellow"]], [/empire state|skyscraper|city|building/, ["tan", "gray", "white"]],
+  [/turtle/, ["green", "brown"]], [/house|home/, ["red", "white", "tan"]], [/flower/, ["pink", "green", "yellow"]],
 ];
-
-/* The welcome mosaic: the founders' example wish, a Dalmatian, as 1×1 studs. */
-const DALMATIAN = [
-  ".KK.....KK.",
-  "KKKWWWWWKKK",
-  "KKWWWWKWWKK",
-  "KKWKWWWKWKK",
-  "KKWWWWWWWKK",
-  "K.WKWWWWW.K",
-  "..WWKKKWW..",
-  "...WWKWW...",
-  "...WWPWW...",
-  "..RRRYRRR..",
-  "..WWWKWWW..",
-];
+const DALMATIAN = [".KK.....KK.", "KKKWWWWWKKK", "KKWWWWKWWKK", "KKWKWWWKWKK", "KKWWWWWWWKK", "K.WKWWWWW.K",
+  "..WWKKKWW..", "...WWKWW...", "...WWPWW...", "..RRRYRRR..", "..WWWKWWW.."];
 const PX = { W: "#FFFFFF", K: "#1E1E24", R: "#C91A09", Y: "#F2CD37", P: "#F48FB1" };
 
-/* ===== Words (EN / ES). Kids get "tú", grown-ups get "usted". ===== */
-const T = {
-en: {
-  langBtn: "ES", langAria: "Cambiar a español", home: "BrickWish home", progress: "Your wish progress", readAloud: "Read it to me",
-  welcomeKicker: "Custom brick kits for kids",
-  welcomeTitle: "Build anything you can imagine.",
-  welcomeLead: "Tell us your idea. We design it, make a building manual just for you, and mail you the bricks.",
-  mosaicAlt: "A Dalmatian puppy made of bricks",
-  exampleLabel: "Example wish", exampleWish: "“A Dalmatian puppy with a red collar”",
-  exampleMeta: "Medium · 200–350 pieces · Builder age 7–9",
-  start: "Start my wish", continueWish: "Keep going with my wish", startOver: "Start a new wish",
-  how1: "You imagine it", how2: "We design it", how3: "You build it",
-  forGrownups: "For grown-ups: prices, safety, privacy",
-  q_what: "What do you want to build?", h_what: "Type it, or tap a picture.", wishLabel: "My idea",
-  wishPh: "a Dalmatian puppy", wishNote: "Just your idea. No names or addresses, please.", dice: "Give me an idea",
-  q_extras: "Make it extra special", h_extras: "Pick as many as you like, or skip.",
-  q_colors: "Pick your colors", h_colors: "Choose up to 4.", suggested: "We picked colors for your idea. Tap to change them.",
-  maxColors: "That's 4 colors! Tap one to take it off.", surpriseChip: "Surprise me with colors",
-  q_age: "Who is the builder?", h_age: "This sets how easy the steps are.",
-  q_size: "How big?", h_size: "More pieces means a bigger model and more building fun.", pieces: "pieces", bestBadge: "Great for this age",
-  q_review: "Your wish card", h_review: "Looks amazing! Tap the button and our AI builders will design it.",
-  lbl_extras: "Extras", lbl_colors: "Colors", lbl_builder: "Builder", lbl_size: "Size", none: "None", surpriseColors: "Surprise colors",
-  ageWord: "Age", edit: "Change something", askGrownup: "Ask a grown-up",
-  back: "Back", next: "Next", skip: "Skip", surpriseNext: "Surprise me!",
-  need_what: "Type an idea or tap a picture first.", need_age: "Tap who is building first.", need_size: "Tap a size first.",
-  gateTitle: "Grown-ups only", gateLead: "Please answer this to continue.", gateQ: "What is {a} × {b}?", gateAnswer: "Answer",
-  gateBtn: "Continue", gateWrong: "Not quite. Try again.", gateNew: "That was 3 tries. Here is a new question.",
-  coTitle: "Finish the order", coLead: "Check the design, then pay securely with Stripe.", total: "Total", shipIncl: "US shipping included.",
-  adultLabel: "I'm the parent or guardian (18+), and I agree that BrickWish may use my child's idea to design this kit.",
-  privacyNote: "Next is Stripe's secure payment page, where you add your email, the shipping address and the builder's first name for the manual cover. We use them only for this kit, and delete the wish and first name 90 days after delivery.",
-  adultErr: "Please confirm you're the parent or guardian and agree.",
-  warnWord: "WARNING:", warnText: "CHOKING HAZARD – Small parts. Not for children under 3 yrs.",
-  demoNote: "Prototype: no payment is taken and no order is placed.", pay: "Continue to secure payment",
-  doneTitle: "Wish sent!", doneLead: "Your order code:",
-  makeDesign: "Make my design", designingTitle: "Designing: {x}", ds1: "Reading your wish", ds2: "Building it brick by brick", ds3: "Writing your manual", ds4: "Making your video", designingNote: "Our AI builders take a few minutes. Keep this page open.", designFail: "Our builders got stuck on this one. Go back and change your wish a little.", previewTitle: "Your design is ready!", previewLead: "Watch it build itself, then flip through the first pages of your manual.", demoPreview: "Demo: every wish shows this example, the Empire State Building. The live site designs your own wish.", pagesTitle: "First 5 pages of your manual", stepsWord: "steps", pageWord: "Page", changeWish: "Change my wish",
-  d1: "The full manual (PDF) arrives in your email right away.", d2: "Our brick partner packs your pieces in numbered bags.",
-  d3: "They ship to your door in about 1–2 weeks.", d4: "Open bag 1 and start building!", again: "Make another wish",
-  infoTitle: "For grown-ups", infoLead: "What parents usually ask before they order.", infoStart: "Start a wish",
-  infoHow: "How it works",
-  ih1: "Your child describes an idea, then picks extras, colors, age and size.",
-  ih2: "Our AI builders design the model in a few minutes and show you a video of it and the first 5 pages of the manual, before you pay.",
-  ih3: "When you buy, the full step-by-step manual (PDF) arrives by email. Print it or build from a tablet.",
-  ih4: "Our brick partner ships the pieces in numbered bags straight to your door.",
-  infoPrices: "Prices", col_size: "Size", col_pieces: "Pieces", col_price: "Price",
-  priceNote: "US shipping included. Every kit includes the PDF manual and the build video.",
-  infoBox: "What's in the box",
-  ib1: "Every brick for the model in numbered bags, plus spare small pieces",
-  ib2: "The full step-by-step manual (PDF) with the builder's name on the cover",
-  ib3: "A video of the model building itself", ib4: "Free replacement of any missing piece",
-  infoSafety: "Safety",
-  is2: "Every kit has a Children's Product Certificate, based on testing at a CPSC-accepted lab (ASTM F963-23 and CPSIA).",
-  is3: "Steps match the builder's age: younger builders get fewer pieces per step.",
-  infoPrivacy: "Privacy",
-  ip1: "Kids never type a full name, address or email. Only a grown-up checks out.",
-  ip2: "No ads, no tracking cookies, no accounts and no chat.", ip3: "We use your email only for this order and the design approval.",
-  infoFaq: "Questions",
-  fq1: "How long does it take?", fa1: "The design and preview are ready in a few minutes. The bricks arrive in about 1–2 weeks.",
-  fq2: "Can we see it before we pay?", fa2: "Yes. You see a video of the finished model and the first 5 pages of the manual before you pay.",
-  fq3: "What if a piece is missing?", fa3: "Every kit has spare small pieces. If something is still missing, we mail it free.",
-  fq4: "Do the bricks work with other brands?", fa4: "Yes. Our bricks are compatible with LEGO® bricks and most other major building-brick brands.",
-  fineprint: "BrickWish is an independent company. LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize or endorse this site. Bricks made in China, designed and packed in the USA.",
-  subjects: { dog:"Dog", cat:"Cat", dino:"Dinosaur", unicorn:"Unicorn", dragon:"Dragon", shark:"Shark", rocket:"Rocket",
-              racecar:"Race car", train:"Train", castle:"Castle", robot:"Robot", house:"House" },
-  extras: { crown:"Crown", sunglasses:"Sunglasses", wings:"Wings", rainbow:"Rainbow", fire:"Flames", treasure:"Treasure",
-            flowers:"Flowers", friend:"Tiny friend" },
-  colors: { red:"Red", orange:"Orange", yellow:"Yellow", green:"Green", blue:"Blue", purple:"Purple", pink:"Pink",
-            brown:"Brown", tan:"Tan", gray:"Gray", white:"White", black:"Black" },
-  ages: { "4-6":"Big, easy steps", "7-9":"A fun challenge", "10-12":"Real builder", "13+":"Master builder" },
-  tiers: { mini:["Mini","About 30 minutes of building"], medium:["Medium","About 1 hour of building"],
-           big:["Big","2 to 3 hours of building"], mega:["Mega","A whole-weekend project"] },
-  ideas: ["a turtle astronaut", "a dragon that delivers pizza", "a robot dog with a jetpack", "a castle on a cloud",
-          "a shark on a skateboard", "an ice cream truck for penguins", "a treehouse with a slide", "a unicorn fire truck"],
-},
-es: {
-  langBtn: "EN", langAria: "Switch to English", home: "Inicio de BrickWish", progress: "Progreso de tu deseo", readAloud: "Léemelo",
-  welcomeKicker: "Kits de bloques personalizados para niños",
-  welcomeTitle: "Construye todo lo que imagines.",
-  welcomeLead: "Cuéntanos tu idea. La diseñamos, hacemos un manual solo para ti y te enviamos los bloques.",
-  mosaicAlt: "Un cachorro dálmata hecho de bloques",
-  exampleLabel: "Ejemplo de deseo", exampleWish: "“Un cachorro dálmata con collar rojo”",
-  exampleMeta: "Mediano · 200–350 piezas · Constructor de 7–9 años",
-  start: "Empezar mi deseo", continueWish: "Seguir con mi deseo", startOver: "Empezar un deseo nuevo",
-  how1: "Tú lo imaginas", how2: "Nosotros lo diseñamos", how3: "Tú lo construyes",
-  forGrownups: "Para adultos: precios, seguridad, privacidad",
-  q_what: "¿Qué quieres construir?", h_what: "Escríbelo o toca un dibujo.", wishLabel: "Mi idea",
-  wishPh: "un cachorro dálmata", wishNote: "Solo tu idea. Sin nombres ni direcciones, por favor.", dice: "Dame una idea",
-  q_extras: "Hazlo súper especial", h_extras: "Elige todos los que quieras, o salta este paso.",
-  q_colors: "Elige tus colores", h_colors: "Elige hasta 4.", suggested: "Elegimos colores para tu idea. Tócalos para cambiarlos.",
-  maxColors: "¡Ya tienes 4 colores! Toca uno para quitarlo.", surpriseChip: "Sorpréndeme con los colores",
-  q_age: "¿Quién va a construir?", h_age: "Así sabemos qué tan fáciles deben ser los pasos.",
-  q_size: "¿Qué tan grande?", h_size: "Más piezas = un modelo más grande y más diversión.", pieces: "piezas", bestBadge: "Ideal para esta edad",
-  q_review: "Tu tarjeta de deseo", h_review: "¡Se ve increíble! Toca el botón y nuestros constructores de IA lo diseñarán.",
-  lbl_extras: "Extras", lbl_colors: "Colores", lbl_builder: "Constructor", lbl_size: "Tamaño", none: "Ninguno", surpriseColors: "Colores sorpresa",
-  ageWord: "Edad", edit: "Cambiar algo", askGrownup: "Llamar a un adulto",
-  back: "Atrás", next: "Siguiente", skip: "Saltar", surpriseNext: "¡Sorpréndeme!",
-  need_what: "Primero escribe una idea o toca un dibujo.", need_age: "Primero toca quién va a construir.", need_size: "Primero toca un tamaño.",
-  gateTitle: "Solo para adultos", gateLead: "Responda esto para continuar.", gateQ: "¿Cuánto es {a} × {b}?", gateAnswer: "Respuesta",
-  gateBtn: "Continuar", gateWrong: "Casi. Intente otra vez.", gateNew: "Fueron 3 intentos. Aquí hay otra pregunta.",
-  coTitle: "Terminar el pedido", coLead: "Revise el diseño y pague de forma segura con Stripe.", total: "Total", shipIncl: "Envío en EE. UU. incluido.",
-  adultLabel: "Soy el padre, la madre o el tutor (18+) y acepto que BrickWish use la idea de mi hijo para diseñar este kit.",
-  privacyNote: "Después verá la página de pago segura de Stripe, donde escribe su correo, la dirección de envío y el primer nombre del constructor para la portada del manual. Los usamos solo para este kit y borramos el deseo y el nombre 90 días después de la entrega.",
-  adultErr: "Confirme que es el padre, la madre o el tutor y que está de acuerdo.",
-  warnWord: "ADVERTENCIA:", warnText: "PELIGRO DE ASFIXIA – Piezas pequeñas. No apto para menores de 3 años.",
-  demoNote: "Prototipo: no se cobra nada y no se hace ningún pedido.", pay: "Continuar al pago seguro",
-  doneTitle: "¡Deseo enviado!", doneLead: "Tu código de pedido:",
-  makeDesign: "Crear mi diseño", designingTitle: "Diseñando: {x}", ds1: "Leyendo tu deseo", ds2: "Construyéndolo bloque por bloque", ds3: "Escribiendo tu manual", ds4: "Haciendo tu video", designingNote: "Nuestros constructores de IA tardan unos minutos. Deja esta página abierta.", designFail: "Nuestros constructores se atoraron con este. Regresa y cambia un poco tu deseo.", previewTitle: "¡Tu diseño está listo!", previewLead: "Mira cómo se construye solo y hojea las primeras páginas de tu manual.", demoPreview: "Demo: cada deseo muestra este ejemplo, el Edificio Empire State. El sitio real diseña tu propio deseo.", pagesTitle: "Las primeras 5 páginas de tu manual", stepsWord: "pasos", pageWord: "Página", changeWish: "Cambiar mi deseo",
-  d1: "El manual completo (PDF) llega a tu correo enseguida.", d2: "Nuestro socio de bloques empaca tus piezas en bolsas numeradas.",
-  d3: "Llegan a tu puerta en 1 o 2 semanas.", d4: "¡Abre la bolsa 1 y empieza a construir!", again: "Pedir otro deseo",
-  infoTitle: "Para adultos", infoLead: "Lo que los papás suelen preguntar antes de pedir.", infoStart: "Empezar un deseo",
-  infoHow: "Cómo funciona",
-  ih1: "Su hijo describe una idea y elige extras, colores, edad y tamaño.",
-  ih2: "Nuestros constructores de IA diseñan el modelo en unos minutos y le muestran un video y las primeras 5 páginas del manual, antes de pagar.",
-  ih3: "Cuando compra, el manual completo paso a paso (PDF) llega por correo. Imprímalo o construya mirando una tableta.",
-  ih4: "Nuestro socio de bloques envía las piezas en bolsas numeradas directo a su puerta.",
-  infoPrices: "Precios", col_size: "Tamaño", col_pieces: "Piezas", col_price: "Precio",
-  priceNote: "Envío en EE. UU. incluido. Cada kit trae el manual en PDF y el video de construcción.",
-  infoBox: "Qué trae la caja",
-  ib1: "Todos los bloques del modelo en bolsas numeradas, más piezas pequeñas de repuesto",
-  ib2: "El manual completo paso a paso (PDF) con el nombre del constructor en la portada",
-  ib3: "Un video del modelo construyéndose solo", ib4: "Reemplazo gratis de cualquier pieza que falte",
-  infoSafety: "Seguridad",
-  is2: "Cada kit tiene un Certificado de Producto Infantil basado en pruebas de un laboratorio aceptado por la CPSC (ASTM F963-23 y CPSIA).",
-  is3: "Los pasos se ajustan a la edad: los más pequeños reciben menos piezas por paso.",
-  infoPrivacy: "Privacidad",
-  ip1: "Los niños nunca escriben nombre completo, dirección ni correo. Solo un adulto termina el pedido.",
-  ip2: "Sin anuncios, sin cookies de rastreo, sin cuentas y sin chat.", ip3: "Usamos su correo solo para este pedido y la aprobación del diseño.",
-  infoFaq: "Preguntas",
-  fq1: "¿Cuánto tarda?", fa1: "El diseño y la vista previa están listos en unos minutos. Los bloques llegan en 1 o 2 semanas.",
-  fq2: "¿Podemos verlo antes de pagar?", fa2: "Sí. Ve un video del modelo terminado y las primeras 5 páginas del manual antes de pagar.",
-  fq3: "¿Y si falta una pieza?", fa3: "Cada kit trae piezas pequeñas de repuesto. Si aun así falta algo, se la enviamos gratis.",
-  fq4: "¿Los bloques sirven con otras marcas?", fa4: "Sí. Nuestros bloques son compatibles con los bloques LEGO® y con la mayoría de las otras marcas de bloques.",
-  fineprint: "BrickWish es una empresa independiente. LEGO® es una marca registrada del Grupo LEGO, que no patrocina, autoriza ni respalda este sitio. Bloques hechos en China, diseñados y empacados en EE. UU.",
-  subjects: { dog:"Perro", cat:"Gato", dino:"Dinosaurio", unicorn:"Unicornio", dragon:"Dragón", shark:"Tiburón", rocket:"Cohete",
-              racecar:"Carro de carreras", train:"Tren", castle:"Castillo", robot:"Robot", house:"Casa" },
-  extras: { crown:"Corona", sunglasses:"Lentes de sol", wings:"Alas", rainbow:"Arcoíris", fire:"Fuego", treasure:"Tesoro",
-            flowers:"Flores", friend:"Amiguito" },
-  colors: { red:"Rojo", orange:"Naranja", yellow:"Amarillo", green:"Verde", blue:"Azul", purple:"Morado", pink:"Rosado",
-            brown:"Café", tan:"Beige", gray:"Gris", white:"Blanco", black:"Negro" },
-  ages: { "4-6":"Pasos grandes y fáciles", "7-9":"Un reto divertido", "10-12":"Constructor de verdad", "13+":"Maestro constructor" },
-  tiers: { mini:["Mini","Unos 30 minutos de construcción"], medium:["Mediano","Como 1 hora de construcción"],
-           big:["Grande","De 2 a 3 horas de construcción"], mega:["Mega","Un proyecto de fin de semana"] },
-  ideas: ["una tortuga astronauta", "un dragón que reparte pizza", "un perro robot con propulsores", "un castillo sobre una nube",
-          "un tiburón en patineta", "un camión de helados para pingüinos", "una casa del árbol con tobogán", "un camión de bomberos unicornio"],
-}};
-
-/* ===== State ===== */
-const KEY = "brickwish.wish.v1";
-const blank = () => ({ wish: "", extras: [], colors: [], colorsTouched: false, surprise: false, age: null, size: null, code: "", preview: null, designStep: 0 });
-const state = Object.assign({ lang: "en", screen: "welcome", infoFrom: "welcome", gatePassed: false, code: "" }, blank());
+/* ===== State (only the wish is remembered on this device; nothing personal) ===== */
+const KEY = "brickwish.wish.v2";
+const blank = () => ({ wish: "", extras: [], colors: [], colorsTouched: false, surprise: false, age: null, level: null });
+const state = Object.assign({ screen: "welcome", infoFrom: "welcome", gatePassed: false, code: "", design: null, designStep: 0, showSuggested: false }, blank());
 try {
   const saved = JSON.parse(localStorage.getItem(KEY) || "null");
-  if (saved && typeof saved === "object") {
-    for (const k of ["wish", "extras", "colors", "colorsTouched", "surprise", "age", "size", "lang", "code", "preview"]) if (k in saved) state[k] = saved[k];
-  } else if ((navigator.language || "").toLowerCase().startsWith("es")) state.lang = "es";
-} catch (e) { /* storage blocked: start fresh */ }
+  if (saved && typeof saved === "object") for (const k of Object.keys(blank())) if (k in saved) state[k] = saved[k];
+} catch (e) { /* storage blocked */ }
 function save() {
-  // Only the wish itself is remembered on this device. Name and email are never stored.
-  try {
-    const { wish, extras, colors, colorsTouched, surprise, age, size, lang, code, preview } = state;
-    localStorage.setItem(KEY, JSON.stringify({ wish, extras, colors, colorsTouched, surprise, age, size, lang, code, preview }));
-  } catch (e) { /* ignore */ }
+  try { const o = {}; for (const k of Object.keys(blank())) o[k] = state[k]; localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* ignore */ }
 }
 
 /* ===== Helpers ===== */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const t = (k) => (T[state.lang][k] ?? T.en[k] ?? k);
+const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const cap = (x) => (x ? x[0].toUpperCase() + x.slice(1) : x);
 const brick = (hex, cls = "") => `<span class="b ${cls}"${hex ? ` style="--c:${hex}"` : ""} aria-hidden="true"></span>`;
 const money = (n) => "$" + n;
-const tierOf = (id) => TIERS.find((x) => x.id === id);
+const levelOf = (id) => LEVELS.find((x) => x.id === id);
 const ageOf = (id) => AGES.find((x) => x.id === id);
 const artColors = () => (state.colors.length ? state.colors : ["red", "blue", "yellow", "green"]).map((c) => HEX[c]);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let toastTimer;
 function toast(msg) {
   const el = $("#toast"); el.textContent = msg; el.hidden = false;
@@ -756,92 +671,86 @@ function scrub(text) {
     .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, "[removed]")
     .replace(/(https?:\/\/|www\.)\S+/gi, "[removed]")
     .replace(/\+?\d[\d\s().-]{6,}\d/g, "[removed]")
-    .replace(/\b\d{1,6}\s+(?:[A-Za-zÀ-ÿ]+\s){0,3}(?:st|street|ave|avenue|rd|road|blvd|dr|drive|ln|lane|ct|calle|avenida)\b\.?/gi, "[removed]");
+    .replace(/\b\d{1,6}\s+(?:[A-Za-zÀ-ÿ]+\s){0,3}(?:st|street|ave|avenue|rd|road|blvd|dr|drive|ln|lane|ct)\b\.?/gi, "[removed]");
 }
 function makeCode() {
   const A = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"; let s = "BW-";
-  const r = new Uint32Array(5); (window.crypto || {}).getRandomValues ? crypto.getRandomValues(r) : r.forEach((_, i) => r[i] = Math.random() * 1e9);
-  r.forEach((v) => s += A[v % A.length]); return s;
+  const r = new Uint32Array(5); crypto.getRandomValues(r);
+  r.forEach((v) => { s += A[v % A.length]; }); return s;
 }
 
-/* ===== Speech (reads the question aloud for early readers; no microphone, nothing recorded) ===== */
+/* ===== Speech (reads the question aloud for early readers; never listens) ===== */
 const canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
-function speak(text) {
-  try {
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = state.lang === "es" ? "es-US" : "en-US"; u.rate = 0.95;
-    speechSynthesis.speak(u);
-  } catch (e) { /* not available */ }
-}
 const SPEAKER = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 $$(".speak").forEach((b) => {
   b.innerHTML = SPEAKER; b.hidden = !canSpeak;
   b.addEventListener("click", () => {
     const sec = b.closest(".screen");
-    speak($(".q", sec).textContent + ". " + ($(".hint", sec)?.textContent || ""));
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance($(".q", sec).textContent + ". " + ($(".hint", sec)?.textContent || ""));
+      u.lang = "en-US"; u.rate = 0.95; speechSynthesis.speak(u);
+    } catch (e) { /* not available */ }
   });
 });
 
-/* ===== Builders for lists (rebuilt when the language changes) ===== */
+/* ===== Lists ===== */
 function buildLists() {
-  const L = T[state.lang];
-  $("#subjects").innerHTML = SUBJECTS.map(([id, e]) =>
-    `<button class="chip" type="button" data-subject="${id}" aria-pressed="false"><span class="emo" aria-hidden="true">${e}</span><span>${L.subjects[id]}</span></button>`).join("");
-  $("#extras").innerHTML = EXTRAS.map(([id, e]) =>
-    `<button class="chip wide" type="button" data-extra="${id}" aria-pressed="false"><span class="emo" aria-hidden="true">${e}</span><span>${L.extras[id]}</span></button>`).join("");
-  $("#colors").innerHTML = COLORS.map(([id, hex]) =>
-    `<button class="chip swatch" type="button" data-color="${id}" aria-pressed="false">${brick(hex)}<span>${L.colors[id]}</span></button>`).join("");
+  $("#subjects").innerHTML = SUBJECTS.map(([id, e, label]) =>
+    `<button class="chip" type="button" data-subject="${label}" aria-pressed="false"><span class="emo" aria-hidden="true">${e}</span><span>${label}</span></button>`).join("");
+  $("#extras").innerHTML = EXTRAS.map(([id, e, label]) =>
+    `<button class="chip wide" type="button" data-extra="${id}" aria-pressed="false"><span class="emo" aria-hidden="true">${e}</span><span>${label}</span></button>`).join("");
+  $("#colors").innerHTML = COLORS.map(([id, hex, label]) =>
+    `<button class="chip swatch" type="button" data-color="${id}" aria-pressed="false">${brick(hex)}<span>${label}</span></button>`).join("");
   $("#ages").innerHTML = AGES.map((a) =>
-    `<label class="opt age"><input type="radio" name="age" value="${a.id}"><span class="age-num">${a.label}</span><span class="age-desc">${L.ages[a.id]}</span>` +
-    `<span class="level" aria-hidden="true">${[1,2,3,4].map((i) => brick(i <= a.level ? "var(--yellow)" : "", i <= a.level ? "" : "empty")).join("")}</span></label>`).join("");
-  $("#tiers").innerHTML = TIERS.map((x) =>
-    `<label class="opt tier" data-tier="${x.id}"><input type="radio" name="size" value="${x.id}"><span class="stack" aria-hidden="true"></span>` +
-    `<span><span class="tier-name">${L.tiers[x.id][0]}</span><span class="tier-pcs">${x.pcs} ${L.pieces}</span>` +
-    `<span class="tier-time">${L.tiers[x.id][1]}</span><span class="badge" hidden>${L.bestBadge}</span></span>` +
+    `<label class="opt age"><input type="radio" name="age" value="${a.id}"><span class="age-num">${a.label}</span><span class="age-desc">${a.desc}</span>` +
+    `<span class="level" aria-hidden="true">${[1, 2, 3, 4].map((i) => (i <= a.stars ? brick("var(--yellow)") : brick("", "empty"))).join("")}</span></label>`).join("");
+  $("#levels").innerHTML = LEVELS.map((x) =>
+    `<label class="opt tier"><input type="radio" name="level" value="${x.id}"><span class="stack" aria-hidden="true"></span>` +
+    `<span><span class="level-name">Level ${x.id}<small>${x.name}</small></span><span class="tier-pcs">${x.pcs} pieces</span>` +
+    `<span class="tier-time">${x.time}</span><span class="badge" hidden>Great for this age</span></span>` +
     `<span class="tier-price">${money(x.price)}</span></label>`).join("");
-  $("#priceRows").innerHTML = TIERS.map((x) => `<tr><td>${L.tiers[x.id][0]}</td><td>${x.pcs}</td><td>${money(x.price)}</td></tr>`).join("");
+  $("#priceRows").innerHTML = LEVELS.map((x) => `<tr><td>${x.id} · ${x.name}</td><td>${x.pcs}</td><td>${money(x.price)}</td></tr>`).join("");
 }
 function buildMosaic() {
-  const el = $("#mosaic");
-  el.innerHTML = DALMATIAN.map((row, r) => [...row].map((ch, c) => ch === "."
-    ? '<i class="px none"></i>'
-    : `<i class="px" style="--c:${PX[ch]};animation-delay:${r * 45 + c * 10}ms"></i>`).join("")).join("");
+  $("#mosaic").innerHTML = DALMATIAN.map((row, r) => [...row].map((ch, c) => (ch === "."
+    ? '<i class="px none"></i>' : `<i class="px" style="--c:${PX[ch]};animation-delay:${r * 45 + c * 10}ms"></i>`)).join("")).join("");
 }
 
 /* ===== Navigation ===== */
-const SCREENS = ["welcome", "what", "extras", "colors", "age", "size", "review", "designing", "preview", "gate", "checkout", "done", "info"];
-const STEPS = ["what", "extras", "colors", "age", "size"];
+const SCREENS = ["welcome", "what", "extras", "colors", "age", "level", "review", "designing", "preview", "gate", "checkout", "done", "manual", "info"];
+const STEPS = ["what", "extras", "colors", "age", "level"];
 const NAV = {
-  what:   { back: "welcome", next: "extras", req: () => state.wish.trim().length >= 2, need: "need_what" },
+  what:   { back: "welcome", next: "extras", req: () => state.wish.trim().length >= 2, need: "Type an idea or tap a picture first." },
   extras: { back: "what",    next: "colors" },
   colors: { back: "extras",  next: "age" },
-  age:    { back: "colors",  next: "size", req: () => !!state.age, need: "need_age" },
-  size:   { back: "age",     next: "review", req: () => !!state.size, need: "need_size" },
-  review: { back: "size",    next: "designing" },
-  designing: { back: "review" },
+  age:    { back: "colors",  next: "level", req: () => !!state.age, need: "Tap who is building first." },
+  level:  { back: "age",     next: "review", req: () => !!state.level, need: "Tap a level first." },
+  review: { back: "level",   next: "designing" },
   preview: { back: "review", next: "gate" },
   gate:   { back: "preview" },
   checkout: { back: "preview" },
+  manual: { back: "done" },
   info:   { back: "@from",   next: "what" },
 };
 function nextLabel(s) {
-  if (s === "extras") return state.extras.length ? t("next") : t("skip");
-  if (s === "colors") return state.colors.length || state.surprise ? t("next") : t("surpriseNext");
-  if (s === "review") return t("makeDesign");
-  if (s === "preview") return t("askGrownup");
-  if (s === "info") return t("infoStart");
-  return t("next");
+  if (s === "extras") return state.extras.length ? "Next" : "Skip";
+  if (s === "colors") return state.colors.length || state.surprise ? "Next" : "Surprise me!";
+  if (s === "review") return "Make my design";
+  if (s === "preview") return "Ask a grown-up";
+  if (s === "info") return "Start a wish";
+  return "Next";
 }
 function go(id, opts = {}) {
   if (id === "checkout" && !state.gatePassed) id = "gate";
+  if (id === "preview" && !state.design) id = "review";
   if (id === "colors" && !state.colorsTouched && !state.colors.length && !state.surprise) {
     state.colors = suggestColors(state.wish); state.showSuggested = state.colors.length > 0;
   }
   if (id === "gate") newGate();
-  if (id === "designing" && state.screen !== "designing") startDesign();
-  if (id === "preview" && !state.preview) id = "review";
   if (id === "info" && state.screen !== "info") state.infoFrom = state.screen;
+  if (state.screen === "preview" && id !== "preview") viewer?.stop();
+  const startDesigning = id === "designing" && state.screen !== "designing";
   state.screen = id;
   $("#toast").hidden = true;
   for (const s of SCREENS) $("#s-" + s).hidden = s !== id;
@@ -850,93 +759,72 @@ function go(id, opts = {}) {
   if (opts.focus !== false) $("#s-" + id + " .q")?.focus({ preventScroll: true });
   if (opts.push !== false) { try { history.pushState({ s: id }, ""); } catch (e) { /* ignore */ } }
   save();
+  if (startDesigning) startDesign();
+  if (id === "preview") renderPreview();
+  if (id === "manual") renderManual();
 }
 window.addEventListener("popstate", (e) => {
   const s = e.state && e.state.s;
-  if (s && SCREENS.includes(s)) go(s, { push: false });
+  if (s && SCREENS.includes(s) && s !== "designing") go(s, { push: false });
 });
 
 /* ===== Render ===== */
 function render() {
-  const s = state.screen, L = T[state.lang];
-
-  // progress bricks
+  const s = state.screen;
   const pi = STEPS.indexOf(s), inWizard = pi >= 0 || ["review", "designing", "preview"].includes(s);
+  const PROG = ["#C91A09", "#0055BF", "#F2CD37", "#237841", "#FE8A18"];
   const prog = $("#progress");
   prog.setAttribute("aria-hidden", inWizard ? "false" : "true");
-  prog.setAttribute("aria-label", t("progress"));
-  const PROG = ["#C91A09", "#0055BF", "#F2CD37", "#237841", "#FE8A18"];
-  prog.innerHTML = STEPS.map((_, i) => {
-    const done = pi < 0 || i <= pi;
-    return `<li>${done ? brick(PROG[i]) : brick("", "empty")}</li>`;
-  }).join("");
+  prog.innerHTML = STEPS.map((_, i) => `<li>${pi < 0 || i <= pi ? brick(PROG[i]) : brick("", "empty")}</li>`).join("");
 
-  // welcome
   const hasDraft = state.wish.trim().length > 0;
-  $("#startBtn").textContent = hasDraft ? t("continueWish") : t("start");
+  $("#startBtn").textContent = hasDraft ? "Keep going with my wish" : "Start my wish";
   $("#restartBtn").hidden = !hasDraft;
 
-  // what
   const wi = $("#wishInput"); if (wi.value !== state.wish) wi.value = state.wish;
   const nw = norm(state.wish.trim());
-  $$("#subjects .chip").forEach((b) => b.setAttribute("aria-pressed", String(nw === norm(L.subjects[b.dataset.subject]))));
-
-  // extras
+  $$("#subjects .chip").forEach((b) => b.setAttribute("aria-pressed", String(nw === norm(b.dataset.subject))));
   $$("#extras .chip").forEach((b) => b.setAttribute("aria-pressed", String(state.extras.includes(b.dataset.extra))));
-
-  // colors
   $$("#colors .chip").forEach((b) => b.setAttribute("aria-pressed", String(state.colors.includes(b.dataset.color))));
   $("#surpriseBtn").setAttribute("aria-pressed", String(state.surprise));
   $("#suggested").hidden = !state.showSuggested;
-
-  // age
   $$("#ages .opt").forEach((l) => { const i = $("input", l); i.checked = i.value === state.age; l.classList.toggle("on", i.checked); });
 
-  // size
   const best = state.age ? ageOf(state.age).best : [];
   const cols = artColors();
-  $$("#tiers .opt").forEach((l) => {
-    const i = $("input", l), tier = tierOf(i.value);
-    i.checked = i.value === state.size; l.classList.toggle("on", i.checked);
-    $(".badge", l).hidden = !best.includes(i.value);
-    $(".stack", l).innerHTML = Array.from({ length: tier.bricks }, (_, k) => brick(cols[k % cols.length])).join("");
+  $$("#levels .opt").forEach((l) => {
+    const i = $("input", l), lv = Number(i.value);
+    i.checked = lv === state.level; l.classList.toggle("on", i.checked);
+    $(".badge", l).hidden = !best.includes(lv);
+    $(".stack", l).innerHTML = Array.from({ length: lv }, (_, k) => brick(cols[k % cols.length])).join("");
   });
 
-  // review
   if (s === "review") renderCard();
-
-  // checkout
+  if (s === "designing") renderDesigning();
   if (s === "checkout") {
-    const tier = tierOf(state.size), age = ageOf(state.age);
-    $("#coWish").textContent = state.preview ? state.preview.title : cap(state.wish.trim());
+    const lv = levelOf(state.level), age = ageOf(state.age), d = state.design;
+    $("#coWish").textContent = d?.title || cap(state.wish.trim());
     $("#coSummary").innerHTML =
-      `<div class="sum-row"><span>${L.tiers[tier.id][0]} · ${tier.pcs} ${L.pieces}</span><span>${money(tier.price)}</span></div>` +
-      `<div class="sum-row muted"><span>${t("lbl_builder")}: ${age.label} · ${L.ages[age.id]}</span><span></span></div>`;
-    $("#coTotal").textContent = money(tier.price);
+      `<div class="sum-row"><span>Level ${lv.id} · ${lv.name} · ${(d?.pieces ?? 0).toLocaleString("en-US")} pieces</span><span>${money(lv.price)}</span></div>` +
+      `<div class="sum-row muted"><span>Builder: ${age.label} · ${age.desc}</span><span></span></div>`;
+    $("#coTotal").textContent = money(lv.price);
     $("#demoNote").hidden = !!CONFIG.apiBase;
   }
-
-  // gate question text follows the language
-  if (s === "gate") $("#gateQ").textContent = t("gateQ").replace("{a}", gate.a).replace("{b}", gate.b);
-
-  if (s === "done") $("#doneCode").textContent = state.code;
-  if (s === "designing") renderDesigning();
-  if (s === "preview") renderPreview();
-
+  if (s === "gate") $("#gateQ").textContent = `What is ${gate.a} × ${gate.b}?`;
+  if (s === "done") { $("#doneCode").textContent = state.code; $("#openManualBtn").hidden = !state.design?.model; }
   renderNav();
 }
-const cap = (x) => x ? x[0].toUpperCase() + x.slice(1) : x;
 function renderCard() {
-  const L = T[state.lang], tier = tierOf(state.size), age = ageOf(state.age), cols = artColors();
+  const lv = levelOf(state.level), age = ageOf(state.age), cols = artColors();
   $("#wcWish").textContent = cap(state.wish.trim());
-  $("#wcExtras").textContent = state.extras.length ? state.extras.map((e) => L.extras[e]).join(", ") : t("none");
+  $("#wcExtras").textContent = state.extras.length ? state.extras.map((e) => EXTRAS.find((x) => x[0] === e)[2]).join(", ") : "None";
   $("#wcColors").innerHTML = state.colors.length
-    ? `<span class="mini-swatches">${state.colors.map((c) => brick(HEX[c])).join("")}</span><span class="sr-only">${state.colors.map((c) => L.colors[c]).join(", ")}</span>`
-    : t("surpriseColors");
-  $("#wcAge").textContent = `${age.label} · ${L.ages[age.id]}`;
-  $("#wcSize").textContent = `${L.tiers[tier.id][0]} · ${tier.pcs} ${L.pieces}`;
+    ? `<span class="mini-swatches">${state.colors.map((c) => brick(HEX[c])).join("")}</span><span class="sr-only">${state.colors.map((c) => COLOR_NAME[c]).join(", ")}</span>`
+    : "Surprise colors";
+  $("#wcAge").textContent = `${age.label} · ${age.desc}`;
+  $("#wcLevel").textContent = `Level ${lv.id} · ${lv.name} · ${lv.pcs} pieces`;
   let k = 0;
-  $("#stage").innerHTML = [3, 2, 1].map((n, row) =>
+  $("#stage").innerHTML = [3, 2, 1].map((n) =>
     `<div class="stage-row">${Array.from({ length: n }, () => {
       const html = `<span class="b" style="--c:${cols[k % cols.length]};animation-delay:${k * 120}ms" aria-hidden="true"></span>`; k++; return html;
     }).join("")}</div>`).join("");
@@ -945,156 +833,308 @@ function renderNav() {
   const s = state.screen, nav = NAV[s], bar = $("#bottombar");
   bar.hidden = !nav;
   if (!nav) return;
-  $("#backBtn").textContent = t("back");
   const nb = $("#nextBtn");
   nb.hidden = !nav.next;
-  if (nav.next) {
-    nb.textContent = nextLabel(s);
-    nb.setAttribute("aria-disabled", nav.req && !nav.req() ? "true" : "false");
-  }
-}
-
-/* ===== i18n ===== */
-function applyLang() {
-  document.documentElement.lang = state.lang;
-  $$("[data-t]").forEach((el) => { el.textContent = t(el.dataset.t); });
-  $$("[data-t-ph]").forEach((el) => { el.placeholder = t(el.dataset.tPh); });
-  $$("[data-t-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.tAria)); });
-  const lb = $("#langBtn"); lb.textContent = t("langBtn"); lb.setAttribute("aria-label", t("langAria"));
-  $("#logoBtn").setAttribute("aria-label", t("home"));
-  buildLists(); render();
+  if (nav.next) { nb.textContent = nextLabel(s); nb.setAttribute("aria-disabled", nav.req && !nav.req() ? "true" : "false"); }
 }
 
 /* ===== Events ===== */
-$("#langBtn").addEventListener("click", () => { state.lang = state.lang === "en" ? "es" : "en"; applyLang(); save(); });
 $("#logoBtn").addEventListener("click", () => go("welcome"));
 $("#startBtn").addEventListener("click", () => go("what"));
-$("#restartBtn").addEventListener("click", () => { Object.assign(state, blank(), { showSuggested: false }); go("what"); });
+$("#restartBtn").addEventListener("click", () => { Object.assign(state, blank(), { showSuggested: false, design: null }); go("what"); });
 $("#infoBtn").addEventListener("click", () => go("info"));
 $("#editBtn").addEventListener("click", () => go("what"));
-$("#againBtn").addEventListener("click", () => { Object.assign(state, blank(), { showSuggested: false, gatePassed: false, code: "" }); go("what"); });
-
-$("#backBtn").addEventListener("click", () => {
-  const nav = NAV[state.screen];
-  go(nav.back === "@from" ? (state.infoFrom || "welcome") : nav.back);
-});
+$("#changeBtn").addEventListener("click", () => { state.design = null; go("what"); });
+$("#againBtn").addEventListener("click", () => { Object.assign(state, blank(), { showSuggested: false, gatePassed: false, code: "", design: null }); go("what"); });
+$("#openManualBtn").addEventListener("click", () => go("manual"));
+$("#backBtn").addEventListener("click", () => { const nav = NAV[state.screen]; go(nav.back === "@from" ? (state.infoFrom || "welcome") : nav.back); });
 $("#nextBtn").addEventListener("click", () => {
   const s = state.screen, nav = NAV[s];
-  if (nav.req && !nav.req()) { toast(t(nav.need)); return; }
+  if (nav.req && !nav.req()) { toast(nav.need); return; }
   if (s === "colors" && !state.colors.length) state.surprise = true;
   go(nav.next);
 });
-
-$("#wishInput").addEventListener("input", (e) => {
-  state.wish = e.target.value;
-  if (!state.colorsTouched) { state.colors = []; state.surprise = false; state.showSuggested = false; }
-  render(); save();
-});
+const resetDesign = () => { state.design = null; if (!state.colorsTouched) { state.colors = []; state.surprise = false; state.showSuggested = false; } };
+$("#wishInput").addEventListener("input", (e) => { state.wish = e.target.value; resetDesign(); render(); save(); });
 $("#diceBtn").addEventListener("click", () => {
-  const ideas = T[state.lang].ideas.filter((x) => x !== state.wish);
-  state.wish = ideas[Math.floor(Math.random() * ideas.length)];
-  if (!state.colorsTouched) { state.colors = []; state.surprise = false; }
-  render(); save();
+  const ideas = IDEAS.filter((x) => x !== state.wish);
+  state.wish = ideas[Math.floor(Math.random() * ideas.length)]; resetDesign(); render(); save();
 });
 $("#subjects").addEventListener("click", (e) => {
   const b = e.target.closest("[data-subject]"); if (!b) return;
-  state.wish = T[state.lang].subjects[b.dataset.subject];
-  if (!state.colorsTouched) { state.colors = []; state.surprise = false; }
-  render(); save();
+  state.wish = b.dataset.subject; resetDesign(); render(); save();
 });
 $("#extras").addEventListener("click", (e) => {
   const b = e.target.closest("[data-extra]"); if (!b) return;
   const id = b.dataset.extra, i = state.extras.indexOf(id);
   i >= 0 ? state.extras.splice(i, 1) : state.extras.push(id);
-  render(); save();
+  state.design = null; render(); save();
 });
 $("#colors").addEventListener("click", (e) => {
   const b = e.target.closest("[data-color]"); if (!b) return;
   const id = b.dataset.color, i = state.colors.indexOf(id);
   if (i >= 0) state.colors.splice(i, 1);
-  else if (state.colors.length >= 4) { toast(t("maxColors")); return; }
+  else if (state.colors.length >= 4) { toast("That's 4 colors! Tap one to take it off."); return; }
   else state.colors.push(id);
-  state.colorsTouched = true; state.surprise = false; state.showSuggested = false;
+  state.colorsTouched = true; state.surprise = false; state.showSuggested = false; state.design = null;
   render(); save();
 });
 $("#surpriseBtn").addEventListener("click", () => {
-  state.surprise = !state.surprise;
-  if (state.surprise) state.colors = [];
-  state.colorsTouched = true; state.showSuggested = false;
-  render(); save();
+  state.surprise = !state.surprise; if (state.surprise) state.colors = [];
+  state.colorsTouched = true; state.showSuggested = false; state.design = null; render(); save();
 });
-$("#ages").addEventListener("change", (e) => { state.age = e.target.value; render(); save(); });
-$("#tiers").addEventListener("change", (e) => { state.size = e.target.value; render(); save(); });
+$("#ages").addEventListener("change", (e) => { state.age = e.target.value; state.design = null; render(); save(); });
+$("#levels").addEventListener("change", (e) => { state.level = Number(e.target.value); state.design = null; render(); save(); });
 
-/* Designing: the wish goes to the AI design agents (agents/api.py), then we poll until the preview is ready.
-   Only the wish itself is sent (scrubbed), never a name or contact detail. Demo mode shows the example design. */
-let designRun = 0;
+/* ===== The engine and the 3D viewer (same code as the server) ===== */
+let enginePromise = null, viewerScript = null, viewer = null;
+function loadEngine() {
+  enginePromise ??= import(CONFIG.enginePath + "engine.js").then((E) => {
+    const st = document.createElement("style"); st.textContent = E.MANUAL_CSS; document.head.append(st);
+    return E;
+  });
+  return enginePromise;
+}
+function loadViewer() {
+  viewerScript ??= new Promise((res, rej) => {
+    const s = document.createElement("script"); s.src = CONFIG.enginePath + "viewer.js";
+    s.onload = () => res(window.BrickWishViewer); s.onerror = () => rej(new Error("viewer")); document.head.append(s);
+  });
+  return viewerScript;
+}
+function exampleFor(wish) { return EXAMPLES.find((x) => x.match.test(wish)); }
+async function loadExample(ex) {
+  const model = await (await fetch(`${CONFIG.examplesPath}${ex.file}/model.json`)).json();
+  return { source: "example", model, title: model.title, pieces: model.stats.pieces, steps: model.steps, parentNote: "" };
+}
+
+/* ===== Designing: the wish -> a buildable design, here in the page or on the server ===== */
+let designRun = 0, designCtl = null;
 function renderDesigning() {
-  const L = T[state.lang];
-  $("#designTitle").textContent = t("designingTitle").replace("{x}", cap(state.wish.trim()));
-  const cols = artColors();
-  if (!$("#designStage").childElementCount) {
-    let k = 0;
-    $("#designStage").innerHTML = [3, 2, 1].map((n) => `<div class="stage-row">${Array.from({ length: n }, () =>
+  $("#designTitle").textContent = `Designing: ${cap(state.wish.trim())}`;
+  if ($("#designBricks") && !$("#designBricks").childElementCount) {
+    const cols = artColors(); let k = 0;
+    $("#designBricks").innerHTML = [3, 2, 1].map((n) => `<div class="stage-row">${Array.from({ length: n }, () =>
       `<span class="b" style="--c:${cols[k % cols.length]};animation-delay:${(k++) * 180}ms"></span>`).join("")}</div>`).join("");
   }
-  $$("#designSteps li").forEach((li, i) => {
-    li.classList.toggle("done", i < state.designStep);
-    li.classList.toggle("now", i === state.designStep);
-  });
+  $$("#designSteps li").forEach((li, i) => { li.classList.toggle("done", i < state.designStep); li.classList.toggle("now", i === state.designStep); });
 }
-function renderPreview() {
-  const p = state.preview;
-  if (!p) return;
-  const v = $("#buildVideo");
-  if (v.getAttribute("src") !== p.video) { v.setAttribute("poster", p.poster); v.setAttribute("src", p.video); }
-  $("#pvPieces").textContent = p.pieces;
-  $("#pvSteps").textContent = p.steps;
-  $("#pvNote").textContent = p.parent_note || "";
-  $("#pvNote").hidden = !p.parent_note;
-  $("#demoPreview").hidden = !!CONFIG.apiBase;
-  $("#pvPages").innerHTML = p.preview.map((src, i) =>
-    `<img src="${src}" alt="${t("pageWord")} ${i + 1}" loading="lazy" width="850" height="1100">`).join("");
-}
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-async function startDesign() {
-  const run = ++designRun;
-  state.designStep = 0; state.preview = null; $("#designErr").textContent = "";
-  $("#designStage").innerHTML = "";
-  const step = (n) => { if (run === designRun) { state.designStep = n; if (state.screen === "designing") renderDesigning(); } };
-  try {
-    if (!CONFIG.apiBase) {
-      for (let i = 1; i <= 4; i++) { await sleep(1100); step(i); }
-      if (run !== designRun) return;
-      state.preview = DEMO;
-    } else {
-      const res = await fetch(`${CONFIG.apiBase}/api/wish`, { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ wish: scrub(state.wish.trim()), extras: state.extras, colors: state.colors,
-                               surprise: state.surprise, age: state.age, size: state.size, lang: state.lang }) });
-      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "busy");
-      state.code = (await res.json()).code;
-      const t0 = Date.now();
-      for (;;) {
-        await sleep(4000);
-        if (run !== designRun) return;
-        const st = await (await fetch(`${CONFIG.apiBase}/api/wish/${state.code}`)).json();
-        if (st.state === "needs_help") throw new Error("stuck");
-        if (st.preview) { state.preview = { ...st, preview: st.preview.map((u) => CONFIG.apiBase + u),
-                                            video: CONFIG.apiBase + st.video, poster: CONFIG.apiBase + st.poster }; break; }
-        const secs = (Date.now() - t0) / 1000;
-        step(st.state === "received" ? 0 : secs < 60 ? 1 : secs < 150 ? 2 : 3);
-      }
-    }
-    if (run !== designRun) return;
-    step(4); save();
-    if (state.screen === "designing") go("preview");
-  } catch (err) {
-    if (run === designRun) $("#designErr").textContent = t("designFail");
+function designFailed(msg, ex) {
+  $("#designErr").textContent = msg;
+  $("#designRetry").hidden = false;
+  const btn = $("#exampleBtn");
+  if (ex && !btn) {
+    const b = document.createElement("button"); b.className = "btn btn-ghost"; b.id = "exampleBtn"; b.type = "button";
+    b.textContent = "See our finished design"; $("#designRetry").append(b);
+    b.addEventListener("click", async () => { state.design = await loadExample(ex); state.design.note = "This is our finished design closest to your wish."; go("preview"); });
   }
 }
-$("#changeBtn").addEventListener("click", () => { state.preview = null; go("what"); });
+async function getSample() {
+  if (!window.claude?.use) return null;
+  try {
+    const s = await window.claude.use("sample");
+    if (!s) return null;
+    const lim = await s.limits().catch(() => null);
+    return lim?.tools ? s : null;
+  } catch (e) { return null; }
+}
+async function startDesign() {
+  const run = ++designRun;
+  designCtl?.abort(); designCtl = new AbortController();
+  state.designStep = 0; state.design = null;
+  $("#designErr").textContent = ""; $("#designRetry").hidden = true; $("#exampleBtn")?.remove();
+  $("#designStage").innerHTML = '<div class="stage loop" id="designBricks" aria-hidden="true"></div>';
+  $("#designNote").textContent = "Our AI builders take a few minutes. Keep this page open.";
+  renderDesigning();
+  const step = (n) => { if (run === designRun) { state.designStep = n; if (state.screen === "designing") renderDesigning(); } };
+  const ex = exampleFor(state.wish);
+  try {
+    let design;
+    if (CONFIG.apiBase) design = await designOnServer(run, step);
+    else if (ex && ex.level === state.level) {
+      for (let i = 1; i <= 4; i++) { await sleep(500); step(i); }
+      design = await loadExample(ex);
+      design.note = "This wish matches one of our finished designs.";
+    } else {
+      const sample = await getSample();
+      if (run !== designRun) return;
+      if (sample) design = await designLive(sample, run, step);
+      else if (ex) { design = await loadExample(ex); design.note = "Live design isn't available here, so this is our finished design closest to your wish."; }
+      else { designFailed("Live design needs the BrickWish servers or the Claude app. Open this page there to design any wish.", EXAMPLES[1]); return; }
+    }
+    if (run !== designRun) return;
+    step(4);
+    state.design = design;
+    if (state.screen === "designing") go("preview");
+  } catch (err) {
+    if (run !== designRun || err?.code === "cancelled") return;
+    const code = err?.code;
+    designFailed(code === "not_granted" || code === "sampling_disabled"
+      ? "Claude isn't allowed to design here. A grown-up can allow it, or try one of our finished designs."
+      : code === "rate_limited" ? "Our AI builders are very busy. Please try again in a little while."
+      : "Our AI builders got stuck on this one. Try again, or change your wish a little.", ex || EXAMPLES[1]);
+  }
+}
+$("#retryBtn").addEventListener("click", () => startDesign());
+$("#stopBtn").addEventListener("click", () => { designRun++; designCtl?.abort(); go("review"); });
 
-/* Parent gate: a times-table question most young kids can't answer yet. */
+async function designOnServer(run, step) {
+  const res = await fetch(`${CONFIG.apiBase}/api/wish`, { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ wish: scrub(state.wish.trim()), extras: state.extras, colors: state.colors, surprise: state.surprise,
+                           age: state.age, level: state.level }) });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "busy");
+  state.code = (await res.json()).code;
+  const t0 = Date.now();
+  for (;;) {
+    await sleep(4000);
+    if (run !== designRun) return null;
+    const st = await (await fetch(`${CONFIG.apiBase}/api/wish/${state.code}`)).json();
+    if (st.state === "needs_help") throw new Error("stuck");
+    if (st.preview) {
+      return { source: "server", title: st.title, pieces: st.pieces, steps: st.steps, pages: st.pages, parentNote: st.parent_note,
+               video: CONFIG.apiBase + st.video, poster: CONFIG.apiBase + st.poster, previewImages: st.preview.map((u) => CONFIG.apiBase + u) };
+    }
+    const secs = (Date.now() - t0) / 1000;
+    step(st.state === "received" ? 0 : secs < 60 ? 1 : secs < 150 ? 2 : 3);
+  }
+}
+
+// Designing right here: Claude (through the Claude app's `sample` capability) writes the design and checks it
+// with the brick engine as a tool, exactly like the server's Design Agent does.
+async function designLive(sample, run, step) {
+  const E = await loadEngine();
+  const guide = await (await fetch(CONFIG.enginePath + "DESIGN_GUIDE.md")).text();
+  const lv = E.LEVELS[state.level];
+  const force = (spec) => ({ ...(spec || {}), level: state.level, age: state.age, wish: scrub(state.wish.trim()) });
+  let tries = 0, lastOk = null;
+  const showAttempt = (m, note) => {
+    $("#designStage").innerHTML = `${E.fitScene(m.bricks, 360, 250)}<p class="attempt-cap">Try ${tries} · ${m.stats.pieces.toLocaleString("en-US")} pieces · ${esc(note)}</p>`;
+  };
+  const tool = {
+    name: "build_preview",
+    description: "Compile a design spec with the BrickWish brick engine. Returns {ok, pieces, level_range, steps, size_cm, warnings, colors_used}. Call it after every change, at most 4 times.",
+    inputSchema: { type: "object", properties: { spec: { type: "object", description: "The complete design spec JSON." } }, required: ["spec"] },
+    execute: async (input) => {
+      if (run !== designRun) throw new Error("stopped");
+      tries++; step(1);
+      const m = E.compile(force(input?.spec));
+      if (m.ok) { lastOk = force(input.spec); step(2); }
+      showAttempt(m, m.ok ? "every brick clicks in" : "fixing it");
+      return { ok: m.ok, pieces: m.stats.pieces, level_range: [lv.min, lv.max], steps: m.steps, size_cm: m.stats.size_cm,
+               warnings: m.warnings, colors_used: [...new Set(m.bricks.map((b) => b.color))] };
+    },
+  };
+  const extras = state.extras.map((e) => EXTRAS.find((x) => x[0] === e)[2]).join(", ");
+  const prompt = `${guide}\n\n## This order\n- The child's wish: "${scrub(state.wish.trim())}"\n- Level: ${state.level} (${lv.min}-${lv.max} pieces)\n` +
+    `- Builder age: ${state.age}\n` + (extras ? `- Extras the child picked: ${extras}\n` : "") +
+    (state.colors.length ? `- Colors the child picked: ${state.colors.join(", ")}\n` : "- Colors: surprise me\n") +
+    `\n## Your answer\nUse build_preview (at most 4 times) until ok is true. Then reply with ONLY the final spec as one JSON object ` +
+    `with "title", "wish", "level", "age", "shapes", optional "hollow", and "parent_note" if you changed something the child asked for.`;
+  let spec;
+  try {
+    spec = await sample.json(prompt, { tools: [tool], modelTier: "complex", signal: designCtl.signal });
+  } catch (e) {
+    if (!lastOk || e?.code === "cancelled") throw e;
+    spec = lastOk;
+  }
+  step(3);
+  spec = force(spec);
+  let m;
+  try { m = E.compile(spec); } catch (e) { m = null; }
+  if ((!m || !m.ok) && lastOk) { spec = lastOk; m = E.compile(spec); }
+  if (m && !m.ok && m.stats.floating === 0) { const f = { ...spec, fit: true }; const m2 = E.compile(f); if (m2.ok) { spec = f; m = m2; } }
+  if (!m || !m.ok) throw new Error("not buildable");
+  return { source: "live", model: m, spec, title: spec.title || cap(state.wish.trim()), pieces: m.stats.pieces, steps: m.steps,
+           parentNote: spec.parent_note || "" };
+}
+
+/* ===== Preview: the kid's own build + the first 5 pages ===== */
+function fitThumbs(root) {
+  $$(".pagethumb", root).forEach((t) => { const inner = t.firstElementChild; if (inner) inner.style.transform = `scale(${t.clientWidth / 816})`; });
+}
+window.addEventListener("resize", () => { fitThumbs($("#pvPages")); fitThumbs($("#manualList")); viewer?.resize(); });
+async function renderPreview() {
+  const d = state.design;
+  if (!d) return;
+  $("#pvSource").hidden = !d.note; $("#pvSource").textContent = d.note || "";
+  $("#pvPieces").textContent = (d.pieces ?? 0).toLocaleString("en-US");
+  $("#pvSteps").textContent = d.steps ?? "";
+  $("#pvNote").hidden = !d.parentNote; $("#pvNote").textContent = d.parentNote ? `A note for grown-ups: ${d.parentNote}` : "";
+  if (d.source === "server") {
+    $("#viewerCard").hidden = true;
+    const v = $("#buildVideo"); v.hidden = false;
+    if (v.getAttribute("src") !== d.video) { v.setAttribute("poster", d.poster); v.setAttribute("src", d.video); }
+    $("#pvPageCount").textContent = d.pages ?? "";
+    $("#pvPages").innerHTML = d.previewImages.map((src, i) => `<img class="pageimg" src="${src}" alt="Page ${i + 1}" loading="lazy" width="816" height="1056">`).join("");
+    return;
+  }
+  $("#buildVideo").hidden = true;
+  const E = await loadEngine();
+  const pages = E.manualPages(d.model, { code: "PREVIEW" });
+  d.pages = pages.count;
+  $("#pvPageCount").textContent = pages.count;
+  $("#pvPages").innerHTML = Array.from({ length: Math.min(5, pages.count) }, (_, i) =>
+    `<div class="pagethumb" role="img" aria-label="Page ${i + 1}"><div class="bw-manual preview">${pages.page(i)}</div></div>`).join("");
+  fitThumbs($("#pvPages"));
+  $("#viewerCard").hidden = false;
+  // tall models get a 9:16 card (like the video); wide dioramas get a square card so they aren't tiny
+  const [X, Y] = d.model.stats.studs, tall = d.model.stats.layers * 1.2 > Math.hypot(X, Y) * 0.65;
+  $("#viewerCard").style.aspectRatio = tall ? "9 / 16" : "1 / 1";
+  $("#vcTitle").textContent = d.title;
+  try {
+    const V = await loadViewer();
+    if (!window.THREE) throw new Error("three");
+    viewer?.dispose();
+    viewer = V.create($("#viewerCanvas"), E.viewerModel(d.model), window.THREE, {
+      onFrame: (f) => {
+        const c = $("#vcCount");
+        c.textContent = f.finished ? "Ready to build!" : `${f.placed.toLocaleString("en-US")} / ${f.total.toLocaleString("en-US")} pieces`;
+        c.classList.toggle("ready", f.finished);
+      },
+    });
+    viewer.resize(); viewer.play();
+  } catch (e) {
+    $("#viewerCard").innerHTML = `<div style="position:absolute;inset:0;display:grid;place-items:center;padding:16px">${E.fitScene(d.model.bricks, 360, 600)}</div>`;
+  }
+}
+$("#replayBtn").addEventListener("click", () => viewer?.play());
+
+/* ===== The full manual (after checkout, when the design is here in the page) ===== */
+let manualObserver = null;
+async function renderManual() {
+  const d = state.design;
+  if (!d?.model) return;
+  const E = await loadEngine();
+  const pages = E.manualPages(d.model, { code: state.code || "DEMO" });
+  $("#manualTitle").textContent = d.title;
+  $("#manualLead").textContent = `${pages.count} pages · ${d.pieces.toLocaleString("en-US")} pieces · ${d.steps} steps. Scroll to read it all.`;
+  const list = $("#manualList");
+  list.innerHTML = Array.from({ length: pages.count }, (_, i) => `<div class="pagethumb" data-page="${i}" role="img" aria-label="Page ${i + 1}"></div>`).join("");
+  manualObserver?.disconnect();
+  manualObserver = new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (!en.isIntersecting || en.target.dataset.done) continue;
+      en.target.dataset.done = "1";
+      en.target.innerHTML = `<div class="bw-manual">${pages.page(Number(en.target.dataset.page))}</div>`;
+      fitThumbs(en.target.parentElement);
+    }
+  }, { rootMargin: "600px 0px" });
+  $$(".pagethumb", list).forEach((el) => manualObserver.observe(el));
+  const dl = window.claude?.use ? await window.claude.use("downloads").catch(() => null) : null;
+  $("#saveManualBtn").hidden = !dl;
+  $("#saveManualBtn").onclick = async () => {
+    $("#saveErr").textContent = "";
+    try {
+      const fonts = "@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600&display=swap');";
+      await dl.save({ filename: `${d.title.replace(/[^\w\- ]+/g, "").trim() || "brickwish"} manual.html`,
+                      data: E.manualDocument(d.model, { code: state.code || "DEMO", fontsCss: fonts }) });
+    } catch (e) {
+      if (e?.code !== "declined") $("#saveErr").textContent = "The manual couldn't be saved here.";
+    }
+  };
+}
+
+/* ===== Parent gate: a times-table question most young kids can't answer yet ===== */
 const gate = { a: 7, b: 8, tries: 0 };
 function newGate() {
   gate.a = 6 + Math.floor(Math.random() * 4); gate.b = 6 + Math.floor(Math.random() * 4); gate.tries = 0;
@@ -1104,29 +1144,26 @@ $("#gateForm").addEventListener("submit", (e) => {
   e.preventDefault();
   if (parseInt($("#gateInput").value, 10) === gate.a * gate.b) { state.gatePassed = true; go("checkout"); return; }
   gate.tries++;
-  if (gate.tries >= 3) { newGate(); render(); $("#gateErr").textContent = t("gateNew"); }
-  else { $("#gateErr").textContent = t("gateWrong"); $("#gateInput").select(); }
+  if (gate.tries >= 3) { newGate(); render(); $("#gateErr").textContent = "That was 3 tries. Here is a new question."; }
+  else { $("#gateErr").textContent = "Not quite. Try again."; $("#gateInput").select(); }
 });
 
-/* Checkout: consent here, then Stripe's page collects email, shipping address and the builder's first name. */
+/* ===== Checkout: consent here, then Stripe collects email, address and the builder's first name ===== */
 $("#coForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const adult = $("#adultInput").checked;
-  $("#adultErr").textContent = adult ? "" : t("adultErr");
+  $("#adultErr").textContent = adult ? "" : "Please confirm you're the parent or guardian and agree.";
   if (!adult) { $("#adultInput").focus(); return; }
-  const link = CONFIG.checkoutLinks[state.size];
-  if (CONFIG.apiBase && link && state.code) {
-    location.href = `${link}?client_reference_id=${encodeURIComponent(state.code)}`;
-    return;
-  }
+  const link = CONFIG.checkoutLinks[state.level];
+  if (CONFIG.apiBase && link && state.code) { location.href = `${link}?client_reference_id=${encodeURIComponent(state.code)}`; return; }
   if (!state.code) state.code = makeCode();
   $("#coForm").reset();
   go("done");
 });
 
 /* ===== Start ===== */
+buildLists();
 buildMosaic();
-applyLang();
 try { history.replaceState({ s: "welcome" }, ""); } catch (e) { /* ignore */ }
 for (const s of SCREENS) $("#s-" + s).hidden = s !== "welcome";
 render();

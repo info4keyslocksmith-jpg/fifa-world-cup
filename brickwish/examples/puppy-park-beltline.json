@@ -1,0 +1,1062 @@
+{
+ "title": "Puppy Park on the BeltLine",
+ "wish": "A puppy park on the BeltLine",
+ "level": 3,
+ "age": "7-9",
+ "builder": "Sofia",
+ "notes": "Atlanta BeltLine Eastside Trail diorama: the concrete trail, a fenced dog park with seven dogs and agility gear, Ponce City Market's red-brick building behind it, a colorful mural wall, a food truck, benches, lamps, trees and a small Midtown skyline.",
+ "shapes": [
+  {
+   "type": "terrain",
+   "at": [
+    0,
+    0
+   ],
+   "size": [
+    56,
+    36
+   ],
+   "base": 1,
+   "color": "green",
+   "peaks": [
+    {
+     "at": [
+      47,
+      17
+     ],
+     "height": 3,
+     "radius": 8
+    },
+    {
+     "at": [
+      3,
+      31
+     ],
+     "height": 2,
+     "radius": 5
+    }
+   ]
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     0,
+     26,
+     0
+    ],
+    "size": [
+     56,
+     6,
+     3
+    ]
+   },
+   "color": "gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     4,
+     4,
+     0
+    ],
+    "size": [
+     23,
+     15,
+     2
+    ]
+   },
+   "color": "tan"
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "element",
+    "kind": "round1x1",
+    "at": [
+     3,
+     3,
+     1
+    ],
+    "color": "dark_gray"
+   },
+   "offsets": [
+    [
+     0,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     6,
+     0
+    ],
+    [
+     9,
+     0
+    ],
+    [
+     12,
+     0
+    ],
+    [
+     15,
+     0
+    ],
+    [
+     18,
+     0
+    ],
+    [
+     21,
+     0
+    ],
+    [
+     24,
+     0
+    ],
+    [
+     0,
+     16
+    ],
+    [
+     3,
+     16
+    ],
+    [
+     6,
+     16
+    ],
+    [
+     9,
+     16
+    ],
+    [
+     18,
+     16
+    ],
+    [
+     21,
+     16
+    ],
+    [
+     24,
+     16
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     0,
+     6
+    ],
+    [
+     0,
+     9
+    ],
+    [
+     0,
+     12
+    ],
+    [
+     24,
+     3
+    ],
+    [
+     24,
+     6
+    ],
+    [
+     24,
+     9
+    ],
+    [
+     24,
+     12
+    ]
+   ]
+  },
+  {
+   "type": "box",
+   "at": [
+    3,
+    3,
+    2
+   ],
+   "size": [
+    25,
+    1,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    3,
+    19,
+    2
+   ],
+   "size": [
+    10,
+    1,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    17,
+    19,
+    2
+   ],
+   "size": [
+    11,
+    1,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    3,
+    3,
+    2
+   ],
+   "size": [
+    1,
+    17,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "box",
+   "at": [
+    27,
+    3,
+    2
+   ],
+   "size": [
+    1,
+    17,
+    1
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    8,
+    8
+   ],
+   "colors": {
+    "body": "white",
+    "spots": "black"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    14,
+    11
+   ],
+   "facing": "+x",
+   "colors": {
+    "body": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    21,
+    8
+   ],
+   "colors": {
+    "body": "black"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    9,
+    15
+   ],
+   "facing": "-y",
+   "colors": {
+    "body": "tan"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    18,
+    15
+   ],
+   "facing": "-x",
+   "colors": {
+    "body": "orange"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    6,
+    11
+   ],
+   "facing": "+x",
+   "colors": {
+    "body": "gray",
+    "head": "white"
+   }
+  },
+  {
+   "type": "taper",
+   "at": [
+    16,
+    5,
+    1
+   ],
+   "size": [
+    6,
+    3,
+    2
+   ],
+   "inset_per_layer": 1,
+   "color": "yellow"
+  },
+  {
+   "type": "repeat",
+   "shape": {
+    "type": "element",
+    "kind": "round1x1",
+    "at": [
+     23,
+     12,
+     1
+    ],
+    "color": "white"
+   },
+   "offsets": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     4
+    ],
+    [
+     0,
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "type": "line",
+   "from": [
+    23,
+    12,
+    3
+   ],
+   "to": [
+    23,
+    16,
+    3
+   ],
+   "radius": 0.5,
+   "color": "red"
+  },
+  {
+   "type": "element",
+   "kind": "round2x2",
+   "at": [
+    11,
+    5,
+    1
+   ],
+   "color": "blue"
+  },
+  {
+   "type": "element",
+   "kind": "round1x1",
+   "at": [
+    5,
+    17,
+    1
+   ],
+   "color": "red"
+  },
+  {
+   "type": "element",
+   "kind": "cone1x1",
+   "at": [
+    5,
+    17,
+    2
+   ],
+   "color": "red"
+  },
+  {
+   "type": "box",
+   "at": [
+    31,
+    8,
+    1
+   ],
+   "size": [
+    20,
+    2,
+    6
+   ],
+   "color": "white"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 1,
+   "color": "blue"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 2,
+   "color": "yellow"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 3,
+   "color": "red"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 4,
+   "color": "purple"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 5,
+   "color": "orange"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     8,
+     1
+    ],
+    "size": [
+     20,
+     2,
+     6
+    ]
+   },
+   "pattern": "rows",
+   "every": 6,
+   "offset": 0,
+   "color": "azure"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     9,
+     1
+    ],
+    "size": [
+     20,
+     1,
+     6
+    ]
+   },
+   "pattern": "dots",
+   "every": 3,
+   "offset": 2,
+   "color": "pink"
+  },
+  {
+   "type": "box",
+   "at": [
+    44,
+    1,
+    1
+   ],
+   "size": [
+    5,
+    5,
+    16
+   ],
+   "color": "gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     44,
+     1,
+     2
+    ],
+    "size": [
+     5,
+     5,
+     15
+    ]
+   },
+   "pattern": "rows",
+   "every": 2,
+   "offset": 0,
+   "color": "azure"
+  },
+  {
+   "type": "taper",
+   "at": [
+    44,
+    1,
+    17
+   ],
+   "size": [
+    5,
+    5,
+    3
+   ],
+   "inset_per_layer": 1,
+   "color": "orange"
+  },
+  {
+   "type": "line",
+   "from": [
+    46,
+    3,
+    20
+   ],
+   "to": [
+    46,
+    3,
+    23
+   ],
+   "radius": 0.5,
+   "color": "orange"
+  },
+  {
+   "type": "box",
+   "at": [
+    36,
+    1,
+    1
+   ],
+   "size": [
+    4,
+    4,
+    12
+   ],
+   "color": "tan"
+  },
+  {
+   "type": "taper",
+   "at": [
+    36,
+    1,
+    13
+   ],
+   "size": [
+    4,
+    4,
+    2
+   ],
+   "inset_per_layer": 1,
+   "color": "white"
+  },
+  {
+   "type": "cylinder",
+   "center": [
+    53,
+    4
+   ],
+   "z": 1,
+   "height": 11,
+   "radius": 2,
+   "color": "azure"
+  },
+  {
+   "type": "box",
+   "at": [
+    31,
+    2,
+    1
+   ],
+   "size": [
+    3,
+    4,
+    8
+   ],
+   "color": "dark_gray"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     31,
+     2,
+     1
+    ],
+    "size": [
+     3,
+     4,
+     8
+    ]
+   },
+   "pattern": "rows",
+   "every": 2,
+   "offset": 1,
+   "color": "yellow"
+  },
+  {
+   "type": "prefab",
+   "name": "tree",
+   "scale": 2,
+   "at": [
+    [
+     28,
+     15
+    ],
+    [
+     38,
+     19
+    ],
+    [
+     49,
+     20
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "tree",
+   "at": [
+    [
+     0,
+     21
+    ],
+    [
+     23,
+     21
+    ],
+    [
+     53,
+     23
+    ],
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "bush",
+   "at": [
+    [
+     29,
+     4
+    ],
+    [
+     51,
+     12
+    ],
+    [
+     13,
+     22
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     4,
+     24
+    ],
+    [
+     7,
+     23
+    ],
+    [
+     16,
+     24
+    ],
+    [
+     19,
+     23
+    ],
+    [
+     33,
+     24
+    ]
+   ],
+   "colors": {
+    "petals": "pink"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "flower",
+   "at": [
+    [
+     5,
+     22
+    ],
+    [
+     17,
+     22
+    ],
+    [
+     34,
+     22
+    ]
+   ],
+   "colors": {
+    "petals": "yellow"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "bench",
+   "at": [
+    [
+     33,
+     24
+    ],
+    [
+     44,
+     24
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "lamp",
+   "at": [
+    [
+     27,
+     25
+    ],
+    [
+     41,
+     25
+    ],
+    [
+     54,
+     25
+    ],
+    [
+     12,
+     25
+    ]
+   ]
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    36,
+    28
+   ],
+   "colors": {
+    "shirt": "red"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "dog",
+   "at": [
+    31,
+    29
+   ],
+   "facing": "+x",
+   "colors": {
+    "body": "white",
+    "spots": "black"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    12,
+    28
+   ],
+   "colors": {
+    "shirt": "blue",
+    "pants": "black",
+    "skin": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    21,
+    30
+   ],
+   "colors": {
+    "shirt": "pink"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    48,
+    29
+   ],
+   "colors": {
+    "shirt": "green",
+    "skin": "brown"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    46,
+    23
+   ],
+   "colors": {
+    "shirt": "yellow",
+    "pants": "dark_gray"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "bus",
+   "at": [
+    44,
+    33
+   ],
+   "colors": {
+    "body": "orange"
+   }
+  },
+  {
+   "type": "prefab",
+   "name": "person",
+   "at": [
+    40,
+    33
+   ],
+   "colors": {
+    "shirt": "purple"
+   }
+  },
+  {
+   "type": "box",
+   "at": [
+    5,
+    0,
+    1
+   ],
+   "size": [
+    21,
+    3,
+    7
+   ],
+   "color": "brown"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     5,
+     0,
+     2
+    ],
+    "size": [
+     21,
+     3,
+     5
+    ]
+   },
+   "pattern": "rows",
+   "every": 2,
+   "offset": 0,
+   "color": "azure"
+  },
+  {
+   "type": "box",
+   "at": [
+    13,
+    0,
+    8
+   ],
+   "size": [
+    5,
+    3,
+    3
+   ],
+   "color": "brown"
+  },
+  {
+   "type": "paint",
+   "region": {
+    "type": "box",
+    "at": [
+     13,
+     0,
+     9
+    ],
+    "size": [
+     5,
+     3,
+     1
+    ]
+   },
+   "color": "white"
+  },
+  {
+   "type": "cylinder",
+   "center": [
+    22.5,
+    1.5
+   ],
+   "z": 8,
+   "height": 2,
+   "radius": 1,
+   "color": "dark_gray"
+  },
+  {
+   "type": "prefab",
+   "name": "bush",
+   "at": [
+    [
+     2,
+     33
+    ],
+    [
+     8,
+     33
+    ],
+    [
+     14,
+     33
+    ],
+    [
+     20,
+     33
+    ],
+    [
+     26,
+     33
+    ],
+    [
+     32,
+     33
+    ],
+    [
+     52,
+     33
+    ]
+   ]
+  }
+ ]
+}
