@@ -1,0 +1,830 @@
+bag,part,name,color,bricklink_color_id,bricklink_color,qty
+1,3007,Brick 2 x 8,blue,7,Blue,9
+1,3008,Brick 1 x 8,blue,7,Blue,8
+1,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,2
+1,3008,Brick 1 x 8,gray,86,Light Bluish Gray,8
+1,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+1,2456,Brick 2 x 6,tan,2,Tan,19
+1,3001,Brick 2 x 4,tan,2,Tan,8
+1,3002,Brick 2 x 3,tan,2,Tan,2
+1,3003,Brick 2 x 2,tan,2,Tan,2
+1,3004,Brick 1 x 2,tan,2,Tan,8
+1,3005,Brick 1 x 1,tan,2,Tan,3
+1,3007,Brick 2 x 8,tan,2,Tan,113
+1,3008,Brick 1 x 8,tan,2,Tan,29
+1,3009,Brick 1 x 6,tan,2,Tan,5
+1,3010,Brick 1 x 4,tan,2,Tan,10
+1,3622,Brick 1 x 3,tan,2,Tan,1
+2,3005,Brick 1 x 1,azure,156,Medium Azure,2
+2,3010,Brick 1 x 4,azure,156,Medium Azure,2
+2,2456,Brick 2 x 6,blue,7,Blue,1
+2,3007,Brick 2 x 8,blue,7,Blue,4
+2,3008,Brick 1 x 8,blue,7,Blue,12
+2,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,2
+2,3007,Brick 2 x 8,dark_gray,85,Dark Bluish Gray,8
+2,2456,Brick 2 x 6,gray,86,Light Bluish Gray,2
+2,3007,Brick 2 x 8,gray,86,Light Bluish Gray,11
+2,3008,Brick 1 x 8,gray,86,Light Bluish Gray,13
+2,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+2,3007,Brick 2 x 8,green,6,Green,3
+2,2456,Brick 2 x 6,tan,2,Tan,15
+2,3001,Brick 2 x 4,tan,2,Tan,7
+2,3002,Brick 2 x 3,tan,2,Tan,1
+2,3003,Brick 2 x 2,tan,2,Tan,1
+2,3004,Brick 1 x 2,tan,2,Tan,6
+2,3005,Brick 1 x 1,tan,2,Tan,8
+2,3007,Brick 2 x 8,tan,2,Tan,76
+2,3008,Brick 1 x 8,tan,2,Tan,34
+2,3009,Brick 1 x 6,tan,2,Tan,8
+2,3010,Brick 1 x 4,tan,2,Tan,8
+2,3622,Brick 1 x 3,tan,2,Tan,3
+3,3005,Brick 1 x 1,azure,156,Medium Azure,4
+3,3010,Brick 1 x 4,azure,156,Medium Azure,4
+3,2456,Brick 2 x 6,blue,7,Blue,1
+3,3004,Brick 1 x 2,blue,7,Blue,1
+3,3005,Brick 1 x 1,blue,7,Blue,3
+3,3007,Brick 2 x 8,blue,7,Blue,2
+3,3008,Brick 1 x 8,blue,7,Blue,13
+3,3009,Brick 1 x 6,blue,7,Blue,1
+3,3010,Brick 1 x 4,blue,7,Blue,1
+3,3622,Brick 1 x 3,blue,7,Blue,1
+3,3007,Brick 2 x 8,dark_gray,85,Dark Bluish Gray,16
+3,2456,Brick 2 x 6,gray,86,Light Bluish Gray,3
+3,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+3,3003,Brick 2 x 2,gray,86,Light Bluish Gray,1
+3,3004,Brick 1 x 2,gray,86,Light Bluish Gray,2
+3,3007,Brick 2 x 8,gray,86,Light Bluish Gray,41
+3,3008,Brick 1 x 8,gray,86,Light Bluish Gray,17
+3,3009,Brick 1 x 6,gray,86,Light Bluish Gray,2
+3,2456,Brick 2 x 6,green,6,Green,3
+3,2456,Brick 2 x 6,tan,2,Tan,4
+3,3001,Brick 2 x 4,tan,2,Tan,3
+3,3002,Brick 2 x 3,tan,2,Tan,5
+3,3004,Brick 1 x 2,tan,2,Tan,2
+3,3005,Brick 1 x 1,tan,2,Tan,13
+3,3007,Brick 2 x 8,tan,2,Tan,20
+3,3008,Brick 1 x 8,tan,2,Tan,44
+3,3009,Brick 1 x 6,tan,2,Tan,6
+3,3010,Brick 1 x 4,tan,2,Tan,10
+3,3622,Brick 1 x 3,tan,2,Tan,3
+4,3005,Brick 1 x 1,blue,7,Blue,3
+4,3005,Brick 1 x 1,brown,88,Reddish Brown,7
+4,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+4,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+4,3003,Brick 2 x 2,gray,86,Light Bluish Gray,14
+4,3008,Brick 1 x 8,gray,86,Light Bluish Gray,1
+4,3062b,"Brick, Round 1 x 1",green,6,Green,12
+4,2456,Brick 2 x 6,tan,2,Tan,21
+4,3001,Brick 2 x 4,tan,2,Tan,14
+4,3002,Brick 2 x 3,tan,2,Tan,1
+4,3003,Brick 2 x 2,tan,2,Tan,5
+4,3004,Brick 1 x 2,tan,2,Tan,19
+4,3005,Brick 1 x 1,tan,2,Tan,17
+4,3007,Brick 2 x 8,tan,2,Tan,27
+4,3008,Brick 1 x 8,tan,2,Tan,11
+4,3009,Brick 1 x 6,tan,2,Tan,11
+4,3010,Brick 1 x 4,tan,2,Tan,11
+4,3622,Brick 1 x 3,tan,2,Tan,7
+4,2456,Brick 2 x 6,white,1,White,7
+4,3001,Brick 2 x 4,white,1,White,14
+4,3003,Brick 2 x 2,white,1,White,5
+4,3004,Brick 1 x 2,white,1,White,4
+4,3005,Brick 1 x 1,white,1,White,4
+5,3005,Brick 1 x 1,azure,156,Medium Azure,16
+5,3009,Brick 1 x 6,azure,156,Medium Azure,12
+5,3010,Brick 1 x 4,azure,156,Medium Azure,12
+5,3009,Brick 1 x 6,blue,7,Blue,3
+5,3010,Brick 1 x 4,blue,7,Blue,3
+5,3005,Brick 1 x 1,brown,88,Reddish Brown,3
+5,3003,Brick 2 x 2,gray,86,Light Bluish Gray,12
+5,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+5,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+5,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+5,2456,Brick 2 x 6,green,6,Green,1
+5,3003,Brick 2 x 2,green,6,Green,1
+5,3004,Brick 1 x 2,green,6,Green,10
+5,3005,Brick 1 x 1,green,6,Green,10
+5,3007,Brick 2 x 8,green,6,Green,20
+5,3008,Brick 1 x 8,green,6,Green,36
+5,3009,Brick 1 x 6,green,6,Green,8
+5,3010,Brick 1 x 4,green,6,Green,7
+5,3622,Brick 1 x 3,green,6,Green,5
+5,3062b,"Brick, Round 1 x 1",orange,4,Orange,2
+5,3062b,"Brick, Round 1 x 1",pink,104,Bright Pink,2
+5,3062b,"Brick, Round 1 x 1",purple,89,Dark Purple,2
+5,3062b,"Brick, Round 1 x 1",red,5,Red,2
+5,3004,Brick 1 x 2,tan,2,Tan,1
+5,3010,Brick 1 x 4,tan,2,Tan,1
+5,3622,Brick 1 x 3,tan,2,Tan,2
+5,2456,Brick 2 x 6,white,1,White,2
+5,3004,Brick 1 x 2,white,1,White,13
+5,3005,Brick 1 x 1,white,1,White,16
+5,3010,Brick 1 x 4,white,1,White,5
+5,3062b,"Brick, Round 1 x 1",white,1,White,2
+5,3622,Brick 1 x 3,white,1,White,10
+5,3005,Brick 1 x 1,yellow,3,Yellow,3
+5,3062b,"Brick, Round 1 x 1",yellow,3,Yellow,2
+6,3003,Brick 2 x 2,azure,156,Medium Azure,5
+6,3009,Brick 1 x 6,azure,156,Medium Azure,1
+6,3010,Brick 1 x 4,azure,156,Medium Azure,1
+6,3622,Brick 1 x 3,azure,156,Medium Azure,2
+6,3009,Brick 1 x 6,blue,7,Blue,1
+6,3010,Brick 1 x 4,blue,7,Blue,1
+6,3003,Brick 2 x 2,brown,88,Reddish Brown,3
+6,3005,Brick 1 x 1,brown,88,Reddish Brown,1
+6,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+6,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+6,3003,Brick 2 x 2,gray,86,Light Bluish Gray,11
+6,3004,Brick 1 x 2,gray,86,Light Bluish Gray,2
+6,3005,Brick 1 x 1,gray,86,Light Bluish Gray,2
+6,2456,Brick 2 x 6,green,6,Green,8
+6,3001,Brick 2 x 4,green,6,Green,25
+6,3002,Brick 2 x 3,green,6,Green,2
+6,3003,Brick 2 x 2,green,6,Green,1
+6,3004,Brick 1 x 2,green,6,Green,13
+6,3005,Brick 1 x 1,green,6,Green,26
+6,3007,Brick 2 x 8,green,6,Green,28
+6,3008,Brick 1 x 8,green,6,Green,7
+6,3009,Brick 1 x 6,green,6,Green,6
+6,3010,Brick 1 x 4,green,6,Green,12
+6,3622,Brick 1 x 3,green,6,Green,8
+6,3003,Brick 2 x 2,lime,34,Lime,1
+6,3003,Brick 2 x 2,orange,4,Orange,3
+6,3003,Brick 2 x 2,pink,104,Bright Pink,1
+6,3001,Brick 2 x 4,red,5,Red,4
+6,3010,Brick 1 x 4,red,5,Red,4
+6,2456,Brick 2 x 6,tan,2,Tan,2
+6,3001,Brick 2 x 4,tan,2,Tan,4
+6,3003,Brick 2 x 2,tan,2,Tan,2
+6,3004,Brick 1 x 2,tan,2,Tan,1
+6,3010,Brick 1 x 4,tan,2,Tan,1
+6,3062b,"Brick, Round 1 x 1",tan,2,Tan,3
+6,3622,Brick 1 x 3,tan,2,Tan,2
+6,2456,Brick 2 x 6,white,1,White,5
+6,3001,Brick 2 x 4,white,1,White,11
+6,3003,Brick 2 x 2,white,1,White,6
+6,3003,Brick 2 x 2,yellow,3,Yellow,1
+7,3003,Brick 2 x 2,azure,156,Medium Azure,2
+7,3005,Brick 1 x 1,azure,156,Medium Azure,9
+7,3009,Brick 1 x 6,azure,156,Medium Azure,12
+7,3010,Brick 1 x 4,azure,156,Medium Azure,12
+7,3009,Brick 1 x 6,blue,7,Blue,4
+7,3010,Brick 1 x 4,blue,7,Blue,4
+7,3004,Brick 1 x 2,brown,88,Reddish Brown,3
+7,3005,Brick 1 x 1,brown,88,Reddish Brown,4
+7,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,1
+7,3003,Brick 2 x 2,gray,86,Light Bluish Gray,10
+7,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+7,3005,Brick 1 x 1,gray,86,Light Bluish Gray,4
+7,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+7,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+7,2456,Brick 2 x 6,green,6,Green,2
+7,3001,Brick 2 x 4,green,6,Green,3
+7,3002,Brick 2 x 3,green,6,Green,4
+7,3004,Brick 1 x 2,green,6,Green,8
+7,3005,Brick 1 x 1,green,6,Green,13
+7,3007,Brick 2 x 8,green,6,Green,13
+7,3008,Brick 1 x 8,green,6,Green,28
+7,3009,Brick 1 x 6,green,6,Green,10
+7,3010,Brick 1 x 4,green,6,Green,11
+7,3622,Brick 1 x 3,green,6,Green,9
+7,3003,Brick 2 x 2,lime,34,Lime,3
+7,3004,Brick 1 x 2,orange,4,Orange,3
+7,3005,Brick 1 x 1,orange,4,Orange,3
+7,3003,Brick 2 x 2,pink,104,Bright Pink,1
+7,3004,Brick 1 x 2,pink,104,Bright Pink,1
+7,3005,Brick 1 x 1,pink,104,Bright Pink,1
+7,3003,Brick 2 x 2,red,5,Red,1
+7,3004,Brick 1 x 2,red,5,Red,4
+7,3004,Brick 1 x 2,tan,2,Tan,2
+7,3010,Brick 1 x 4,tan,2,Tan,2
+7,3622,Brick 1 x 3,tan,2,Tan,4
+7,2456,Brick 2 x 6,white,1,White,2
+7,3004,Brick 1 x 2,white,1,White,6
+7,3005,Brick 1 x 1,white,1,White,1
+7,3010,Brick 1 x 4,white,1,White,5
+7,3622,Brick 1 x 3,white,1,White,10
+7,3003,Brick 2 x 2,yellow,3,Yellow,1
+7,3004,Brick 1 x 2,yellow,3,Yellow,1
+7,3005,Brick 1 x 1,yellow,3,Yellow,1
+8,3003,Brick 2 x 2,azure,156,Medium Azure,1
+8,3005,Brick 1 x 1,azure,156,Medium Azure,8
+8,3003,Brick 2 x 2,brown,88,Reddish Brown,9
+8,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,6
+8,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+8,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+8,3003,Brick 2 x 2,gray,86,Light Bluish Gray,16
+8,2456,Brick 2 x 6,green,6,Green,8
+8,3001,Brick 2 x 4,green,6,Green,18
+8,3002,Brick 2 x 3,green,6,Green,1
+8,3004,Brick 1 x 2,green,6,Green,6
+8,3005,Brick 1 x 1,green,6,Green,23
+8,3007,Brick 2 x 8,green,6,Green,10
+8,3008,Brick 1 x 8,green,6,Green,22
+8,3009,Brick 1 x 6,green,6,Green,15
+8,3010,Brick 1 x 4,green,6,Green,12
+8,3622,Brick 1 x 3,green,6,Green,7
+8,3004,Brick 1 x 2,lime,34,Lime,4
+8,3005,Brick 1 x 1,lime,34,Lime,4
+8,3003,Brick 2 x 2,orange,4,Orange,3
+8,3004,Brick 1 x 2,pink,104,Bright Pink,1
+8,3005,Brick 1 x 1,pink,104,Bright Pink,1
+8,3003,Brick 2 x 2,red,5,Red,3
+8,3004,Brick 1 x 2,red,5,Red,1
+8,3005,Brick 1 x 1,red,5,Red,1
+8,2456,Brick 2 x 6,tan,2,Tan,2
+8,3001,Brick 2 x 4,tan,2,Tan,4
+8,3003,Brick 2 x 2,tan,2,Tan,2
+8,2456,Brick 2 x 6,white,1,White,7
+8,3001,Brick 2 x 4,white,1,White,10
+8,3003,Brick 2 x 2,white,1,White,7
+8,3004,Brick 1 x 2,white,1,White,1
+8,3005,Brick 1 x 1,white,1,White,1
+8,3003,Brick 2 x 2,yellow,3,Yellow,2
+8,3004,Brick 1 x 2,yellow,3,Yellow,1
+8,3005,Brick 1 x 1,yellow,3,Yellow,1
+9,3005,Brick 1 x 1,azure,156,Medium Azure,12
+9,3009,Brick 1 x 6,azure,156,Medium Azure,12
+9,3010,Brick 1 x 4,azure,156,Medium Azure,12
+9,3009,Brick 1 x 6,blue,7,Blue,4
+9,3010,Brick 1 x 4,blue,7,Blue,4
+9,3003,Brick 2 x 2,brown,88,Reddish Brown,2
+9,3004,Brick 1 x 2,brown,88,Reddish Brown,5
+9,3005,Brick 1 x 1,brown,88,Reddish Brown,5
+9,2456,Brick 2 x 6,dark_gray,85,Dark Bluish Gray,2
+9,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,3
+9,3003,Brick 2 x 2,gray,86,Light Bluish Gray,2
+9,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+9,3005,Brick 1 x 1,gray,86,Light Bluish Gray,1
+9,3007,Brick 2 x 8,gray,86,Light Bluish Gray,2
+9,3008,Brick 1 x 8,gray,86,Light Bluish Gray,19
+9,3010,Brick 1 x 4,gray,86,Light Bluish Gray,2
+9,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+9,2456,Brick 2 x 6,green,6,Green,3
+9,3002,Brick 2 x 3,green,6,Green,2
+9,3004,Brick 1 x 2,green,6,Green,3
+9,3005,Brick 1 x 1,green,6,Green,10
+9,3007,Brick 2 x 8,green,6,Green,2
+9,3008,Brick 1 x 8,green,6,Green,39
+9,3009,Brick 1 x 6,green,6,Green,7
+9,3010,Brick 1 x 4,green,6,Green,7
+9,3622,Brick 1 x 3,green,6,Green,8
+9,3003,Brick 2 x 2,orange,4,Orange,1
+9,3004,Brick 1 x 2,orange,4,Orange,2
+9,3005,Brick 1 x 1,orange,4,Orange,2
+9,3003,Brick 2 x 2,pink,104,Bright Pink,2
+9,3003,Brick 2 x 2,red,5,Red,1
+9,3004,Brick 1 x 2,red,5,Red,3
+9,3005,Brick 1 x 1,red,5,Red,3
+9,3004,Brick 1 x 2,tan,2,Tan,2
+9,3010,Brick 1 x 4,tan,2,Tan,2
+9,3622,Brick 1 x 3,tan,2,Tan,4
+9,3003,Brick 2 x 2,white,1,White,1
+9,3004,Brick 1 x 2,white,1,White,6
+9,3005,Brick 1 x 1,white,1,White,1
+9,3010,Brick 1 x 4,white,1,White,5
+9,3622,Brick 1 x 3,white,1,White,10
+9,3003,Brick 2 x 2,yellow,3,Yellow,1
+9,3004,Brick 1 x 2,yellow,3,Yellow,1
+9,3005,Brick 1 x 1,yellow,3,Yellow,1
+10,3003,Brick 2 x 2,azure,156,Medium Azure,1
+10,3005,Brick 1 x 1,azure,156,Medium Azure,8
+10,3010,Brick 1 x 4,black,11,Black,1
+10,3003,Brick 2 x 2,brown,88,Reddish Brown,3
+10,3004,Brick 1 x 2,brown,88,Reddish Brown,1
+10,3005,Brick 1 x 1,brown,88,Reddish Brown,1
+10,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,8
+10,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+10,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+10,3003,Brick 2 x 2,gray,86,Light Bluish Gray,6
+10,3007,Brick 2 x 8,gray,86,Light Bluish Gray,12
+10,2456,Brick 2 x 6,green,6,Green,9
+10,3001,Brick 2 x 4,green,6,Green,21
+10,3002,Brick 2 x 3,green,6,Green,3
+10,3004,Brick 1 x 2,green,6,Green,12
+10,3005,Brick 1 x 1,green,6,Green,22
+10,3007,Brick 2 x 8,green,6,Green,16
+10,3008,Brick 1 x 8,green,6,Green,18
+10,3009,Brick 1 x 6,green,6,Green,10
+10,3010,Brick 1 x 4,green,6,Green,19
+10,3622,Brick 1 x 3,green,6,Green,6
+10,3003,Brick 2 x 2,lime,34,Lime,1
+10,3003,Brick 2 x 2,orange,4,Orange,1
+10,3004,Brick 1 x 2,orange,4,Orange,2
+10,3005,Brick 1 x 1,orange,4,Orange,2
+10,3003,Brick 2 x 2,pink,104,Bright Pink,1
+10,3004,Brick 1 x 2,pink,104,Bright Pink,2
+10,3005,Brick 1 x 1,pink,104,Bright Pink,2
+10,3003,Brick 2 x 2,red,5,Red,1
+10,3004,Brick 1 x 2,red,5,Red,1
+10,3005,Brick 1 x 1,red,5,Red,1
+10,2456,Brick 2 x 6,tan,2,Tan,2
+10,3001,Brick 2 x 4,tan,2,Tan,4
+10,3003,Brick 2 x 2,tan,2,Tan,2
+10,2456,Brick 2 x 6,white,1,White,5
+10,3001,Brick 2 x 4,white,1,White,10
+10,3003,Brick 2 x 2,white,1,White,5
+10,3004,Brick 1 x 2,white,1,White,1
+10,3005,Brick 1 x 1,white,1,White,1
+10,3004,Brick 1 x 2,yellow,3,Yellow,1
+10,3005,Brick 1 x 1,yellow,3,Yellow,1
+11,3003,Brick 2 x 2,azure,156,Medium Azure,1
+11,3005,Brick 1 x 1,azure,156,Medium Azure,5
+11,3009,Brick 1 x 6,azure,156,Medium Azure,12
+11,3010,Brick 1 x 4,azure,156,Medium Azure,12
+11,3004,Brick 1 x 2,black,11,Black,6
+11,3010,Brick 1 x 4,black,11,Black,1
+11,3009,Brick 1 x 6,blue,7,Blue,4
+11,3010,Brick 1 x 4,blue,7,Blue,4
+11,3003,Brick 2 x 2,brown,88,Reddish Brown,5
+11,3004,Brick 1 x 2,brown,88,Reddish Brown,1
+11,3005,Brick 1 x 1,brown,88,Reddish Brown,1
+11,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,1
+11,3003,Brick 2 x 2,gray,86,Light Bluish Gray,4
+11,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+11,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+11,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+11,2456,Brick 2 x 6,green,6,Green,3
+11,3001,Brick 2 x 4,green,6,Green,4
+11,3002,Brick 2 x 3,green,6,Green,4
+11,3004,Brick 1 x 2,green,6,Green,14
+11,3005,Brick 1 x 1,green,6,Green,18
+11,3007,Brick 2 x 8,green,6,Green,15
+11,3008,Brick 1 x 8,green,6,Green,38
+11,3009,Brick 1 x 6,green,6,Green,12
+11,3010,Brick 1 x 4,green,6,Green,13
+11,3622,Brick 1 x 3,green,6,Green,2
+11,3003,Brick 2 x 2,lime,34,Lime,1
+11,3004,Brick 1 x 2,lime,34,Lime,1
+11,3005,Brick 1 x 1,lime,34,Lime,1
+11,3003,Brick 2 x 2,orange,4,Orange,3
+11,3004,Brick 1 x 2,orange,4,Orange,1
+11,3005,Brick 1 x 1,orange,4,Orange,1
+11,3003,Brick 2 x 2,pink,104,Bright Pink,1
+11,3004,Brick 1 x 2,pink,104,Bright Pink,1
+11,3005,Brick 1 x 1,pink,104,Bright Pink,1
+11,3003,Brick 2 x 2,red,5,Red,1
+11,3004,Brick 1 x 2,red,5,Red,1
+11,3005,Brick 1 x 1,red,5,Red,1
+11,3004,Brick 1 x 2,tan,2,Tan,2
+11,3010,Brick 1 x 4,tan,2,Tan,2
+11,3622,Brick 1 x 3,tan,2,Tan,4
+11,3004,Brick 1 x 2,white,1,White,5
+11,3010,Brick 1 x 4,white,1,White,5
+11,3622,Brick 1 x 3,white,1,White,10
+11,3003,Brick 2 x 2,yellow,3,Yellow,1
+12,3003,Brick 2 x 2,azure,156,Medium Azure,1
+12,3005,Brick 1 x 1,azure,156,Medium Azure,9
+12,3622,Brick 1 x 3,black,11,Black,1
+12,3003,Brick 2 x 2,brown,88,Reddish Brown,6
+12,3004,Brick 1 x 2,brown,88,Reddish Brown,2
+12,3005,Brick 1 x 1,brown,88,Reddish Brown,2
+12,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,2
+12,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+12,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+12,3003,Brick 2 x 2,gray,86,Light Bluish Gray,6
+12,2456,Brick 2 x 6,green,6,Green,4
+12,3001,Brick 2 x 4,green,6,Green,26
+12,3002,Brick 2 x 3,green,6,Green,3
+12,3004,Brick 1 x 2,green,6,Green,16
+12,3005,Brick 1 x 1,green,6,Green,28
+12,3007,Brick 2 x 8,green,6,Green,15
+12,3008,Brick 1 x 8,green,6,Green,13
+12,3009,Brick 1 x 6,green,6,Green,11
+12,3010,Brick 1 x 4,green,6,Green,23
+12,3622,Brick 1 x 3,green,6,Green,3
+12,3003,Brick 2 x 2,lime,34,Lime,1
+12,3004,Brick 1 x 2,lime,34,Lime,1
+12,3005,Brick 1 x 1,lime,34,Lime,1
+12,3003,Brick 2 x 2,orange,4,Orange,1
+12,3004,Brick 1 x 2,orange,4,Orange,3
+12,3005,Brick 1 x 1,orange,4,Orange,3
+12,3003,Brick 2 x 2,pink,104,Bright Pink,1
+12,3004,Brick 1 x 2,pink,104,Bright Pink,1
+12,3005,Brick 1 x 1,pink,104,Bright Pink,1
+12,3003,Brick 2 x 2,red,5,Red,1
+12,3004,Brick 1 x 2,red,5,Red,1
+12,3005,Brick 1 x 1,red,5,Red,1
+12,2456,Brick 2 x 6,tan,2,Tan,2
+12,3001,Brick 2 x 4,tan,2,Tan,4
+12,3003,Brick 2 x 2,tan,2,Tan,2
+12,2456,Brick 2 x 6,white,1,White,8
+12,3001,Brick 2 x 4,white,1,White,10
+12,3003,Brick 2 x 2,white,1,White,5
+12,3003,Brick 2 x 2,yellow,3,Yellow,1
+12,3004,Brick 1 x 2,yellow,3,Yellow,1
+12,3005,Brick 1 x 1,yellow,3,Yellow,1
+13,3003,Brick 2 x 2,azure,156,Medium Azure,2
+13,3005,Brick 1 x 1,azure,156,Medium Azure,26
+13,3009,Brick 1 x 6,azure,156,Medium Azure,10
+13,3010,Brick 1 x 4,azure,156,Medium Azure,10
+13,3004,Brick 1 x 2,black,11,Black,1
+13,3009,Brick 1 x 6,blue,7,Blue,2
+13,3010,Brick 1 x 4,blue,7,Blue,2
+13,3003,Brick 2 x 2,brown,88,Reddish Brown,3
+13,3004,Brick 1 x 2,brown,88,Reddish Brown,3
+13,3005,Brick 1 x 1,brown,88,Reddish Brown,3
+13,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,6
+13,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,1
+13,3005,Brick 1 x 1,dark_gray,85,Dark Bluish Gray,1
+13,3003,Brick 2 x 2,gray,86,Light Bluish Gray,1
+13,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+13,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+13,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+13,2456,Brick 2 x 6,green,6,Green,3
+13,3001,Brick 2 x 4,green,6,Green,5
+13,3003,Brick 2 x 2,green,6,Green,1
+13,3004,Brick 1 x 2,green,6,Green,9
+13,3005,Brick 1 x 1,green,6,Green,17
+13,3007,Brick 2 x 8,green,6,Green,11
+13,3008,Brick 1 x 8,green,6,Green,21
+13,3009,Brick 1 x 6,green,6,Green,10
+13,3010,Brick 1 x 4,green,6,Green,10
+13,3622,Brick 1 x 3,green,6,Green,10
+13,3004,Brick 1 x 2,lime,34,Lime,1
+13,3005,Brick 1 x 1,lime,34,Lime,1
+13,3003,Brick 2 x 2,orange,4,Orange,2
+13,3004,Brick 1 x 2,orange,4,Orange,1
+13,3005,Brick 1 x 1,orange,4,Orange,1
+13,3003,Brick 2 x 2,pink,104,Bright Pink,2
+13,3004,Brick 1 x 2,pink,104,Bright Pink,1
+13,3005,Brick 1 x 1,pink,104,Bright Pink,1
+13,3004,Brick 1 x 2,red,5,Red,1
+13,3005,Brick 1 x 1,red,5,Red,1
+13,3004,Brick 1 x 2,tan,2,Tan,1
+13,3010,Brick 1 x 4,tan,2,Tan,1
+13,3622,Brick 1 x 3,tan,2,Tan,2
+13,3003,Brick 2 x 2,white,1,White,2
+13,3004,Brick 1 x 2,white,1,White,4
+13,3005,Brick 1 x 1,white,1,White,18
+13,3010,Brick 1 x 4,white,1,White,4
+13,3622,Brick 1 x 3,white,1,White,8
+13,3003,Brick 2 x 2,yellow,3,Yellow,2
+13,3004,Brick 1 x 2,yellow,3,Yellow,1
+13,3005,Brick 1 x 1,yellow,3,Yellow,1
+14,3003,Brick 2 x 2,azure,156,Medium Azure,2
+14,3005,Brick 1 x 1,azure,156,Medium Azure,10
+14,3009,Brick 1 x 6,azure,156,Medium Azure,2
+14,3010,Brick 1 x 4,azure,156,Medium Azure,2
+14,3622,Brick 1 x 3,black,11,Black,1
+14,3009,Brick 1 x 6,blue,7,Blue,2
+14,3010,Brick 1 x 4,blue,7,Blue,2
+14,3003,Brick 2 x 2,brown,88,Reddish Brown,2
+14,3004,Brick 1 x 2,brown,88,Reddish Brown,2
+14,3005,Brick 1 x 1,brown,88,Reddish Brown,2
+14,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,3
+14,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+14,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+14,3003,Brick 2 x 2,gray,86,Light Bluish Gray,6
+14,2456,Brick 2 x 6,green,6,Green,2
+14,3001,Brick 2 x 4,green,6,Green,19
+14,3002,Brick 2 x 3,green,6,Green,7
+14,3004,Brick 1 x 2,green,6,Green,20
+14,3005,Brick 1 x 1,green,6,Green,24
+14,3007,Brick 2 x 8,green,6,Green,11
+14,3008,Brick 1 x 8,green,6,Green,17
+14,3009,Brick 1 x 6,green,6,Green,12
+14,3010,Brick 1 x 4,green,6,Green,21
+14,3622,Brick 1 x 3,green,6,Green,3
+14,3003,Brick 2 x 2,orange,4,Orange,1
+14,3004,Brick 1 x 2,orange,4,Orange,2
+14,3005,Brick 1 x 1,orange,4,Orange,2
+14,3004,Brick 1 x 2,pink,104,Bright Pink,2
+14,3005,Brick 1 x 1,pink,104,Bright Pink,2
+14,3003,Brick 2 x 2,red,5,Red,1
+14,2456,Brick 2 x 6,tan,2,Tan,6
+14,3004,Brick 1 x 2,tan,2,Tan,1
+14,3010,Brick 1 x 4,tan,2,Tan,1
+14,3622,Brick 1 x 3,tan,2,Tan,2
+14,2456,Brick 2 x 6,white,1,White,15
+14,3004,Brick 1 x 2,white,1,White,3
+14,3005,Brick 1 x 1,white,1,White,2
+14,3010,Brick 1 x 4,white,1,White,1
+14,3622,Brick 1 x 3,white,1,White,2
+14,3004,Brick 1 x 2,yellow,3,Yellow,2
+14,3005,Brick 1 x 1,yellow,3,Yellow,2
+15,2456,Brick 2 x 6,azure,156,Medium Azure,15
+15,3003,Brick 2 x 2,azure,156,Medium Azure,1
+15,3005,Brick 1 x 1,azure,156,Medium Azure,4
+15,3009,Brick 1 x 6,azure,156,Medium Azure,2
+15,3010,Brick 1 x 4,azure,156,Medium Azure,2
+15,3004,Brick 1 x 2,black,11,Black,1
+15,2456,Brick 2 x 6,blue,7,Blue,6
+15,3003,Brick 2 x 2,brown,88,Reddish Brown,3
+15,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,7
+15,3003,Brick 2 x 2,gray,86,Light Bluish Gray,4
+15,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+15,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+15,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+15,2456,Brick 2 x 6,green,6,Green,6
+15,3001,Brick 2 x 4,green,6,Green,12
+15,3002,Brick 2 x 3,green,6,Green,3
+15,3003,Brick 2 x 2,green,6,Green,1
+15,3004,Brick 1 x 2,green,6,Green,17
+15,3005,Brick 1 x 1,green,6,Green,28
+15,3007,Brick 2 x 8,green,6,Green,10
+15,3008,Brick 1 x 8,green,6,Green,34
+15,3009,Brick 1 x 6,green,6,Green,15
+15,3010,Brick 1 x 4,green,6,Green,23
+15,3622,Brick 1 x 3,green,6,Green,7
+15,3003,Brick 2 x 2,lime,34,Lime,1
+15,3004,Brick 1 x 2,lime,34,Lime,1
+15,3005,Brick 1 x 1,lime,34,Lime,1
+15,3003,Brick 2 x 2,orange,4,Orange,3
+15,3004,Brick 1 x 2,orange,4,Orange,2
+15,3005,Brick 1 x 1,orange,4,Orange,2
+15,3003,Brick 2 x 2,red,5,Red,1
+15,3004,Brick 1 x 2,red,5,Red,1
+15,3005,Brick 1 x 1,red,5,Red,1
+15,3003,Brick 2 x 2,white,1,White,1
+15,3003,Brick 2 x 2,yellow,3,Yellow,1
+16,3003,Brick 2 x 2,azure,156,Medium Azure,4
+16,3005,Brick 1 x 1,azure,156,Medium Azure,7
+16,3004,Brick 1 x 2,black,11,Black,1
+16,3005,Brick 1 x 1,black,11,Black,1
+16,3003,Brick 2 x 2,brown,88,Reddish Brown,4
+16,3004,Brick 1 x 2,brown,88,Reddish Brown,1
+16,3005,Brick 1 x 1,brown,88,Reddish Brown,1
+16,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,3
+16,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+16,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+16,3003,Brick 2 x 2,gray,86,Light Bluish Gray,4
+16,2456,Brick 2 x 6,green,6,Green,6
+16,3001,Brick 2 x 4,green,6,Green,14
+16,3002,Brick 2 x 3,green,6,Green,2
+16,3004,Brick 1 x 2,green,6,Green,11
+16,3005,Brick 1 x 1,green,6,Green,41
+16,3007,Brick 2 x 8,green,6,Green,13
+16,3008,Brick 1 x 8,green,6,Green,27
+16,3009,Brick 1 x 6,green,6,Green,21
+16,3010,Brick 1 x 4,green,6,Green,30
+16,3622,Brick 1 x 3,green,6,Green,8
+16,3003,Brick 2 x 2,lime,34,Lime,1
+16,3004,Brick 1 x 2,lime,34,Lime,1
+16,3005,Brick 1 x 1,lime,34,Lime,1
+16,3003,Brick 2 x 2,orange,4,Orange,2
+16,3004,Brick 1 x 2,orange,4,Orange,2
+16,3005,Brick 1 x 1,orange,4,Orange,2
+16,3003,Brick 2 x 2,red,5,Red,2
+16,3003,Brick 2 x 2,white,1,White,4
+16,3004,Brick 1 x 2,white,1,White,2
+16,3005,Brick 1 x 1,white,1,White,2
+16,3003,Brick 2 x 2,yellow,3,Yellow,1
+16,3004,Brick 1 x 2,yellow,3,Yellow,1
+16,3005,Brick 1 x 1,yellow,3,Yellow,1
+17,3003,Brick 2 x 2,azure,156,Medium Azure,2
+17,3005,Brick 1 x 1,azure,156,Medium Azure,11
+17,3009,Brick 1 x 6,azure,156,Medium Azure,2
+17,3010,Brick 1 x 4,azure,156,Medium Azure,2
+17,3004,Brick 1 x 2,black,11,Black,1
+17,3003,Brick 2 x 2,brown,88,Reddish Brown,1
+17,3004,Brick 1 x 2,brown,88,Reddish Brown,2
+17,3005,Brick 1 x 1,brown,88,Reddish Brown,2
+17,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,6
+17,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+17,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+17,3003,Brick 2 x 2,gray,86,Light Bluish Gray,6
+17,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+17,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+17,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+17,2456,Brick 2 x 6,green,6,Green,3
+17,3001,Brick 2 x 4,green,6,Green,21
+17,3002,Brick 2 x 3,green,6,Green,6
+17,3003,Brick 2 x 2,green,6,Green,1
+17,3004,Brick 1 x 2,green,6,Green,12
+17,3005,Brick 1 x 1,green,6,Green,34
+17,3007,Brick 2 x 8,green,6,Green,6
+17,3008,Brick 1 x 8,green,6,Green,23
+17,3009,Brick 1 x 6,green,6,Green,19
+17,3010,Brick 1 x 4,green,6,Green,28
+17,3622,Brick 1 x 3,green,6,Green,7
+17,3003,Brick 2 x 2,lime,34,Lime,2
+17,3004,Brick 1 x 2,lime,34,Lime,1
+17,3005,Brick 1 x 1,lime,34,Lime,1
+17,3003,Brick 2 x 2,orange,4,Orange,1
+17,3004,Brick 1 x 2,orange,4,Orange,2
+17,3005,Brick 1 x 1,orange,4,Orange,2
+17,3003,Brick 2 x 2,pink,104,Bright Pink,1
+17,3004,Brick 1 x 2,red,5,Red,2
+17,3005,Brick 1 x 1,red,5,Red,2
+17,3004,Brick 1 x 2,white,1,White,3
+17,3005,Brick 1 x 1,white,1,White,3
+17,3004,Brick 1 x 2,yellow,3,Yellow,1
+17,3005,Brick 1 x 1,yellow,3,Yellow,1
+18,3005,Brick 1 x 1,azure,156,Medium Azure,6
+18,3009,Brick 1 x 6,azure,156,Medium Azure,2
+18,3010,Brick 1 x 4,azure,156,Medium Azure,2
+18,3004,Brick 1 x 2,black,11,Black,2
+18,3003,Brick 2 x 2,brown,88,Reddish Brown,6
+18,3004,Brick 1 x 2,brown,88,Reddish Brown,2
+18,3005,Brick 1 x 1,brown,88,Reddish Brown,2
+18,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,5
+18,3003,Brick 2 x 2,gray,86,Light Bluish Gray,4
+18,3004,Brick 1 x 2,gray,86,Light Bluish Gray,2
+18,3005,Brick 1 x 1,gray,86,Light Bluish Gray,1
+18,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+18,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+18,2456,Brick 2 x 6,green,6,Green,9
+18,3001,Brick 2 x 4,green,6,Green,20
+18,3002,Brick 2 x 3,green,6,Green,5
+18,3003,Brick 2 x 2,green,6,Green,1
+18,3004,Brick 1 x 2,green,6,Green,17
+18,3005,Brick 1 x 1,green,6,Green,34
+18,3007,Brick 2 x 8,green,6,Green,13
+18,3008,Brick 1 x 8,green,6,Green,24
+18,3009,Brick 1 x 6,green,6,Green,24
+18,3010,Brick 1 x 4,green,6,Green,26
+18,3622,Brick 1 x 3,green,6,Green,7
+18,3004,Brick 1 x 2,lime,34,Lime,1
+18,3005,Brick 1 x 1,lime,34,Lime,1
+18,3003,Brick 2 x 2,orange,4,Orange,2
+18,3004,Brick 1 x 2,orange,4,Orange,2
+18,3005,Brick 1 x 1,orange,4,Orange,2
+18,3003,Brick 2 x 2,pink,104,Bright Pink,1
+18,3004,Brick 1 x 2,pink,104,Bright Pink,1
+18,3005,Brick 1 x 1,pink,104,Bright Pink,1
+19,3003,Brick 2 x 2,azure,156,Medium Azure,2
+19,3005,Brick 1 x 1,azure,156,Medium Azure,4
+19,3009,Brick 1 x 6,azure,156,Medium Azure,2
+19,3010,Brick 1 x 4,azure,156,Medium Azure,2
+19,3004,Brick 1 x 2,black,11,Black,2
+19,3003,Brick 2 x 2,brown,88,Reddish Brown,2
+19,3004,Brick 1 x 2,brown,88,Reddish Brown,1
+19,3005,Brick 1 x 1,brown,88,Reddish Brown,4
+19,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,4
+19,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,1
+19,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+19,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+19,3003,Brick 2 x 2,gray,86,Light Bluish Gray,3
+19,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+19,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+19,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+19,2456,Brick 2 x 6,green,6,Green,2
+19,3001,Brick 2 x 4,green,6,Green,21
+19,3002,Brick 2 x 3,green,6,Green,2
+19,3003,Brick 2 x 2,green,6,Green,4
+19,3004,Brick 1 x 2,green,6,Green,20
+19,3005,Brick 1 x 1,green,6,Green,35
+19,3007,Brick 2 x 8,green,6,Green,13
+19,3008,Brick 1 x 8,green,6,Green,32
+19,3009,Brick 1 x 6,green,6,Green,20
+19,3010,Brick 1 x 4,green,6,Green,24
+19,3622,Brick 1 x 3,green,6,Green,6
+19,3004,Brick 1 x 2,orange,4,Orange,1
+19,3005,Brick 1 x 1,orange,4,Orange,1
+19,3004,Brick 1 x 2,pink,104,Bright Pink,1
+19,3005,Brick 1 x 1,pink,104,Bright Pink,1
+19,3003,Brick 2 x 2,yellow,3,Yellow,1
+19,3004,Brick 1 x 2,yellow,3,Yellow,1
+19,3005,Brick 1 x 1,yellow,3,Yellow,1
+20,3003,Brick 2 x 2,azure,156,Medium Azure,1
+20,3009,Brick 1 x 6,azure,156,Medium Azure,2
+20,3010,Brick 1 x 4,azure,156,Medium Azure,2
+20,3004,Brick 1 x 2,black,11,Black,2
+20,3005,Brick 1 x 1,black,11,Black,1
+20,3003,Brick 2 x 2,brown,88,Reddish Brown,2
+20,3005,Brick 1 x 1,brown,88,Reddish Brown,9
+20,3003,Brick 2 x 2,dark_gray,85,Dark Bluish Gray,1
+20,2456,Brick 2 x 6,gray,86,Light Bluish Gray,2
+20,3001,Brick 2 x 4,gray,86,Light Bluish Gray,4
+20,3003,Brick 2 x 2,gray,86,Light Bluish Gray,5
+20,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+20,3010,Brick 1 x 4,gray,86,Light Bluish Gray,1
+20,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+20,2456,Brick 2 x 6,green,6,Green,5
+20,3001,Brick 2 x 4,green,6,Green,17
+20,3002,Brick 2 x 3,green,6,Green,8
+20,3004,Brick 1 x 2,green,6,Green,23
+20,3005,Brick 1 x 1,green,6,Green,42
+20,3007,Brick 2 x 8,green,6,Green,13
+20,3008,Brick 1 x 8,green,6,Green,24
+20,3009,Brick 1 x 6,green,6,Green,21
+20,3010,Brick 1 x 4,green,6,Green,25
+20,3622,Brick 1 x 3,green,6,Green,15
+20,3003,Brick 2 x 2,yellow,3,Yellow,1
+21,3009,Brick 1 x 6,azure,156,Medium Azure,4
+21,3010,Brick 1 x 4,azure,156,Medium Azure,4
+21,3001,Brick 2 x 4,black,11,Black,1
+21,3004,Brick 1 x 2,black,11,Black,3
+21,3010,Brick 1 x 4,black,11,Black,1
+21,3005,Brick 1 x 1,brown,88,Reddish Brown,4
+21,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,1
+21,3010,Brick 1 x 4,dark_gray,85,Dark Bluish Gray,1
+21,2456,Brick 2 x 6,gray,86,Light Bluish Gray,1
+21,3001,Brick 2 x 4,gray,86,Light Bluish Gray,2
+21,3003,Brick 2 x 2,gray,86,Light Bluish Gray,3
+21,3004,Brick 1 x 2,gray,86,Light Bluish Gray,3
+21,3005,Brick 1 x 1,gray,86,Light Bluish Gray,1
+21,3010,Brick 1 x 4,gray,86,Light Bluish Gray,2
+21,3622,Brick 1 x 3,gray,86,Light Bluish Gray,4
+21,2456,Brick 2 x 6,green,6,Green,4
+21,3001,Brick 2 x 4,green,6,Green,18
+21,3002,Brick 2 x 3,green,6,Green,10
+21,3003,Brick 2 x 2,green,6,Green,1
+21,3004,Brick 1 x 2,green,6,Green,14
+21,3005,Brick 1 x 1,green,6,Green,58
+21,3007,Brick 2 x 8,green,6,Green,11
+21,3008,Brick 1 x 8,green,6,Green,12
+21,3009,Brick 1 x 6,green,6,Green,16
+21,3010,Brick 1 x 4,green,6,Green,24
+21,3622,Brick 1 x 3,green,6,Green,18
+21,2456,Brick 2 x 6,white,1,White,2
+22,3003,Brick 2 x 2,azure,156,Medium Azure,1
+22,3009,Brick 1 x 6,azure,156,Medium Azure,1
+22,3010,Brick 1 x 4,azure,156,Medium Azure,1
+22,3622,Brick 1 x 3,azure,156,Medium Azure,2
+22,3001,Brick 2 x 4,black,11,Black,2
+22,3004,Brick 1 x 2,black,11,Black,4
+22,3005,Brick 1 x 1,black,11,Black,1
+22,3010,Brick 1 x 4,black,11,Black,1
+22,3622,Brick 1 x 3,black,11,Black,2
+22,3005,Brick 1 x 1,brown,88,Reddish Brown,9
+22,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,3
+22,2456,Brick 2 x 6,gray,86,Light Bluish Gray,10
+22,3001,Brick 2 x 4,gray,86,Light Bluish Gray,9
+22,3002,Brick 2 x 3,gray,86,Light Bluish Gray,1
+22,3003,Brick 2 x 2,gray,86,Light Bluish Gray,1
+22,3004,Brick 1 x 2,gray,86,Light Bluish Gray,6
+22,3005,Brick 1 x 1,gray,86,Light Bluish Gray,8
+22,3007,Brick 2 x 8,gray,86,Light Bluish Gray,4
+22,3008,Brick 1 x 8,gray,86,Light Bluish Gray,5
+22,3009,Brick 1 x 6,gray,86,Light Bluish Gray,7
+22,3010,Brick 1 x 4,gray,86,Light Bluish Gray,6
+22,3622,Brick 1 x 3,gray,86,Light Bluish Gray,2
+22,2456,Brick 2 x 6,green,6,Green,3
+22,3001,Brick 2 x 4,green,6,Green,7
+22,3002,Brick 2 x 3,green,6,Green,9
+22,3004,Brick 1 x 2,green,6,Green,11
+22,3005,Brick 1 x 1,green,6,Green,50
+22,3007,Brick 2 x 8,green,6,Green,7
+22,3008,Brick 1 x 8,green,6,Green,8
+22,3009,Brick 1 x 6,green,6,Green,5
+22,3010,Brick 1 x 4,green,6,Green,8
+22,3622,Brick 1 x 3,green,6,Green,16
+22,3003,Brick 2 x 2,red,5,Red,1
+22,2456,Brick 2 x 6,white,1,White,5
+22,3001,Brick 2 x 4,white,1,White,1
+22,3004,Brick 1 x 2,white,1,White,1
+22,3009,Brick 1 x 6,white,1,White,1
+22,3622,Brick 1 x 3,white,1,White,1
+23,3001,Brick 2 x 4,black,11,Black,16
+23,3002,Brick 2 x 3,black,11,Black,3
+23,3004,Brick 1 x 2,black,11,Black,1
+23,3005,Brick 1 x 1,black,11,Black,3
+23,3010,Brick 1 x 4,black,11,Black,6
+23,3622,Brick 1 x 3,black,11,Black,2
+23,3005,Brick 1 x 1,brown,88,Reddish Brown,9
+23,2456,Brick 2 x 6,dark_gray,85,Dark Bluish Gray,1
+23,3002,Brick 2 x 3,dark_gray,85,Dark Bluish Gray,1
+23,3005,Brick 1 x 1,dark_gray,85,Dark Bluish Gray,2
+23,3010,Brick 1 x 4,dark_gray,85,Dark Bluish Gray,6
+23,3622,Brick 1 x 3,dark_gray,85,Dark Bluish Gray,7
+23,3001,Brick 2 x 4,gray,86,Light Bluish Gray,3
+23,3002,Brick 2 x 3,gray,86,Light Bluish Gray,1
+23,3003,Brick 2 x 2,gray,86,Light Bluish Gray,2
+23,3004,Brick 1 x 2,gray,86,Light Bluish Gray,2
+23,3005,Brick 1 x 1,gray,86,Light Bluish Gray,8
+23,3007,Brick 2 x 8,gray,86,Light Bluish Gray,4
+23,3008,Brick 1 x 8,gray,86,Light Bluish Gray,8
+23,3010,Brick 1 x 4,gray,86,Light Bluish Gray,3
+23,3622,Brick 1 x 3,gray,86,Light Bluish Gray,3
+23,3002,Brick 2 x 3,green,6,Green,10
+23,3004,Brick 1 x 2,green,6,Green,2
+23,3005,Brick 1 x 1,green,6,Green,54
+23,3622,Brick 1 x 3,green,6,Green,19
+23,3005,Brick 1 x 1,white,1,White,8
+spares,3004,Brick 1 x 2,red,5,Red,1
+spares,3005,Brick 1 x 1,red,5,Red,1
+spares,3062b,"Brick, Round 1 x 1",red,5,Red,1
+spares,3004,Brick 1 x 2,orange,4,Orange,1
+spares,3005,Brick 1 x 1,orange,4,Orange,1
+spares,3062b,"Brick, Round 1 x 1",orange,4,Orange,1
+spares,3004,Brick 1 x 2,yellow,3,Yellow,1
+spares,3005,Brick 1 x 1,yellow,3,Yellow,1
+spares,3062b,"Brick, Round 1 x 1",yellow,3,Yellow,1
+spares,3004,Brick 1 x 2,lime,34,Lime,1
+spares,3005,Brick 1 x 1,lime,34,Lime,1
+spares,3004,Brick 1 x 2,green,6,Green,1
+spares,3005,Brick 1 x 1,green,6,Green,1
+spares,3062b,"Brick, Round 1 x 1",green,6,Green,1
+spares,3005,Brick 1 x 1,azure,156,Medium Azure,1
+spares,3004,Brick 1 x 2,blue,7,Blue,1
+spares,3005,Brick 1 x 1,blue,7,Blue,1
+spares,3062b,"Brick, Round 1 x 1",purple,89,Dark Purple,1
+spares,3004,Brick 1 x 2,pink,104,Bright Pink,1
+spares,3005,Brick 1 x 1,pink,104,Bright Pink,1
+spares,3062b,"Brick, Round 1 x 1",pink,104,Bright Pink,1
+spares,3004,Brick 1 x 2,brown,88,Reddish Brown,1
+spares,3005,Brick 1 x 1,brown,88,Reddish Brown,1
+spares,3004,Brick 1 x 2,tan,2,Tan,1
+spares,3005,Brick 1 x 1,tan,2,Tan,1
+spares,3062b,"Brick, Round 1 x 1",tan,2,Tan,1
+spares,3004,Brick 1 x 2,gray,86,Light Bluish Gray,1
+spares,3005,Brick 1 x 1,gray,86,Light Bluish Gray,1
+spares,3004,Brick 1 x 2,dark_gray,85,Dark Bluish Gray,1
+spares,3005,Brick 1 x 1,dark_gray,85,Dark Bluish Gray,1
+spares,3004,Brick 1 x 2,white,1,White,1
+spares,3005,Brick 1 x 1,white,1,White,1
+spares,3062b,"Brick, Round 1 x 1",white,1,White,1
+spares,3004,Brick 1 x 2,black,11,Black,1
+spares,3005,Brick 1 x 1,black,11,Black,1

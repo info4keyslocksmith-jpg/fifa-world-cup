@@ -1,0 +1,5880 @@
+{
+ "order_code": "BW-DEMO",
+ "model": "Medellín Mountains",
+ "level": 6,
+ "pieces": 5111,
+ "pieces_with_spares": 5146,
+ "bags": {
+  "1": [
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 9
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 8
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 19
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 8
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 8
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 3
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 113
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 29
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 5
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 10
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   }
+  ],
+  "2": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 12
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 11
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 13
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 15
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 7
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 6
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 8
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 76
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 34
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 8
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 8
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 3
+   }
+  ],
+  "3": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 3
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 2
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 13
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 16
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 41
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 17
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 3
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 13
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 20
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 44
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 6
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 10
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 3
+   }
+  ],
+  "4": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 7
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 14
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 21
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 14
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 19
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 17
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 27
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 11
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 11
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 11
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 7
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 7
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 14
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 4
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 4
+   }
+  ],
+  "5": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 16
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 3
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 12
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 20
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 36
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 5
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 89,
+    "bricklink_color": "Dark Purple",
+    "qty": 2
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 13
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 16
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 3
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 2
+   }
+  ],
+  "6": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 5
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 11
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 25
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 26
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 28
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 4
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 3
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 11
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 6
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "7": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 9
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 10
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 28
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 9
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 6
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "8": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 8
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 9
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 16
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 18
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 23
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 22
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 15
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 4
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 7
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 7
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "9": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 5
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 5
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 19
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 39
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 6
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "10": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 8
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 12
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 9
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 22
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 16
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 18
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 19
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "11": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 5
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 12
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 6
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 14
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 18
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 15
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 38
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "12": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 9
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 26
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 16
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 28
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 15
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 23
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 8
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "13": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 26
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 10
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 10
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 5
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 9
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 17
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 4
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 18
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 4
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 8
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "14": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 10
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 19
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 20
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 17
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 15
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 2
+   }
+  ],
+  "15": [
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 15
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 6
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 7
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 17
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 28
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 34
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 15
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 23
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "16": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 7
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 14
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 41
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 27
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 30
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "17": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 11
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 34
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 23
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 19
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 28
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "18": [
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 6
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 5
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 9
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 20
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 5
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 17
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 34
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 26
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   }
+  ],
+  "19": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 20
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 35
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 32
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 20
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 6
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "20": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 9
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 5
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 5
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 17
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 23
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 42
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 13
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 21
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 25
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 15
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   }
+  ],
+  "21": [
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 4
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 3
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 4
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 4
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 18
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 14
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 58
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 12
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 16
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 24
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 18
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 2
+   }
+  ],
+  "22": [
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 2
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 4
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 9
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 10
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 9
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 5
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 7
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 3
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 9
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 11
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 50
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 7
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 5
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 8
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 16
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 5
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3009",
+    "name": "Brick 1 x 6",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   }
+  ],
+  "23": [
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 16
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 3
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 3
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 6
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 9
+   },
+   {
+    "part": "2456",
+    "name": "Brick 2 x 6",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 6
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 7
+   },
+   {
+    "part": "3001",
+    "name": "Brick 2 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3003",
+    "name": "Brick 2 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "3007",
+    "name": "Brick 2 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 4
+   },
+   {
+    "part": "3008",
+    "name": "Brick 1 x 8",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 8
+   },
+   {
+    "part": "3010",
+    "name": "Brick 1 x 4",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 3
+   },
+   {
+    "part": "3002",
+    "name": "Brick 2 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 10
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 2
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 54
+   },
+   {
+    "part": "3622",
+    "name": "Brick 1 x 3",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 19
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 8
+   }
+  ],
+  "spares": [
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 5,
+    "bricklink_color": "Red",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 4,
+    "bricklink_color": "Orange",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 3,
+    "bricklink_color": "Yellow",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 34,
+    "bricklink_color": "Lime",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 6,
+    "bricklink_color": "Green",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 156,
+    "bricklink_color": "Medium Azure",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 7,
+    "bricklink_color": "Blue",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 89,
+    "bricklink_color": "Dark Purple",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 104,
+    "bricklink_color": "Bright Pink",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 88,
+    "bricklink_color": "Reddish Brown",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 2,
+    "bricklink_color": "Tan",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 86,
+    "bricklink_color": "Light Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 85,
+    "bricklink_color": "Dark Bluish Gray",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3062b",
+    "name": "Brick, Round 1 x 1",
+    "bricklink_color_id": 1,
+    "bricklink_color": "White",
+    "qty": 1
+   },
+   {
+    "part": "3004",
+    "name": "Brick 1 x 2",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   },
+   {
+    "part": "3005",
+    "name": "Brick 1 x 1",
+    "bricklink_color_id": 11,
+    "bricklink_color": "Black",
+    "qty": 1
+   }
+  ]
+ },
+ "packing": {
+  "packaging": "BrickWish branded box or mailer; one sealed bag per bag number, with a sticker 'Bag N'.",
+  "labels": [
+   "WARNING: CHOKING HAZARD - Small parts. Not for children under 3 yrs. (with the safety-alert triangle)",
+   "BrickWish, [City, State], USA · Order BW-DEMO · Made 10/2026",
+   "Bricks made in China"
+  ],
+  "no_vendor_branding": true,
+  "no_prices_in_parcel": true,
+  "shipping": "DDP (duties and taxes paid). CPSC certificate eFiling done at entry by the carrier's broker."
+ },
+ "ship_to": {
+  "name": "",
+  "address1": "",
+  "address2": "",
+  "city": "",
+  "state": "",
+  "zip": "",
+  "country": "US"
+ }
+}
