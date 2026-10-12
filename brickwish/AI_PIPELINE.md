@@ -4,6 +4,16 @@ How a kid's wish becomes a buildable model, a printed manual and a parts list, q
 
 Research as of 12 October 2026. Tags: **[V]** = checked in source code or a README; **[U]** = from search extracts only. Verify before relying on it.
 
+## Status: built (12 Oct 2026)
+
+The fully automatic version of this pipeline is now in the repo. It is the one the business runs on (AUTOMATION.md):
+
+- **`engine/`:** a deterministic brick engine. It turns a design spec into bricks, a connection check, age-based steps, numbered bags, the manual PDF, the 5-page preview, the 9:16 build video and the vendor parts files.
+- **`agents/design_agent.py`:** the Design Agent (Claude Opus 5.5). It writes the spec, calls `build_preview` to compile it and **look at front/back renders**, fixes problems, and calls `submit_design` once the model passes. Brands become generic versions automatically.
+- **`agents/worker.py` + `agents/api.py`:** run the whole order lifecycle 24/7.
+
+So the human designer described below is **no longer in the loop per order**. A person only sees orders that fail (`needs_help`). The research below still guides the next engine upgrades: plates, slopes, Technic, and a library of proven shapes the agent can reuse.
+
 ## The rule
 
 > **AI agents choose and fill in parameters. Scripts build and check. A human designer owns the final shape.**

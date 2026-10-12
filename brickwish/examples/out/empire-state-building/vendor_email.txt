@@ -1,0 +1,25 @@
+Subject: BrickWish order BW-DEMO - Empire State Building (218 pcs)
+
+Hello,
+
+Please pick, pack and dropship BrickWish order BW-DEMO.
+- Parts: see the attached parts.csv (bag by bag) or bricklink.xml (218 pieces including spares).
+- Pack each bag number separately and label it 'Bag N'. Put the spares bag in last.
+- Packaging: BrickWish branded box or mailer; one sealed bag per bag number, with a sticker 'Bag N'.
+- Labels on the outside of the package:
+    * WARNING: CHOKING HAZARD - Small parts. Not for children under 3 yrs. (with the safety-alert triangle)
+    * BrickWish, [City, State], USA · Order BW-DEMO · Made 10/2026
+    * Bricks made in China
+- No vendor branding, invoices or prices inside the parcel.
+- Shipping: DDP (duties and taxes paid). CPSC certificate eFiling done at entry by the carrier's broker.
+
+Ship to:
+    
+
+    ,  
+    US
+
+Please reply with the tracking number and any part substitutions before shipping.
+
+Thank you,
+BrickWish Orders

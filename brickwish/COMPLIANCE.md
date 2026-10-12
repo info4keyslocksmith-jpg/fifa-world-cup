@@ -12,6 +12,20 @@ Tags: **[OFF]** confirmed from official-source text (cpsc.gov, ecfr.gov, ftc.gov
 - **Certificate eFiling** has been mandatory for imports since **8 July 2026**. [OFF] [CPSC eFiling FAQ](https://www.cpsc.gov/FAQ/eFiling-Frequently-Asked-Questions-FAQ)
   - Open question: do loose bricks imported in bulk for US kitting need a CPC at entry, or a "disclaim" message? Ask the customs broker or CPSC. [UNV]
 
+## The automatic dropship model: what changes
+
+- **We're still the certifier.** The kit is our private-label product even though the vendor packs and ships it. The CPC comes from *our* lab testing of the palette (component testing by element and color, plus finished-kit tests by kit family). [ANALYSIS]
+- **Every parcel is an import.** Ask a customs broker who the **importer of record** is when the vendor ships DDP. Whoever it is must eFile the certificate data at entry; we provide it. The US ended duty-free *de minimis* treatment for low-value parcels in 2025, so expect formal or informal entry on each parcel. [UNV, confirm with the broker]
+- **Labels move to the vendor.** The warning, tracking and origin labels must be on the outside of every parcel. Our vendor order includes the exact text. Check the first samples.
+- **The manual is a PDF.** The choking warning must also be on the package itself (and is on page 2 of the manual and on the website).
+- **The wish now goes to our server before payment, to make the free preview.** We keep it safe by [ANALYSIS]:
+  - the website and API strip contact details from the wish;
+  - the API logs no IP addresses and sets no cookies;
+  - a design is stored under a random code with no personal data, and unpaid designs are deleted after 30 days;
+  - the parent gives notice and consent before anything personal (email, address, first name) is collected at payment.
+
+  Confirm this design with a COPPA attorney or a Safe Harbor program before launch, along with the AI vendor's data terms (no training on, or reuse of, the text).
+
 ## Must do before the first sale
 
 | # | Item | Why | Source |
@@ -67,13 +81,13 @@ Tags: **[OFF]** confirmed from official-source text (cpsc.gov, ecfr.gov, ftc.gov
 
 | Rule | Status in `site/index.html` |
 |---|---|
-| The kid's idea stays in the browser until a grown-up checks out | ✅ Nothing is sent before checkout. The draft is kept only in that browser's local storage. |
+| The wish is sent for the free preview without anything personal | ✅ Only the scrubbed wish + options go to the API; no IP logging, no cookies; unpaid designs deleted after 30 days (`agents/worker.py`) |
 | Hint not to type personal info; strip contact details automatically | ✅ "Just your idea. No names or addresses, please." and `scrub()` removes emails, phone numbers, links and street addresses |
 | No accounts, chat, photo uploads or public gallery | ✅ None |
 | No voice input (audio is personal information) | ✅ None. "Read it to me" only *speaks*; it never listens |
 | No ad pixels, retargeting or behavioral ads | ✅ None |
 | Parent gives notice and consent; the math gate alone is **not** consent | ✅ Math gate, then a consent checkbox + privacy note at checkout. The card payment serves as verifiable consent (check the current wording of 312.5(b)) |
-| Only the builder's **first name** (optional) | ✅ Max 12 characters, entered by the parent |
+| Only the builder's **first name** (optional) | ✅ Entered by the parent on the Stripe payment page (custom field, max 12 characters) |
 | Published retention schedule | ✅ Checkout says "We delete the idea and first name 90 days after delivery." Still needed: a full privacy-notice page |
 | AI vendor contract: no training or reuse of kids' text | ⏳ To do before connecting the Intake Agent |
 | Self-host fonts (the prototype loads Google Fonts, which sends visitors' IP addresses to Google) | ⏳ To do in production |

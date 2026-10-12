@@ -2,12 +2,28 @@
 
 Research as of 12 October 2026, from search extracts of each vendor's own pages; the research agents could not open pages directly. Items marked **(unverified)** came from third-party sources only. **Confirm every price, MOQ and lead time with the vendor before deciding.**
 
+## 0. What we need from a vendor (automatic dropship model)
+
+Our worker emails the vendor one order at a time: `parts.csv` (parts by numbered bag) and `bricklink.xml`, plus the customer's address and label text. A kit is 80–1,200 pieces of a palette of 11 brick sizes, round bricks and cones in 15 colors. The vendor must:
+
+1. **Pick one parts list per order** and pack **one sealed bag per bag number** ("Bag 1", "Bag 2"…), plus a spares bag.
+2. Ship in **our branded mailer or bag**, with **no vendor branding, invoice or prices** inside.
+3. Put three labels on the outside, using text we provide:
+   - the choking-hazard warning (with the triangle symbol);
+   - the tracking label (BrickWish, city/state, order number, month);
+   - "Bricks made in China".
+4. Ship **DDP** (duties paid) to US addresses, with the CPSC certificate **eFiled** at entry (we supply the certificate data).
+5. Reply with the **tracking number within 48 hours**, and report any substitutions *before* shipping.
+6. Ideally, accept orders by API or a shared upload portal later, so the worker can submit without email.
+
+**Who fits:** Wobrick and Letbricks both advertise private-label packing and dropship to end customers. Brickwith (formerly Webrick) packs parts lists per copy with no minimum, but in Brickwith-branded bags under 100 copies, so ask about neutral bags.
+
 ## Shortlist: contact these first
 
 | Role | First choice | Backup | Why |
 |---|---|---|---|
-| **Pack one parts list per order** | **Brickwith** (formerly Webrick) | **Wobrick**, **Letbricks** | No MOQ. Accepts BrickLink Studio, BrickLink, Rebrickable and xlsx parts lists. Sorted inner bags. |
-| **Private-label packing + dropship** | **Wobrick** | **Letbricks** | Both state private label, custom manuals, color boxes, and dropship to our customers |
+| **Private-label pick, pack + dropship (our main vendor)** | **Wobrick** | **Letbricks** | Both state private label, color boxes/labels, and dropship to our customers; no or low MOQ |
+| **Backup: one parts list per order** | **Brickwith** (formerly Webrick) | — | No MOQ. Accepts BrickLink Studio, BrickLink, Rebrickable and xlsx parts lists. Sorted inner bags (Brickwith-branded under 100 copies) |
 | **Gap-filler loose parts** | **MyGobricks** | JoyGobricks | Sells Gobricks parts by part number and color; free shipping over $69 |
 | **Bulk palette / OEM at scale** | **Gobricks** (Shantou factory) | Shantou Wange | The factory itself: 2,000+ molds, 50+ colors, OEM/private label from about 500 units |
 | **Mailer boxes** | **Packlane** | Arka, Packola | MOQ 1 (corrugated); about $3.40/box at 250 |
@@ -16,7 +32,7 @@ Research as of 12 October 2026, from search extracts of each vendor's own pages;
 | **Manual printing** | **In-house** color laser | Lulu (print API), Mixam | Cheapest and same-day for the first 100 orders |
 | **Kitting / 3PL (later)** | **FSI** (Atlanta) | ShipMonk (Fort Lauderdale), All Points (Atlanta) | Kitting services in GA/FL |
 
-**Sample plan:** send the **same two test parts lists** (a Mini dog and a Medium car) to Brickwith, Wobrick and Letbricks. Score them on: clutch vs. LEGO® bricks, color match, bag sorting, missing parts, packaging, days to Atlanta, and total landed cost.
+**Sample plan:** send the **same two engine-made orders** (e.g. the Empire State Building from `examples/out/` and a Mini dog) to Wobrick, Letbricks and Brickwith, shipped to Atlanta exactly as a customer would receive them. Score them on: clutch vs. LEGO® bricks, color match, bag sorting, missing parts, packaging, days to Atlanta, and total landed cost.
 
 ## 1. Compatible-brick part suppliers (per part / per parts list)
 
@@ -105,12 +121,13 @@ A one-off kit has 40–150 different part/color lots. Having a 3PL pick loose pa
 >
 > Hello [Name],
 >
-> We are BrickWish, a US startup (Georgia/Florida) selling personalized building-brick kits for kids under our own brand. Each order is a unique custom model of 80–1,200 pieces. We supply the parts list in BrickLink Studio / BrickLink XML / Rebrickable CSV format.
+> We are BrickWish, a US startup (Georgia/Florida) selling personalized building-brick kits for kids under our own brand. Each order is a unique custom model of 80–1,200 pieces. Our system sends one order at a time by email: a parts list split into numbered bags (CSV and BrickLink XML), the customer's US address, and the text for three package labels. The instruction manual is digital, so there is nothing to print.
 >
 > Could you tell us whether you can:
-> 1. Pick and pack **one parts list per order** into sorted bags (neutral, or printed with our logo);
-> 2. Insert our printed instruction booklet and pack it in our branded box, **or** ship bags in bulk to our US address;
-> 3. Dropship to US customers with no third-party branding or prices in the parcel.
+> 1. Pick **one parts list per order** and pack **one sealed bag per bag number** (Bag 1, Bag 2, … plus a spares bag);
+> 2. Ship in our branded mailer or bag with our three labels (safety warning, tracking label, country of origin), with no third-party branding, invoices or prices in the parcel;
+> 3. Ship **DDP** to US customers, with CPSC certificate eFiling at US entry, and reply with a tracking number within 48 hours;
+> 4. Later, receive orders through an API or upload portal instead of email.
 >
 > Please share your MOQs and per-piece price tiers, lead times, US shipping options (DDP or DAP) and transit times, your color and part catalog, your current ASTM F963-23 / CPSIA / EN71 test reports (lab name, report number, date), and sample costs. We would like to order samples of 2 test parts lists.
 >

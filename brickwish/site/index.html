@@ -194,6 +194,24 @@ button,input,textarea{font:inherit;color:inherit}
 .mini-swatches{display:flex;gap:6px;flex-wrap:wrap}
 .mini-swatches .b{--w:30px;--h:14px}
 
+/* ---------- designing + preview ---------- */
+.stage.loop .b{animation:dropLoop 3.2s cubic-bezier(.3,1.2,.5,1) infinite both}
+@keyframes dropLoop{0%{transform:translateY(-140px);opacity:0}18%,82%{transform:none;opacity:1}100%{transform:none;opacity:0}}
+.checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.checklist li{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--card);border:2px solid var(--line);color:var(--ink-soft)}
+.checklist li::before{content:"";width:22px;height:22px;flex:none;border-radius:50%;border:3px solid var(--line)}
+.checklist li.now{color:var(--ink);border-color:var(--ink)}
+.checklist li.now::before{border-color:var(--ink);border-right-color:transparent;animation:spin .8s linear infinite}
+.checklist li.done{color:var(--ink)}
+.checklist li.done::before{content:"✓";display:grid;place-items:center;border-color:var(--ok);background:var(--ok);color:#fff;font:800 .8rem/1 var(--font-body)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.buildvideo{width:100%;max-width:100%;aspect-ratio:9/16;max-height:70vh;object-fit:contain;border-radius:18px;background:var(--callout);border:3px solid var(--ink)}
+.statrow{display:flex;gap:18px;justify-content:center;font-size:1rem}
+.statrow b{font:800 1.5rem/1 var(--font-display);font-variant-numeric:tabular-nums}
+.subhead{margin:4px 0 0;font:800 1.35rem/1.1 var(--font-display)}
+.pages{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;margin-inline:-2px}
+.pages img{flex:none;width:78%;max-width:320px;aspect-ratio:8.5/11;scroll-snap-align:center;border-radius:8px;border:2px solid var(--line);background:#fff}
+
 /* ---------- forms (gate, checkout) ---------- */
 .panel{display:flex;flex-direction:column;gap:14px;padding:16px;background:var(--card);border:2px solid var(--line);border-radius:var(--radius)}
 .field{display:flex;flex-direction:column;gap:6px}
@@ -352,6 +370,30 @@ details p{padding-bottom:12px}
     <button class="link" id="editBtn" type="button" data-t="edit"></button>
   </section>
 
+  <!-- 7. Designing (the AI agents work) -->
+  <section class="screen" id="s-designing" hidden>
+    <h2 class="q" tabindex="-1" id="designTitle"></h2>
+    <div class="stage loop" id="designStage" aria-hidden="true"></div>
+    <ol class="checklist" id="designSteps">
+      <li data-t="ds1"></li><li data-t="ds2"></li><li data-t="ds3"></li><li data-t="ds4"></li>
+    </ol>
+    <p class="hint" id="designNote" data-t="designingNote"></p>
+    <p class="err" id="designErr" role="alert"></p>
+  </section>
+
+  <!-- 8. Preview: video + first 5 pages, before anyone pays -->
+  <section class="screen" id="s-preview" hidden>
+    <h2 class="q" tabindex="-1" data-t="previewTitle"></h2>
+    <p class="hint" data-t="previewLead"></p>
+    <p class="demo" id="demoPreview" data-t="demoPreview"></p>
+    <video class="buildvideo" id="buildVideo" muted playsinline loop autoplay controls preload="metadata"></video>
+    <div class="statrow"><span><b id="pvPieces"></b> <span data-t="pieces"></span></span><span><b id="pvSteps"></b> <span data-t="stepsWord"></span></span></div>
+    <p class="suggested" id="pvNote" hidden></p>
+    <h3 class="subhead" data-t="pagesTitle"></h3>
+    <div class="pages" id="pvPages" tabindex="0" data-t-aria="pagesTitle"></div>
+    <button class="link" id="changeBtn" type="button" data-t="changeWish"></button>
+  </section>
+
   <!-- Parent gate -->
   <section class="screen" id="s-gate" hidden>
     <h2 class="q" tabindex="-1" data-t="gateTitle"></h2>
@@ -376,17 +418,6 @@ details p{padding-bottom:12px}
       <p class="muted" data-t="shipIncl"></p>
     </div>
     <form class="panel" id="coForm" novalidate>
-      <div class="field">
-        <label for="nameInput" data-t="nameLabel"></label>
-        <input class="input" id="nameInput" type="text" maxlength="12" autocomplete="off" data-t-ph="namePh">
-        <span class="help" data-t="nameHelp"></span>
-      </div>
-      <div class="field">
-        <label for="emailInput" data-t="emailLabel"></label>
-        <input class="input" id="emailInput" type="email" autocomplete="email" inputmode="email" data-t-ph="emailPh">
-        <span class="help" data-t="emailHelp"></span>
-        <p class="err" id="emailErr" role="alert"></p>
-      </div>
       <label class="check"><input id="adultInput" type="checkbox"><span data-t="adultLabel"></span></label>
       <p class="err" id="adultErr" role="alert"></p>
       <p class="muted" data-t="privacyNote"></p>
@@ -472,10 +503,11 @@ details p{padding-bottom:12px}
 
 /* ===== Settings: edit these when going live ===== */
 const CONFIG = {
-  demo: true,           // true = prototype: no order is sent and no payment is taken
-  orderEndpoint: "",    // URL that receives the wish as JSON (POST) before payment
-  checkoutLinks: { mini: "", medium: "", big: "", mega: "" }, // one Stripe Payment Link per size
+  apiBase: "",          // where agents/api.py runs, e.g. "https://api.brickwish.com". Empty = demo with the example design
+  checkoutLinks: { mini: "", medium: "", big: "", mega: "" }, // one Stripe Payment Link per size (it collects email, address, builder name)
 };
+const DEMO = { title: "Empire State Building", pieces: 213, steps: 63, video: "demo/build.mp4", poster: "demo/poster.png",
+               preview: [1, 2, 3, 4, 5].map((i) => `demo/preview-${i}.png`) };
 const TIERS = [
   { id: "mini",   pcs: "80–150",    price: 39,  bricks: 1 },
   { id: "medium", pcs: "200–350",   price: 69,  bricks: 2 },
@@ -554,36 +586,35 @@ en: {
   maxColors: "That's 4 colors! Tap one to take it off.", surpriseChip: "Surprise me with colors",
   q_age: "Who is the builder?", h_age: "This sets how easy the steps are.",
   q_size: "How big?", h_size: "More pieces means a bigger model and more building fun.", pieces: "pieces", bestBadge: "Great for this age",
-  q_review: "Your wish card", h_review: "Looks amazing! Now ask a grown-up to finish.",
+  q_review: "Your wish card", h_review: "Looks amazing! Tap the button and our AI builders will design it.",
   lbl_extras: "Extras", lbl_colors: "Colors", lbl_builder: "Builder", lbl_size: "Size", none: "None", surpriseColors: "Surprise colors",
   ageWord: "Age", edit: "Change something", askGrownup: "Ask a grown-up",
   back: "Back", next: "Next", skip: "Skip", surpriseNext: "Surprise me!",
   need_what: "Type an idea or tap a picture first.", need_age: "Tap who is building first.", need_size: "Tap a size first.",
   gateTitle: "Grown-ups only", gateLead: "Please answer this to continue.", gateQ: "What is {a} × {b}?", gateAnswer: "Answer",
   gateBtn: "Continue", gateWrong: "Not quite. Try again.", gateNew: "That was 3 tries. Here is a new question.",
-  coTitle: "Finish the order", coLead: "Check the wish, then pay securely.", total: "Total", shipIncl: "US shipping included.",
-  nameLabel: "Builder's first name for the box (optional)", nameHelp: "We print “Built by …” on the box. First name only.", namePh: "Sofia",
-  emailLabel: "Your email", emailHelp: "We send the design sketch here so you can approve it.", emailPh: "you@example.com",
+  coTitle: "Finish the order", coLead: "Check the design, then pay securely with Stripe.", total: "Total", shipIncl: "US shipping included.",
   adultLabel: "I'm the parent or guardian (18+), and I agree that BrickWish may use my child's idea to design this kit.",
-  privacyNote: "Privacy: we use the idea, first name and email only to design and ship this kit. Nothing is sold or shared for ads. We delete the idea and first name 90 days after delivery.",
-  emailErr: "Enter an email like name@example.com.", adultErr: "Please confirm you're the parent or guardian and agree.",
+  privacyNote: "Next is Stripe's secure payment page, where you add your email, the shipping address and the builder's first name for the manual cover. We use them only for this kit, and delete the wish and first name 90 days after delivery.",
+  adultErr: "Please confirm you're the parent or guardian and agree.",
   warnWord: "WARNING:", warnText: "CHOKING HAZARD – Small parts. Not for children under 3 yrs.",
-  demoNote: "Prototype: no payment is taken and no order is placed.", pay: "Continue to payment",
-  doneTitle: "Wish sent!", doneLead: "Your wish code:",
-  d1: "We sketch your model (about 2 days).", d2: "A grown-up approves the sketch by email.",
-  d3: "We pack the bricks and your custom manual.", d4: "It ships to your door (3–5 days).", again: "Make another wish",
+  demoNote: "Prototype: no payment is taken and no order is placed.", pay: "Continue to secure payment",
+  doneTitle: "Wish sent!", doneLead: "Your order code:",
+  makeDesign: "Make my design", designingTitle: "Designing: {x}", ds1: "Reading your wish", ds2: "Building it brick by brick", ds3: "Writing your manual", ds4: "Making your video", designingNote: "Our AI builders take a few minutes. Keep this page open.", designFail: "Our builders got stuck on this one. Go back and change your wish a little.", previewTitle: "Your design is ready!", previewLead: "Watch it build itself, then flip through the first pages of your manual.", demoPreview: "Demo: every wish shows this example, the Empire State Building. The live site designs your own wish.", pagesTitle: "First 5 pages of your manual", stepsWord: "steps", pageWord: "Page", changeWish: "Change my wish",
+  d1: "The full manual (PDF) arrives in your email right away.", d2: "Our brick partner packs your pieces in numbered bags.",
+  d3: "They ship to your door in about 1–2 weeks.", d4: "Open bag 1 and start building!", again: "Make another wish",
   infoTitle: "For grown-ups", infoLead: "What parents usually ask before they order.", infoStart: "Start a wish",
   infoHow: "How it works",
   ih1: "Your child describes an idea, then picks extras, colors, age and size.",
-  ih2: "A designer, helped by our AI tools, builds the model and emails you a sketch.",
-  ih3: "After you approve it, we print a step-by-step manual made for that one model.",
-  ih4: "We pack the bricks and manual in a gift-ready box and ship it.",
+  ih2: "Our AI builders design the model in a few minutes and show you a video of it and the first 5 pages of the manual, before you pay.",
+  ih3: "When you buy, the full step-by-step manual (PDF) arrives by email. Print it or build from a tablet.",
+  ih4: "Our brick partner ships the pieces in numbered bags straight to your door.",
   infoPrices: "Prices", col_size: "Size", col_pieces: "Pieces", col_price: "Price",
-  priceNote: "US shipping included. Every kit has a printed manual and a gift-ready box.",
+  priceNote: "US shipping included. Every kit includes the PDF manual and the build video.",
   infoBox: "What's in the box",
-  ib1: "Every brick for the model, plus a bag of spare small pieces",
-  ib2: "A printed step-by-step manual with the builder's name on the cover",
-  ib3: "A gift-ready box", ib4: "A digital copy of the manual by email",
+  ib1: "Every brick for the model in numbered bags, plus spare small pieces",
+  ib2: "The full step-by-step manual (PDF) with the builder's name on the cover",
+  ib3: "A video of the model building itself", ib4: "Free replacement of any missing piece",
   infoSafety: "Safety",
   is2: "Every kit has a Children's Product Certificate, based on testing at a CPSC-accepted lab (ASTM F963-23 and CPSIA).",
   is3: "Steps match the builder's age: younger builders get fewer pieces per step.",
@@ -591,8 +622,8 @@ en: {
   ip1: "Kids never type a full name, address or email. Only a grown-up checks out.",
   ip2: "No ads, no tracking cookies, no accounts and no chat.", ip3: "We use your email only for this order and the design approval.",
   infoFaq: "Questions",
-  fq1: "How long does it take?", fa1: "About 7–10 days: 2 days to design, your approval, then packing and shipping.",
-  fq2: "Can we see the design before it ships?", fa2: "Yes. We email a sketch and only pack the kit after you approve it.",
+  fq1: "How long does it take?", fa1: "The design and preview are ready in a few minutes. The bricks arrive in about 1–2 weeks.",
+  fq2: "Can we see it before we pay?", fa2: "Yes. You see a video of the finished model and the first 5 pages of the manual before you pay.",
   fq3: "What if a piece is missing?", fa3: "Every kit has spare small pieces. If something is still missing, we mail it free.",
   fq4: "Do the bricks work with other brands?", fa4: "Yes. Our bricks are compatible with LEGO® bricks and most other major building-brick brands.",
   fineprint: "BrickWish is an independent company. LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize or endorse this site. Bricks made in China, designed and packed in the USA.",
@@ -626,36 +657,35 @@ es: {
   maxColors: "¡Ya tienes 4 colores! Toca uno para quitarlo.", surpriseChip: "Sorpréndeme con los colores",
   q_age: "¿Quién va a construir?", h_age: "Así sabemos qué tan fáciles deben ser los pasos.",
   q_size: "¿Qué tan grande?", h_size: "Más piezas = un modelo más grande y más diversión.", pieces: "piezas", bestBadge: "Ideal para esta edad",
-  q_review: "Tu tarjeta de deseo", h_review: "¡Se ve increíble! Ahora pídele a un adulto que termine.",
+  q_review: "Tu tarjeta de deseo", h_review: "¡Se ve increíble! Toca el botón y nuestros constructores de IA lo diseñarán.",
   lbl_extras: "Extras", lbl_colors: "Colores", lbl_builder: "Constructor", lbl_size: "Tamaño", none: "Ninguno", surpriseColors: "Colores sorpresa",
   ageWord: "Edad", edit: "Cambiar algo", askGrownup: "Llamar a un adulto",
   back: "Atrás", next: "Siguiente", skip: "Saltar", surpriseNext: "¡Sorpréndeme!",
   need_what: "Primero escribe una idea o toca un dibujo.", need_age: "Primero toca quién va a construir.", need_size: "Primero toca un tamaño.",
   gateTitle: "Solo para adultos", gateLead: "Responda esto para continuar.", gateQ: "¿Cuánto es {a} × {b}?", gateAnswer: "Respuesta",
   gateBtn: "Continuar", gateWrong: "Casi. Intente otra vez.", gateNew: "Fueron 3 intentos. Aquí hay otra pregunta.",
-  coTitle: "Terminar el pedido", coLead: "Revise el deseo y pague de forma segura.", total: "Total", shipIncl: "Envío en EE. UU. incluido.",
-  nameLabel: "Nombre del constructor para la caja (opcional)", nameHelp: "Imprimimos “Construido por …” en la caja. Solo el primer nombre.", namePh: "Sofía",
-  emailLabel: "Su correo", emailHelp: "Le enviamos aquí el boceto del diseño para que lo apruebe.", emailPh: "usted@ejemplo.com",
+  coTitle: "Terminar el pedido", coLead: "Revise el diseño y pague de forma segura con Stripe.", total: "Total", shipIncl: "Envío en EE. UU. incluido.",
   adultLabel: "Soy el padre, la madre o el tutor (18+) y acepto que BrickWish use la idea de mi hijo para diseñar este kit.",
-  privacyNote: "Privacidad: usamos la idea, el primer nombre y el correo solo para diseñar y enviar este kit. No vendemos ni compartimos nada para anuncios. Borramos la idea y el nombre 90 días después de la entrega.",
-  emailErr: "Escriba un correo como nombre@ejemplo.com.", adultErr: "Confirme que es el padre, la madre o el tutor y que está de acuerdo.",
+  privacyNote: "Después verá la página de pago segura de Stripe, donde escribe su correo, la dirección de envío y el primer nombre del constructor para la portada del manual. Los usamos solo para este kit y borramos el deseo y el nombre 90 días después de la entrega.",
+  adultErr: "Confirme que es el padre, la madre o el tutor y que está de acuerdo.",
   warnWord: "ADVERTENCIA:", warnText: "PELIGRO DE ASFIXIA – Piezas pequeñas. No apto para menores de 3 años.",
-  demoNote: "Prototipo: no se cobra nada y no se hace ningún pedido.", pay: "Continuar al pago",
-  doneTitle: "¡Deseo enviado!", doneLead: "Tu código de deseo:",
-  d1: "Dibujamos tu modelo (unos 2 días).", d2: "Un adulto aprueba el boceto por correo.",
-  d3: "Empacamos los bloques y tu manual personalizado.", d4: "Llega a tu puerta (3–5 días).", again: "Pedir otro deseo",
+  demoNote: "Prototipo: no se cobra nada y no se hace ningún pedido.", pay: "Continuar al pago seguro",
+  doneTitle: "¡Deseo enviado!", doneLead: "Tu código de pedido:",
+  makeDesign: "Crear mi diseño", designingTitle: "Diseñando: {x}", ds1: "Leyendo tu deseo", ds2: "Construyéndolo bloque por bloque", ds3: "Escribiendo tu manual", ds4: "Haciendo tu video", designingNote: "Nuestros constructores de IA tardan unos minutos. Deja esta página abierta.", designFail: "Nuestros constructores se atoraron con este. Regresa y cambia un poco tu deseo.", previewTitle: "¡Tu diseño está listo!", previewLead: "Mira cómo se construye solo y hojea las primeras páginas de tu manual.", demoPreview: "Demo: cada deseo muestra este ejemplo, el Edificio Empire State. El sitio real diseña tu propio deseo.", pagesTitle: "Las primeras 5 páginas de tu manual", stepsWord: "pasos", pageWord: "Página", changeWish: "Cambiar mi deseo",
+  d1: "El manual completo (PDF) llega a tu correo enseguida.", d2: "Nuestro socio de bloques empaca tus piezas en bolsas numeradas.",
+  d3: "Llegan a tu puerta en 1 o 2 semanas.", d4: "¡Abre la bolsa 1 y empieza a construir!", again: "Pedir otro deseo",
   infoTitle: "Para adultos", infoLead: "Lo que los papás suelen preguntar antes de pedir.", infoStart: "Empezar un deseo",
   infoHow: "Cómo funciona",
   ih1: "Su hijo describe una idea y elige extras, colores, edad y tamaño.",
-  ih2: "Un diseñador, con ayuda de nuestras herramientas de IA, crea el modelo y le envía un boceto por correo.",
-  ih3: "Cuando usted lo aprueba, imprimimos un manual paso a paso hecho para ese modelo.",
-  ih4: "Empacamos los bloques y el manual en una caja lista para regalar y la enviamos.",
+  ih2: "Nuestros constructores de IA diseñan el modelo en unos minutos y le muestran un video y las primeras 5 páginas del manual, antes de pagar.",
+  ih3: "Cuando compra, el manual completo paso a paso (PDF) llega por correo. Imprímalo o construya mirando una tableta.",
+  ih4: "Nuestro socio de bloques envía las piezas en bolsas numeradas directo a su puerta.",
   infoPrices: "Precios", col_size: "Tamaño", col_pieces: "Piezas", col_price: "Precio",
-  priceNote: "Envío en EE. UU. incluido. Cada kit trae manual impreso y caja de regalo.",
+  priceNote: "Envío en EE. UU. incluido. Cada kit trae el manual en PDF y el video de construcción.",
   infoBox: "Qué trae la caja",
-  ib1: "Todos los bloques del modelo, más una bolsita de piezas pequeñas de repuesto",
-  ib2: "Un manual impreso paso a paso con el nombre del constructor en la portada",
-  ib3: "Una caja lista para regalar", ib4: "Una copia digital del manual por correo",
+  ib1: "Todos los bloques del modelo en bolsas numeradas, más piezas pequeñas de repuesto",
+  ib2: "El manual completo paso a paso (PDF) con el nombre del constructor en la portada",
+  ib3: "Un video del modelo construyéndose solo", ib4: "Reemplazo gratis de cualquier pieza que falte",
   infoSafety: "Seguridad",
   is2: "Cada kit tiene un Certificado de Producto Infantil basado en pruebas de un laboratorio aceptado por la CPSC (ASTM F963-23 y CPSIA).",
   is3: "Los pasos se ajustan a la edad: los más pequeños reciben menos piezas por paso.",
@@ -663,8 +693,8 @@ es: {
   ip1: "Los niños nunca escriben nombre completo, dirección ni correo. Solo un adulto termina el pedido.",
   ip2: "Sin anuncios, sin cookies de rastreo, sin cuentas y sin chat.", ip3: "Usamos su correo solo para este pedido y la aprobación del diseño.",
   infoFaq: "Preguntas",
-  fq1: "¿Cuánto tarda?", fa1: "Unos 7 a 10 días: 2 días de diseño, su aprobación, y luego empaque y envío.",
-  fq2: "¿Podemos ver el diseño antes del envío?", fa2: "Sí. Le enviamos un boceto por correo y solo empacamos el kit cuando usted lo aprueba.",
+  fq1: "¿Cuánto tarda?", fa1: "El diseño y la vista previa están listos en unos minutos. Los bloques llegan en 1 o 2 semanas.",
+  fq2: "¿Podemos verlo antes de pagar?", fa2: "Sí. Ve un video del modelo terminado y las primeras 5 páginas del manual antes de pagar.",
   fq3: "¿Y si falta una pieza?", fa3: "Cada kit trae piezas pequeñas de repuesto. Si aun así falta algo, se la enviamos gratis.",
   fq4: "¿Los bloques sirven con otras marcas?", fa4: "Sí. Nuestros bloques son compatibles con los bloques LEGO® y con la mayoría de las otras marcas de bloques.",
   fineprint: "BrickWish es una empresa independiente. LEGO® es una marca registrada del Grupo LEGO, que no patrocina, autoriza ni respalda este sitio. Bloques hechos en China, diseñados y empacados en EE. UU.",
@@ -683,19 +713,19 @@ es: {
 
 /* ===== State ===== */
 const KEY = "brickwish.wish.v1";
-const blank = () => ({ wish: "", extras: [], colors: [], colorsTouched: false, surprise: false, age: null, size: null });
+const blank = () => ({ wish: "", extras: [], colors: [], colorsTouched: false, surprise: false, age: null, size: null, code: "", preview: null, designStep: 0 });
 const state = Object.assign({ lang: "en", screen: "welcome", infoFrom: "welcome", gatePassed: false, code: "" }, blank());
 try {
   const saved = JSON.parse(localStorage.getItem(KEY) || "null");
   if (saved && typeof saved === "object") {
-    for (const k of ["wish", "extras", "colors", "colorsTouched", "surprise", "age", "size", "lang"]) if (k in saved) state[k] = saved[k];
+    for (const k of ["wish", "extras", "colors", "colorsTouched", "surprise", "age", "size", "lang", "code", "preview"]) if (k in saved) state[k] = saved[k];
   } else if ((navigator.language || "").toLowerCase().startsWith("es")) state.lang = "es";
 } catch (e) { /* storage blocked: start fresh */ }
 function save() {
   // Only the wish itself is remembered on this device. Name and email are never stored.
   try {
-    const { wish, extras, colors, colorsTouched, surprise, age, size, lang } = state;
-    localStorage.setItem(KEY, JSON.stringify({ wish, extras, colors, colorsTouched, surprise, age, size, lang }));
+    const { wish, extras, colors, colorsTouched, surprise, age, size, lang, code, preview } = state;
+    localStorage.setItem(KEY, JSON.stringify({ wish, extras, colors, colorsTouched, surprise, age, size, lang, code, preview }));
   } catch (e) { /* ignore */ }
 }
 
@@ -780,7 +810,7 @@ function buildMosaic() {
 }
 
 /* ===== Navigation ===== */
-const SCREENS = ["welcome", "what", "extras", "colors", "age", "size", "review", "gate", "checkout", "done", "info"];
+const SCREENS = ["welcome", "what", "extras", "colors", "age", "size", "review", "designing", "preview", "gate", "checkout", "done", "info"];
 const STEPS = ["what", "extras", "colors", "age", "size"];
 const NAV = {
   what:   { back: "welcome", next: "extras", req: () => state.wish.trim().length >= 2, need: "need_what" },
@@ -788,15 +818,18 @@ const NAV = {
   colors: { back: "extras",  next: "age" },
   age:    { back: "colors",  next: "size", req: () => !!state.age, need: "need_age" },
   size:   { back: "age",     next: "review", req: () => !!state.size, need: "need_size" },
-  review: { back: "size",    next: "gate" },
-  gate:   { back: "review" },
-  checkout: { back: "review" },
+  review: { back: "size",    next: "designing" },
+  designing: { back: "review" },
+  preview: { back: "review", next: "gate" },
+  gate:   { back: "preview" },
+  checkout: { back: "preview" },
   info:   { back: "@from",   next: "what" },
 };
 function nextLabel(s) {
   if (s === "extras") return state.extras.length ? t("next") : t("skip");
   if (s === "colors") return state.colors.length || state.surprise ? t("next") : t("surpriseNext");
-  if (s === "review") return t("askGrownup");
+  if (s === "review") return t("makeDesign");
+  if (s === "preview") return t("askGrownup");
   if (s === "info") return t("infoStart");
   return t("next");
 }
@@ -806,6 +839,8 @@ function go(id, opts = {}) {
     state.colors = suggestColors(state.wish); state.showSuggested = state.colors.length > 0;
   }
   if (id === "gate") newGate();
+  if (id === "designing" && state.screen !== "designing") startDesign();
+  if (id === "preview" && !state.preview) id = "review";
   if (id === "info" && state.screen !== "info") state.infoFrom = state.screen;
   state.screen = id;
   $("#toast").hidden = true;
@@ -826,13 +861,13 @@ function render() {
   const s = state.screen, L = T[state.lang];
 
   // progress bricks
-  const pi = STEPS.indexOf(s), inWizard = pi >= 0 || s === "review";
+  const pi = STEPS.indexOf(s), inWizard = pi >= 0 || ["review", "designing", "preview"].includes(s);
   const prog = $("#progress");
   prog.setAttribute("aria-hidden", inWizard ? "false" : "true");
   prog.setAttribute("aria-label", t("progress"));
   const PROG = ["#C91A09", "#0055BF", "#F2CD37", "#237841", "#FE8A18"];
   prog.innerHTML = STEPS.map((_, i) => {
-    const done = s === "review" || i <= pi;
+    const done = pi < 0 || i <= pi;
     return `<li>${done ? brick(PROG[i]) : brick("", "empty")}</li>`;
   }).join("");
 
@@ -873,18 +908,20 @@ function render() {
   // checkout
   if (s === "checkout") {
     const tier = tierOf(state.size), age = ageOf(state.age);
-    $("#coWish").textContent = cap(state.wish.trim());
+    $("#coWish").textContent = state.preview ? state.preview.title : cap(state.wish.trim());
     $("#coSummary").innerHTML =
       `<div class="sum-row"><span>${L.tiers[tier.id][0]} · ${tier.pcs} ${L.pieces}</span><span>${money(tier.price)}</span></div>` +
       `<div class="sum-row muted"><span>${t("lbl_builder")}: ${age.label} · ${L.ages[age.id]}</span><span></span></div>`;
     $("#coTotal").textContent = money(tier.price);
-    $("#demoNote").hidden = !CONFIG.demo;
+    $("#demoNote").hidden = !!CONFIG.apiBase;
   }
 
   // gate question text follows the language
   if (s === "gate") $("#gateQ").textContent = t("gateQ").replace("{a}", gate.a).replace("{b}", gate.b);
 
   if (s === "done") $("#doneCode").textContent = state.code;
+  if (s === "designing") renderDesigning();
+  if (s === "preview") renderPreview();
 
   renderNav();
 }
@@ -989,6 +1026,74 @@ $("#surpriseBtn").addEventListener("click", () => {
 $("#ages").addEventListener("change", (e) => { state.age = e.target.value; render(); save(); });
 $("#tiers").addEventListener("change", (e) => { state.size = e.target.value; render(); save(); });
 
+/* Designing: the wish goes to the AI design agents (agents/api.py), then we poll until the preview is ready.
+   Only the wish itself is sent (scrubbed), never a name or contact detail. Demo mode shows the example design. */
+let designRun = 0;
+function renderDesigning() {
+  const L = T[state.lang];
+  $("#designTitle").textContent = t("designingTitle").replace("{x}", cap(state.wish.trim()));
+  const cols = artColors();
+  if (!$("#designStage").childElementCount) {
+    let k = 0;
+    $("#designStage").innerHTML = [3, 2, 1].map((n) => `<div class="stage-row">${Array.from({ length: n }, () =>
+      `<span class="b" style="--c:${cols[k % cols.length]};animation-delay:${(k++) * 180}ms"></span>`).join("")}</div>`).join("");
+  }
+  $$("#designSteps li").forEach((li, i) => {
+    li.classList.toggle("done", i < state.designStep);
+    li.classList.toggle("now", i === state.designStep);
+  });
+}
+function renderPreview() {
+  const p = state.preview;
+  if (!p) return;
+  const v = $("#buildVideo");
+  if (v.getAttribute("src") !== p.video) { v.setAttribute("poster", p.poster); v.setAttribute("src", p.video); }
+  $("#pvPieces").textContent = p.pieces;
+  $("#pvSteps").textContent = p.steps;
+  $("#pvNote").textContent = p.parent_note || "";
+  $("#pvNote").hidden = !p.parent_note;
+  $("#demoPreview").hidden = !!CONFIG.apiBase;
+  $("#pvPages").innerHTML = p.preview.map((src, i) =>
+    `<img src="${src}" alt="${t("pageWord")} ${i + 1}" loading="lazy" width="850" height="1100">`).join("");
+}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function startDesign() {
+  const run = ++designRun;
+  state.designStep = 0; state.preview = null; $("#designErr").textContent = "";
+  $("#designStage").innerHTML = "";
+  const step = (n) => { if (run === designRun) { state.designStep = n; if (state.screen === "designing") renderDesigning(); } };
+  try {
+    if (!CONFIG.apiBase) {
+      for (let i = 1; i <= 4; i++) { await sleep(1100); step(i); }
+      if (run !== designRun) return;
+      state.preview = DEMO;
+    } else {
+      const res = await fetch(`${CONFIG.apiBase}/api/wish`, { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ wish: scrub(state.wish.trim()), extras: state.extras, colors: state.colors,
+                               surprise: state.surprise, age: state.age, size: state.size, lang: state.lang }) });
+      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "busy");
+      state.code = (await res.json()).code;
+      const t0 = Date.now();
+      for (;;) {
+        await sleep(4000);
+        if (run !== designRun) return;
+        const st = await (await fetch(`${CONFIG.apiBase}/api/wish/${state.code}`)).json();
+        if (st.state === "needs_help") throw new Error("stuck");
+        if (st.preview) { state.preview = { ...st, preview: st.preview.map((u) => CONFIG.apiBase + u),
+                                            video: CONFIG.apiBase + st.video, poster: CONFIG.apiBase + st.poster }; break; }
+        const secs = (Date.now() - t0) / 1000;
+        step(st.state === "received" ? 0 : secs < 60 ? 1 : secs < 150 ? 2 : 3);
+      }
+    }
+    if (run !== designRun) return;
+    step(4); save();
+    if (state.screen === "designing") go("preview");
+  } catch (err) {
+    if (run === designRun) $("#designErr").textContent = t("designFail");
+  }
+}
+$("#changeBtn").addEventListener("click", () => { state.preview = null; go("what"); });
+
 /* Parent gate: a times-table question most young kids can't answer yet. */
 const gate = { a: 7, b: 8, tries: 0 };
 function newGate() {
@@ -1003,33 +1108,18 @@ $("#gateForm").addEventListener("submit", (e) => {
   else { $("#gateErr").textContent = t("gateWrong"); $("#gateInput").select(); }
 });
 
-/* Checkout */
-$("#coForm").addEventListener("submit", async (e) => {
+/* Checkout: consent here, then Stripe's page collects email, shipping address and the builder's first name. */
+$("#coForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  const email = $("#emailInput").value.trim(), adult = $("#adultInput").checked;
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-  $("#emailErr").textContent = emailOk ? "" : t("emailErr");
+  const adult = $("#adultInput").checked;
   $("#adultErr").textContent = adult ? "" : t("adultErr");
-  if (!emailOk) { $("#emailInput").focus(); return; }
   if (!adult) { $("#adultInput").focus(); return; }
-
-  state.code = makeCode();
-  const order = {
-    code: state.code, wish: scrub(state.wish.trim()), extras: state.extras, colors: state.colors, surpriseColors: state.surprise,
-    age: state.age, size: state.size, price: tierOf(state.size).price, builderFirstName: $("#nameInput").value.trim(),
-    email, lang: state.lang, createdAt: new Date().toISOString(),
-  };
-  if (!CONFIG.demo) {
-    if (CONFIG.orderEndpoint) {
-      try { await fetch(CONFIG.orderEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(order) }); }
-      catch (err) { /* payment still goes through; the code links the two */ }
-    }
-    const link = CONFIG.checkoutLinks[state.size];
-    if (link) {
-      location.href = `${link}?client_reference_id=${encodeURIComponent(order.code)}&prefilled_email=${encodeURIComponent(email)}`;
-      return;
-    }
+  const link = CONFIG.checkoutLinks[state.size];
+  if (CONFIG.apiBase && link && state.code) {
+    location.href = `${link}?client_reference_id=${encodeURIComponent(state.code)}`;
+    return;
   }
+  if (!state.code) state.code = makeCode();
   $("#coForm").reset();
   go("done");
 });

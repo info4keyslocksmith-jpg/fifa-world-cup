@@ -1,32 +1,44 @@
 # BrickWish
 
-Personalized brick-building kits for kids: **you wish it, we design it, you build it.**
+Personalized brick-building kits for kids. **You wish it, we design it, you build it.**
+A kid asks for anything. AI agents design a buildable model in minutes. The family watches the build video and the first 5 manual pages for free. A grown-up buys, the full PDF manual arrives by email, and the vendor ships the bricks. Everything after the wish is automatic.
 
-| File | What's in it |
+**See it:** [examples/out/empire-state-building/](examples/out/empire-state-building/), the complete output for "I want the Empire State Building":
+- `manual.pdf` (37 pages)
+- `build.mp4`
+- `preview-1..5.png`
+- `parts.csv`, `bricklink.xml`, `vendor_order.json`, `vendor_email.txt`
+
+| Document | What's in it |
 |---|---|
-| [BUSINESS_PLAN.md](BUSINESS_PLAN.md) | Opportunity, positioning, products and prices, unit economics, operations, go-to-market, 6-week roadmap, budget, risks, open decisions |
-| [VENDORS.md](VENDORS.md) | Brick suppliers that pack one parts list per order or private label, packaging, printing, 3PLs, questions to ask, and outreach emails (EN/ES) |
-| [AI_PIPELINE.md](AI_PIPELINE.md) | How AI agents + scripts + a designer turn a wish into a model, manual and parts list. Includes the Intake Agent prompt and JSON schema, and the age difficulty rules |
-| [COMPLIANCE.md](COMPLIANCE.md) | US toy-safety (CPSIA, ASTM F963-23, CPC, eFiling), COPPA, LEGO® trademark rules, safe wording |
-| [site/index.html](site/index.html) | The kid-friendly mobile website (single file, no build step, English/Spanish) |
-| [tools/unit_economics.py](tools/unit_economics.py) | Cost and margin per kit. Edit the assumptions and run `python3 brickwish/tools/unit_economics.py` |
+| [BUSINESS_PLAN.md](BUSINESS_PLAN.md) | The business: product, prices, unit economics, go-to-market, roadmap, risks, decisions |
+| [AUTOMATION.md](AUTOMATION.md) | The 24/7 system: flow, who does what, how to run it, Stripe setup, what you need to connect |
+| [VENDORS.md](VENDORS.md) | Brick vendors for private-label dropship, plus packaging, 3PLs and outreach emails (EN/ES) |
+| [COMPLIANCE.md](COMPLIANCE.md) | US toy safety (CPSIA, ASTM F963-23, CPC, eFiling), COPPA, LEGO® trademark rules, safe wording |
+| [AI_PIPELINE.md](AI_PIPELINE.md) | Design research, agent roles, age difficulty rules |
 
-## The website
+| Code | What it does |
+|---|---|
+| `site/index.html` | The kid-friendly mobile website (single file, EN/ES). `CONFIG.apiBase` empty = demo with the example design |
+| `engine/` | Design spec → bricks → connection check → steps and bags → manual PDF, preview pages, build video, vendor files |
+| `agents/design_agent.py` | The Design Agent: Claude designs, compiles, looks at the renders, fixes, submits |
+| `agents/api.py` | Web API for the site: wishes, preview status and files, Stripe webhook |
+| `agents/worker.py` | Runs 24/7: design → preview → (paid) → vendor order + parent email; retention cleanup; daily report |
+| `examples/` | Example design specs and their full output |
+| `tools/unit_economics.py` | Cost and profit per kit; edit the assumptions and re-run |
 
-Open `site/index.html` in a browser, or deploy the `site/` folder to any static host (Netlify, Cloudflare Pages, GitHub Pages).
+## Quick start
 
-**The flow:** welcome → 1 What? → 2 Extras → 3 Colors → 4 Who's building (age) → 5 How big? → 6 Wish card → grown-up gate → checkout (parent) → wish code.
+```bash
+cd brickwish
+pip install -r requirements.txt
+(cd engine && npm install)        # needs Node 18+, ffmpeg and Playwright's Chromium
 
-**Going live**, at the top of the `<script>`:
+# make a full kit from a design spec (no API key needed):
+python3 -m engine.pipeline examples/empire-state-building.json --out out/esb --builder Mateo
 
-```js
-const CONFIG = {
-  demo: true,           // set to false
-  orderEndpoint: "",    // your order inbox: receives the wish as JSON
-  checkoutLinks: { mini: "", medium: "", big: "", mega: "" }, // Stripe Payment Links, one per size
-};
+# run the business (needs ANTHROPIC_API_KEY and the settings in AUTOMATION.md):
+python3 -m agents.api & python3 -m agents.worker
 ```
 
-Prices and piece ranges are in `TIERS`, the color palette is in `COLORS`, and all text in both languages is in `T`.
-
-**Before launch:** self-host the two fonts (Baloo 2 and Lexend) instead of loading them from Google, and add a privacy-notice page. See COMPLIANCE.md.
+**Before launch:** connect the accounts listed in AUTOMATION.md §7, do the lab testing in COMPLIANCE.md, and self-host the website fonts.

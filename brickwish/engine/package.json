@@ -1,0 +1,11 @@
+{
+  "name": "brickwish-engine",
+  "private": true,
+  "description": "Browser jobs for the BrickWish engine: manual PDF, preview pages, build video",
+  "type": "module",
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.0.19",
+    "@fontsource/lexend": "^5.0.20",
+    "three": "^0.149.0"
+  }
+}

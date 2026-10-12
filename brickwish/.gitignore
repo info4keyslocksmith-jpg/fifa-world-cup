@@ -1,0 +1,7 @@
+engine/node_modules/
+data/
+/out/
+__pycache__/
+*.pyc
+examples/out/*/manual.html
+examples/out/*/_record.html

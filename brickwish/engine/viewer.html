@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BrickWish build</title>
+<style>
+/*FONTS*/
+:root{--ink:#14203B;--plate:#D9E9F7;--yellow:#FFC629;--pink:#E8175D}
+html,body{margin:0;height:100%;overflow:hidden;color:var(--ink);
+  background:radial-gradient(circle,#CFE1F3 0 5px,transparent 5.5px) 0 0/20px 20px,linear-gradient(#EAF3FC,#D9E9F7 70%,#C9DDF2);
+  font-family:'Lexend','Segoe UI',system-ui,sans-serif}
+canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none}
+.top{position:fixed;left:0;right:0;top:5%;text-align:center;padding:0 6%;pointer-events:none}
+.kicker{font:600 clamp(12px,3.4vw,18px)/1.2 'Lexend',sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.title{font:800 clamp(28px,9vw,56px)/1 'Baloo 2','Arial Rounded MT Bold',sans-serif;margin-top:6px;text-wrap:balance}
+.bottom{position:fixed;left:0;right:0;bottom:4.5%;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.count{font:800 clamp(18px,5vw,30px)/1 'Baloo 2',sans-serif;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 18px;font-variant-numeric:tabular-nums}
+.brand{display:flex;align-items:center;gap:8px;font:800 clamp(16px,4.4vw,26px)/1 'Baloo 2',sans-serif}
+.brand i{width:26px;height:14px;background:var(--yellow);border-radius:2px;position:relative;display:inline-block;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.brand i::before{content:"";position:absolute;top:-5px;left:3px;width:6px;height:5px;background:var(--yellow);border-radius:1px 1px 0 0;box-shadow:13px 0 0 var(--yellow)}
+.count.ready{background:var(--yellow);box-shadow:0 4px 0 var(--ink)}
+.replay{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));min-height:48px;padding:10px 18px;border-radius:14px;
+  border:0;background:var(--yellow);color:var(--ink);font:800 18px/1 'Baloo 2',sans-serif;box-shadow:0 4px 0 var(--ink);cursor:pointer}
+body.recording .replay{display:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="top"><div class="kicker" id="kicker">Your wish</div><div class="title" id="title"></div></div>
+<div class="bottom"><div class="count" id="count"></div><div class="brand"><i></i>BrickWish</div></div>
+<button class="replay" id="replay" type="button">Replay</button>
+<script src="{{THREE_SRC}}"></script>
+<script>window.MODEL = /*MODEL*/null;</script>
+<script>
+(() => {
+"use strict";
+const M = window.MODEL;
+const LANG = M.lang === "es" ? "es" : "en";
+const TXT = { en: { kicker: "Your wish", pieces: "pieces", done: "Ready to build!", replay: "Replay" },
+              es: { kicker: "Tu deseo", pieces: "piezas", done: "¡Listo para construir!", replay: "Repetir" } }[LANG];
+document.documentElement.lang = LANG;
+document.getElementById("kicker").textContent = TXT.kicker;
+document.getElementById("title").textContent = LANG === "es" ? M.title_es : M.title;
+document.getElementById("replay").textContent = TXT.replay;
+
+const H = 1.2;
+const canvas = document.getElementById("c");
+THREE.ColorManagement.legacyMode = false;
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 3000);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x5a6578, 0.75));
+const sun = new THREE.DirectionalLight(0xffffff, 1.35); sun.position.set(40, 90, 60); scene.add(sun);
+const fill = new THREE.DirectionalLight(0xffffff, 0.35); fill.position.set(-50, 30, -20); scene.add(fill);
+
+const B = M.bricks;
+const X = Math.max(...B.map(b => b.x + b.w)), Y = Math.max(...B.map(b => b.y + b.d)), Z = Math.max(...B.map(b => b.z)) + 1;
+const cx = X / 2, cy = Y / 2, top = Z * H;
+const mats = {}, edgeMat = new THREE.LineBasicMaterial({ color: 0x14203b, transparent: true, opacity: 0.22 });
+const mat = (hex) => mats[hex] || (mats[hex] = new THREE.MeshStandardMaterial({ color: hex, roughness: 0.38, metalness: 0 }));
+const studGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.2, 18);
+const groups = [];
+const occupied = new Set(B.map(b => { const s = []; for (let i = 0; i < b.w; i++) for (let j = 0; j < b.d; j++) s.push(`${b.x + i},${b.y + j},${b.z}`); return s; }).flat());
+
+for (const b of B) {
+  const g = new THREE.Group();
+  const m = mat(M.colors[b.color]);
+  let geo;
+  if (b.kind === "brick") geo = new THREE.BoxGeometry(b.w - 0.04, H - 0.02, b.d - 0.04);
+  else if (b.kind === "cone1x1") geo = new THREE.CylinderGeometry(0.26, 0.48, H - 0.02, 24);
+  else geo = new THREE.CylinderGeometry(b.kind === "round2x2" ? 0.98 : 0.48, b.kind === "round2x2" ? 0.98 : 0.48, H - 0.02, 28);
+  const body = new THREE.Mesh(geo, m);
+  g.add(body);
+  if (b.kind === "brick") g.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo), edgeMat));
+  if (b.kind !== "cone1x1") {
+    for (let i = 0; i < b.w; i++) for (let j = 0; j < b.d; j++) {
+      if (occupied.has(`${b.x + i},${b.y + j},${b.z + 1}`)) continue;
+      const s = new THREE.Mesh(studGeo, m);
+      s.position.set(i + 0.5 - b.w / 2, H / 2 + 0.1, j + 0.5 - b.d / 2);
+      g.add(s);
+    }
+  }
+  const home = new THREE.Vector3(b.x + b.w / 2 - cx, b.z * H + H / 2, b.y + b.d / 2 - cy);
+  g.position.copy(home);
+  scene.add(g);
+  groups.push({ g, home, step: b.step });
+}
+
+// ground shadow
+const shadow = new THREE.Mesh(new THREE.CircleGeometry(1, 48), new THREE.MeshBasicMaterial({ color: 0x14203b, transparent: true, opacity: 0.12 }));
+shadow.rotation.x = -Math.PI / 2; shadow.scale.set(X * 0.75, Y * 0.95, 1); shadow.position.y = 0.01; scene.add(shadow);
+
+// timeline (seconds)
+const INTRO = 1.2, BUILD = Math.min(12, Math.max(6, M.steps * 0.17)), SPIN = 4.5, OUTRO = 1.6;
+const DURATION = INTRO + BUILD + SPIN + OUTRO;
+window.DURATION = DURATION;
+const DROP = 0.4, perStep = BUILD / M.steps;
+const stepOrder = {};
+groups.forEach(o => { (stepOrder[o.step] = stepOrder[o.step] || []).push(o); });
+Object.values(stepOrder).forEach(list => list.forEach((o, i) => { o.start = INTRO + (o.step - 1) * perStep + i * Math.min(0.06, perStep / (list.length + 1)); }));
+
+const easeOutBack = (x) => { const c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const radius = Math.hypot(X, Y) / 2;
+let dragOffset = 0;
+
+function resize() {
+  const w = window.innerWidth, h = window.innerHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+window.addEventListener("resize", resize); resize();
+
+window.setTime = function (t) {
+  let placed = 0;
+  for (const o of groups) {
+    const k = clamp((t - o.start) / DROP, 0, 1);
+    o.g.visible = k > 0;
+    if (k > 0) placed++;
+    o.g.position.set(o.home.x, o.home.y + (1 - easeOutBack(k)) * 9, o.home.z);
+  }
+  const count = document.getElementById("count");
+  const finished = t >= INTRO + BUILD + SPIN * 0.35;
+  count.textContent = finished ? TXT.done : `${placed} / ${B.length} ${TXT.pieces}`;
+  count.classList.toggle("ready", finished);
+  const spinT = clamp((t - INTRO - BUILD) / SPIN, 0, 1);
+  const ang = 0.78 + 0.5 * clamp(t / (INTRO + BUILD), 0, 1) + spinT * Math.PI * 2 + dragOffset;
+  const vfov = camera.fov * Math.PI / 180;
+  const fitH = (top * 0.82 + radius * 0.35) / Math.tan(vfov / 2);
+  const fitW = (radius * 1.35) / (Math.tan(vfov / 2) * camera.aspect);
+  const dist = Math.max(fitH, fitW, 20);
+  const elev = 0.42;
+  const target = new THREE.Vector3(0, top * 0.53, 0);
+  camera.position.set(Math.cos(ang) * dist * Math.cos(elev), target.y + dist * Math.sin(elev), Math.sin(ang) * dist * Math.cos(elev));
+  camera.lookAt(target);
+  renderer.render(scene, camera);
+};
+
+const recording = /record/.test(location.hash);
+if (recording) { document.body.classList.add("recording"); window.setTime(0); }
+else {
+  let start = performance.now(), dragging = false, lastX = 0;
+  const loop = (now) => { window.setTime(Math.min((now - start) / 1000, DURATION)); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+  document.getElementById("replay").addEventListener("click", () => { start = performance.now(); dragOffset = 0; });
+  canvas.addEventListener("pointerdown", (e) => { dragging = true; lastX = e.clientX; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener("pointermove", (e) => { if (dragging) { dragOffset += (e.clientX - lastX) * 0.01; lastX = e.clientX; } });
+  canvas.addEventListener("pointerup", () => { dragging = false; });
+}
+})();
+</script>
+</body>
+</html>
