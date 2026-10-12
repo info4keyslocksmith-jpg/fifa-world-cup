@@ -291,10 +291,10 @@ details p{padding-bottom:12px}
 .vc-top{position:absolute;left:0;right:0;top:4%;text-align:center;padding:0 8%;pointer-events:none}
 .vc-kicker{font:600 .72rem/1.2 var(--font-body);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
 .vc-title{font:800 1.7rem/1 var(--font-display);margin-top:4px;text-wrap:balance}
-.vc-bottom{position:absolute;left:0;right:0;bottom:4%;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.vc-bottom{position:absolute;left:0;right:0;bottom:4%;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;padding:0 10px;pointer-events:none}
 .vc-count{font:800 1.05rem/1 var(--font-display);background:#fff;border:3px solid #14203B;border-radius:999px;padding:6px 14px;font-variant-numeric:tabular-nums}
 .vc-count.ready{background:#FFC629;box-shadow:0 4px 0 #14203B}
-.vc-replay{position:absolute;right:10px;bottom:10px;min-height:44px;padding:8px 14px;border-radius:12px;border:0;background:#fff;color:#14203B;
+.vc-replay{pointer-events:auto;min-height:44px;padding:8px 14px;border-radius:12px;border:0;background:#fff;color:#14203B;
   font:800 .95rem/1 var(--font-display);box-shadow:0 3px 0 #14203B;cursor:pointer}
 
 /* ---------- manual pages ---------- */
@@ -423,8 +423,7 @@ details p{padding-bottom:12px}
     <div class="viewer-card" id="viewerCard" hidden>
       <canvas id="viewerCanvas" aria-label="Your model building itself in 3D. Drag to turn it."></canvas>
       <div class="vc-top"><div class="vc-kicker">Your wish</div><div class="vc-title" id="vcTitle"></div></div>
-      <div class="vc-bottom"><div class="vc-count" id="vcCount"></div></div>
-      <button class="vc-replay" id="replayBtn" type="button">Replay</button>
+      <div class="vc-bottom"><div class="vc-count" id="vcCount"></div><button class="vc-replay" id="replayBtn" type="button">Replay</button></div>
     </div>
     <video class="buildvideo" id="buildVideo" muted playsinline loop autoplay controls preload="metadata" hidden></video>
     <div class="statrow"><span><b id="pvPieces"></b> pieces</span><span><b id="pvSteps"></b> steps</span><span><b id="pvPageCount"></b> pages</span></div>
@@ -889,7 +888,7 @@ $("#levels").addEventListener("change", (e) => { state.level = Number(e.target.v
 /* ===== The engine and the 3D viewer (same code as the server) ===== */
 let enginePromise = null, viewerScript = null, viewer = null;
 function loadEngine() {
-  enginePromise ??= import(CONFIG.enginePath + "engine.js").then((E) => {
+  enginePromise ??= import(new URL(CONFIG.enginePath + "engine.js", document.baseURI).href).then((E) => {
     const st = document.createElement("style"); st.textContent = E.MANUAL_CSS; document.head.append(st);
     return E;
   });
