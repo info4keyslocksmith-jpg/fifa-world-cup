@@ -1,9 +1,9 @@
-Subject: BrickWish order BW-DEMO - Empire State Building (218 pcs)
+Subject: BrickWish order BW-DEMO - Empire State Building (235 pcs)
 
 Hello,
 
 Please pick, pack and dropship BrickWish order BW-DEMO.
-- Parts: see the attached parts.csv (bag by bag) or bricklink.xml (218 pieces including spares).
+- Parts: see the attached parts.csv (bag by bag) or bricklink.xml (235 pieces including spares).
 - Pack each bag number separately and label it 'Bag N'. Put the spares bag in last.
 - Packaging: BrickWish branded box or mailer; one sealed bag per bag number, with a sticker 'Bag N'.
 - Labels on the outside of the package:
